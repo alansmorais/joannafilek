@@ -1,0 +1,84 @@
+:root {
+    --plum-color: #722d64;       /* The top bar background */
+    --lavender-bg: #e8c1d9;      /* The main header background */
+    --dark-green: #1b3d2f;       /* The logo and text color */
+    --white-text: #fcfcfc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* TOP BAR STYLING */
+.top-bar {
+    background-color: var(--plum-color);
+    color: var(--white-text);
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.top-bar .container {
+    display: flex;
+    justify-content: flex-end; /* Aligns text to the right as in image */
+}
+
+.top-bar span {
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+/* MAIN HEADER STYLING */
+.main-header {
+    background-color: var(--lavender-bg);
+    /* Adding a slight gradient to mimic the "photo overlay" look in your image */
+    background: linear-gradient(rgba(232, 193, 217, 0.85), rgba(232, 193, 217, 0.85)), 
+                url('https://www.transparenttextures.com/patterns/cubes.png'); 
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-icon {
+    width: 60px;
+    height: 60px;
+}
+
+.logo-text {
+    font-size: 32px;
+    color: var(--dark-green);
+    letter-spacing: -1px;
+}
+
+.logo-text .bold {
+    font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .top-bar .container {
+        justify-content: center;
+        text-align: center;
+        font-size: 12px;
+    }
+    .logo-text {
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joanna Filek – Psycholog & Seksuolog</title>
+<link rel="icon" type="image/png" href="images/1.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-plum': '#722D64',
+                        'brand-lavender': '#E8C1D9',
+                        'brand-green': '#1B3D2F',
+                        'brand-green-light': '#FDF9FB',
+                        'brand-white': '#FCFCFC',
+                        'brand-violet-light': '#F4E6EF'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+        body { background-color: #FDF9FB; color: #1B3D2F; scroll-behavior: smooth; }
+        .animate-scroll-text { animation: scroll-up 10s infinite; }
+        @keyframes scroll-up {
+            0%, 10% { transform: translateY(0); }
+            15%, 25% { transform: translateY(-20%); }
+            30%, 40% { transform: translateY(-40%); }
+            45%, 55% { transform: translateY(-60%); }
+            60%, 70% { transform: translateY(-80%); }
+            85%, 100% { transform: translateY(0); }
+        }
+        /* Overlap fix to prevent the tiny white line */
+        .no-gap { margin-top: -1px; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div class="relative z-[60] flex items-center justify-center h-10 bg-brand-plum text-brand-white gap-4 text-xs font-medium">
+        <span>Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</span>
+    </div>
+
+    <header class="relative z-50 w-full py-1 bg-brand-lavender no-gap">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="hidden md:block">
+                    <img src="images/logo.png" alt="Joanna Filek Logo" class="w-12 h-12 object-contain grayscale brightness-50">
+                </div>
+                <div class="text-3xl font-light text-brand-green">Joanna <span class="font-bold">Filek</span></div>
+            </a>
+            
+            <nav class="hidden xl:flex bg-white rounded-full px-6 py-2 shadow-sm items-center gap-6 text-brand-green font-semibold text-sm">
+                <a href="index.html" class="hover:opacity-60 transition-all">Strona główna</a>
+                <a href="about.html" class="hover:opacity-60 transition-all">O Mnie</a>
+                <a href="works.html" class="hover:opacity-60 transition-all">Workshop</a>
+                <a href="contact.html" class="hover:opacity-60 transition-all">Kontakt</a>
+                <!img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_Kingdom.svg" class="w-5" alt="EN">
+            </nav>
+        </div>
+    </header>
+
+    <section class="bg-brand-lavender flex flex-col justify-start pt-6 lg:pt-8 pb-8 no-gap">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 items-center">
+            <div class="z-10">
+                <h1 class="text-brand-green text-5xl lg:text-7xl font-bold mb-2">Mogę pomóc Ci z</h1>
+                <div class="h-24 overflow-hidden">
+                    <div class="animate-scroll-text text-brand-plum font-serif italic text-4xl lg:text-6xl">
+                        <div class="h-24">trudnościami w relacji</div>
+                        <div class="h-24">niepokojem</div>
+                        <div class="h-24">bólem przy stosunku</div>
+                        <div class="h-24">depresją</div>
+                        <div class="h-24">zaburzeniami erekcji</div>
+                    </div>
+                </div>
+                <p class="max-w-prose text-lg text-brand-green mt-8 mb-10 leading-relaxed opacity-90">
+                    Stworzyliśmy przestrzeń gdzie możecie dzielić się, pytać, szukać odpowiedzi na temat <b>dojrzewania</b>, <b>seksualności</b> i <b>wszystkiego związanego z seksem</b>.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                  <a href="visits.html" class="inline-block bg-brand-green text-brand-white text-lg font-bold py-4 px-10 rounded-xl shadow-lg hover:opacity-90 transition-all text-center">
+    Zapisz się na spotkanie
+</a>
+                    <a href="about.html" class="text-brand-green text-lg font-bold py-4 px-10 rounded-xl border-2 border-brand-green/20 hover:bg-white/20 transition-all text-center">
+                        Dowiedz się więcej
+                    </a>
+                </div>
+            </div>
+            <div class="relative hidden md:flex justify-end">
+                <img src="images/joanna.png" alt="Joanna Filek" class="max-w-[500px] rounded-3xl mix-blend-multiply opacity-90">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="pt-12 pb-12 bg-brand-green-light">
+        <div class="container mx-auto px-6">
+            <div class="bg-brand-violet-light border border-brand-plum/10 rounded-3xl p-8 md:p-16 flex flex-col xl:flex-row gap-16">
+                <div class="shrink-0">
+                    <img src="images/joanna.png" class="w-64 xl:w-96 rounded-2xl shadow-xl">
+                    <div class="mt-6">
+                        <h3 class="text-brand-plum font-bold text-xl">mgr Joanna Filek</h3>
+                        <p class="text-brand-green opacity-80">Psycholożka • Seksuolożka • Psychoterapeuta</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <h2 class="text-4xl text-brand-plum leading-tight">Cześć, mam na imię <b>Joanna</b>.</h2>
+                    <div class="text-sm lg:text-base leading-relaxed opacity-90 space-y-4">
+                        <p class="font-bold text-lg text-brand-plum">O Mnie</p>
+                        <p>Jestem psycholożką i seksuolożką. Zaobserwowałam, że w polskich domach temat seksu często jest tabu, a brak edukacji w szkołach tworzy trudności. Ta strona to przestrzeń do zadawania pytań, dzielenia się doświadczeniami i rozmowy o trudnościach.</p>
+                        <p class="font-bold text-lg text-brand-plum">Misja Strony</p>
+                        <p>Wierzę, że wielu trudnościom można by było zapobiec. Dlatego tu jesteśmy - by pomagać i wspierać. Zadawajcie pytania i korzystajcie z naszej wiedzy eksperckiej.</p>
+                    </div>
+                    <a href="about.html" class="text-brand-plum font-bold text-lg hover:underline">Dowiedz się więcej tutaj →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-green text-brand-white pt-8 pb-4">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-2">
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Dowiedz się więcej</h3>
+                    <ul class="text-lg space-y-2">
+                        <li><a href="about.html" class="hover:text-brand-lavender">O Mnie</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender">Workshop</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Kontakt</h3>
+                    <ul class="text-lg space-y-2">
+                        <li><a href="contact.html" class="hover:text-brand-lavender text-sm">Instagram</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Interakcja</h3>
+                    <ul class="text-lg space-y-2">
+                        <li><a href="contact.html" class="hover:text-brand-lavender text-sm">Wizyty</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col items-end justify-start">
+                    <div class="text-4xl font-light mb-4">Joanna <span class="font-bold text-brand-lavender">Filek</span></div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 opacity-30">
+                            <img src="images/logospining.png" alt="Logo" class="animate-[spin_20s_linear_infinite] w-full h-full object-contain">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-white/30 text-xs flex justify-between border-t border-white/10 pt-4 mt-4">
+                <p>Prawo autorskie © 2026 Joanna Filek</p>
+                <div class="flex gap-4">
+                    <a href="index.html" class="hover:text-white">Polski</a>
+                    <span>/</span>
+                    <a href="#" class="hover:text-white opacity-50">English</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

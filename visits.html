@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umów wizytę | Joanna Filek</title>
+    <link rel="icon" type="image/png" href="images/1.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-plum': '#722D64',
+                        'brand-lavender': '#E2E6F3', 
+                        'brand-green': '#1B3D2F',
+                        'brand-green-light': '#FDF9FB',
+                        'brand-white': '#FCFCFC',
+                        'violet-box': '#E8C1D9'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; font-weight: 400; }
+        .no-gap { margin-top: -1px; }
+        
+        /* Ensures the widget doesn't have a double scrollbar */
+        .zl-wrapper { min-height: 700px; width: 100%; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div class="relative z-[60] flex items-center justify-center h-10 bg-brand-plum text-brand-white text-xs font-medium">
+        <span>Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</span>
+    </div>
+
+    <header class="relative z-50 w-full py-1 bg-brand-lavender no-gap">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo.png" alt="Logo" class="w-12 h-12 object-contain grayscale brightness-50">
+                <div class="text-3xl font-light text-brand-green">Joanna <span class="font-bold">Filek</span></div>
+            </a>
+            <nav class="hidden xl:flex bg-white rounded-full px-6 py-2 shadow-sm items-center gap-6 text-brand-green font-semibold text-sm">
+                <a href="index.html" class="hover:opacity-60 transition-all">Strona główna</a>
+                <a href="about.html" class="hover:opacity-60 transition-all">O Mnie</a>
+                <a href="works.html" class="hover:opacity-60 transition-all">Workshop</a>
+                <a href="schedule.html" class="text-brand-plum font-bold">Wizyty</a>
+                <a href="contact.html" class="hover:opacity-60 transition-all">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="bg-brand-lavender pt-8 pb-12 no-gap">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-8">
+                <h3 class="flex items-center gap-3 text-brand-green mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <span class="text-xl font-bold uppercase tracking-wide">Konsultacje online</span>
+                </h3>
+                <p class="text-brand-green opacity-80">Wybierz dogodny termin i umów się na wizytę bezpośrednio tutaj.</p>
+            </div>
+
+            <div class="bg-white p-4 md:p-8 rounded-[32px] shadow-sm zl-wrapper">
+                <a id="zl-url" class="zl-url" 
+                   href="https://www.znanylekarz.pl/joanna-filek-2/psycholog-seksuolog/wroclaw" 
+                   rel="nofollow" 
+                   data-zlw-doctor="joanna-filek-2" 
+                   data-zlw-type="big_with_calendar" 
+                   data-zlw-opinion="false" 
+                   data-zlw-hide-branding="true" 
+                   data-zlw-saas-only="true">Joanna Filek - ZnanyLekarz.pl</a>
+                
+                <script>
+                    !function($_x,_s,id){var js,fjs=$_x.getElementsByTagName(_s)[0];if(!$_x.getElementById(id)){js=$_x.createElement(_s);js.id=id;js.src="//platform.docplanner.com/js/widget.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","zl-widget-s");
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-brand-green-light py-16 no-gap">
+        <div class="max-w-4xl mx-auto px-6">
+            <h3 class="text-xl font-bold text-brand-plum mb-6">Więcej informacji</h3>
+            
+            <div class="bg-[#E2E6F3]/30 border border-brand-plum/20 rounded-2xl p-8 lg:p-12 text-brand-plum">
+                <table class="w-full mb-8">
+                    <tbody class="space-y-4">
+                        <tr class="border-b border-brand-plum border-dashed">
+                            <td class="py-4 font-normal">Sesja psychologiczna</td>
+                            <td class="text-right font-normal">180 zł</td>
+                        </tr>
+                        <tr class="border-b border-brand-plum border-dashed">
+                            <td class="py-4 font-normal">Sesja seksuologiczna</td>
+                            <td class="text-right font-normal">200 zł</td>
+                        </tr>
+                        <tr class="border-b border-brand-plum border-dashed">
+                            <td class="py-4 font-normal">Terapia par</td>
+                            <td class="text-right font-normal">250 zł</td>
+                        </tr>
+                        <tr class="border-b border-brand-plum border-dashed">
+                            <td class="py-4 font-normal">Sesja diagnostyczna*</td>
+                            <td class="text-right font-normal">220 zł</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="space-y-6 text-sm leading-relaxed opacity-90 font-normal">
+                    <p class="text-xs italic">* Informacja o sesji diagnostycznej: wymaga wcześniejszej rezerwacji.</p>
+                    <p>Wierzymy, że seksualność jest naturalną częścią życia, a rozmowa o niej powinna odbywać się w atmosferze szacunku.</p>
+                    
+                    <h4 class="font-bold text-lg pt-4">Kontakt</h4>
+                    
+                    <div class="flex items-center gap-6 mt-4">
+                        <a href="https://www.instagram.com/joaboutsex/" target="_blank" class="hover:opacity-70 transition-all">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="https://wa.me/48733777542" target="_blank" class="hover:opacity-70 transition-all">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.835c1.716.995 3.647 1.52 5.625 1.521 5.454 0 9.893-4.438 9.895-9.892.001-2.646-1.03-5.131-2.903-7.004s-4.357-2.905-7.004-2.906c-5.456 0-9.896 4.439-9.898 9.893-.001 1.81.474 3.571 1.375 5.114l-1.01 3.686 3.778-.992zm11.104-7.812c-.29-.145-1.72-.848-1.985-.944-.266-.096-.459-.145-.651.145s-.74.944-.906 1.137c-.166.193-.331.217-.621.072-.29-.145-1.223-.45-2.328-1.437-.86-.767-1.44-1.716-1.608-2.006-.166-.29-.018-.447.127-.591.13-.129.29-.338.435-.507.145-.168.193-.29.29-.483.097-.193.048-.361-.024-.507s-.651-1.568-.892-2.147c-.235-.563-.474-.486-.651-.496-.168-.01-.361-.01-.555-.01s-.507.072-.772.361c-.266.29-1.013.989-1.013 2.412s1.037 2.8 1.182 2.993c.145.193 2.04 3.115 4.939 4.363.69.297 1.229.475 1.648.608.693.221 1.324.19 1.823.115.556-.084 1.72-.7 1.961-1.374.242-.675.242-1.253.169-1.374-.073-.12-.266-.193-.556-.338z"/></svg>
+                        </a>
+                        <a href="mailto:psycholog.joannafilek@gmail.com" class="hover:opacity-70 transition-all">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-green text-brand-white pt-8 pb-4">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-2">
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Dowiedz się więcej</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="about.html" class="hover:text-brand-lavender">O Mnie</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender">Workshop</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Kontakt</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="contact.html" class="hover:text-brand-lavender">Napisz do nas</a></li>
+                        <li><a href="https://www.instagram.com/joaboutsex" target="_blank" class="hover:text-brand-lavender">Instagram</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Interakcja</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="schedule.html" class="text-brand-lavender font-bold">Wizyty</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col items-end justify-start">
+                    <div class="text-4xl font-light mb-4">Joanna <span class="font-bold text-brand-lavender">Filek</span></div>
+                    <div class="w-16 h-16 opacity-30">
+                        <img src="images/logospining.png" alt="Logo" class="animate-[spin_20s_linear_infinite] w-full h-full object-contain">
+                    </div>
+                </div>
+            </div>
+            <div class="text-white/30 text-xs flex justify-between border-t border-white/10 pt-4 mt-4">
+                <p>Prawo autorskie © 2026 Joanna Filek</p>
+                <div class="flex gap-4">
+                    <a href="index.html" class="hover:text-white">Polski</a>
+                    <span>/</span>
+                    <a href="#" class="hover:text-white opacity-50">English</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

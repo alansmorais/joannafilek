@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Mnie | Joanna Filek</title>
+<link rel="icon" type="image/png" href="images/1.jpg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-plum': '#722D64',
+                        'brand-lavender': '#E2E6F3', 
+                        'brand-green': '#1B3D2F',
+                        'brand-green-light': '#FDF9FB',
+                        'brand-white': '#FCFCFC'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; font-weight: 400; }
+        
+        .no-gap { margin-top: -1px; }
+
+        /* Custom Fade-In Animation */
+        @keyframes customFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .image-fade {
+            animation: customFadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Dark Violet Signature Tint */
+        .signature-tint {
+            filter: invert(21%) sepia(35%) saturate(2250%) hue-rotate(282deg) brightness(95%) contrast(88%);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div class="relative z-[60] flex items-center justify-center h-10 bg-brand-plum text-brand-white text-xs font-medium">
+        <span>Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</span>
+    </div>
+
+    <header class="relative z-50 w-full py-1 bg-brand-lavender no-gap">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo.png" alt="Logo" class="w-12 h-12 object-contain grayscale brightness-50">
+                <div class="text-3xl font-light text-brand-green">Joanna <span class="font-bold">Filek</span></div>
+            </a>
+            
+             <nav class="hidden xl:flex bg-white rounded-full px-6 py-2 shadow-sm items-center gap-6 text-brand-green font-semibold text-sm">
+                <a href="index.html" class="hover:opacity-60 transition-all">Strona główna</a>
+                <a href="about.html" class="hover:opacity-60 transition-all">O Mnie</a>
+                <a href="works.html" class="hover:opacity-60 transition-all">Workshop</a>
+                <a href="contact.html" class="hover:opacity-60 transition-all">Kontakt</a>
+                <!img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_Kingdom.svg" class="w-5" alt="EN">
+            </nav>
+        </div>
+    </header>
+
+    <section class="bg-brand-lavender pb-2 no-gap">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-8">
+                <div class="image-fade w-32 h-32 lg:w-44 lg:h-44 rounded-full overflow-hidden shadow-lg border-4 border-white/20" style="animation-delay: 0.6s;">
+                    <img src="images/1.webp" class="w-full h-full object-cover grayscale" alt="About 1">
+                </div>
+                <div class="image-fade w-36 h-36 lg:w-52 lg:h-52 rounded-full overflow-hidden shadow-lg border-4 border-white/20" style="animation-delay: 0.3s;">
+                    <img src="images/2.webp" class="w-full h-full object-cover grayscale" alt="About 2">
+                </div>
+                <div class="image-fade w-44 h-44 lg:w-64 lg:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white/40 z-10" style="animation-delay: 0s;">
+                    <img src="images/joanna.png" class="w-full h-full object-cover" alt="Joanna Filek">
+                </div>
+                <div class="image-fade w-36 h-36 lg:w-52 lg:h-52 rounded-full overflow-hidden shadow-lg border-4 border-white/20" style="animation-delay: 0.3s;">
+                    <img src="images/4.webp" class="w-full h-full object-cover grayscale" alt="About 4">
+                </div>
+                <div class="image-fade w-32 h-32 lg:w-44 lg:h-44 rounded-full overflow-hidden shadow-lg border-4 border-white/20" style="animation-delay: 0.6s;">
+                    <img src="images/5.webp" class="w-full h-full object-cover grayscale" alt="About 5">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-brand-lavender py-6 no-gap">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl lg:text-4xl text-brand-plum font-light mb-4">
+                Cześć, mam na imię <span class="font-bold">Joanna.</span>
+            </h2>
+
+            <div class="border-l-2 border-brand-plum pl-6 mb-6">
+                <p class="text-brand-plum text-lg lg:text-xl italic font-medium leading-relaxed">
+                    Kiedy dorastałam nikt nie rozmawiał ze mną o seksie.
+                </p>
+            </div>
+
+            <div class="space-y-6 text-brand-green text-sm lg:text-base leading-relaxed opacity-90">
+                <p>W szkole również nie uczono nas niczego na ten temat. W domu był to temat tabu. Swoją wiedzę czerpałam więc głównie z „Bravo”, miesięcznika, w którym była rubryka z pytaniami dotyczącymi dojrzewania i inicjacji seksualnej. Resztę informacji miałam od znajomych. Ani jedno ani drugie źródło nie było wiarygodne. Kiedy postanowiłam rozpocząć współżycie poszłam do mojej mamy spytać o antykoncepcje. Nie dowiedziałam się niczego, ale mama zapisała mnie do ginekologa. Byłam przerażona. Kiedy powiedziałam doktorce, że chce rozpocząć współżycie z moim chlopakiem, odpowiedziała surowo: „A po co???!!!”.</p>
+                <p>Warto wspomnieć, że miałam prawie 18 lat. Kiedy poprosiłam o antykoncepcje (nie mając o niej bladego pojęcia, wiedziałam tylko o istnieniu prezerwatyw i jakichś tabletek, ale jakie to były tabletki i jak miały działać nikt mi nie wytłumaczył), babka przepisała mi tabletkę 72h po… nie tłumacząc niczego i na tym kończąc wizytę. Wykupiliśmy więc receptę i przeczytalismy ulotkę, kompletnie zdezorientowani… „czy mam po każdym seksie ją zażywać?”. W końcu po pierwszym razie, kiedy tabletka kompletnie rozregulowała mi okres, postanowiliśmy zostać przy prezerwatywach. I próbować zorientować się jakoś o co chodzi w tym całym seksie.</p>
+
+                <div class="border-l-2 border-brand-plum pl-6 mb-6">
+                    <p class="text-brand-plum text-lg lg:text-xl italic font-medium leading-relaxed">
+                        Teraz jestem psycholożką i seksuolożką i obserwuję, że temat seksu wciąż jest często w domach rodzinnych tematem tabu.
+                    </p>
+                </div>
+
+                <p>Rodzice nie wiedzą i boją się rozmawiać z dziećmi o seksie. Edukacja seksualna w polskich szkołach nie istnieje… Młodzi ludzie często nie otrzymują rzetelnej wiedzy, a to namnarza trudności i problemów, które czasem ciągną się przez wiele lat i potrzeba specjalistycznej pomocy psychologów, terapeutów i seksuologów żeby sobie z tym poradzić. Wierzę, że wielu trudności, z którymi zgłaszają się do mnie pacjenci można by uniknąć.</p>
+		Stąd pomysł na tą stronę, na przestrzeń gdzie każdy może zadać pytanie, podzielić się swoimi doświadczeniami, pogadać o tym co sprawia trudności. Możecie też zadawać pytania do specjalistów, a jeśli czujecie, że chcecie dłużej pogadać to zapraszam na konsultacje seksuologiczne ze mną.
+
+                <p><b class="text-brand-plum">Wykształcenie</b></p>
+                <p>Jestem psycholożką i seksuolożką. Ukończyłam studia z Psychologii klinicznej na Uniwersytecie SWPS w Warszawie oraz studia z Psychologii rozwoju i coachingu na WSE w Krakowie. Następnie ukończyłam studia z Seksuologii klinicznej na Uniwersytecie SWPS w Katowicach.</p>
+                <p>Ponadto ukończyłam studia magisterskie z Religioznawstwa na UJ w Krakowie oraz Pedagogikę w Akademii Ignatianum w Krakowie. Jestem zatem zaznajomiona w różnymi religiami i wyznaniami z całego świata. Bardzo pomaga mi to w pracy z ludźmi z różnych kręgów kulturowych.</p>
+                <p>Każda osoba niezależnie od płci, tożsamości, orientacji, religii, pochodzenia będzie w pełni akceptowana na sesjach ze mną.</p>
+                <p>Fajnie, że jesteś.</p>
+                
+                <div class="flex justify-center md:justify-start pt-2">
+                    <img src="images/signature.webp" alt="Podpis" class="w-25 h-auto signature">
+                </div>
+            </div>
+
+            <div class="mt-12 mb-20">
+                <div class="flex items-center gap-3 mb-6 text-brand-plum">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21,12L14,21V16H10V8H14V3L21,12M8,8H2V16H8V8Z" />
+                    </svg>
+                    <h2 class="text-2xl font-semibold">Strefa specjalisty</h2>
+                </div>
+                <div class="border border-brand-plum/20 rounded-xl p-8 text-brand-green bg-white/5">
+                    <p class="mb-8 font-normal leading-relaxed">Jeśli jesteś specjalistą i myślisz, że Twój wkład wniósł by wartość w mój projekt, nie wahaj się odezwać.</p>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3">
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Psycholożką/psychologiem</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Psychoterapeutyką/Psychoterapeutą</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Seksuolożką/Seksuologiem</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Lekarką/Lekarzem</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Fizjoterapeutyką/Fizjoterapeutą</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Dietetyczką/Dietetykiem</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Pedagożką/Pedagogiem</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Edukatorką/Edukatorzy seksuoalnym</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-green text-brand-white pt-8 pb-4">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-2">
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Dowiedz się więcej</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="about.html" class="hover:text-brand-lavender">O Mnie</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender">Workshop</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Kontakt</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="contact.html" class="hover:text-brand-lavender">Napisz do nas</a></li>
+                        <li>
+    <a href="https://www.instagram.com/joaboutsex" target="_blank" class="hover:text-brand-lavender">Instagram</a>
+</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Interakcja</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="contact.html" class="hover:text-brand-lavender">Wizyty</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col items-end justify-start">
+                    <div class="text-4xl font-light mb-4">Joanna <span class="font-bold text-brand-lavender">Filek</span></div>
+                    <div class="w-16 h-16 opacity-30">
+                        <img src="images/logospining.png" alt="Logo" class="animate-[spin_20s_linear_infinite] w-full h-full object-contain">
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-white/30 text-xs flex justify-between border-t border-white/10 pt-4 mt-4">
+                <p>Prawo autorskie © 2026 Joanna Filek</p>
+                <div class="flex gap-4">
+                    <a href="index.html" class="hover:text-white">Polski</a>
+                    <span>/</span>
+                    <a href="#" class="hover:text-white opacity-50">English</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
