@@ -25,6 +25,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; }
         .no-gap { margin-top: -1px; }
+        
+        /* Styl dla tła ze zdjęciem */
+        .hero-bg-image {
+            background-image: linear-gradient(to bottom, rgba(27, 61, 47, 0.8), rgba(114, 45, 100, 0.9)), url('images/WSImage.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-gap;
+        }
     </style>
 </head>
 <body class="overflow-x-hidden text-brand-green">
@@ -49,22 +57,22 @@
         </div>
     </header>
 
-    <section class="bg-brand-lavender pt-12 pb-20 no-gap">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <span class="bg-brand-plum text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Warsztat dla par</span>
-            <h1 class="text-4xl md:text-5xl font-bold text-brand-green mt-6 mb-4">Od złości do porozumienia</h1>
-            <p class="text-xl text-brand-plum font-medium">Jak radzić sobie z emocjami w związku bez kłótni i wycofania</p>
+    <section class="hero-bg-image pt-20 pb-28 no-gap">
+        <div class="max-w-5xl mx-auto px-6 text-center text-white">
+            <span class="bg-white/20 backdrop-blur-sm text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-white/30">Warsztat dla par</span>
+            <h1 class="text-4xl md:text-5xl font-bold mt-6 mb-4">Od złości do porozumienia</h1>
+            <p class="text-xl text-brand-lavender font-medium">Jak radzić sobie z emocjami w związku bez kłótni i wycofania</p>
             
-            <div class="flex flex-wrap justify-center gap-6 mt-10 text-sm font-semibold">
-                <div class="flex items-center gap-2 bg-white px-5 py-3 rounded-2xl shadow-sm">
+            <div class="flex flex-wrap justify-center gap-6 mt-12 text-sm font-semibold">
+                <div class="flex items-center gap-3 bg-white text-brand-green px-6 py-3 rounded-2xl shadow-xl">
                     <svg class="w-5 h-5 text-brand-plum" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     9 maja 2026
                 </div>
-                <div class="flex items-center gap-2 bg-white px-5 py-3 rounded-2xl shadow-sm">
+                <div class="flex items-center gap-3 bg-white text-brand-green px-6 py-3 rounded-2xl shadow-xl">
                     <svg class="w-5 h-5 text-brand-plum" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     10:00 – 16:00
                 </div>
-                <div class="flex items-center gap-2 bg-white px-5 py-3 rounded-2xl shadow-sm">
+                <div class="flex items-center gap-3 bg-white text-brand-green px-6 py-3 rounded-2xl shadow-xl">
                     <svg class="w-5 h-5 text-brand-plum" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     Studio Kolorów, Kraków
                 </div>
@@ -72,7 +80,7 @@
         </div>
     </section>
 
-    <section class="py-16 bg-brand-green-light no-gap">
+    <section class="py-16 bg-brand-green-light no-gap relative z-10 -mt-10 rounded-t-[40px]">
         <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
             
             <div class="lg:col-span-2 space-y-8">
@@ -160,7 +168,7 @@
             <h2 class="text-2xl font-bold mb-12 text-center uppercase tracking-widest text-brand-plum">Prowadzący</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div class="flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left">
-                    <img src="images/1.jpg" alt="Joanna Filek" class="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-brand-lavender">
+                    <img src="images/1.jpg" alt="Joanna Filek" class="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-brand-lavender flex-shrink-0">
                     <div>
                         <h3 class="text-xl font-bold text-brand-green">Joanna Filek</h3>
                         <p class="text-xs font-bold text-brand-plum mb-3">Psycholożka, Seksuolożka</p>
@@ -168,9 +176,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left">
-                    <div class="w-32 h-32 rounded-full bg-brand-lavender flex items-center justify-center shadow-lg border-4 border-brand-white">
-                        <span class="text-brand-plum font-bold">Bodhi</span>
-                    </div>
+                    <img src="images/bhodi.jpg" alt="Bodhi (Conscious Wolf)" class="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-brand-lavender flex-shrink-0">
                     <div>
                         <h3 class="text-xl font-bold text-brand-green">Bodhi (Conscious Wolf)</h3>
                         <p class="text-xs font-bold text-brand-plum mb-3">Przewodnik, Coach, Facilitator</p>
