@@ -1,30 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Works</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warsztaty | Joanna Filek</title>
+    <link rel="icon" type="image/png" href="images/1.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-plum': '#722D64',
+                        'brand-lavender': '#E2E6F3', 
+                        'brand-green': '#1B3D2F',
+                        'brand-green-light': '#FDF9FB',
+                        'brand-white': '#FCFCFC',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; }
+        .no-gap { margin-top: -1px; }
+    </style>
 </head>
-<body>
+<body class="overflow-x-hidden text-brand-green">
 
-<header>
-  <h1>Works</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="works.html">Works</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+    <div class="relative z-[60] flex items-center justify-center h-10 bg-brand-plum text-brand-white text-xs font-medium">
+        <span>Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</span>
+    </div>
 
-<section class="gallery">
-  <img src="images/work1.jpg">
-  <img src="images/work2.jpg">
-  <img src="images/work3.jpg">
-  <img src="images/work4.jpg">
-</section>
+    <header class="relative z-50 w-full py-1 bg-brand-lavender no-gap">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo.png" alt="Logo" class="w-12 h-12 object-contain grayscale brightness-50">
+                <div class="text-3xl font-light text-brand-green">Joanna <span class="font-bold">Filek</span></div>
+            </a>
+            <nav class="hidden xl:flex bg-white rounded-full px-6 py-2 shadow-sm items-center gap-6 text-brand-green font-semibold text-sm">
+                <a href="index.html" class="hover:opacity-60 transition-all">Strona główna</a>
+                <a href="about.html" class="hover:opacity-60 transition-all">O Mnie</a>
+                <a href="works.html" class="text-brand-plum font-bold">Workshop</a>
+                <a href="schedule.html" class="hover:opacity-60 transition-all">Wizyty</a>
+                <a href="contact.html" class="hover:opacity-60 transition-all">Kontakt</a>
+            </nav>
+        </div>
+    </header>
 
-<footer>© 2026 Joanna Filek</footer>
+    <section class="bg-brand-lavender pt-12 pb-20 no-gap">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <span class="bg-brand-plum text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Warsztat dla par</span>
+            <h1 class="text-4xl md:text-5xl font-bold text-brand-green mt-6 mb-4">Od złości do porozumienia</h1>
+            <p class="text-xl text-brand-plum font-medium">Jak radzić sobie z emocjami w związku bez kłótni i wycofania</p>
+            
+            <div class="flex flex-wrap justify-center gap-6 mt-10 text-sm font-semibold">
+                <div class="flex items-center gap-2 bg-white px-5 py-3 rounded-2xl shadow-sm">
+                    <svg class="w-5 h-5 text-brand-plum" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    9 maja 2026
+                </div>
+                <div class="flex items-center gap-2 bg-white px-5 py-3 rounded-2xl shadow-sm">
+                    <svg class="w-5 h-5 text-brand-plum" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    10:00 – 16:00
+                </div>
+                <div class="flex items-center gap-2 bg-white px-5 py-3 rounded-2xl shadow-sm">
+                    <svg class="w-5 h-5 text-brand-plum" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Studio Kolorów, Kraków
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-brand-green-light no-gap">
+        <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
+            
+            <div class="lg:col-span-2 space-y-8">
+                <div>
+                    <h2 class="text-2xl font-bold mb-4 border-b-2 border-brand-lavender pb-2">O warsztacie</h2>
+                    <p class="leading-relaxed opacity-90 mb-4">Ciągle wracacie do tej samej kłótni? Jedno naciska, drugie się wycofuje? To nie musi tak wyglądać. Ten warsztat to nie wykład – to praktyczne ćwiczenia, dialogi i konkretne narzędzia, które możecie od razu wykorzystać w swojej relacji.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-brand-lavender">
+                        <div class="w-10 h-10 bg-brand-lavender rounded-xl flex items-center justify-center mb-4 text-brand-plum font-bold text-xl">1</div>
+                        <h3 class="font-bold mb-2">Moduł 1</h3>
+                        <p class="text-sm opacity-80">Zrozumienie emocjonalnej reaktywności – nauka rozpoznawania napięcia, zanim konflikt eskaluje.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-brand-lavender">
+                        <div class="w-10 h-10 bg-brand-lavender rounded-xl flex items-center justify-center mb-4 text-brand-plum font-bold text-xl">2</div>
+                        <h3 class="font-bold mb-2">Moduł 2</h3>
+                        <p class="text-sm opacity-80">Praca z silnymi emocjami – techniki regulacji, komunikaty bez obwiniania, dialogi partnerskie.</p>
+                    </div>
+                </div>
+
+                <div class="bg-brand-green text-white p-8 rounded-[32px]">
+                    <h3 class="text-xl font-bold mb-4">Dla kogo jest ten warsztat?</h3>
+                    <ul class="space-y-3 opacity-90">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-lavender mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Dla par chcących przerwać błędne koło tych samych kłótni.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-lavender mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Dla osób szukających spokojniejszej komunikacji w trudnych momentach.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-lavender mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Dla partnerów, którzy chcą wrócić do bezpiecznego kontaktu.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white p-8 rounded-[32px] shadow-lg border border-brand-lavender relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-brand-plum text-white px-4 py-1 rounded-bl-2xl text-[10px] font-bold uppercase tracking-widest">Cennik za parę</div>
+                    <h3 class="text-xl font-bold mb-6 pt-4">Zarezerwuj miejsce</h3>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-center p-3 rounded-2xl bg-brand-lavender/30 border border-brand-plum/20">
+                            <div>
+                                <p class="text-[10px] uppercase font-bold text-brand-plum">Do 10 kwietnia</p>
+                                <p class="font-bold">Super Early Bird</p>
+                            </div>
+                            <span class="text-xl font-bold text-brand-plum">499 zł</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 rounded-2xl border border-dashed border-brand-plum/20">
+                            <div>
+                                <p class="text-[10px] uppercase font-bold opacity-40">11 – 27 kwietnia</p>
+                                <p class="font-bold opacity-60">Early Bird</p>
+                            </div>
+                            <span class="text-xl font-bold opacity-40">549 zł</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 rounded-2xl border border-dashed border-brand-plum/20">
+                            <div>
+                                <p class="text-[10px] uppercase font-bold opacity-40">Od 28 kwietnia</p>
+                                <p class="font-bold opacity-60">Regular</p>
+                            </div>
+                            <span class="text-xl font-bold opacity-40">599 zł</span>
+                        </div>
+                    </div>
+
+                    <div class="text-sm space-y-4 mb-6">
+                        <p class="font-bold border-b border-brand-lavender pb-2 text-brand-plum">Dane do przelewu:</p>
+                        <p class="text-xs">Joanna Filek<br>32 1020 2906 0000 1802 0627 6770</p>
+                        <p class="text-xs font-semibold">BLIK: 667 777 687</p>
+                        <p class="text-[10px] italic">Tytuł: warsztaty dla par</p>
+                    </div>
+
+                    <a href="contact.html" class="block w-full bg-brand-plum text-white text-center py-4 rounded-2xl font-bold hover:opacity-90 transition-all shadow-md">Zapisz się teraz</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white no-gap">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-2xl font-bold mb-12 text-center uppercase tracking-widest text-brand-plum">Prowadzący</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left">
+                    <img src="images/1.jpg" alt="Joanna Filek" class="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-brand-lavender">
+                    <div>
+                        <h3 class="text-xl font-bold text-brand-green">Joanna Filek</h3>
+                        <p class="text-xs font-bold text-brand-plum mb-3">Psycholożka, Seksuolożka</p>
+                        <p class="text-sm opacity-80 leading-relaxed">Specjalizuje się w pracy indywidualnej i z parami w nurcie poznawczo-behawioralnym. Łączy empatię z praktycznymi narzędziami pracy nad emocjami.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left">
+                    <div class="w-32 h-32 rounded-full bg-brand-lavender flex items-center justify-center shadow-lg border-4 border-brand-white">
+                        <span class="text-brand-plum font-bold">Bodhi</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-brand-green">Bodhi (Conscious Wolf)</h3>
+                        <p class="text-xs font-bold text-brand-plum mb-3">Przewodnik, Coach, Facilitator</p>
+                        <p class="text-sm opacity-80 leading-relaxed">Ponad 30 lat doświadczenia we wspieraniu ludzi w integracji emocjonalnej i budowaniu głębszego kontaktu w relacjach.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-green text-brand-white pt-12 pb-4 no-gap">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8">
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Dowiedz się więcej</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="about.html" class="hover:text-brand-lavender">O Mnie</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender">Workshop</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Kontakt</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="contact.html" class="hover:text-brand-lavender">Napisz do nas</a></li>
+                        <li><a href="https://www.instagram.com/joaboutsex" target="_blank" class="hover:text-brand-lavender">Instagram</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Interakcja</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="schedule.html" class="text-brand-lavender font-bold">Wizyty</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col items-end justify-start">
+                    <div class="text-4xl font-light mb-4 text-white">Joanna <span class="font-bold text-brand-lavender">Filek</span></div>
+                </div>
+            </div>
+            <div class="text-white/30 text-xs flex justify-between border-t border-white/10 pt-4 mt-4">
+                <p>Prawo autorskie © 2026 Joanna Filek</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
