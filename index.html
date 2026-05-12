@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joanna Filek – Psycholog & Seksuolog</title>
-<link rel="icon" type="image/png" href="images/1.jpg">
+    <title>Joanna Filek – Psycholożka & Seksuolożka | Gabinet Inspiro Kraków</title>
+
+    <meta name="description" content="Psycholożka i seksuolożka w Krakowie. Bezpieczna przestrzeń do rozmowy o relacjach, seksualności, lęku i trudnościach emocjonalnych.">
+
+    <link rel="icon" type="image/png" href="images/1.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -26,144 +31,540 @@
             }
         }
     </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
-        body { background-color: #FDF9FB; color: #1B3D2F; scroll-behavior: smooth; }
-        .animate-scroll-text { animation: scroll-up 10s infinite; }
-        @keyframes scroll-up {
-            0%, 10% { transform: translateY(0); }
-            15%, 25% { transform: translateY(-20%); }
-            30%, 40% { transform: translateY(-40%); }
-            45%, 55% { transform: translateY(-60%); }
-            60%, 70% { transform: translateY(-80%); }
-            85%, 100% { transform: translateY(0); }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        html {
+            scroll-behavior: smooth;
         }
-        /* Overlap fix to prevent the tiny white line */
-        .no-gap { margin-top: -1px; }
+
+        body {
+            background-color: #FDF9FB;
+            color: #1B3D2F;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #E8C1D9 0%, #F4E6EF 100%);
+        }
+
+        .smooth-transition {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-3px);
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        /* Modal Styles */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            z-index: 100; 
+            background: rgba(0,0,0,0.5); 
+            backdrop-filter: blur(4px); 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .modal.active { 
+            display: flex; 
+        }
     </style>
 </head>
-<body class="overflow-x-hidden">
 
-    <div class="relative z-[60] flex items-center justify-center h-10 bg-brand-plum text-brand-white gap-4 text-xs font-medium">
-        <span>Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</span>
+<body>
+
+    <div class="bg-brand-plum text-white text-sm text-center py-3 px-4 relative z-50">
+        Kontakt: 
+        <a href="tel:+48733777542" class="hover:underline font-medium">
+            +48 733 777 542
+        </a>
+        •
+        <a href="mailto:psycholog.joannafilek@gmail.com" class="hover:underline font-medium">
+            psycholog.joannafilek@gmail.com
+        </a>
     </div>
 
-    <header class="relative z-50 w-full py-1 bg-brand-lavender no-gap">
-        <div class="container mx-auto px-6 flex justify-between items-center">
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+
             <a href="index.html" class="flex items-center gap-3">
-                <div class="hidden md:block">
-                    <img src="images/logo.png" alt="Joanna Filek Logo" class="w-12 h-12 object-contain grayscale brightness-50">
+                <img src="images/logo.png"
+                     alt="Logo Joanna Filek"
+                     class="w-12 h-12 object-contain">
+
+                <div>
+                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">
+                        Joanna <span class="font-bold">Filek</span>
+                    </div>
+                    <p class="text-xs text-brand-plum -mt-1">
+                        Gabinet Psychoterapii Inspiro
+                    </p>
                 </div>
-                <div class="text-3xl font-light text-brand-green">Joanna <span class="font-bold">Filek</span></div>
             </a>
-            
-            <nav class="hidden xl:flex bg-white rounded-full px-6 py-2 shadow-sm items-center gap-6 text-brand-green font-semibold text-sm">
-                <a href="index.html" class="hover:opacity-60 transition-all">Strona główna</a>
-                <a href="about.html" class="hover:opacity-60 transition-all">O Mnie</a>
-                <a href="works.html" class="hover:opacity-60 transition-all">Workshop</a>
-                <a href="contact.html" class="hover:opacity-60 transition-all">Kontakt</a>
-                <!img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_Kingdom.svg" class="w-5" alt="EN">
+
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
+                <a href="index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition">Warsztaty</a>
+                
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Zapisy (Sign-up)</button>
+                <a href="work-with-us.html" class="hover:text-brand-plum smooth-transition">Work with Us</a>
+                
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
             </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="visits.html"
+                   class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
+                    Umów konsultację
+                </a>
+
+                <button id="menuBtn"
+                        class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">
+                    Menu
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu"
+             class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
+            <a href="index.html">Strona główna</a>
+            <a href="about.html">O mnie</a>
+            <a href="works.html">Warsztaty</a>
+            
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Zapisy (Sign-up)</button>
+            <a href="work-with-us.html">Work with Us</a>
+
+            <a href="contact.html">Kontakt</a>
+            <a href="visits.html"
+               class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">
+                Umów konsultację
+            </a>
         </div>
     </header>
 
-    <section class="bg-brand-lavender flex flex-col justify-start pt-6 lg:pt-8 pb-8 no-gap">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 items-center">
-            <div class="z-10">
-                <h1 class="text-brand-green text-5xl lg:text-7xl font-bold mb-2">Mogę pomóc Ci z</h1>
-                <div class="h-24 overflow-hidden">
-                    <div class="animate-scroll-text text-brand-plum font-serif italic text-4xl lg:text-6xl">
-                        <div class="h-24">trudnościami w relacji</div>
-                        <div class="h-24">niepokojem</div>
-                        <div class="h-24">bólem przy stosunku</div>
-                        <div class="h-24">depresją</div>
-                        <div class="h-24">zaburzeniami erekcji</div>
+
+    <section class="hero-bg pt-16 pb-20 overflow-hidden">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
+
+            <div>
+
+                <div class="inline-block bg-white/70 text-brand-plum text-sm font-medium px-5 py-2 rounded-full mb-6 shadow-sm">
+                    Gabinet Psychoterapii Inspiro • Kraków
+                </div>
+
+                <h1 class="text-5xl lg:text-6xl font-bold leading-tight text-brand-green mb-6">
+                    Seks bez wstydu. <br>
+                    <span class="text-brand-plum">Relacje bez lęku.</span>
+                </h1>
+
+                <p class="text-xl text-brand-green/90 leading-relaxed max-w-xl mb-8">
+                    Jeśli odczuwasz lęk, napięcie, ból lub trudności w relacjach — możesz o tym spokojnie porozmawiać w bezpiecznej i wspierającej atmosferze.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <a href="visits.html"
+                       class="bg-brand-green text-white text-lg font-bold py-5 px-10 rounded-2xl text-center shadow-lg hover:bg-brand-plum smooth-transition hover-lift">
+                        Umów pierwszą rozmowę
+                    </a>
+
+                    <a href="about.html"
+                       class="border-2 border-brand-green text-brand-green text-lg font-bold py-5 px-10 rounded-2xl text-center hover:bg-white smooth-transition hover-lift">
+                        Poznaj mnie lepiej
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <div class="bg-white/70 px-4 py-2 rounded-full text-sm font-medium text-brand-green shadow-sm">
+                        Poufność 100%
+                    </div>
+
+                    <div class="bg-white/70 px-4 py-2 rounded-full text-sm font-medium text-brand-green shadow-sm">
+                        Bez oceniania
+                    </div>
+
+                    <div class="bg-white/70 px-4 py-2 rounded-full text-sm font-medium text-brand-green shadow-sm">
+                        Online i stacjonarnie
                     </div>
                 </div>
-                <p class="max-w-prose text-lg text-brand-green mt-8 mb-10 leading-relaxed opacity-90">
-                    Stworzyliśmy przestrzeń gdzie możecie dzielić się, pytać, szukać odpowiedzi na temat <b>dojrzewania</b>, <b>seksualności</b> i <b>wszystkiego związanego z seksem</b>.
+
+                <div class="text-sm text-brand-green/70 flex flex-wrap gap-6">
+                    <div>Kraków • ul. Skalica</div>
+                    <div>Bezpieczna atmosfera</div>
+                </div>
+            </div>
+
+            <div class="relative flex justify-center md:justify-end">
+                <img src="images/profile.png"
+                     alt="Joanna Filek"
+                     class="w-full max-w-[520px] rounded-[32px] shadow-2xl object-cover">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+
+            <div class="text-center mb-14">
+                <h2 class="text-4xl font-bold text-brand-green mb-4">
+                    Jak mogę Ci pomóc?
+                </h2>
+
+                <p class="text-lg text-brand-green/75 max-w-3xl mx-auto leading-relaxed">
+                    Pracuję z osobami, które doświadczają trudności w sferze seksualnej,
+                    emocjonalnej i relacyjnej.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                  <a href="visits.html" class="inline-block bg-brand-green text-brand-white text-lg font-bold py-4 px-10 rounded-xl shadow-lg hover:opacity-90 transition-all text-center">
-    Zapisz się na spotkanie
-</a>
-                    <a href="about.html" class="text-brand-green text-lg font-bold py-4 px-10 rounded-xl border-2 border-brand-green/20 hover:bg-white/20 transition-all text-center">
-                        Dowiedz się więcej
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">
+                        Ból przy stosunku
+                    </h3>
+                    <p class="text-brand-green/80 leading-relaxed">
+                        Dyspareunia, pochwica, nieprzyjemne doznania.
+                    </p>
+                </div>
+
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">
+                        Zaburzenia erekcji i wytrysku
+                    </h3>
+                    <p class="text-brand-green/80 leading-relaxed">
+                        Przedwczesny wytrysk, trudności z erekcją.
+                    </p>
+                </div>
+
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">
+                        Problemy w relacjach
+                    </h3>
+                    <p class="text-brand-green/80 leading-relaxed">
+                        Brak bliskości, trudności z komunikacją seksualną.
+                    </p>
+                </div>
+
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">
+                        Lęk i wstyd seksualny
+                    </h3>
+                    <p class="text-brand-green/80 leading-relaxed">
+                        Obniżone poczucie wartości, napięcie i blokady.
+                    </p>
+                </div>
+
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">
+                        Depresja i lęk
+                    </h3>
+                    <p class="text-brand-green/80 leading-relaxed">
+                        Wsparcie w trudnościach emocjonalnych.
+                    </p>
+                </div>
+
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">
+                        Edukacja seksualna
+                    </h3>
+                    <p class="text-brand-green/80 leading-relaxed">
+                        Rozmowy o seksualności, dojrzewaniu i relacjach.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-20 bg-brand-green-light">
+        <div class="container mx-auto px-6 max-w-6xl">
+
+            <div class="text-center mb-14">
+                <h2 class="text-4xl font-bold text-brand-green mb-4">
+                    Jak wygląda pierwsza konsultacja?
+                </h2>
+
+                <p class="text-lg text-brand-green/75 max-w-2xl mx-auto leading-relaxed">
+                    Pierwsze spotkanie to spokojna rozmowa o Twojej sytuacji,
+                    trudnościach i potrzebach.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
+                    <div class="text-brand-plum text-2xl font-bold mb-4">1.</div>
+                    <h3 class="text-xl font-semibold mb-3 text-brand-green">
+                        Rozmawiamy bez presji
+                    </h3>
+                    <p class="text-brand-green/80 leading-relaxed">
+                        Możesz powiedzieć tyle, ile czujesz się gotowy/a.
+                        Nic nie musisz mówić na siłę.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
+                    <div class="text-brand-plum text-2xl font-bold mb-4">2.</div>
+                    <h3 class="text-xl font-semibold mb-3 text-brand-green">
+                        Ustalamy potrzeby
+                    </h3>
+                    <p class="text-brand-green/80 leading-relaxed">
+                        Wspólnie określamy, z czym chcesz pracować.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
+                    <div class="text-brand-plum text-2xl font-bold mb-4">3.</div>
+                    <h3 class="text-xl font-semibold mb-3 text-brand-green">
+                        Tworzymy bezpieczną przestrzeń
+                    </h3>
+                    <p class="text-brand-green/80 leading-relaxed">
+                        Bez oceniania, zawstydzania i presji.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
+                    <div class="text-brand-plum text-2xl font-bold mb-4">4.</div>
+                    <h3 class="text-xl font-semibold mb-3 text-brand-green">
+                        Szukamy rozwiązania
+                    </h3>
+                    <p class="text-brand-green/80 leading-relaxed">
+                        Razem pracujemy nad poprawą jakości życia i relacji.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+
+            <div class="bg-brand-green-light rounded-[40px] p-8 md:p-16 flex flex-col xl:flex-row items-center gap-12 border border-brand-plum/10 shadow-sm">
+
+                <div class="shrink-0">
+                    <img src="images/joanna.png"
+                         alt="Joanna Filek"
+                         class="w-72 rounded-3xl shadow-xl object-cover">
+                </div>
+
+                <div>
+                    <h2 class="text-4xl font-bold text-brand-plum mb-6">
+                        Cześć, jestem Joanna Filek
+                    </h2>
+
+                    <p class="text-lg text-brand-green/90 leading-relaxed mb-6">
+                        Jestem psycholożką, seksuolożką i psychoterapeutką.
+                        Pomagam osobom, które doświadczają trudności
+                        w życiu seksualnym, relacjach i emocjach.
+                    </p>
+
+                    <p class="text-lg text-brand-green/90 leading-relaxed mb-8">
+                        Wiem, że rozmowa o seksualności często wiąże się
+                        ze stresem lub wstydem. Dlatego tworzę przestrzeń,
+                        w której możesz mówić otwarcie i czuć się bezpiecznie.
+                    </p>
+
+                    <a href="about.html"
+                       class="inline-flex items-center gap-3 text-brand-plum font-bold text-lg hover:underline smooth-transition">
+                        Dowiedz się więcej o mnie →
                     </a>
                 </div>
             </div>
-            <div class="relative hidden md:flex justify-end">
-                <img src="images/joanna.png" alt="Joanna Filek" class="max-w-[500px] rounded-3xl mix-blend-multiply opacity-90">
-            </div>
         </div>
     </section>
 
-    <section id="about" class="pt-12 pb-12 bg-brand-green-light">
-        <div class="container mx-auto px-6">
-            <div class="bg-brand-violet-light border border-brand-plum/10 rounded-3xl p-8 md:p-16 flex flex-col xl:flex-row gap-16">
-                <div class="shrink-0">
-                    <img src="images/joanna.png" class="w-64 xl:w-96 rounded-2xl shadow-xl">
-                    <div class="mt-6">
-                        <h3 class="text-brand-plum font-bold text-xl">mgr Joanna Filek</h3>
-                        <p class="text-brand-green opacity-80">Psycholożka • Seksuolożka • Psychoterapeuta</p>
-                    </div>
-                </div>
-                <div class="flex flex-col gap-8">
-                    <h2 class="text-4xl text-brand-plum leading-tight">Cześć, mam na imię <b>Joanna</b>.</h2>
-                    <div class="text-sm lg:text-base leading-relaxed opacity-90 space-y-4">
-                        <p class="font-bold text-lg text-brand-plum">O Mnie</p>
-                        <p>Jestem psycholożką i seksuolożką. Zaobserwowałam, że w polskich domach temat seksu często jest tabu, a brak edukacji w szkołach tworzy trudności. Ta strona to przestrzeń do zadawania pytań, dzielenia się doświadczeniami i rozmowy o trudnościach.</p>
-                        <p class="font-bold text-lg text-brand-plum">Misja Strony</p>
-                        <p>Wierzę, że wielu trudnościom można by było zapobiec. Dlatego tu jesteśmy - by pomagać i wspierać. Zadawajcie pytania i korzystajcie z naszej wiedzy eksperckiej.</p>
-                    </div>
-                    <a href="about.html" class="text-brand-plum font-bold text-lg hover:underline">Dowiedz się więcej tutaj →</a>
-                </div>
-            </div>
+
+    <section class="bg-brand-plum py-20 text-white text-center">
+        <div class="container mx-auto px-6 max-w-3xl">
+
+            <h2 class="text-4xl font-bold mb-6 leading-tight">
+                Nie musisz mierzyć się z tym sam/a.
+            </h2>
+
+            <p class="text-lg opacity-90 leading-relaxed mb-8">
+                Pierwszy krok może być trudny — ale nie musisz robić go samotnie.
+                W spokojnej atmosferze porozmawiamy o tym,
+                czego teraz potrzebujesz.
+            </p>
+
+            <a href="visits.html"
+               class="inline-block bg-white text-brand-plum text-lg font-bold px-12 py-5 rounded-2xl hover:bg-brand-lavender smooth-transition shadow-lg hover-lift">
+                Umów pierwszą konsultację
+            </a>
         </div>
     </section>
 
-    <footer class="bg-brand-green text-brand-white pt-8 pb-4">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-2">
-                <div>
-                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Dowiedz się więcej</h3>
-                    <ul class="text-lg space-y-2">
-                        <li><a href="about.html" class="hover:text-brand-lavender">O Mnie</a></li>
-                        <li><a href="works.html" class="hover:text-brand-lavender">Workshop</a></li>
-                    </ul>
+    <div id="newsletterModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
+            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">Newsletter</h2>
+            <p class="text-sm text-brand-green/70 mb-6">Bądź na bieżąco z nadchodzącymi warsztatami, świątyniami tantry i wydarzeniami.</p>
+            <form class="space-y-4">
+                <input type="email" placeholder="Twój E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach, świątyniach i specjalnych wydarzeniach od Conscious Wolf.</label>
                 </div>
-                <div>
-                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Kontakt</h3>
-                    <ul class="text-lg space-y-2">
-                        <li><a href="contact.html" class="hover:text-brand-lavender text-sm">Instagram</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Interakcja</h3>
-                    <ul class="text-lg space-y-2">
-                        <li><a href="contact.html" class="hover:text-brand-lavender text-sm">Wizyty</a></li>
-                    </ul>
-                </div>
-                <div class="flex flex-col items-end justify-start">
-                    <div class="text-4xl font-light mb-4">Joanna <span class="font-bold text-brand-lavender">Filek</span></div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 opacity-30">
-                            <img src="images/logospining.png" alt="Logo" class="animate-[spin_20s_linear_infinite] w-full h-full object-contain">
-                        </div>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">Zapisz się</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="bg-white rounded-[40px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-green mb-2">Rejestracja na Wydarzenie</h2>
+            <p class="text-brand-plum font-semibold text-sm mb-8">Warsztaty / Świątynie / Festiwale</p>
+            
+            <form class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold uppercase text-brand-green/50">Imię i Nazwisko *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold uppercase text-brand-green/50">Numer Telefonu *</label>
+                        <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
                     </div>
                 </div>
-            </div>
 
-            <div class="text-white/30 text-xs flex justify-between border-t border-white/10 pt-4 mt-4">
-                <p>Prawo autorskie © 2026 Joanna Filek</p>
-                <div class="flex gap-4">
-                    <a href="index.html" class="hover:text-white">Polski</a>
-                    <span>/</span>
-                    <a href="#" class="hover:text-white opacity-50">English</a>
+                <div class="space-y-1">
+                    <label class="text-xs font-bold uppercase text-brand-green/50">Metoda Płatności *</label>
+                    <select required class="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white">
+                        <option value="">Wybierz metodę płatności...</option>
+                        <option value="transfer">Tradycyjny Przelew Bankowy</option>
+                        <option value="blik">BLIK</option>
+                        <option value="card">Płatność Kartą / Online</option>
+                    </select>
+                </div>
+
+                <div class="bg-brand-green-light p-6 rounded-3xl border border-brand-lavender space-y-4">
+                    <h3 class="font-bold text-brand-green text-sm">Zgoda na Wizerunek (Zdjęcia i Wideo)</h3>
+                    <p class="text-[10px] text-brand-green/70">Materiały do wykorzystania w mediach społecznościowych, na stronie WWW i w materiałach promocyjnych.</p>
+                    
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="yes" class="accent-brand-plum" required>
+                            <span class="text-xs font-medium"><strong>TAK</strong> — Wyrażam zgodę na wykorzystanie mojego wizerunku w celach promocyjnych.</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="limited" class="accent-brand-plum">
+                            <span class="text-xs font-medium"><strong>OGRANICZONA ZGODA</strong> — Tylko zdjęcia grupowe/szerokie kadry. Bez identyfikowalnych zbliżeń.</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="no" class="accent-brand-plum">
+                            <span class="text-xs font-medium"><strong>NIE</strong> — Nie wyrażam zgody. Proszę mnie nie fotografować ani nie filmować.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="h-32 overflow-y-scroll bg-brand-violet-light/30 p-4 rounded-xl text-[9px] leading-normal text-brand-green/60 border border-brand-lavender">
+                    <p class="font-bold mb-2">Informacja o Ochronie Danych Osobowych (RODO)</p>
+                    The controller of personal data, including participants’ image and likeness, is Conscious Wolf. Photos and video recordings will be processed solely on the basis of voluntary consent for promoting Conscious Wolf events, social media publication (Instagram, Facebook), website content, and newsletters. Materials may be stored indefinitely or until consent is withdrawn. You have the right to access, request deletion, restrict processing, and withdraw consent at any time. Withdrawal does not affect the lawfulness of processing carried out prior to withdrawal. Due to publication on social media, data may be transferred outside the EEA in accordance with platform policies.
+                </div>
+
+                <button type="submit" class="w-full bg-brand-green text-white font-bold py-5 rounded-2xl shadow-xl hover:bg-brand-plum transition-all uppercase tracking-widest">Wyślij Zgłoszenie i Opłać</button>
+            </form>
+        </div>
+    </div>
+
+
+    <footer class="bg-brand-green text-white pt-16 pb-10">
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+
+                <div>
+                    <div class="text-3xl font-light mb-2">
+                        Joanna <span class="font-bold">Filek</span>
+                    </div>
+
+                    <p class="text-sm opacity-75">
+                        Gabinet Psychoterapii Inspiro
+                    </p>
+
+                    <p class="text-sm opacity-75 mt-1">
+                        Kraków • ul. Skalica
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Nawigacja</h4>
+
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Strona główna</a></li>
+                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">O mnie</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Warsztaty</a></li>
+                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li>
+                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Zapisy</h4>
+
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Sign-up (Zapisy)</button></li>
+                        <li><a href="work-with-us.html" class="hover:text-brand-lavender smooth-transition">Pracuj z nami</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Informacje</h4>
+
+                    <p class="text-sm opacity-75 leading-relaxed">
+                        Poufność sesji jest w pełni gwarantowana.
+                        Konsultacje dostępne online oraz stacjonarnie.
+                    </p>
+
+                    <p class="text-sm opacity-60 mt-6">
+                        © 2026 Joanna Filek
+                    </p>
                 </div>
             </div>
         </div>
     </footer>
+
+
+    <a href="visits.html"
+       class="fixed bottom-5 right-5 sm:hidden bg-brand-green text-white px-6 py-4 rounded-full shadow-2xl z-50 font-semibold hover:bg-brand-plum smooth-transition">
+        Umów wizytę
+    </a>
+
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Function to toggle popups
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('active');
+            // Prevent body scroll when modal open
+            document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+        }
+    </script>
 
 </body>
 </html>
