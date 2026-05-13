@@ -16,13 +16,18 @@
                         'brand-green': '#1B3D2F',
                         'brand-green-light': '#FDF9FB',
                         'brand-white': '#FCFCFC',
+                        'brand-violet-light': '#F4E6EF' /* Added for modals */
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
         body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; scroll-behavior: smooth; }
         .no-gap { margin-top: -1px; }
         .hero-bg-image {
@@ -31,10 +36,30 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+        
+        /* Nav and Modal Styles */
+        .smooth-transition { transition: all 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-3px); }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: flex; }
+        
+        .modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            z-index: 100; 
+            background: rgba(0,0,0,0.5); 
+            backdrop-filter: blur(4px); 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .modal.active { display: flex; }
     </style>
 </head>
 <body class="overflow-x-hidden text-brand-green">
 
+    <!-- TOP BAR -->
     <div class="relative z-[60] flex items-center justify-between px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
         <div class="hidden md:block">Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</div>
         <a href="works-en.html" class="flex items-center gap-2 hover:text-brand-lavender transition-all uppercase tracking-widest font-bold">
@@ -43,19 +68,47 @@
         </a>
     </div>
 
-    <header class="relative z-50 w-full py-2 bg-brand-lavender no-gap shadow-sm">
-        <div class="container mx-auto px-6 flex justify-between items-center">
+    <!-- HEADER / MENU -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- LOGO -->
             <a href="index.html" class="flex items-center gap-3">
-                <img src="images/logo.png" alt="Logo" class="w-12 h-12 object-contain grayscale brightness-50">
-                <div class="text-3xl font-light text-brand-green">Joanna <span class="font-bold">Filek</span></div>
+                <img src="images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50">
+                <div>
+                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">Joanna <span class="font-bold">Filek</span></div>
+                    <p class="text-xs text-brand-plum -mt-1">Psychoterapeutka | Gabinet Inspiro</p>
+                </div>
             </a>
-            <nav class="hidden xl:flex bg-white rounded-full px-8 py-3 shadow-sm items-center gap-8 text-brand-green font-semibold text-sm">
-                <a href="index.html" class="hover:opacity-60 transition-all">Strona główna</a>
-                <a href="about.html" class="hover:opacity-60 transition-all">O Mnie</a>
-                <a href="works.html" class="text-brand-plum font-bold border-b-2 border-brand-plum">Warsztaty</a>
-                <a href="schedule.html" class="hover:opacity-60 transition-all">Wizyty</a>
-                <a href="contact.html" class="hover:opacity-60 transition-all">Kontakt</a>
+
+            <!-- DESKTOP NAV -->
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
+                <a href="index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition">Warsztaty</a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
+                <a href="work-with-us.html" class="hover:text-brand-plum smooth-transition">Pracuj z nami</a>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Zapisy (Sign-up)</button>
             </nav>
+
+            <!-- CTA -->
+            <div class="flex items-center gap-3">
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">Umów konsultację</a>
+                <!-- MOBILE BUTTON -->
+                <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">Menu</button>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
+            <a href="index.html">Strona główna</a>
+            <a href="about.html">O mnie</a>
+            <a href="works.html">Warsztaty</a>
+            <a href="contact.html">Kontakt</a>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Zapisy (Sign-up)</button>           
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
+            <a href="work-with-us.html">Pracuj z nami</a>
+            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Umów konsultację</a>
         </div>
     </header>
 
@@ -79,7 +132,7 @@
             <div class="bg-brand-plum/90 backdrop-blur-md border border-brand-lavender/30 p-8 rounded-[40px] inline-block shadow-2xl mt-4 max-w-xl mx-auto">
                 <h2 class="text-3xl font-bold text-white mb-2">Warsztat został zakończony</h2>
                 <p class="text-brand-lavender text-lg mb-6">Zapisz się do newslettera, aby otrzymywać informacje o kolejnych edycjach i nowych wydarzeniach.</p>
-                <a href="contact.html" class="bg-white text-brand-plum px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-xl uppercase tracking-widest inline-block">Zapisz się do Newslettera</a>
+                <button onclick="toggleModal('newsletterModal')" class="bg-white text-brand-plum px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-xl uppercase tracking-widest inline-block">Zapisz się do Newslettera</button>
             </div>
         </div>
     </section>
@@ -302,11 +355,93 @@
                         <p class="text-brand-green/80 text-base">Zapisz się do newslettera, aby jako pierwsza/y otrzymywać powiadomienia o kolejnych edycjach warsztatów i nowych wydarzeniach.</p>
                     </div>
                     
-                    <a href="contact.html" class="block w-full bg-brand-plum text-white text-center py-6 rounded-3xl font-bold text-xl hover:scale-105 transition-all shadow-xl uppercase tracking-widest">Zapisz się do Newslettera</a>
+                    <button onclick="toggleModal('newsletterModal')" class="block w-full bg-brand-plum text-white text-center py-6 rounded-3xl font-bold text-xl hover:scale-105 transition-all shadow-xl uppercase tracking-widest">Zapisz się do Newslettera</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- MODAL: NEWSLETTER -->
+    <div id="newsletterModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
+            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">Newsletter</h2>
+            <p class="text-sm text-brand-green/70 mb-6">Bądź na bieżąco z nadchodzącymi warsztatami, świątyniami tantry i wydarzeniami.</p>
+            <form class="space-y-4">
+                <input type="email" placeholder="Twój E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach, świątyniach i specjalnych wydarzeniach od Conscious Wolf.</label>
+                </div>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">Zapisz się</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: SIGN-UP (WORKSHOP/TEMPLE) -->
+    <div id="signupModal" class="modal">
+        <div class="bg-white rounded-[40px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-green mb-2">Rejestracja na Wydarzenie</h2>
+            <p class="text-brand-plum font-semibold text-sm mb-8">Warsztaty / Świątynie / Festiwale</p>
+            
+            <form class="space-y-6">
+                <!-- Obligatory Fields -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold uppercase text-brand-green/50">Imię i Nazwisko *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold uppercase text-brand-green/50">Numer Telefonu *</label>
+                        <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-bold uppercase text-brand-green/50">Metoda Płatności *</label>
+                    <select required class="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white">
+                        <option value="">Wybierz metodę płatności...</option>
+                        <option value="transfer">Tradycyjny Przelew Bankowy</option>
+                        <option value="blik">BLIK</option>
+                        <option value="card">Płatność Kartą / Online</option>
+                    </select>
+                </div>
+
+                <!-- Consent Section -->
+                <div class="bg-brand-green-light p-6 rounded-3xl border border-brand-lavender space-y-4">
+                    <h3 class="font-bold text-brand-green text-sm">Zgoda na Wizerunek (Zdjęcia i Wideo)</h3>
+                    <p class="text-[10px] text-brand-green/70">Materiały do wykorzystania w mediach społecznościowych, na stronie WWW i w materiałach promocyjnych.</p>
+                    
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="yes" class="accent-brand-plum" required>
+                            <span class="text-xs font-medium"><strong>TAK</strong> — Wyrażam zgodę na wykorzystanie mojego wizerunku w celach promocyjnych.</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="limited" class="accent-brand-plum">
+                            <span class="text-xs font-medium"><strong>OGRANICZONA ZGODA</strong> — Tylko zdjęcia grupowe/szerokie kadry. Bez identyfikowalnych zbliżeń.</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="no" class="accent-brand-plum">
+                            <span class="text-xs font-medium"><strong>NIE</strong> — Nie wyrażam zgody. Proszę mnie nie fotografować ani nie filmować.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Legal Scrollbox -->
+                <div class="h-32 overflow-y-scroll bg-brand-violet-light/30 p-4 rounded-xl text-[9px] leading-normal text-brand-green/60 border border-brand-lavender">
+                    <p class="font-bold mb-2">Informacja o Ochronie Danych Osobowych (RODO)</p>
+                    The controller of personal data, including participants’ image and likeness, is Conscious Wolf. Photos and video recordings will be processed solely on the basis of voluntary consent for promoting Conscious Wolf events, social media publication (Instagram, Facebook), website content, and newsletters. Materials may be stored indefinitely or until consent is withdrawn. You have the right to access, request deletion, restrict processing, and withdraw consent at any time. Withdrawal does not affect the lawfulness of processing carried out prior to withdrawal. Due to publication on social media, data may be transferred outside the EEA in accordance with platform policies.
+                </div>
+
+                <button type="submit" class="w-full bg-brand-green text-white font-bold py-5 rounded-2xl shadow-xl hover:bg-brand-plum transition-all uppercase tracking-widest">Wyślij Zgłoszenie i Opłać</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FLOATING MOBILE CTA -->
+    <a href="visits.html" class="fixed bottom-5 right-5 sm:hidden bg-brand-green text-white px-6 py-4 rounded-full shadow-2xl z-50 font-semibold hover:bg-brand-plum smooth-transition">Umów wizytę</a>
 
     <footer class="bg-brand-green text-brand-white pt-20 pb-10 no-gap">
         <div class="container mx-auto px-6">
@@ -317,5 +452,22 @@
         </div>
     </footer>
 
+    <!-- SCRIPTS -->
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Function to toggle popups
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('active');
+            // Prevent body scroll when modal open
+            document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+        }
+    </script>
 </body>
 </html>
