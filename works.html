@@ -60,9 +60,9 @@
 <body class="overflow-x-hidden text-brand-green">
 
     <!-- TOP BAR -->
-    <div class="relative z-[60] flex items-center justify-between px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
-        <div class="hidden md:block"><center>Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</center></div>
-        <a href="works-en.html" class="flex items-center gap-2 hover:text-brand-lavender transition-all uppercase tracking-widest font-bold">
+    <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs">
+        <div class="hidden md:block">Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</div>
+        <a href="works-en.html" class="absolute right-6 flex items-center gap-2 hover:text-brand-lavender transition-all uppercase tracking-widest">
             <span>English Version</span>
             <img src="https://flagcdn.com/w20/gb.png" width="20" alt="UK">
         </a>
@@ -75,38 +75,38 @@
             <a href="index.html" class="flex items-center gap-3">
                 <img src="images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50">
                 <div>
-                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">Joanna <span class="font-bold">Filek</span></div>
+                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">Joanna <span>Filek</span></div>
                     <p class="text-xs text-brand-plum -mt-1">Psychoterapeutka | Gabinet Inspiro</p>
                 </div>
             </a>
 
             <!-- DESKTOP NAV -->
-            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs text-brand-green uppercase tracking-wider">
                 <a href="index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
                 <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
                 <a href="works.html" class="hover:text-brand-plum smooth-transition">Warsztaty</a>
                 <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
                 <a href="work-with-us.html" class="hover:text-brand-plum smooth-transition">Pracuj z nami</a>
-                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
-                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Zapisy (Sign-up)</button>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider">Newsletter</button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition underline decoration-2 uppercase tracking-wider">Zapisy (Sign-up)</button>
             </nav>
 
             <!-- CTA -->
             <div class="flex items-center gap-3">
-                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">Umów konsultację</a>
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">Umów konsultację</a>
                 <!-- MOBILE BUTTON -->
                 <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">Menu</button>
             </div>
         </div>
 
         <!-- MOBILE MENU -->
-        <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
+        <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green shadow-md xl:hidden">
             <a href="index.html">Strona główna</a>
             <a href="about.html">O mnie</a>
             <a href="works.html">Warsztaty</a>
             <a href="contact.html">Kontakt</a>
-            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Zapisy (Sign-up)</button>           
-            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left text-brand-plum underline decoration-2">Zapisy (Sign-up)</button>           
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left">Newsletter</button>
             <a href="work-with-us.html">Pracuj z nami</a>
             <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Umów konsultację</a>
         </div>
