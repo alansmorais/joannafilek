@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joanna Filek – Psycholożka & Seksuolożka | Gabinet Inspiro Kraków</title>
+    <title>Joanna Filek – Psychoterapeutka | Gabinet Inspiro Kraków</title>
 
-    <meta name="description" content="Psycholożka i seksuolożka w Krakowie. Bezpieczna przestrzeń do rozmowy o relacjach, seksualności, lęku i trudnościach emocjonalnych.">
+    <meta name="description" content="Psychoterapeutka i psycholożka w Krakowie. Bezpieczna przestrzeń na pracę z emocjami, kryzysami życiowymi, stresem, relacjami i samooceną.">
 
     <link rel="icon" type="image/png" href="images/1.jpg">
 
@@ -86,6 +86,7 @@
 
 <body>
 
+    <!-- TOP BAR -->
     <div class="bg-brand-plum text-white text-sm text-center py-3 px-4 relative z-50">
         Kontakt: 
         <a href="tel:+48733777542" class="hover:underline font-medium">
@@ -97,9 +98,11 @@
         </a>
     </div>
 
+    <!-- HEADER -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
 
+            <!-- LOGO -->
             <a href="index.html" class="flex items-center gap-3">
                 <img src="images/logo.png"
                      alt="Logo Joanna Filek"
@@ -110,11 +113,12 @@
                         Joanna <span class="font-bold">Filek</span>
                     </div>
                     <p class="text-xs text-brand-plum -mt-1">
-                        Gabinet Psychoterapii Inspiro
+                        Psychoterapeutka | Gabinet Inspiro
                     </p>
                 </div>
             </a>
 
+            <!-- DESKTOP NAV -->
             <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
                 <a href="index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
                 <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
@@ -125,15 +129,16 @@
                                 
                 <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
                 <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Zapisy (Sign-up)</button>
-                
             </nav>
 
+            <!-- CTA -->
             <div class="flex items-center gap-3">
                 <a href="visits.html"
                    class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
                     Umów konsultację
                 </a>
 
+                <!-- MOBILE BUTTON -->
                 <button id="menuBtn"
                         class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">
                     Menu
@@ -141,6 +146,7 @@
             </div>
         </div>
 
+        <!-- MOBILE MENU -->
         <div id="mobileMenu"
              class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
             <a href="index.html">Strona główna</a>
@@ -153,7 +159,6 @@
 
             <a href="work-with-us.html">Pracuj z nami</a>
 
-            
             <a href="visits.html"
                class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">
                 Umów konsultację
@@ -162,24 +167,27 @@
     </header>
 
 
+    <!-- HERO SECTION -->
     <section class="hero-bg pt-16 pb-20 overflow-hidden">
         <div class="container mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
 
+            <!-- LEFT -->
             <div>
 
                 <div class="inline-block bg-white/70 text-brand-plum text-sm font-medium px-5 py-2 rounded-full mb-6 shadow-sm">
-                    Gabinet Psychoterapii Inspiro • Kraków
+                    Psychoterapia • Kraków
                 </div>
 
                 <h1 class="text-5xl lg:text-6xl font-bold leading-tight text-brand-green mb-6">
-                    Seks bez wstydu. <br>
-                    <span class="text-brand-plum">Relacje bez lęku.</span>
+                    Wsparcie w trudnych chwilach.<br>
+                    <span class="text-brand-plum">Droga do równowagi emocjonalnej.</span>
                 </h1>
 
                 <p class="text-xl text-brand-green/90 leading-relaxed max-w-xl mb-8">
-                    Jeśli odczuwasz lęk, napięcie, ból lub trudności w relacjach — możesz o tym spokojnie porozmawiać w bezpiecznej i wspierającej atmosferze.
+                    Oferuję bezpieczną przestrzeń do pracy z emocjami, kryzysami życiowymi, stresem, lękiem, relacjami oraz poczuciem własnej wartości. Pomagam odzyskać kontrolę i wewnętrzny spokój.
                 </p>
 
+                <!-- BUTTONS -->
                 <div class="flex flex-col sm:flex-row gap-4 mb-8">
                     <a href="visits.html"
                        class="bg-brand-green text-white text-lg font-bold py-5 px-10 rounded-2xl text-center shadow-lg hover:bg-brand-plum smooth-transition hover-lift">
@@ -192,6 +200,7 @@
                     </a>
                 </div>
 
+                <!-- TRUST TAGS -->
                 <div class="flex flex-wrap gap-4 mb-8">
                     <div class="bg-white/70 px-4 py-2 rounded-full text-sm font-medium text-brand-green shadow-sm">
                         Poufność 100%
@@ -205,13 +214,9 @@
                         Online i stacjonarnie
                     </div>
                 </div>
-
-                <div class="text-sm text-brand-green/70 flex flex-wrap gap-6">
-                    <div>Kraków • ul. Skalica</div>
-                    <div>Bezpieczna atmosfera</div>
-                </div>
             </div>
 
+            <!-- RIGHT -->
             <div class="relative flex justify-center md:justify-end">
                 <img src="images/profile.jpg"
                      alt="Joanna Filek"
@@ -221,6 +226,7 @@
     </section>
 
 
+    <!-- HELP SECTION -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-6">
 
@@ -230,8 +236,7 @@
                 </h2>
 
                 <p class="text-lg text-brand-green/75 max-w-3xl mx-auto leading-relaxed">
-                    Pracuję z osobami, które doświadczają trudności w sferze seksualnej,
-                    emocjonalnej i relacyjnej.
+                    Pracuję głównie z osobami przeżywającymi kryzysy emocjonalne, trudności w codziennym funkcjonowaniu oraz wyzwania w relacjach.
                 </p>
             </div>
 
@@ -239,62 +244,64 @@
 
                 <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
                     <h3 class="font-semibold text-xl mb-3 text-brand-green">
-                        Ból przy stosunku
+                        Kryzysy i trudności emocjonalne
                     </h3>
                     <p class="text-brand-green/80 leading-relaxed">
-                        Dyspareunia, pochwica, nieprzyjemne doznania.
+                        Depresja, stany lękowe, chroniczny stres, wypalenie zawodowe, żałoba, kryzysy życiowe.
                     </p>
                 </div>
 
                 <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
                     <h3 class="font-semibold text-xl mb-3 text-brand-green">
-                        Zaburzenia erekcji i wytrysku
+                        Relacje i bliskość
                     </h3>
                     <p class="text-brand-green/80 leading-relaxed">
-                        Przedwczesny wytrysk, trudności z erekcją.
+                        Trudności w komunikacji, kryzysy w związku, poczucie samotności, budowanie zdrowych relacji.
                     </p>
                 </div>
 
                 <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
                     <h3 class="font-semibold text-xl mb-3 text-brand-green">
-                        Problemy w relacjach
+                        Poczucie własnej wartości
                     </h3>
                     <p class="text-brand-green/80 leading-relaxed">
-                        Brak bliskości, trudności z komunikacją seksualną.
+                        Niska samoocena, trudność ze stawianiem granic, wewnętrzny krytyk, akceptacja siebie.
                     </p>
                 </div>
 
                 <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
                     <h3 class="font-semibold text-xl mb-3 text-brand-green">
-                        Lęk i wstyd seksualny
+                        Rozwój osobisty
                     </h3>
                     <p class="text-brand-green/80 leading-relaxed">
-                        Obniżone poczucie wartości, napięcie i blokady.
+                        Lepsze rozumienie siebie, regulacja emocji, budowanie odporności psychicznej.
                     </p>
                 </div>
 
                 <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
                     <h3 class="font-semibold text-xl mb-3 text-brand-green">
-                        Depresja i lęk
+                        Trudności seksualne i intymność
                     </h3>
                     <p class="text-brand-green/80 leading-relaxed">
-                        Wsparcie w trudnościach emocjonalnych.
+                        Problemy w sferze seksualnej na tle emocjonalnym (lęk, wstyd, blokady).
                     </p>
                 </div>
 
                 <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
                     <h3 class="font-semibold text-xl mb-3 text-brand-green">
-                        Edukacja seksualna
+                        Wsparcie w zmianie
                     </h3>
                     <p class="text-brand-green/80 leading-relaxed">
-                        Rozmowy o seksualności, dojrzewaniu i relacjach.
+                        Przejścia życiowe, decyzje, poszukiwanie sensu i kierunku.
                     </p>
                 </div>
+
             </div>
         </div>
     </section>
 
 
+    <!-- FIRST VISIT -->
     <section class="py-20 bg-brand-green-light">
         <div class="container mx-auto px-6 max-w-6xl">
 
@@ -328,7 +335,7 @@
                         Ustalamy potrzeby
                     </h3>
                     <p class="text-brand-green/80 leading-relaxed">
-                        Wspólnie określamy, z czym chcesz pracować.
+                        Wspólnie określamy, z czym chcesz pracować i jakiego wsparcia potrzebujesz.
                     </p>
                 </div>
 
@@ -338,7 +345,7 @@
                         Tworzymy bezpieczną przestrzeń
                     </h3>
                     <p class="text-brand-green/80 leading-relaxed">
-                        Bez oceniania, zawstydzania i presji.
+                        Pracujemy w pełnej dyskrecji, bez oceniania, zawstydzania i presji czasu.
                     </p>
                 </div>
 
@@ -348,7 +355,7 @@
                         Szukamy rozwiązania
                     </h3>
                     <p class="text-brand-green/80 leading-relaxed">
-                        Razem pracujemy nad poprawą jakości życia i relacji.
+                        Razem opracowujemy plan terapii, który pomoże Ci odzyskać równowagę.
                     </p>
                 </div>
             </div>
@@ -356,6 +363,7 @@
     </section>
 
 
+    <!-- ABOUT -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-6">
 
@@ -373,15 +381,11 @@
                     </h2>
 
                     <p class="text-lg text-brand-green/90 leading-relaxed mb-6">
-                        Jestem psycholożką, seksuolożką i psychoterapeutką.
-                        Pomagam osobom, które doświadczają trudności
-                        w życiu seksualnym, relacjach i emocjach.
+                        Jestem psychoterapeutką i psycholożką. Towarzyszę osobom w procesie radzenia sobie z trudnościami emocjonalnymi, kryzysami życiowymi oraz wyzwaniami w relacjach.
                     </p>
 
                     <p class="text-lg text-brand-green/90 leading-relaxed mb-8">
-                        Wiem, że rozmowa o seksualności często wiąże się
-                        ze stresem lub wstydem. Dlatego tworzę przestrzeń,
-                        w której możesz mówić otwarcie i czuć się bezpiecznie.
+                        Wierzę, że każdy zasługuje na przestrzeń, w której może być w pełni sobą – bez oceniania i presji. Tworzę bezpieczne miejsce, w którym możesz szczerze mówić o tym, co przeżywasz.
                     </p>
 
                     <a href="about.html"
@@ -394,6 +398,7 @@
     </section>
 
 
+    <!-- CTA -->
     <section class="bg-brand-plum py-20 text-white text-center">
         <div class="container mx-auto px-6 max-w-3xl">
 
@@ -402,9 +407,7 @@
             </h2>
 
             <p class="text-lg opacity-90 leading-relaxed mb-8">
-                Pierwszy krok może być trudny — ale nie musisz robić go samotnie.
-                W spokojnej atmosferze porozmawiamy o tym,
-                czego teraz potrzebujesz.
+                Niezależnie od tego, czy przechodzisz trudny okres w życiu, zmagasz się z lękiem, czy potrzebujesz wsparcia w sferze intymności — w spokojnej atmosferze porozmawiamy o tym, czego teraz potrzebujesz.
             </p>
 
             <a href="visits.html"
@@ -414,6 +417,7 @@
         </div>
     </section>
 
+    <!-- MODAL: NEWSLETTER -->
     <div id="newsletterModal" class="modal">
         <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
             <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
@@ -430,6 +434,7 @@
         </div>
     </div>
 
+    <!-- MODAL: SIGN-UP (WORKSHOP/TEMPLE) -->
     <div id="signupModal" class="modal">
         <div class="bg-white rounded-[40px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
@@ -437,6 +442,7 @@
             <p class="text-brand-plum font-semibold text-sm mb-8">Warsztaty / Świątynie / Festiwale</p>
             
             <form class="space-y-6">
+                <!-- Obligatory Fields -->
                 <div class="grid md:grid-cols-2 gap-4">
                     <div class="space-y-1">
                         <label class="text-xs font-bold uppercase text-brand-green/50">Imię i Nazwisko *</label>
@@ -458,6 +464,7 @@
                     </select>
                 </div>
 
+                <!-- Consent Section -->
                 <div class="bg-brand-green-light p-6 rounded-3xl border border-brand-lavender space-y-4">
                     <h3 class="font-bold text-brand-green text-sm">Zgoda na Wizerunek (Zdjęcia i Wideo)</h3>
                     <p class="text-[10px] text-brand-green/70">Materiały do wykorzystania w mediach społecznościowych, na stronie WWW i w materiałach promocyjnych.</p>
@@ -478,6 +485,7 @@
                     </div>
                 </div>
 
+                <!-- Legal Scrollbox -->
                 <div class="h-32 overflow-y-scroll bg-brand-violet-light/30 p-4 rounded-xl text-[9px] leading-normal text-brand-green/60 border border-brand-lavender">
                     <p class="font-bold mb-2">Informacja o Ochronie Danych Osobowych (RODO)</p>
                     The controller of personal data, including participants’ image and likeness, is Conscious Wolf. Photos and video recordings will be processed solely on the basis of voluntary consent for promoting Conscious Wolf events, social media publication (Instagram, Facebook), website content, and newsletters. Materials may be stored indefinitely or until consent is withdrawn. You have the right to access, request deletion, restrict processing, and withdraw consent at any time. Withdrawal does not affect the lawfulness of processing carried out prior to withdrawal. Due to publication on social media, data may be transferred outside the EEA in accordance with platform policies.
@@ -489,6 +497,7 @@
     </div>
 
 
+    <!-- FOOTER -->
     <footer class="bg-brand-green text-white pt-16 pb-10">
         <div class="container mx-auto px-6">
 
@@ -546,12 +555,14 @@
     </footer>
 
 
+    <!-- FLOATING MOBILE CTA -->
     <a href="visits.html"
        class="fixed bottom-5 right-5 sm:hidden bg-brand-green text-white px-6 py-4 rounded-full shadow-2xl z-50 font-semibold hover:bg-brand-plum smooth-transition">
         Umów wizytę
     </a>
 
 
+    <!-- SCRIPTS -->
     <script>
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
