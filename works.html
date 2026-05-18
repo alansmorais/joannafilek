@@ -16,7 +16,7 @@
                         'brand-green': '#1B3D2F',
                         'brand-green-light': '#FDF9FB',
                         'brand-white': '#FCFCFC',
-                        'brand-violet-light': '#F4E6EF' /* Added for modals */
+                        'brand-violet-light': '#F4E6EF'
                     },
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
@@ -55,84 +55,139 @@
             padding: 20px; 
         }
         .modal.active { display: flex; }
+
+        /* Language Switcher Logic */
+        body.lang-pl .text-en, body.lang-pl .text-no { display: none !important; }
+        body.lang-en .text-pl, body.lang-en .text-no { display: none !important; }
+        body.lang-no .text-pl, body.lang-no .text-en { display: none !important; }
     </style>
 </head>
-<body class="overflow-x-hidden text-brand-green">
+<body class="overflow-x-hidden text-brand-green lang-pl">
 
-    <!-- TOP BAR - CENTERED WITH RIGHT-ALIGNED FLAG -->
     <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
-        <div class="hidden md:block">Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</div>
+        <span class="hidden sm:inline">
+            <span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span> (+48) 733 777 542 • psycholog.joannafilek@gmail.com
+        </span>
+        <span class="sm:hidden">
+            <span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span> (+48) 733 777 542
+        </span>
         
-        <a href="works-en.html" class="absolute right-6 flex items-center gap-2 hover:text-brand-lavender transition-all uppercase tracking-widest font-bold">
-            <span>English Version</span>
-            <img src="https://flagcdn.com/w20/gb.png" width="20" alt="UK">
-        </a>
+        <div class="absolute right-6 flex items-center gap-3">
+            <button onclick="setLanguage('pl')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></button>
+            <button onclick="setLanguage('en')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></button>
+            <button onclick="setLanguage('no')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></button>
+        </div>
     </div>
 
-    <!-- HEADER / MENU -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-            <!-- LOGO -->
             <a href="index.html" class="flex items-center gap-3">
                 <img src="images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50">
                 <div>
                     <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">Joanna <span class="font-bold">Filek</span></div>
-                    <p class="text-xs text-brand-plum -mt-1">Psychoterapeutka | Gabinet Inspiro</p>
+                    <p class="text-xs text-brand-plum -mt-1">
+                        <span class="text-pl">Psychoterapeutka | Gabinet Inspiro</span>
+                        <span class="text-en">Psychotherapist | Inspiro Clinic</span>
+                        <span class="text-no">Psykoterapeut | Inspiro Klinikk</span>
+                    </p>
                 </div>
             </a>
 
-            <!-- DESKTOP NAV -->
             <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
-                <a href="index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
-                <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
-                <a href="works.html" class="hover:text-brand-plum smooth-transition">Warsztaty</a>
-                <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
-                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
-                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Zapisy (Sign-up)</button>
+                <a href="index.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">Strona główna</span><span class="text-en">Home</span><span class="text-no">Hjem</span></a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">O mnie</span><span class="text-en">About me</span><span class="text-no">Om meg</span></a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">Warsztaty</span><span class="text-en">Workshops</span><span class="text-no">Verksteder</span></a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span></a>
+                <a href="work-with-us.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">Pracuj z nami</span><span class="text-en">Work with us</span><span class="text-no">Jobb med oss</span></a>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold"><span class="text-pl">Newsletter</span><span class="text-en">Newsletter</span><span class="text-no">Nyhetsbrev</span></button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider"><span class="text-pl">Zapisy (Sign-up)</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span></button>
             </nav>
 
-            <!-- CTA -->
             <div class="flex items-center gap-3">
-                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">Umów konsultację</a>
-                <!-- MOBILE BUTTON -->
-                <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">Menu</button>
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
+                    <span class="text-pl">Umów konsultację</span><span class="text-en">Book consultation</span><span class="text-no">Bestill konsultasjon</span>
+                </a>
+                <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition"><span class="text-pl">Menu</span><span class="text-en">Menu</span><span class="text-no">Meny</span></button>
             </div>
         </div>
 
-        <!-- MOBILE MENU -->
         <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
-            <a href="index.html">Strona główna</a>
-            <a href="about.html">O mnie</a>
-            <a href="works.html">Warsztaty</a>
-            <a href="contact.html">Kontakt</a>
-            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Zapisy (Sign-up)</button>           
-            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
-            <a href="work-with-us.html">Pracuj z nami</a>
-            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Umów konsultację</a>
+            <a href="index.html"><span class="text-pl">Strona główna</span><span class="text-en">Home</span><span class="text-no">Hjem</span></a>
+            <a href="about.html"><span class="text-pl">O mnie</span><span class="text-en">About me</span><span class="text-no">Om meg</span></a>
+            <a href="works.html"><span class="text-pl">Warsztaty</span><span class="text-en">Workshops</span><span class="text-no">Verksteder</span></a>
+            <a href="contact.html"><span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span></a>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2"><span class="text-pl">Zapisy (Sign-up)</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span></button>           
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium"><span class="text-pl">Newsletter</span><span class="text-en">Newsletter</span><span class="text-no">Nyhetsbrev</span></button>
+            <a href="work-with-us.html"><span class="text-pl">Pracuj z nami</span><span class="text-en">Work with us</span><span class="text-no">Jobb med oss</span></a>
+            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2"><span class="text-pl">Umów konsultację</span><span class="text-en">Book consultation</span><span class="text-no">Bestill konsultasjon</span></a>
         </div>
     </header>
 
     <section class="hero-bg-image pt-28 pb-40 no-gap">
         <div class="max-w-5xl mx-auto px-6 text-center text-white">
-            <span class="bg-white/20 backdrop-blur-md text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/30 italic mb-8 inline-block">Praktyczne narzędzia komunikacji i regulacji emocji</span>
-            <h1 class="text-5xl md:text-7xl font-bold mt-4 mb-8 leading-tight">Cykl Warsztatów dla Par <br>w Krakowie</h1>
+            <span class="bg-white/20 backdrop-blur-md text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/30 italic mb-8 inline-block">
+                <span class="text-pl">Praktyczne narzędzia komunikacji i regulacji emocji</span>
+                <span class="text-en">Practical tools for communication and emotional regulation</span>
+                <span class="text-no">Praktiske verktøy for kommunikasjon og følelsesregulering</span>
+            </span>
+            <h1 class="text-5xl md:text-7xl font-bold mt-4 mb-8 leading-tight">
+                <span class="text-pl">Cykl Warsztatów dla Par <br>w Krakowie</span>
+                <span class="text-en">Couples Workshop Series <br>in Krakow</span>
+                <span class="text-no">Samlivskurs for Par <br>i Krakow</span>
+            </h1>
             
             <div class="text-lg md:text-xl text-brand-lavender/90 font-light max-w-2xl mx-auto space-y-6 mb-12 leading-relaxed">
-                <p>Czy Ty i Twój partner wciąż kłócicie się o to samo?</p>
-                <p>Czy rozmowy czasem szybko zmieniają się w frustrację, defensywność lub dystans?</p>
-                <p class="font-bold text-white text-2xl pt-2">Nie jesteście sami.</p>
+                <p>
+                    <span class="text-pl">Czy Ty i Twój partner wciąż kłócicie się o to samo?</span>
+                    <span class="text-en">Do you and your partner keep arguing about the same thing?</span>
+                    <span class="text-no">Krangler du og partneren din stadig om det samme?</span>
+                </p>
+                <p>
+                    <span class="text-pl">Czy rozmowy czasem szybko zmieniają się w frustrację, defensywność lub dystans?</span>
+                    <span class="text-en">Do conversations sometimes quickly turn into frustration, defensiveness, or distance?</span>
+                    <span class="text-no">Går samtaler noen ganger raskt over i frustrasjon, forsvarsposisjon eller avstand?</span>
+                </p>
+                <p class="font-bold text-white text-2xl pt-2">
+                    <span class="text-pl">Nie jesteście sami.</span>
+                    <span class="text-en">You are not alone.</span>
+                    <span class="text-no">Dere er ikke alene.</span>
+                </p>
                 
                 <div class="space-y-4 pt-6 border-t border-white/20">
-                    <p>Większość par nie potrzebuje więcej miłości.</p>
-                    <p>Potrzebują <strong>lepszych narzędzi</strong> na momenty stresu i konfliktu.</p>
-                    <p>Ten cykl pomoże Wam rozpoznawać aktywację, komunikować się jasno i <strong>skutecznie wracać do bliskości</strong>.</p>
+                    <p>
+                        <span class="text-pl">Większość par nie potrzebuje więcej miłości.</span>
+                        <span class="text-en">Most couples don't need more love.</span>
+                        <span class="text-no">De fleste par trenger ikke mer kjærlighet.</span>
+                    </p>
+                    <p>
+                        <span class="text-pl">Potrzebują <strong>lepszych narzędzi</strong> na momenty stresu i konfliktu.</span>
+                        <span class="text-en">They need <strong>better tools</strong> for moments of stress and conflict.</span>
+                        <span class="text-no">De trenger <strong>bedre verktøy</strong> for øyeblikk med stress og konflikt.</span>
+                    </p>
+                    <p>
+                        <span class="text-pl">Ten cykl pomoże Wam rozpoznawać aktywację, komunikować się jasno i <strong>skutecznie wracać do bliskości</strong>.</span>
+                        <span class="text-en">This series will help you recognize activation, communicate clearly, and <strong>effectively return to intimacy</strong>.</span>
+                        <span class="text-no">Dette kurset vil hjelpe dere å gjenkjenne aktivering, kommunisere tydelig og <strong>effektivt finne tilbake til nærhet</strong>.</span>
+                    </p>
                 </div>
             </div>
             
             <div class="bg-brand-plum/90 backdrop-blur-md border border-brand-lavender/30 p-8 rounded-[40px] inline-block shadow-2xl mt-4 max-w-xl mx-auto">
-                <h2 class="text-3xl font-bold text-white mb-2">Warsztat został zakończony</h2>
-                <p class="text-brand-lavender text-lg mb-6">Zapisz się do newslettera, aby otrzymywać informacje o kolejnych edycjach i nowych wydarzeniach.</p>
-                <button onclick="toggleModal('newsletterModal')" class="bg-white text-brand-plum px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-xl uppercase tracking-widest inline-block">Zapisz się do Newslettera</button>
+                <h2 class="text-3xl font-bold text-white mb-2">
+                    <span class="text-pl">Warsztat został zakończony</span>
+                    <span class="text-en">Workshop has ended</span>
+                    <span class="text-no">Workshopen er avsluttet</span>
+                </h2>
+                <p class="text-brand-lavender text-lg mb-6">
+                    <span class="text-pl">Zapisz się do newslettera, aby otrzymywać informacje o kolejnych edycjach i nowych wydarzeniach.</span>
+                    <span class="text-en">Subscribe to the newsletter to receive information about upcoming editions and new events.</span>
+                    <span class="text-no">Meld deg på nyhetsbrevet for å motta informasjon om kommende utgaver og nye arrangementer.</span>
+                </p>
+                <button onclick="toggleModal('newsletterModal')" class="bg-white text-brand-plum px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-xl uppercase tracking-widest inline-block">
+                    <span class="text-pl">Zapisz się do Newslettera</span>
+                    <span class="text-en">Subscribe to Newsletter</span>
+                    <span class="text-no">Meld deg på Nyhetsbrevet</span>
+                </button>
             </div>
         </div>
     </section>
@@ -141,29 +196,41 @@
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <div class="max-w-xl">
-                    <h2 class="text-4xl font-bold mb-8 text-brand-plum leading-snug">Dlaczego pary utykają?</h2>
+                    <h2 class="text-4xl font-bold mb-8 text-brand-plum leading-snug">
+                        <span class="text-pl">Dlaczego pary utykają?</span>
+                        <span class="text-en">Why do couples get stuck?</span>
+                        <span class="text-no">Hvorfor setter par seg fast?</span>
+                    </h2>
                     <p class="text-lg text-brand-green/80 mb-8 leading-relaxed">
-                        Podczas konfliktu wielu z nas traci dostęp do spokojnej komunikacji. Zamiast tego, ciało przechodzi w <strong>reakcje stresowe</strong>.
+                        <span class="text-pl">Podczas konfliktu wielu z nas traci dostęp do spokojnej komunikacji. Zamiast tego, ciało przechodzi w <strong>reakcje stresowe</strong>.</span>
+                        <span class="text-en">During conflict, many of us lose access to calm communication. Instead, the body goes into <strong>stress responses</strong>.</span>
+                        <span class="text-no">Under konflikt mister mange av oss tilgangen til rolig kommunikasjon. I stedet går kroppen i <strong>stressreaksjoner</strong>.</span>
                     </p>
-                    <p class="text-base text-brand-green/70 mb-6 font-semibold uppercase tracking-wider">Typowe reakcje to:</p>
+                    <p class="text-base text-brand-green/70 mb-6 font-semibold uppercase tracking-wider">
+                        <span class="text-pl">Typowe reakcje to:</span>
+                        <span class="text-en">Typical reactions include:</span>
+                        <span class="text-no">Typiske reaksjoner inkluderer:</span>
+                    </p>
                     
                     <div class="grid grid-cols-2 gap-6 mb-10">
                         <ul class="list-disc pl-5 space-y-3 text-base font-medium text-brand-green/80">
-                            <li>Napięcie</li>
-                            <li>Podniesiony głos</li>
-                            <li>Zamykanie się</li>
-                            <li>Krytyka</li>
+                            <li><span class="text-pl">Napięcie</span><span class="text-en">Tension</span><span class="text-no">Spenning</span></li>
+                            <li><span class="text-pl">Podniesiony głos</span><span class="text-en">Raised voice</span><span class="text-no">Hevet stemme</span></li>
+                            <li><span class="text-pl">Zamykanie się</span><span class="text-en">Shutting down</span><span class="text-no">Lukke seg</span></li>
+                            <li><span class="text-pl">Krytyka</span><span class="text-en">Criticism</span><span class="text-no">Kritikk</span></li>
                         </ul>
                         <ul class="list-disc pl-5 space-y-3 text-base font-medium text-brand-green/80">
-                            <li>Unikanie wzroku</li>
-                            <li>Zalanie emocjami</li>
-                            <li>Wycofanie</li>
-                            <li>Defensywność</li>
+                            <li><span class="text-pl">Unikanie wzroku</span><span class="text-en">Avoiding eye contact</span><span class="text-no">Unngå blikkontakt</span></li>
+                            <li><span class="text-pl">Zalanie emocjami</span><span class="text-en">Emotional flooding</span><span class="text-no">Følelsesmessig overveldelse</span></li>
+                            <li><span class="text-pl">Wycofanie</span><span class="text-en">Withdrawal</span><span class="text-no">Tilbaketrekning</span></li>
+                            <li><span class="text-pl">Defensywność</span><span class="text-en">Defensiveness</span><span class="text-no">Forsvarsposisjon</span></li>
                         </ul>
                     </div>
                     
                     <p class="text-lg font-bold text-brand-plum bg-brand-lavender/40 p-6 rounded-3xl leading-relaxed">
-                        Kiedy to się dzieje, rozmowa przestaje dotyczyć tematu – staje się starciem <strong>dwóch układów nerwowych reagujących na stres</strong>. Dobra wiadomość: te wzorce można zmienić.
+                        <span class="text-pl">Kiedy to się dzieje, rozmowa przestaje dotyczyć tematu – staje się starciem <strong>dwóch układów nerwowych reagujących na stres</strong>. Dobra wiadomość: te wzorce można zmienić.</span>
+                        <span class="text-en">When this happens, the conversation is no longer about the topic – it becomes a clash of <strong>two nervous systems reacting to stress</strong>. Good news: these patterns can be changed.</span>
+                        <span class="text-no">Når dette skjer, handler ikke lenger samtalen om emnet – det blir et sammenstøt mellom <strong>to nervesystemer som reagerer på stress</strong>. Gode nyheter: disse mønstrene kan endres.</span>
                     </p>
                 </div>
                 <div class="rounded-[50px] overflow-hidden shadow-2xl">
@@ -176,75 +243,135 @@
     <section id="curriculum" class="py-24 bg-brand-green-light border-y border-brand-lavender">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Uczestnicy nauczą się jak:</h2>
-                <p class="text-brand-plum font-medium text-lg italic max-w-2xl mx-auto">Konkretne umiejętności nawigowania po trudnościach w relacji.</p>
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="text-pl">Uczestnicy nauczą się jak:</span>
+                    <span class="text-en">Participants will learn how to:</span>
+                    <span class="text-no">Deltakerne vil lære å:</span>
+                </h2>
+                <p class="text-brand-plum font-medium text-lg italic max-w-2xl mx-auto">
+                    <span class="text-pl">Konkretne umiejętności nawigowania po trudnościach w relacji.</span>
+                    <span class="text-en">Concrete skills for navigating relationship difficulties.</span>
+                    <span class="text-no">Konkrete ferdigheter for å navigere i relasjonsvansker.</span>
+                </p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">Rozpoznawać wczesne oznaki aktywacji</h3>
-                    <p class="text-sm text-brand-green/70 leading-relaxed">Zauważ co dzieje się w Twoim ciele <strong>zanim</strong> konflikt eskaluje:</p>
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        <span class="text-pl">Rozpoznawać wczesne oznaki aktywacji</span>
+                        <span class="text-en">Recognize early signs of activation</span>
+                        <span class="text-no">Gjenkjenne tidlige tegn på aktivering</span>
+                    </h3>
+                    <p class="text-sm text-brand-green/70 leading-relaxed">
+                        <span class="text-pl">Zauważ co dzieje się w Twoim ciele <strong>zanim</strong> konflikt eskaluje:</span>
+                        <span class="text-en">Notice what happens in your body <strong>before</strong> the conflict escalates:</span>
+                        <span class="text-no">Legg merke til hva som skjer i kroppen din <strong>før</strong> konflikten eskalerer:</span>
+                    </p>
                     <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
-                        <li>Napięcie w brzuchu lub szczęce</li>
-                        <li>Płytki oddech</li>
-                        <li>Napięcie karku i ramion</li>
-                        <li>Poczucie pilności lub chęć ucieczki</li>
+                        <li><span class="text-pl">Napięcie w brzuchu lub szczęce</span><span class="text-en">Tension in the stomach or jaw</span><span class="text-no">Spenning i magen eller kjeven</span></li>
+                        <li><span class="text-pl">Płytki oddech</span><span class="text-en">Shallow breathing</span><span class="text-no">Overflatisk pust</span></li>
+                        <li><span class="text-pl">Napięcie karku i ramion</span><span class="text-en">Neck and shoulder tension</span><span class="text-no">Spenning i nakke og skuldre</span></li>
+                        <li><span class="text-pl">Poczucie pilności lub chęć ucieczki</span><span class="text-en">A sense of urgency or desire to escape</span><span class="text-no">En følelse av hastverk eller ønske om å flykte</span></li>
                     </ul>
                 </div>
 
                 <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">Jasno komunikować uczucia</h3>
-                    <p class="text-sm text-brand-green/70 leading-relaxed">Zamiast obwiniania, naucz się wyrażać wnętrze, aby <strong>zmniejszyć defensywność</strong>:</p>
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        <span class="text-pl">Jasno komunikować uczucia</span>
+                        <span class="text-en">Communicate feelings clearly</span>
+                        <span class="text-no">Kommunisere følelser tydelig</span>
+                    </h3>
+                    <p class="text-sm text-brand-green/70 leading-relaxed">
+                        <span class="text-pl">Zamiast obwiniania, naucz się wyrażać wnętrze, aby <strong>zmniejszyć defensywność</strong>:</span>
+                        <span class="text-en">Instead of blaming, learn to express your inner self to <strong>reduce defensiveness</strong>:</span>
+                        <span class="text-no">I stedet for å klandre, lær å uttrykke ditt indre for å <strong>redusere forsvarsposisjon</strong>:</span>
+                    </p>
                     <ul class="list-disc pl-5 space-y-2 text-sm italic text-brand-plum font-semibold">
-                        <li>"Czuję się teraz niesłyszany/a"</li>
-                        <li>"Czuję się przytłoczony/a"</li>
-                        <li>"Czuję smutek / frustrację / złość"</li>
+                        <li><span class="text-pl">"Czuję się teraz niesłyszany/a"</span><span class="text-en">"I feel unheard right now"</span><span class="text-no">"Jeg føler meg ikke hørt akkurat nå"</span></li>
+                        <li><span class="text-pl">"Czuję się przytłoczony/a"</span><span class="text-en">"I feel overwhelmed"</span><span class="text-no">"Jeg føler meg overveldet"</span></li>
+                        <li><span class="text-pl">"Czuję smutek / frustrację / złość"</span><span class="text-en">"I feel sadness / frustration / anger"</span><span class="text-no">"Jeg føler tristhet / frustrasjon / sinne"</span></li>
                     </ul>
                 </div>
 
                 <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">Zauważać reakcje u partnera</h3>
-                    <p class="text-sm text-brand-green/70 leading-relaxed">Rozpoznawaj sygnały partnera w sposób pełen szacunku i <strong>bez oceniania</strong>:</p>
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        <span class="text-pl">Zauważać reakcje u partnera</span>
+                        <span class="text-en">Notice your partner's reactions</span>
+                        <span class="text-no">Legge merke til partnerens reaksjoner</span>
+                    </h3>
+                    <p class="text-sm text-brand-green/70 leading-relaxed">
+                        <span class="text-pl">Rozpoznawaj sygnały partnera w sposób pełen szacunku i <strong>bez oceniania</strong>:</span>
+                        <span class="text-en">Recognize your partner's signals respectfully and <strong>without judgment</strong>:</span>
+                        <span class="text-no">Gjenkjenne partnerens signaler på en respektfull måte og <strong>uten å dømme</strong>:</span>
+                    </p>
                     <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
-                        <li>Podniesiony głos lub milczenie</li>
-                        <li>Unikanie kontaktu wzrokowego</li>
-                        <li>Chodzenie w kółko lub odwracanie się</li>
+                        <li><span class="text-pl">Podniesiony głos lub milczenie</span><span class="text-en">Raised voice or silence</span><span class="text-no">Hevet stemme eller stillhet</span></li>
+                        <li><span class="text-pl">Unikanie kontaktu wzrokowego</span><span class="text-en">Avoiding eye contact</span><span class="text-no">Unngå blikkontakt</span></li>
+                        <li><span class="text-pl">Chodzenie w kółko lub odwracanie się</span><span class="text-en">Pacing or turning away</span><span class="text-no">Vandre rundt eller snu seg bort</span></li>
                     </ul>
                 </div>
 
                 <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">Regulować emocje w trakcie rozmowy</h3>
-                    <p class="text-sm text-brand-green/80 leading-relaxed">Praktyczne narzędzia uspokajania układu nerwowego w momentach napięcia:</p>
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        <span class="text-pl">Regulować emocje w trakcie rozmowy</span>
+                        <span class="text-en">Regulate emotions during conversation</span>
+                        <span class="text-no">Regulere følelser under samtalen</span>
+                    </h3>
+                    <p class="text-sm text-brand-green/80 leading-relaxed">
+                        <span class="text-pl">Praktyczne narzędzia uspokajania układu nerwowego w momentach napięcia:</span>
+                        <span class="text-en">Practical tools for calming the nervous system in moments of tension:</span>
+                        <span class="text-no">Praktiske verktøy for å roe nervesystemet i anspente øyeblikk:</span>
+                    </p>
                     <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
-                        <li>Techniki uziemiające</li>
-                        <li>Regulacja oddechu i postawy</li>
-                        <li>Spowalnianie tempa wymiany zdań</li>
+                        <li><span class="text-pl">Techniki uziemiające</span><span class="text-en">Grounding techniques</span><span class="text-no">Jordingsteknikker</span></li>
+                        <li><span class="text-pl">Regulacja oddechu i postawy</span><span class="text-en">Breath and posture regulation</span><span class="text-no">Pust- og holdningsregulering</span></li>
+                        <li><span class="text-pl">Spowalnianie tempa wymiany zdań</span><span class="text-en">Slowing down the pace of exchange</span><span class="text-no">Senke tempoet i utvekslingen</span></li>
                     </ul>
                 </div>
 
                 <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">Pauza, Reset i Reconnect</h3>
-                    <p class="text-sm text-brand-green/80 leading-relaxed">Czasem najzdrowszym krokiem jest <strong>zatrzymanie się</strong>:</p>
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        <span class="text-pl">Pauza, Reset i Reconnect</span>
+                        <span class="text-en">Pause, Reset, and Reconnect</span>
+                        <span class="text-no">Pause, Tilbakestill og Koble til igjen</span>
+                    </h3>
+                    <p class="text-sm text-brand-green/80 leading-relaxed">
+                        <span class="text-pl">Czasem najzdrowszym krokiem jest <strong>zatrzymanie się</strong>:</span>
+                        <span class="text-en">Sometimes the healthiest step is to <strong>stop</strong>:</span>
+                        <span class="text-no">Noen ganger er det sunneste å <strong>stoppe</strong>:</span>
+                    </p>
                     <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
-                        <li>Jak zrobić pauzę bez porzucania tematu</li>
-                        <li>Osobna regulacja i powrót do rozmowy</li>
-                        <li>Wspólny powrót do połączenia</li>
+                        <li><span class="text-pl">Jak zrobić pauzę bez porzucania tematu</span><span class="text-en">How to pause without abandoning the topic</span><span class="text-no">Hvordan ta en pause uten å forlate emnet</span></li>
+                        <li><span class="text-pl">Osobna regulacja i powrót do rozmowy</span><span class="text-en">Separate regulation and return to the conversation</span><span class="text-no">Separat regulering og retur til samtalen</span></li>
+                        <li><span class="text-pl">Wspólny powrót do połączenia</span><span class="text-en">Mutual return to connection</span><span class="text-no">Gjensidig retur til forbindelse</span></li>
                     </ul>
                 </div>
 
                 <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">Praca ze złością</h3>
-                    <p class="text-sm text-brand-green/80 leading-relaxed">Złość to sygnał o <strong>ważnych potrzebach</strong>. Naucz się jej słuchać bez ataku:</p>
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        <span class="text-pl">Praca ze złością</span>
+                        <span class="text-en">Working with anger</span>
+                        <span class="text-no">Å jobbe med sinne</span>
+                    </h3>
+                    <p class="text-sm text-brand-green/80 leading-relaxed">
+                        <span class="text-pl">Złość to sygnał o <strong>ważnych potrzebach</strong>. Naucz się jej słuchać bez ataku:</span>
+                        <span class="text-en">Anger is a signal of <strong>important needs</strong>. Learn to listen to it without attacking:</span>
+                        <span class="text-no">Sinne er et signal om <strong>viktige behov</strong>. Lær å lytte til det uten å angripe:</span>
+                    </p>
                     <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
-                        <li>Przekroczone granice</li>
-                        <li>Ukryty pod powierzchnią ból</li>
-                        <li>Potrzeba zmiany lub naprawy</li>
+                        <li><span class="text-pl">Przekroczone granice</span><span class="text-en">Crossed boundaries</span><span class="text-no">Overskredne grenser</span></li>
+                        <li><span class="text-pl">Ukryty pod powierzchnią ból</span><span class="text-en">Pain hidden beneath the surface</span><span class="text-no">Smerte skjult under overflaten</span></li>
+                        <li><span class="text-pl">Potrzeba zmiany lub naprawy</span><span class="text-en">The need for change or repair</span><span class="text-no">Behovet for endring eller reparasjon</span></li>
                     </ul>
                 </div>
             </div>
             
             <div class="mt-12 p-8 bg-brand-lavender/30 rounded-[40px] border border-brand-plum/10 text-center max-w-3xl mx-auto">
-                <p class="text-base italic opacity-80 leading-relaxed">Ćwiczenia mogą obejmować zdrowy ruch, praktyki uwalniania emocji i regulacji – indywidualnie oraz w parach – w bezpiecznym środowisku.</p>
+                <p class="text-base italic opacity-80 leading-relaxed">
+                    <span class="text-pl">Ćwiczenia mogą obejmować zdrowy ruch, praktyki uwalniania emocji i regulacji – indywidualnie oraz w parach – w bezpiecznym środowisku.</span>
+                    <span class="text-en">Exercises may include healthy movement, emotional release practices, and regulation – individually and in pairs – in a safe environment.</span>
+                    <span class="text-no">Øvelser kan inkludere sunn bevegelse, praksis for frigjøring av følelser og regulering – individuelt og i par – i et trygt miljø.</span>
+                </p>
             </div>
         </div>
     </section>
@@ -253,19 +380,39 @@
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="space-y-8 max-w-2xl">
-                    <h2 class="text-4xl font-bold leading-tight">Format Warsztatu</h2>
-                    <p class="text-lg opacity-90 leading-relaxed">To ustrukturyzowany program edukacyjno-doświadczalny, który łączy:</p>
+                    <h2 class="text-4xl font-bold leading-tight">
+                        <span class="text-pl">Format Warsztatu</span>
+                        <span class="text-en">Workshop Format</span>
+                        <span class="text-no">Workshopformat</span>
+                    </h2>
+                    <p class="text-lg opacity-90 leading-relaxed">
+                        <span class="text-pl">To ustrukturyzowany program edukacyjno-doświadczalny, który łączy:</span>
+                        <span class="text-en">It is a structured educational and experiential program that combines:</span>
+                        <span class="text-no">Det er et strukturert pedagogisk og erfaringsbasert program som kombinerer:</span>
+                    </p>
                     <ul class="space-y-4 text-base font-medium">
-                        <li class="flex gap-3"><span>❖</span> Krótkie segmenty merytoryczne</li>
-                        <li class="flex gap-3"><span>❖</span> Prywatne ćwiczenia dla par (nie na forum)</li>
-                        <li class="flex gap-3"><span>❖</span> Praktyki regulacji emocjonalnej</li>
-                        <li class="flex gap-3"><span>❖</span> Wsparcie i prowadzenie przez facylitatorów</li>
+                        <li class="flex gap-3"><span>❖</span> <span class="text-pl">Krótkie segmenty merytoryczne</span><span class="text-en">Short theoretical segments</span><span class="text-no">Korte teoretiske segmenter</span></li>
+                        <li class="flex gap-3"><span>❖</span> <span class="text-pl">Prywatne ćwiczenia dla par (nie na forum)</span><span class="text-en">Private exercises for couples (not in public)</span><span class="text-no">Private øvelser for par (ikke i plenum)</span></li>
+                        <li class="flex gap-3"><span>❖</span> <span class="text-pl">Praktyki regulacji emocjonalnej</span><span class="text-en">Emotional regulation practices</span><span class="text-no">Praksis for emosjonell regulering</span></li>
+                        <li class="flex gap-3"><span>❖</span> <span class="text-pl">Wsparcie i prowadzenie przez facylitatorów</span><span class="text-en">Support and guidance from facilitators</span><span class="text-no">Støtte og veiledning fra fasilitatorer</span></li>
                     </ul>
                 </div>
                 <div class="bg-white/10 p-12 rounded-[50px] border border-white/20 space-y-6">
-                    <h3 class="text-2xl font-bold mb-4 text-brand-lavender">Prywatność i Dobrowolność</h3>
-                    <p class="text-base leading-relaxed">Uczestnicy <strong>nie są proszeni</strong> o dzielenie się szczegółami swojej relacji z grupą.</p>
-                    <p class="text-base leading-relaxed">Wszystkie ćwiczenia odbywają się <strong>prywatnie między partnerami</strong>. Udział w każdym z nich jest zawsze dobrowolny.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-brand-lavender">
+                        <span class="text-pl">Prywatność i Dobrowolność</span>
+                        <span class="text-en">Privacy and Voluntariness</span>
+                        <span class="text-no">Personvern og Frivillighet</span>
+                    </h3>
+                    <p class="text-base leading-relaxed">
+                        <span class="text-pl">Uczestnicy <strong>nie są proszeni</strong> o dzielenie się szczegółami swojej relacji z grupą.</span>
+                        <span class="text-en">Participants are <strong>not asked</strong> to share details of their relationship with the group.</span>
+                        <span class="text-no">Deltakerne blir <strong>ikke bedt</strong> om å dele detaljer om forholdet sitt med gruppen.</span>
+                    </p>
+                    <p class="text-base leading-relaxed">
+                        <span class="text-pl">Wszystkie ćwiczenia odbywają się <strong>prywatnie między partnerami</strong>. Udział w każdym z nich jest zawsze dobrowolny.</span>
+                        <span class="text-en">All exercises take place <strong>privately between partners</strong>. Participation in each is always voluntary.</span>
+                        <span class="text-no">Alle øvelser foregår <strong>privat mellom partnerne</strong>. Deltakelse i hver av dem er alltid frivillig.</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -273,39 +420,73 @@
 
     <section class="py-24 bg-white no-gap">
         <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-20 text-center">Struktura Cyklu</h2>
+            <h2 class="text-4xl font-bold mb-20 text-center">
+                <span class="text-pl">Struktura Cyklu</span>
+                <span class="text-en">Series Structure</span>
+                <span class="text-no">Kursstruktur</span>
+            </h2>
             
             <div class="space-y-16">
                 <div class="relative pl-12 border-l-2 border-brand-plum/20">
                     <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-brand-plum ring-8 ring-brand-plum/10"></div>
-                    <h3 class="text-2xl font-bold text-brand-plum mb-2">Moduł 1 – Zrozumienie Reaktywności Emocjonalnej</h3>
-                    <p class="font-bold text-base text-brand-green mb-4">Sobota, 9 maja | 10:00 – 13:00</p>
+                    <h3 class="text-2xl font-bold text-brand-plum mb-2">
+                        <span class="text-pl">Moduł 1 – Zrozumienie Reaktywności Emocjonalnej</span>
+                        <span class="text-en">Module 1 – Understanding Emotional Reactivity</span>
+                        <span class="text-no">Modul 1 – Forstå Emosjonell Reaktivitet</span>
+                    </h3>
+                    <p class="font-bold text-base text-brand-green mb-4">
+                        <span class="text-pl">Sobota, 9 maja | 10:00 – 13:00</span>
+                        <span class="text-en">Saturday, May 9 | 10:00 AM – 1:00 PM</span>
+                        <span class="text-no">Lørdag, 9. mai | 10:00 – 13:00</span>
+                    </p>
                     <p class="text-base text-brand-green/70 leading-relaxed">
-                        Poznaj mechanizmy powstawania konfliktu w ciele. Naucz się rozpoznawać aktywację układu nerwowego i stosować <strong>narzędzia regulacji w momentach stresu</strong>.
+                        <span class="text-pl">Poznaj mechanizmy powstawania konfliktu w ciele. Naucz się rozpoznawać aktywację układu nerwowego i stosować <strong>narzędzia regulacji w momentach stresu</strong>.</span>
+                        <span class="text-en">Learn the mechanisms of conflict formation in the body. Learn to recognize nervous system activation and apply <strong>regulation tools in moments of stress</strong>.</span>
+                        <span class="text-no">Lær mekanismene for konfliktdannelse i kroppen. Lær å gjenkjenne aktivering av nervesystemet og bruke <strong>reguleringsverktøy i stressende øyeblikk</strong>.</span>
                     </p>
                 </div>
 
                 <div class="relative pl-12 border-l-2 border-brand-plum/20">
                     <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-brand-plum ring-8 ring-brand-plum/10"></div>
-                    <h3 class="text-2xl font-bold text-brand-plum mb-2">Moduł 2 – Praca z silnymi emocjami bez eskalacji</h3>
-                    <p class="font-bold text-base text-brand-green mb-4">Sobota, 9 maja | 13:30 – 16:30</p>
+                    <h3 class="text-2xl font-bold text-brand-plum mb-2">
+                        <span class="text-pl">Moduł 2 – Praca z silnymi emocjami bez eskalacji</span>
+                        <span class="text-en">Module 2 – Working with strong emotions without escalation</span>
+                        <span class="text-no">Modul 2 – Jobbe med sterke følelser uten eskalering</span>
+                    </h3>
+                    <p class="font-bold text-base text-brand-green mb-4">
+                        <span class="text-pl">Sobota, 9 maja | 13:30 – 16:30</span>
+                        <span class="text-en">Saturday, May 9 | 1:30 PM – 4:30 PM</span>
+                        <span class="text-no">Lørdag, 9. mai | 13:30 – 16:30</span>
+                    </p>
                     <p class="text-base text-brand-green/70 leading-relaxed">
-                        Naucz się komunikować potrzeby i emocje (w tym <strong>złość jako informację</strong>) konstruktywnie, wyrażając wpływ sytuacji bez obwiniania partnera.
+                        <span class="text-pl">Naucz się komunikować potrzeby i emocje (w tym <strong>złość jako informację</strong>) konstruktywnie, wyrażając wpływ sytuacji bez obwiniania partnera.</span>
+                        <span class="text-en">Learn to communicate needs and emotions (including <strong>anger as information</strong>) constructively, expressing the impact of a situation without blaming your partner.</span>
+                        <span class="text-no">Lær å kommunisere behov og følelser (inkludert <strong>sinne som informasjon</strong>) konstruktivt, ved å uttrykke virkningen av en situasjon uten å klandre partneren din.</span>
                     </p>
                 </div>
 
                 <div class="relative pl-12 border-l-2 border-brand-plum/20">
                     <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-brand-plum ring-8 ring-brand-plum/10"></div>
-                    <h3 class="text-2xl font-bold text-brand-plum mb-2">Część 3 – Weekendowe Zanurzenie: Naprawa i Bezpieczeństwo</h3>
-                    <p class="font-bold text-xs uppercase tracking-widest text-brand-plum/60 mb-2">Daty zostaną ogłoszone wkrótce</p>
+                    <h3 class="text-2xl font-bold text-brand-plum mb-2">
+                        <span class="text-pl">Część 3 – Weekendowe Zanurzenie: Naprawa i Bezpieczeństwo</span>
+                        <span class="text-en">Part 3 – Weekend Immersion: Repair and Safety</span>
+                        <span class="text-no">Del 3 – Helgefordypning: Reparasjon og Trygghet</span>
+                    </h3>
+                    <p class="font-bold text-xs uppercase tracking-widest text-brand-plum/60 mb-2">
+                        <span class="text-pl">Daty zostaną ogłoszone wkrótce</span>
+                        <span class="text-en">Dates to be announced soon</span>
+                        <span class="text-no">Datoer annonseres snart</span>
+                    </p>
                     <div class="bg-brand-lavender/30 p-8 rounded-3xl space-y-4">
                         <p class="text-base font-semibold text-brand-plum/90 italic">
-                            Podczas tego zjazdu przypomnimy fundamenty z Modułów 1 i 2, a następnie przejdziemy do zaawansowanych umiejętności budowania więzi.
+                            <span class="text-pl">Podczas tego zjazdu przypomnimy fundamenty z Modułów 1 i 2, a następnie przejdziemy do zaawansowanych umiejętności budowania więzi.</span>
+                            <span class="text-en">During this session, we will recall the foundations from Modules 1 and 2, and then move on to advanced bonding skills.</span>
+                            <span class="text-no">I løpet av denne økten vil vi repetere grunnlaget fra Modul 1 og 2, og deretter gå videre til avanserte tilknytningsferdigheter.</span>
                         </p>
                         <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80">
-                            <li><strong>Granice:</strong> Jasne prośby i komunikacja potrzeb.</li>
-                            <li><strong>Zaawansowane:</strong> Umiejętne pauzowanie i powrót do trudnych rozmów.</li>
-                            <li><strong>Sztuka Naprawy:</strong> Odzyskiwanie bliskości po emocjonalnym pęknięciu.</li>
+                            <li><span class="text-pl"><strong>Granice:</strong> Jasne prośby i komunikacja potrzeb.</span><span class="text-en"><strong>Boundaries:</strong> Clear requests and communicating needs.</span><span class="text-no"><strong>Grenser:</strong> Tydelige forespørsler og kommunikasjon av behov.</span></li>
+                            <li><span class="text-pl"><strong>Zaawansowane:</strong> Umiejętne pauzowanie i powrót do trudnych rozmów.</span><span class="text-en"><strong>Advanced:</strong> Skillful pausing and returning to difficult conversations.</span><span class="text-no"><strong>Avansert:</strong> Dyktig pausing og retur til vanskelige samtaler.</span></li>
+                            <li><span class="text-pl"><strong>Sztuka Naprawy:</strong> Odzyskiwanie bliskości po emocjonalnym pęknięciu.</span><span class="text-en"><strong>The Art of Repair:</strong> Regaining intimacy after an emotional rupture.</span><span class="text-no"><strong>Reparasjonens kunst:</strong> Gjenvinne nærhet etter et emosjonelt brudd.</span></li>
                         </ul>
                     </div>
                 </div>
@@ -315,13 +496,21 @@
 
     <section class="py-24 bg-brand-white border-y border-brand-lavender no-gap">
         <div class="max-w-3xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8 text-brand-plum">Co nas wyróżnia?</h2>
-            <p class="text-lg mb-10 opacity-80 leading-relaxed">To nie jest terapia grupowa. Nie polega na obwinianiu się ani publicznym wyjawianiu prywatnych spraw. To prowadzona przestrzeń nauki, gdzie budujecie:</p>
+            <h2 class="text-4xl font-bold mb-8 text-brand-plum">
+                <span class="text-pl">Co nas wyróżnia?</span>
+                <span class="text-en">What makes us different?</span>
+                <span class="text-no">Hva gjør oss annerledes?</span>
+            </h2>
+            <p class="text-lg mb-10 opacity-80 leading-relaxed">
+                <span class="text-pl">To nie jest terapia grupowa. Nie polega na obwinianiu się ani publicznym wyjawianiu prywatnych spraw. To prowadzona przestrzeń nauki, gdzie budujecie:</span>
+                <span class="text-en">This is not group therapy. It is not about blaming each other or publicly revealing private matters. It is a guided learning space where you build:</span>
+                <span class="text-no">Dette er ikke gruppeterapi. Det handler ikke om å klandre hverandre eller offentliggjøre private saker. Det er et veiledet læringsrom hvor dere bygger:</span>
+            </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-semibold">
-                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ Świadomość i odporność</div>
-                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ Umiejętności komunikacyjne</div>
-                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ Zdrowe nawyki konfliktowe</div>
-                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ Silniejszą więź</div>
+                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ <span class="text-pl">Świadomość i odporność</span><span class="text-en">Awareness and resilience</span><span class="text-no">Bevissthet og robusthet</span></div>
+                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ <span class="text-pl">Umiejętności komunikacyjne</span><span class="text-en">Communication skills</span><span class="text-no">Kommunikasjonsferdigheter</span></div>
+                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ <span class="text-pl">Zdrowe nawyki konfliktowe</span><span class="text-en">Healthy conflict habits</span><span class="text-no">Sunne konfliktvaner</span></div>
+                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ <span class="text-pl">Silniejszą więź</span><span class="text-en">A stronger bond</span><span class="text-no">Et sterkere bånd</span></div>
             </div>
         </div>
     </section>
@@ -330,130 +519,162 @@
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                 <div class="max-w-xl space-y-8">
-                    <h2 class="text-4xl font-bold text-brand-plum leading-tight">Dla kogo jest ten cykl?</h2>
+                    <h2 class="text-4xl font-bold text-brand-plum leading-tight">
+                        <span class="text-pl">Dla kogo jest ten cykl?</span>
+                        <span class="text-en">Who is this series for?</span>
+                        <span class="text-no">Hvem er dette kurset for?</span>
+                    </h2>
                     <ul class="list-disc pl-6 space-y-3 text-lg font-medium text-brand-green/80">
-                        <li>Powtarzacie te same kłótnie i spory</li>
-                        <li>Zależy Wam na sobie, ale utykacie w stresie</li>
-                        <li>Chcecie czuć bliskość nawet w trudnych chwilach</li>
-                        <li>Chcecie wsparcia, zanim problemy urosną</li>
+                        <li><span class="text-pl">Powtarzacie te same kłótnie i spory</span><span class="text-en">You repeat the same arguments and disputes</span><span class="text-no">Dere gjentar de samme kranglene og konfliktene</span></li>
+                        <li><span class="text-pl">Zależy Wam na sobie, ale utykacie w stresie</span><span class="text-en">You care about each other, but get stuck in stress</span><span class="text-no">Dere bryr dere om hverandre, men setter dere fast i stress</span></li>
+                        <li><span class="text-pl">Chcecie czuć bliskość nawet w trudnych chwilach</span><span class="text-en">You want to feel closeness even in difficult times</span><span class="text-no">Dere ønsker å føle nærhet selv i vanskelige tider</span></li>
+                        <li><span class="text-pl">Chcecie wsparcia, zanim problemy urosną</span><span class="text-en">You want support before problems grow</span><span class="text-no">Dere ønsker støtte før problemene vokser</span></li>
                     </ul>
                     <div class="bg-brand-plum/5 p-8 rounded-[40px] border border-brand-plum/10">
-                        <p class="text-base font-bold text-brand-plum italic">"Nie musicie być w kryzysie, aby skorzystać. Nie jest wymagane wcześniejsze doświadczenie w terapii."</p>
+                        <p class="text-base font-bold text-brand-plum italic">
+                            <span class="text-pl">"Nie musicie być w kryzysie, aby skorzystać. Nie jest wymagane wcześniejsze doświadczenie w terapii."</span>
+                            <span class="text-en">"You don't have to be in a crisis to benefit. No prior experience in therapy is required."</span>
+                            <span class="text-no">"Dere trenger ikke å være i en krise for å dra nytte av dette. Tidligere erfaring med terapi er ikke nødvendig."</span>
+                        </p>
                     </div>
                 </div>
 
                 <div class="bg-white p-12 rounded-[50px] shadow-2xl border border-brand-lavender relative overflow-hidden text-center">
-                    <div class="absolute top-0 right-0 bg-gray-500 text-white px-8 py-2 rounded-bl-3xl text-xs font-bold uppercase tracking-widest">Zakończone</div>
+                    <div class="absolute top-0 right-0 bg-gray-500 text-white px-8 py-2 rounded-bl-3xl text-xs font-bold uppercase tracking-widest">
+                        <span class="text-pl">Zakończone</span><span class="text-en">Ended</span><span class="text-no">Avsluttet</span>
+                    </div>
                     
                     <div class="mb-8">
-                        <span class="text-4xl font-bold text-brand-plum">Warsztat Zakończony</span>
-                        <p class="text-lg text-brand-green/80 mt-4 leading-relaxed">Dziękujemy za ogromne zainteresowanie! Rejestracja na to wydarzenie jest już zamknięta.</p>
+                        <span class="text-4xl font-bold text-brand-plum">
+                            <span class="text-pl">Warsztat Zakończony</span>
+                            <span class="text-en">Workshop Ended</span>
+                            <span class="text-no">Workshop Avsluttet</span>
+                        </span>
+                        <p class="text-lg text-brand-green/80 mt-4 leading-relaxed">
+                            <span class="text-pl">Dziękujemy za ogromne zainteresowanie! Rejestracja na to wydarzenie jest już zamknięta.</span>
+                            <span class="text-en">Thank you for the huge interest! Registration for this event is now closed.</span>
+                            <span class="text-no">Takk for den enorme interessen! Påmeldingen til dette arrangementet er nå stengt.</span>
+                        </p>
                     </div>
                     
                     <div class="text-left space-y-4 mb-10 text-sm bg-brand-green-light p-6 rounded-3xl border border-brand-lavender">
-                        <p class="font-bold text-brand-plum uppercase tracking-widest text-xs">Co dalej?</p>
-                        <p class="text-brand-green/80 text-base">Zapisz się do newslettera, aby jako pierwsza/y otrzymywać powiadomienia o kolejnych edycjach warsztatów i nowych wydarzeniach.</p>
+                        <p class="font-bold text-brand-plum uppercase tracking-widest text-xs">
+                            <span class="text-pl">Co dalej?</span><span class="text-en">What's next?</span><span class="text-no">Hva nå?</span>
+                        </p>
+                        <p class="text-brand-green/80 text-base">
+                            <span class="text-pl">Zapisz się do newslettera, aby jako pierwsza/y otrzymywać powiadomienia o kolejnych edycjach warsztatów i nowych wydarzeniach.</span>
+                            <span class="text-en">Subscribe to the newsletter to be the first to receive notifications about upcoming workshop editions and new events.</span>
+                            <span class="text-no">Meld deg på nyhetsbrevet for å bli den første som mottar varsler om kommende workshoputgaver og nye arrangementer.</span>
+                        </p>
                     </div>
                     
-                    <button onclick="toggleModal('newsletterModal')" class="block w-full bg-brand-plum text-white text-center py-6 rounded-3xl font-bold text-xl hover:scale-105 transition-all shadow-xl uppercase tracking-widest">Zapisz się do Newslettera</button>
+                    <button onclick="toggleModal('newsletterModal')" class="block w-full bg-brand-plum text-white text-center py-6 rounded-3xl font-bold text-xl hover:scale-105 transition-all shadow-xl uppercase tracking-widest">
+                        <span class="text-pl">Zapisz się do Newslettera</span>
+                        <span class="text-en">Subscribe to Newsletter</span>
+                        <span class="text-no">Meld deg på Nyhetsbrevet</span>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MODAL: NEWSLETTER -->
     <div id="newsletterModal" class="modal">
         <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
             <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
             <h2 class="text-3xl font-bold text-brand-plum mb-4">Newsletter</h2>
-            <p class="text-sm text-brand-green/70 mb-6">Bądź na bieżąco z nadchodzącymi warsztatami, świątyniami tantry i wydarzeniami.</p>
+            <p class="text-sm text-brand-green/70 mb-6">
+                <span class="text-pl">Bądź na bieżąco z nadchodzącymi warsztatami, świątyniami tantry i wydarzeniami.</span>
+                <span class="text-en">Stay up to date with upcoming workshops, tantra temples, and events.</span>
+                <span class="text-no">Hold deg oppdatert med kommende workshops, tantratempler og arrangementer.</span>
+            </p>
             <form class="space-y-4">
-                <input type="email" placeholder="Twój E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
-                <div class="flex items-start gap-3">
+                <input type="email" data-lang-pl="Twój E-mail" data-lang-en="Your E-mail" data-lang-no="Din E-post" placeholder="Twój E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                <div class="flex items-start gap-3 text-left">
                     <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
-                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach, świątyniach i specjalnych wydarzeniach od Conscious Wolf.</label>
+                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">
+                        <span class="text-pl">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach, świątyniach i specjalnych wydarzeniach od Conscious Wolf.</span>
+                        <span class="text-en">I agree to receive marketing information about upcoming workshops, temples, and special events from Conscious Wolf.</span>
+                        <span class="text-no">Jeg samtykker til å motta markedsinformasjon om kommende workshops, templer og spesielle arrangementer fra Conscious Wolf.</span>
+                    </label>
                 </div>
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">Zapisz się</button>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                    <span class="text-pl">Zapisz się</span><span class="text-en">Subscribe</span><span class="text-no">Abonner</span>
+                </button>
             </form>
         </div>
     </div>
 
-    <!-- MODAL: SIGN-UP (WORKSHOP/TEMPLE) -->
     <div id="signupModal" class="modal">
-        <div class="bg-white rounded-[40px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+        <div class="bg-white rounded-[40px] p-8 max-w-md w-full shadow-2xl relative text-center">
             <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold text-brand-green mb-2">Rejestracja na Wydarzenie</h2>
-            <p class="text-brand-plum font-semibold text-sm mb-8">Warsztaty / Świątynie / Festiwale</p>
-            
-            <form class="space-y-6">
-                <!-- Obligatory Fields -->
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="space-y-1">
-                        <label class="text-xs font-bold uppercase text-brand-green/50">Imię i Nazwisko *</label>
-                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-xs font-bold uppercase text-brand-green/50">Numer Telefonu *</label>
-                        <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
-                    </div>
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">
+                <span class="text-pl">Brak dostępnych miejsc</span>
+                <span class="text-en">No spots available</span>
+                <span class="text-no">Ingen ledige plasser</span>
+            </h2>
+            <p class="text-sm text-brand-green/70 mb-6">
+                <span class="text-pl">Obecnie nie mamy zaplanowanych nowych terminów tego warsztatu. Zapisz się do newslettera, aby otrzymać powiadomienie jako pierwszy/a, gdy tylko ruszą nowe zapisy!</span>
+                <span class="text-en">We currently have no new dates scheduled for this workshop. Subscribe to the newsletter to be the first to know when new registrations open!</span>
+                <span class="text-no">Vi har for øyeblikket ingen nye datoer planlagt for denne workshopen. Meld deg på nyhetsbrevet for å få beskjed først når nye påmeldinger åpner!</span>
+            </p>
+            <form class="space-y-4">
+                <input type="email" data-lang-pl="Twój E-mail" data-lang-en="Your E-mail" data-lang-no="Din E-post" placeholder="Twój E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                <div class="flex items-start gap-3 text-left">
+                    <input type="checkbox" id="newsConsent2" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent2" class="text-[11px] leading-tight text-brand-green/80">
+                        <span class="text-pl">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach i wydarzeniach.</span>
+                        <span class="text-en">I agree to receive marketing information about upcoming workshops and events.</span>
+                        <span class="text-no">Jeg samtykker til å motta markedsinformasjon om kommende workshops og arrangementer.</span>
+                    </label>
                 </div>
-
-                <div class="space-y-1">
-                    <label class="text-xs font-bold uppercase text-brand-green/50">Metoda Płatności *</label>
-                    <select required class="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white">
-                        <option value="">Wybierz metodę płatności...</option>
-                        <option value="transfer">Tradycyjny Przelew Bankowy</option>
-                        <option value="blik">BLIK</option>
-                        <option value="card">Płatność Kartą / Online</option>
-                    </select>
-                </div>
-
-                <!-- Consent Section -->
-                <div class="bg-brand-green-light p-6 rounded-3xl border border-brand-lavender space-y-4">
-                    <h3 class="font-bold text-brand-green text-sm">Zgoda na Wizerunek (Zdjęcia i Wideo)</h3>
-                    <p class="text-[10px] text-brand-green/70">Materiały do wykorzystania w mediach społecznościowych, na stronie WWW i w materiałach promocyjnych.</p>
-                    
-                    <div class="space-y-3">
-                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
-                            <input type="radio" name="mediaConsent" value="yes" class="accent-brand-plum" required>
-                            <span class="text-xs font-medium"><strong>TAK</strong> — Wyrażam zgodę na wykorzystanie mojego wizerunku w celach promocyjnych.</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
-                            <input type="radio" name="mediaConsent" value="limited" class="accent-brand-plum">
-                            <span class="text-xs font-medium"><strong>OGRANICZONA ZGODA</strong> — Tylko zdjęcia grupowe/szerokie kadry. Bez identyfikowalnych zbliżeń.</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
-                            <input type="radio" name="mediaConsent" value="no" class="accent-brand-plum">
-                            <span class="text-xs font-medium"><strong>NIE</strong> — Nie wyrażam zgody. Proszę mnie nie fotografować ani nie filmować.</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Legal Scrollbox -->
-                <div class="h-32 overflow-y-scroll bg-brand-violet-light/30 p-4 rounded-xl text-[9px] leading-normal text-brand-green/60 border border-brand-lavender">
-                    <p class="font-bold mb-2">Informacja o Ochronie Danych Osobowych (RODO)</p>
-                    The controller of personal data, including participants’ image and likeness, is Conscious Wolf. Photos and video recordings will be processed solely on the basis of voluntary consent for promoting Conscious Wolf events, social media publication (Instagram, Facebook), website content, and newsletters. Materials may be stored indefinitely or until consent is withdrawn. You have the right to access, request deletion, restrict processing, and withdraw consent at any time. Withdrawal does not affect the lawfulness of processing carried out prior to withdrawal. Due to publication on social media, data may be transferred outside the EEA in accordance with platform policies.
-                </div>
-
-                <button type="submit" class="w-full bg-brand-green text-white font-bold py-5 rounded-2xl shadow-xl hover:bg-brand-plum transition-all uppercase tracking-widest">Wyślij Zgłoszenie i Opłać</button>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                    <span class="text-pl">Zapisz się do Newslettera</span>
+                    <span class="text-en">Subscribe to Newsletter</span>
+                    <span class="text-no">Meld deg på nyhetsbrevet</span>
+                </button>
             </form>
         </div>
     </div>
-
-    <!-- FLOATING MOBILE CTA -->
-    <a href="visits.html" class="fixed bottom-5 right-5 sm:hidden bg-brand-green text-white px-6 py-4 rounded-full shadow-2xl z-50 font-semibold hover:bg-brand-plum smooth-transition">Umów wizytę</a>
 
     <footer class="bg-brand-green text-brand-white pt-20 pb-10 no-gap">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center border-t border-white/10 pt-10 gap-8">
                 <div class="text-4xl font-light">Joanna <span class="font-bold text-brand-lavender">Filek</span></div>
-                <p class="text-white/40 text-sm">© 2026 Joanna Filek. Wspieramy zdrowe relacje poprzez świadomość.</p>
+                <p class="text-white/40 text-sm">
+                    <span class="text-pl">© 2026 Joanna Filek. Wspieramy zdrowe relacje poprzez świadomość.</span>
+                    <span class="text-en">© 2026 Joanna Filek. Supporting healthy relationships through awareness.</span>
+                    <span class="text-no">© 2026 Joanna Filek. Støtter sunne relasjoner gjennom bevissthet.</span>
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
     <script>
+        // Language Switcher Logic
+        function setLanguage(lang) {
+            document.body.classList.remove('lang-pl', 'lang-en', 'lang-no');
+            document.body.classList.add('lang-' + lang);
+            localStorage.setItem('preferredLanguage', lang);
+
+            // Update placeholders
+            document.querySelectorAll('.lang-placeholder').forEach(el => {
+                const translation = el.getAttribute('data-lang-' + lang);
+                if(translation) el.placeholder = translation;
+            });
+
+            // Update select options (if any select tags exist)
+            document.querySelectorAll('.lang-option').forEach(el => {
+                const translation = el.getAttribute('data-lang-' + lang);
+                if(translation) el.textContent = translation;
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'pl';
+            setLanguage(savedLang);
+        });
+
+        // Mobile Menu Logic
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -464,9 +685,10 @@
         // Function to toggle popups
         function toggleModal(id) {
             const modal = document.getElementById(id);
-            modal.classList.toggle('active');
-            // Prevent body scroll when modal open
-            document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+            if(modal) {
+                modal.classList.toggle('active');
+                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+            }
         }
     </script>
 </body>
