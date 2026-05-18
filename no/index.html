@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joanna Filek – Psykoterapeut | Inspiro Klinikk Krakow</title>
+
+    <meta name="description" content="Psykoterapeut og psykolog i Krakow. Et trygt rom for å jobbe med følelser, livskriser, stress, relasjoner og selvfølelse.">
+
+    <link rel="icon" type="image/png" href="../images/1.jpg">
+
+    <link rel="alternate" hreflang="pl" href="https://joannafilek.com/" />
+    <link rel="alternate" hreflang="en" href="https://joannafilek.com/en/" />
+    <link rel="alternate" hreflang="no" href="https://joannafilek.com/no/" />
+    <link rel="alternate" hreflang="x-default" href="https:/joannafilek.com/" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-plum': '#722D64',
+                        'brand-lavender': '#E8C1D9',
+                        'brand-green': '#1B3D2F',
+                        'brand-green-light': '#FDF9FB',
+                        'brand-white': '#FCFCFC',
+                        'brand-violet-light': '#F4E6EF'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: #FDF9FB;
+            color: #1B3D2F;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-bg { background: linear-gradient(135deg, #E8C1D9 0%, #F4E6EF 100%); }
+        .smooth-transition { transition: all 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-3px); }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: flex; }
+
+        .modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            z-index: 100; 
+            background: rgba(0,0,0,0.5); 
+            backdrop-filter: blur(4px); 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .modal.active { display: flex; }
+    </style>
+</head>
+
+<body>
+
+    <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
+        <div class="hidden md:block">Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</div>
+        
+        <div class="absolute right-6 flex items-center gap-3">
+            <a href="../index.html" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></a>
+            <a href="../en/index.html" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></a>
+            <a href="index.html" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></a>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="../images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50">
+                <div>
+                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">Joanna <span class="font-bold">Filek</span></div>
+                    <p class="text-xs font-semibold text-brand-plum -mt-1">Psykoterapeut | Inspiro Klinikk</p>
+                </div>
+            </a>
+
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
+                <a href="index.html" class="hover:text-brand-plum smooth-transition">Hjem</a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition">Om meg</a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition">Verksteder</a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
+                <a href="work-with-us.html" class="hover:text-brand-plum smooth-transition">Jobb med oss</a>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Nyhetsbrev</button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Påmelding</button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">Bestill konsultasjon</a>
+                <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">Meny</button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
+            <a href="index.html">Hjem</a>
+            <a href="about.html">Om meg</a>
+            <a href="works.html">Verksteder</a>
+            <a href="contact.html">Kontakt</a>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Påmelding</button>           
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Nyhetsbrev</button>
+            <a href="work-with-us.html">Jobb med oss</a>
+            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Bestill konsultasjon</a>
+        </div>
+    </header>
+
+    <section class="hero-bg pt-16 pb-20 overflow-hidden">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
+            <div>
+                <div class="inline-block bg-white/70 text-brand-plum text-sm font-semibold px-5 py-2 rounded-full mb-6 shadow-sm">
+                    Psykoterapi • Krakow
+                </div>
+
+                <h1 class="text-5xl lg:text-6xl font-bold leading-tight text-brand-green mb-6">
+                    Støtte i vanskelige tider. <br>
+                    <span class="text-brand-plum">Veien til emosjonell balanse.</span>
+                </h1>
+
+                <p class="text-xl text-brand-green/90 leading-relaxed max-w-xl mb-8">
+                    Jeg tilbyr et trygt rom for å jobbe med følelser, livskriser, stress, angst, relasjoner og selvfølelse. Jeg hjelper deg med å gjenvinne kontroll og indre ro.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <a href="visits.html" class="bg-brand-green text-white text-lg font-bold py-5 px-10 rounded-2xl text-center shadow-lg hover:bg-brand-plum smooth-transition hover-lift">Bestill din første time</a>
+                    <a href="about.html" class="border-2 border-brand-green text-brand-green text-lg font-bold py-5 px-10 rounded-2xl text-center hover:bg-white smooth-transition hover-lift">Bli bedre kjent med meg</a>
+                </div>
+
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <div class="bg-white/70 px-4 py-2 rounded-full text-sm font-medium text-brand-green shadow-sm">100% Konfidensialitet</div>
+                    <div class="bg-white/70 px-4 py-2 rounded-full text-sm font-medium text-brand-green shadow-sm">Uten dømming</div>
+                    <div class="bg-white/70 px-4 py-2 rounded-full text-sm font-medium text-brand-green shadow-sm">Online og fysisk</div>
+                </div>
+
+                <div class="text-sm text-brand-green/70 flex flex-wrap gap-6 font-medium">
+                    <div>Inspiro Klinikk • Skalica gt., Krakow</div>
+                </div>
+            </div>
+
+            <div class="relative flex justify-center md:justify-end">
+                <img src="../images/profile.jpg" alt="Joanna Filek" class="w-full max-w-[520px] rounded-[32px] shadow-2xl object-cover">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl font-bold text-brand-green mb-4">Hvordan kan jeg hjelpe deg?</h2>
+                <p class="text-lg text-brand-green/75 max-w-3xl mx-auto leading-relaxed">
+                    Jeg jobber hovedsakelig med personer som opplever emosjonelle kriser, vanskeligheter i dagliglivet og relasjonsutfordringer.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Kriser og emosjonelle vansker</h3>
+                    <p class="text-brand-green/80 leading-relaxed">Depresjon, angst, kronisk stress, utbrenthet, sorg, livskriser.</p>
+                </div>
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Relasjoner og nærhet</h3>
+                    <p class="text-brand-green/80 leading-relaxed">Kommunikasjonsproblemer, samlivskriser, ensomhetsfølelse, bygging av sunne relasjoner.</p>
+                </div>
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Selvfølelse</h3>
+                    <p class="text-brand-green/80 leading-relaxed">Lav selvfølelse, vanskeligheter med å sette grenser, indre kritiker, selvaksept.</p>
+                </div>
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift border-t-4 border-brand-plum/20">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Seksuelle vansker og intimitet</h3>
+                    <p class="text-brand-green/80 leading-relaxed">Seksuelle problemer med emosjonell bakgrunn (angst, skam, blokkeringer).</p>
+                </div>
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift border-t-4 border-brand-plum/20">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Personlig utvikling</h3>
+                    <p class="text-brand-green/80 leading-relaxed">Bedre selvforståelse, følelsesregulering, bygging av mental robusthet.</p>
+                </div>
+                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift border-t-4 border-brand-plum/20">
+                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Støtte i endring</h3>
+                    <p class="text-brand-green/80 leading-relaxed">Livsoverganger, beslutninger, søken etter mening og retning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-brand-green-light">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl font-bold text-brand-green mb-4">Hvordan ser den første konsultasjonen ut?</h2>
+                <p class="text-lg text-brand-green/75 max-w-2xl mx-auto leading-relaxed">
+                    Det første møtet er en rolig samtale om din situasjon, vanskeligheter og behov.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
+                    <div class="text-brand-plum text-2xl font-bold mb-4">1.</div>
+                    <h3 class="text-xl font-semibold mb-3 text-brand-green">Vi snakker uten press</h3>
+                    <p class="text-brand-green/80 leading-relaxed">Du kan si så mye du føler deg klar for. Du trenger ikke å tvinge frem noe.</p>
+                </div>
+                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
+                    <div class="text-brand-plum text-2xl font-bold mb-4">2.</div>
+                    <h3 class="text-xl font-semibold mb-3 text-brand-green">Vi kartlegger behov</h3>
+                    <p class="text-brand-green/80 leading-relaxed">Sammen finner vi ut hva du vil jobbe med og hvilken støtte du trenger.</p>
+                </div>
+                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
+                    <div class="text-brand-plum text-2xl font-bold mb-4">3.</div>
+                    <h3 class="text-xl font-semibold mb-3 text-brand-green">Vi skaper et trygt rom</h3>
+                    <p class="text-brand-green/80 leading-relaxed">Vi jobber med full diskresjon, uten dømming, skam eller tidspress.</p>
+                </div>
+                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
+                    <div class="text-brand-plum text-2xl font-bold mb-4">4.</div>
+                    <h3 class="text-xl font-semibold mb-3 text-brand-green">Vi søker løsninger</h3>
+                    <p class="text-brand-green/80 leading-relaxed">Sammen utvikler vi en terapiplan som vil hjelpe deg med å gjenvinne balansen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="bg-brand-green-light rounded-[40px] p-8 md:p-16 flex flex-col xl:flex-row items-center gap-12 border border-brand-plum/10 shadow-sm">
+                <div class="shrink-0">
+                    <img src="../images/joanna.png" alt="Joanna Filek" class="w-72 rounded-3xl shadow-xl object-cover">
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold text-brand-plum mb-6">Hei, jeg er Joanna Filek</h2>
+                    <p class="text-lg text-brand-green/90 leading-relaxed mb-6">
+                        Jeg er psykoterapeut og psykolog. Jeg følger mennesker i prosessen med å håndtere emosjonelle vanskeligheter, livskriser og relasjonsutfordringer.
+                    </p>
+                    <p class="text-lg text-brand-green/90 leading-relaxed mb-8">
+                        Jeg tror at alle fortjener et rom hvor de kan være helt seg selv – uten dømming og press. Jeg skaper et trygt sted hvor du ærlig kan snakke om det du går gjennom.
+                    </p>
+                    <a href="about.html" class="inline-flex items-center gap-3 text-brand-plum font-bold text-lg hover:underline smooth-transition">
+                        Lær mer om meg →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-brand-plum py-20 text-white text-center">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-4xl font-bold mb-6 leading-tight">Du trenger ikke å møte dette alene.</h2>
+            <p class="text-lg opacity-90 leading-relaxed mb-8">
+                Enten du går gjennom en vanskelig tid i livet, sliter med angst, eller trenger støtte innen intimitet — vil vi snakke om hva du trenger akkurat nå i en rolig atmosfære.
+            </p>
+            <a href="visits.html" class="inline-block bg-white text-brand-plum text-lg font-bold px-12 py-5 rounded-2xl hover:bg-brand-lavender smooth-transition shadow-lg hover-lift">
+                Bestill din første konsultasjon
+            </a>
+        </div>
+    </section>
+
+    <div id="newsletterModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
+            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">Nyhetsbrev</h2>
+            <p class="text-sm text-brand-green/70 mb-6">Hold deg oppdatert med kommende workshops, tantratempler og arrangementer.</p>
+            <form class="space-y-4">
+                <input type="email" placeholder="Din E-post" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">Jeg samtykker til å motta markedsinformasjon om kommende workshops, templer og spesielle arrangementer fra Conscious Wolf.</label>
+                </div>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">Abonner</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="bg-white rounded-[40px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-green mb-2">Arrangementregistrering</h2>
+            <p class="text-brand-plum font-semibold text-sm mb-8">Workshops / Templer / Festivaler</p>
+            
+            <form class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold uppercase text-brand-green/50">Fullt Navn *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold uppercase text-brand-green/50">Telefonnummer *</label>
+                        <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-bold uppercase text-brand-green/50">Betalingsmetode *</label>
+                    <select required class="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white">
+                        <option value="">Velg betalingsmetode...</option>
+                        <option value="transfer">Tradisjonell Bankoverføring</option>
+                        <option value="blik">BLIK</option>
+                        <option value="card">Kortbetaling / Online</option>
+                    </select>
+                </div>
+
+                <div class="bg-brand-green-light p-6 rounded-3xl border border-brand-lavender space-y-4">
+                    <h3 class="font-bold text-brand-green text-sm">Bilde samtykke (Bilder og Video)</h3>
+                    <p class="text-[10px] text-brand-green/70">Materialer til bruk i sosiale medier, på nettsiden og i reklamemateriell.</p>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="yes" class="accent-brand-plum" required>
+                            <span class="text-xs font-medium"><strong>JA</strong> — Jeg samtykker til bruk av mitt bilde for salgsfremmende formål.</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="limited" class="accent-brand-plum">
+                            <span class="text-xs font-medium"><strong>BEGRENSET SAMTYKKE</strong> — Bare gruppebilder/vide vinkler. Ingen identifiserbare nærbilder.</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="no" class="accent-brand-plum">
+                            <span class="text-xs font-medium"><strong>NEI</strong> — Jeg samtykker ikke. Vennligst ikke fotografer eller film meg.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="h-32 overflow-y-scroll bg-brand-violet-light/30 p-4 rounded-xl text-[9px] leading-normal text-brand-green/60 border border-brand-lavender">
+                    <p class="font-bold mb-2">Informasjon om Databeskyttelse (GDPR)</p>
+                    The controller of personal data, including participants’ image and likeness, is Conscious Wolf...
+                </div>
+
+                <button type="submit" class="w-full bg-brand-green text-white font-bold py-5 rounded-2xl shadow-xl hover:bg-brand-plum transition-all uppercase tracking-widest">Send inn påmelding og betal</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-brand-green text-white pt-16 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <div class="text-3xl font-light mb-2">Joanna <span class="font-bold">Filek</span></div>
+                    <p class="text-sm opacity-75">Inspiro Psykoterapi Klinikk</p>
+                    <p class="text-sm opacity-75 mt-1">Krakow • Skalica gt.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Navigasjon</h4>
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Hjem</a></li>
+                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">Om meg</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Verksteder</a></li>
+                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Nyhetsbrev</button></li>
+                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Påmelding</h4>
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Påmelding til arrangement</button></li>
+                        <li><a href="work-with-us.html" class="hover:text-brand-lavender smooth-transition">Jobb med oss</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Informasjon</h4>
+                    <p class="text-sm opacity-75 leading-relaxed">Konfidensialitet for økter er fullt ut garantert. Konsultasjoner tilgjengelig online og personlig.</p>
+                    <p class="text-sm opacity-60 mt-6">© 2026 Joanna Filek</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="text-xs text-white/50 uppercase tracking-widest font-bold">Våre Partnere:</div>
+                    <a href="https://n69.pl" target="_blank" class="hover:opacity-70 smooth-transition opacity-80 grayscale hover:grayscale-0 bg-white/10 px-4 py-2 rounded-xl">
+                        <img src="../images/n69-logo.png" alt="N69 Partner" class="h-8 object-contain">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if(modal) {
+                modal.classList.toggle('active');
+                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+            }
+        }
+    </script>
+</body>
+</html>
