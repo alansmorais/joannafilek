@@ -63,16 +63,30 @@
             padding: 20px; 
         }
         .modal.active { display: flex; }
+
+        /* Language Switcher Logic */
+        body.lang-pl .text-en, body.lang-pl .text-no { display: none !important; }
+        body.lang-en .text-pl, body.lang-en .text-no { display: none !important; }
+        body.lang-no .text-pl, body.lang-no .text-en { display: none !important; }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden lang-pl">
 
-    <!-- TOP BAR -->
-    <div class="relative z-[60] flex items-center justify-center h-10 bg-brand-plum text-brand-white text-xs font-medium">
-        <span>Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</span>
+    <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
+        <span class="hidden sm:inline">
+            <span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span> (+48) 733 777 542 • psycholog.joannafilek@gmail.com
+        </span>
+        <span class="sm:hidden">
+            <span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span> (+48) 733 777 542
+        </span>
+        
+        <div class="absolute right-6 flex items-center gap-3">
+            <button onclick="setLanguage('pl')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></button>
+            <button onclick="setLanguage('en')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></button>
+            <button onclick="setLanguage('no')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></button>
+        </div>
     </div>
 
-    <!-- NOWY HEADER / MENU -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
@@ -82,49 +96,62 @@
                         Joanna <span class="font-bold">Filek</span>
                     </div>
                     <p class="text-xs text-brand-plum -mt-1">
-                        Psychoterapeutka | Gabinet Inspiro
+                        <span class="text-pl">Psychoterapeutka | Gabinet Inspiro</span>
+                        <span class="text-en">Psychotherapist | Inspiro Clinic</span>
+                        <span class="text-no">Psykoterapeut | Inspiro Klinikk</span>
                     </p>
                 </div>
             </a>
 
-            <!-- DESKTOP NAV -->
             <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
-                <a href="index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
-                <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
-                <a href="works.html" class="hover:text-brand-plum smooth-transition">Warsztaty</a>
-                <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
-                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
-                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Zapisy (Sign-up)</button>
+                <a href="index.html" class="hover:text-brand-plum smooth-transition">
+                    <span class="text-pl">Strona główna</span><span class="text-en">Home</span><span class="text-no">Hjem</span>
+                </a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition">
+                    <span class="text-pl">O mnie</span><span class="text-en">About me</span><span class="text-no">Om meg</span>
+                </a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition">
+                    <span class="text-pl">Warsztaty</span><span class="text-en">Workshops</span><span class="text-no">Verksteder</span>
+                </a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition">
+                    <span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span>
+                </a>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">
+                    <span class="text-pl">Newsletter</span><span class="text-en">Newsletter</span><span class="text-no">Nyhetsbrev</span>
+                </button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">
+                    <span class="text-pl">Zapisy</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span>
+                </button>
             </nav>
 
-            <!-- CTA -->
             <div class="flex items-center gap-3">
                 <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
-                    Umów konsultację
+                    <span class="text-pl">Umów konsultację</span><span class="text-en">Book consultation</span><span class="text-no">Bestill konsultasjon</span>
                 </a>
-                <!-- MOBILE BUTTON -->
                 <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">
-                    Menu
+                    <span class="text-pl">Menu</span><span class="text-en">Menu</span><span class="text-no">Meny</span>
                 </button>
             </div>
         </div>
 
-        <!-- MOBILE MENU -->
         <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
-            <a href="index.html">Strona główna</a>
-            <a href="about.html">O mnie</a>
-            <a href="works.html">Warsztaty</a>
-            <a href="contact.html">Kontakt</a>
-            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Zapisy (Sign-up)</button>           
-            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
-            <a href="work-with-us.html">Pracuj z nami</a>
+            <a href="index.html"><span class="text-pl">Strona główna</span><span class="text-en">Home</span><span class="text-no">Hjem</span></a>
+            <a href="about.html"><span class="text-pl">O mnie</span><span class="text-en">About me</span><span class="text-no">Om meg</span></a>
+            <a href="works.html"><span class="text-pl">Warsztaty</span><span class="text-en">Workshops</span><span class="text-no">Verksteder</span></a>
+            <a href="contact.html"><span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span></a>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">
+                <span class="text-pl">Zapisy</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span>
+            </button>            
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">
+                <span class="text-pl">Newsletter</span><span class="text-en">Newsletter</span><span class="text-no">Nyhetsbrev</span>
+            </button>
+            <a href="work-with-us.html"><span class="text-pl">Pracuj z nami</span><span class="text-en">Work with us</span><span class="text-no">Jobb med oss</span></a>
             <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">
-                Umów konsultację
+                <span class="text-pl">Umów konsultację</span><span class="text-en">Book consultation</span><span class="text-no">Bestill konsultasjon</span>
             </a>
         </div>
     </header>
 
-    <!-- ORYGINALNA TREŚĆ STRONY "O MNIE" -->
     <section class="bg-brand-lavender pb-2 no-gap">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-8">
@@ -150,33 +177,74 @@
     <section class="bg-brand-lavender py-6 no-gap">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-3xl lg:text-4xl text-brand-plum font-light mb-4">
-                Cześć, mam na imię <span class="font-bold">Joanna.</span>
+                <span class="text-pl">Cześć, mam na imię <span class="font-bold">Joanna.</span></span>
+                <span class="text-en">Hi, my name is <span class="font-bold">Joanna.</span></span>
+                <span class="text-no">Hei, jeg heter <span class="font-bold">Joanna.</span></span>
             </h2>
 
             <div class="border-l-2 border-brand-plum pl-6 mb-6">
                 <p class="text-brand-plum text-lg lg:text-xl italic font-medium leading-relaxed">
-                    Kiedy dorastałam nikt nie rozmawiał ze mną o seksie.
+                    <span class="text-pl">Kiedy dorastałam nikt nie rozmawiał ze mną o seksie.</span>
+                    <span class="text-en">When I was growing up, no one talked to me about sex.</span>
+                    <span class="text-no">Da jeg vokste opp, var det ingen som snakket med meg om sex.</span>
                 </p>
             </div>
 
             <div class="space-y-6 text-brand-green text-sm lg:text-base leading-relaxed opacity-90">
-                <p>W szkole również nie uczono nas niczego na ten temat. W domu był to temat tabu. Swoją wiedzę czerpałam więc głównie z „Bravo”, miesięcznika, w którym była rubryka z pytaniami dotyczącymi dojrzewania i inicjacji seksualnej. Resztę informacji miałam od znajomych. Ani jedno ani drugie źródło nie było wiarygodne. Kiedy postanowiłam rozpocząć współżycie poszłam do mojej mamy spytać o antykoncepcje. Nie dowiedziałam się niczego, ale mama zapisała mnie do ginekologa. Byłam przerażona. Kiedy powiedziałam doktorce, że chce rozpocząć współżycie z moim chlopakiem, odpowiedziała surowo: „A po co???!!!”.</p>
-                <p>Warto wspomnieć, że miałam prawie 18 lat. Kiedy poprosiłam o antykoncepcje (nie mając o niej bladego pojęcia, wiedziałam tylko o istnieniu prezerwatyw i jakichś tabletek, ale jakie to były tabletki i jak miały działać nikt mi nie wytłumaczył), babka przepisała mi tabletkę 72h po… nie tłumacząc niczego i na tym kończąc wizytę. Wykupiliśmy więc receptę i przeczytalismy ulotkę, kompletnie zdezorientowani… „czy mam po każdym seksie ją zażywać?”. W końcu po pierwszym razie, kiedy tabletka kompletnie rozregulowała mi okres, postanowiliśmy zostać przy prezerwatywach. I próbować zorientować się jakoś o co chodzi w tym całym seksie.</p>
+                <p>
+                    <span class="text-pl">W szkole również nie uczono nas niczego na ten temat. W domu był to temat tabu. Swoją wiedzę czerpałam więc głównie z „Bravo”, miesięcznika, w którym była rubryka z pytaniami dotyczącymi dojrzewania i inicjacji seksualnej. Resztę informacji miałam od znajomych. Ani jedno ani drugie źródło nie było wiarygodne. Kiedy postanowiłam rozpocząć współżycie poszłam do mojej mamy spytać o antykoncepcje. Nie dowiedziałam się niczego, ale mama zapisała mnie do ginekologa. Byłam przerażona. Kiedy powiedziałam doktorce, że chce rozpocząć współżycie z moim chlopakiem, odpowiedziała surowo: „A po co???!!!”.</span>
+                    <span class="text-en">At school, we weren't taught anything about it either. At home, it was a taboo subject. So I drew my knowledge mostly from "Bravo", a monthly magazine that had a column with questions about puberty and sexual initiation. The rest of the information I got from friends. Neither source was reliable. When I decided to start having sex, I went to my mom to ask about contraception. I didn't learn anything, but my mom made an appointment for me with a gynecologist. I was terrified. When I told the doctor that I wanted to start having sex with my boyfriend, she answered sternly: "What for???!!!".</span>
+                    <span class="text-no">På skolen lærte vi heller ingenting om det. Hjemme var det et tabu. Så jeg fikk kunnskapen min for det meste fra "Bravo", et månedlig magasin som hadde en spalte med spørsmål om pubertet og seksuell debut. Resten av informasjonen fikk jeg fra venner. Ingen av kildene var pålitelige. Da jeg bestemte meg for å debutere seksuelt, gikk jeg til mamma for å spørre om prevensjon. Jeg lærte ingenting, men mamma bestilte time hos en gynekolog for meg. Jeg var livredd. Da jeg fortalte legen at jeg ville begynne å ha sex med kjæresten min, svarte hun strengt: "Hvorfor det???!!!".</span>
+                </p>
+                
+                <p>
+                    <span class="text-pl">Warto wspomnieć, że miałam prawie 18 lat. Kiedy poprosiłam o antykoncepcje (nie mając o niej bladego pojęcia, wiedziałam tylko o istnieniu prezerwatyw i jakichś tabletek, ale jakie to były tabletki i jak miały działać nikt mi nie wytłumaczył), babka przepisała mi tabletkę 72h po… nie tłumacząc niczego i na tym kończąc wizytę. Wykupiliśmy więc receptę i przeczytalismy ulotkę, kompletnie zdezorientowani… „czy mam po każdym seksie ją zażywać?”. W końcu po pierwszym razie, kiedy tabletka kompletnie rozregulowała mi okres, postanowiliśmy zostać przy prezerwatywach. I próbować zorientować się jakoś o co chodzi w tym całym seksie.</span>
+                    <span class="text-en">It is worth mentioning that I was almost 18 years old. When I asked for contraception (having no clue about it, I only knew about the existence of condoms and some pills, but what those pills were and how they were supposed to work, no one explained to me), the doctor prescribed me a morning-after pill... without explaining anything and ending the visit there. So we filled the prescription and read the leaflet, completely disoriented... "am I supposed to take it after every time we have sex?". Finally, after the first time, when the pill completely deregulated my period, we decided to stick with condoms. And try to somehow figure out what this whole sex thing is all about.</span>
+                    <span class="text-no">Det er verdt å nevne at jeg var nesten 18 år gammel. Da jeg ba om prevensjon (uten å ha peiling på det, jeg visste bare at det fantes kondomer og noen p-piller, men hva disse pillene var og hvordan de skulle fungere, forklarte ingen meg), skrev legen ut en angrepille... uten å forklare noen ting, og avsluttet timen der. Så vi hentet resepten og leste pakningsvedlegget, helt desorienterte... "skal jeg ta den hver gang vi har sex?". Til slutt, etter den første gangen, da pillen fullstendig forstyrret menstruasjonen min, bestemte vi oss for å holde oss til kondomer. Og prøve å på en eller annen måte finne ut hva denne sexgreia handlet om.</span>
+                </p>
 
                 <div class="border-l-2 border-brand-plum pl-6 mb-6">
                     <p class="text-brand-plum text-lg lg:text-xl italic font-medium leading-relaxed">
-                        Teraz jestem psycholożką i seksuolożką i obserwuję, że temat seksu wciąż jest często w domach rodzinnych tematem tabu.
+                        <span class="text-pl">Teraz jestem psycholożką i seksuolożką i obserwuję, że temat seksu wciąż jest często w domach rodzinnych tematem tabu.</span>
+                        <span class="text-en">Now I am a psychologist and sexologist, and I observe that the topic of sex is still often a taboo subject in family homes.</span>
+                        <span class="text-no">Nå er jeg psykolog og sexolog, og jeg ser at temaet sex fortsatt ofte er tabu i mange hjem.</span>
                     </p>
                 </div>
 
-                <p>Rodzice nie wiedzą i boją się rozmawiać z dziećmi o seksie. Edukacja seksualna w polskich szkołach nie istnieje… Młodzi ludzie często nie otrzymują rzetelnej wiedzy, a to namnarza trudności i problemów, które czasem ciągną się przez wiele lat i potrzeba specjalistycznej pomocy psychologów, terapeutów i seksuologów żeby sobie z tym poradzić. Wierzę, że wielu trudności, z którymi zgłaszają się do mnie pacjenci można by uniknąć.</p>
-		Stąd pomysł na tą stronę, na przestrzeń gdzie każdy może zadać pytanie, podzielić się swoimi doświadczeniami, pogadać o tym co sprawia trudności. Możecie też zadawać pytania do specjalistów, a jeśli czujecie, że chcecie dłużej pogadać to zapraszam na konsultacje seksuologiczne ze mną.
+                <p>
+                    <span class="text-pl">Rodzice nie wiedzą i boją się rozmawiać z dziećmi o seksie. Edukacja seksualna w polskich szkołach nie istnieje… Młodzi ludzie często nie otrzymują rzetelnej wiedzy, a to namnarza trudności i problemów, które czasem ciągną się przez wiele lat i potrzeba specjalistycznej pomocy psychologów, terapeutów i seksuologów żeby sobie z tym poradzić. Wierzę, że wielu trudności, z którymi zgłaszają się do mnie pacjenci można by uniknąć.</span>
+                    <span class="text-en">Parents do not know how and are afraid to talk to their children about sex. Sexual education in Polish schools does not exist... Young people often do not receive reliable knowledge, which multiplies difficulties and problems that sometimes drag on for many years, requiring specialized help from psychologists, therapists, and sexologists to deal with them. I believe that many of the difficulties my patients come to me with could be avoided.</span>
+                    <span class="text-no">Foreldre vet ikke hvordan, og er redde for å snakke med barna sine om sex. Seksualundervisning i polske skoler eksisterer ikke... Unge mennesker får ofte ikke pålitelig kunnskap, noe som forårsaker vanskeligheter og problemer som noen ganger drar ut i mange år, og som krever spesialisert hjelp fra psykologer, terapeuter og sexologer for å håndteres. Jeg tror at mange av de vanskelighetene pasientene mine kommer til meg med kunne vært unngått.</span>
+                </p>
+                <p>
+                    <span class="text-pl">Stąd pomysł na tą stronę, na przestrzeń gdzie każdy może zadać pytanie, podzielić się swoimi doświadczeniami, pogadać o tym co sprawia trudności. Możecie też zadawać pytania do specjalistów, a jeśli czujecie, że chcecie dłużej pogadać to zapraszam na konsultacje seksuologiczne ze mną.</span>
+                    <span class="text-en">Hence the idea for this website, a space where everyone can ask a question, share their experiences, talk about what causes difficulties. You can also ask questions to specialists, and if you feel you want to talk longer, I invite you to a sexological consultation with me.</span>
+                    <span class="text-no">Derav ideen til denne nettsiden, et rom der alle kan stille spørsmål, dele sine erfaringer, og snakke om det som er vanskelig. Du kan også stille spørsmål til spesialister, og hvis du føler at du vil snakke mer, inviterer jeg deg til en sexologisk konsultasjon med meg.</span>
+                </p>
 
-                <p><b class="text-brand-plum">Wykształcenie</b></p>
-                <p>Jestem psycholożką i seksuolożką. Ukończyłam studia z Psychologii klinicznej na Uniwersytecie SWPS w Warszawie oraz studia z Psychologii rozwoju i coachingu na WSE w Krakowie. Następnie ukończyłam studia z Seksuologii klinicznej na Uniwersytecie SWPS w Katowicach.</p>
-                <p>Ponadto ukończyłam studia magisterskie z Religioznawstwa na UJ w Krakowie oraz Pedagogikę w Akademii Ignatianum w Krakowie. Jestem zatem zaznajomiona w różnymi religiami i wyznaniami z całego świata. Bardzo pomaga mi to w pracy z ludźmi z różnych kręgów kulturowych.</p>
-                <p>Każda osoba niezależnie od płci, tożsamości, orientacji, religii, pochodzenia będzie w pełni akceptowana na sesjach ze mną.</p>
-                <p>Fajnie, że jesteś.</p>
+                <p><b class="text-brand-plum">
+                    <span class="text-pl">Wykształcenie</span><span class="text-en">Education</span><span class="text-no">Utdanning</span>
+                </b></p>
+                <p>
+                    <span class="text-pl">Jestem psycholożką i seksuolożką. Ukończyłam studia z Psychologii klinicznej na Uniwersytecie SWPS w Warszawie oraz studia z Psychologii rozwoju i coachingu na WSE w Krakowie. Następnie ukończyłam studia z Seksuologii klinicznej na Uniwersytecie SWPS w Katowicach.</span>
+                    <span class="text-en">I am a psychologist and sexologist. I graduated in Clinical Psychology at the SWPS University in Warsaw and in Developmental Psychology and Coaching at the WSE in Krakow. Then I completed postgraduate studies in Clinical Sexology at the SWPS University in Katowice.</span>
+                    <span class="text-no">Jeg er psykolog og sexolog. Jeg har en grad i klinisk psykologi ved SWPS-universitetet i Warszawa og i utviklingspsykologi og coaching ved WSE i Krakow. Deretter fullførte jeg videreutdanning i klinisk sexologi ved SWPS-universitetet i Katowice.</span>
+                </p>
+                <p>
+                    <span class="text-pl">Ponadto ukończyłam studia magisterskie z Religioznawstwa na UJ w Krakowie oraz Pedagogikę w Akademii Ignatianum w Krakowie. Jestem zatem zaznajomiona w różnymi religiami i wyznaniami z całego świata. Bardzo pomaga mi to w pracy z ludźmi z różnych kręgów kulturowych.</span>
+                    <span class="text-en">In addition, I hold a master's degree in Religious Studies from the Jagiellonian University in Krakow and in Pedagogy at the Ignatianum Academy in Krakow. I am therefore familiar with various religions and beliefs from all over the world. This helps me greatly in working with people from different cultural backgrounds.</span>
+                    <span class="text-no">I tillegg har jeg en mastergrad i religionsvitenskap fra Jagiellonian University i Krakow og i pedagogikk ved Ignatianum-akademiet i Krakow. Jeg er derfor kjent med ulike religioner og livssyn fra hele verden. Dette hjelper meg sterkt i arbeidet med mennesker fra ulike kulturelle bakgrunner.</span>
+                </p>
+                <p>
+                    <span class="text-pl">Każda osoba niezależnie od płci, tożsamości, orientacji, religii, pochodzenia będzie w pełni akceptowana na sesjach ze mną.</span>
+                    <span class="text-en">Every person, regardless of gender, identity, orientation, religion, or origin, will be fully accepted in sessions with me.</span>
+                    <span class="text-no">Hver person, uavhengig av kjønn, identitet, legning, religion eller opprinnelse, vil bli fullt ut akseptert i timene med meg.</span>
+                </p>
+                <p>
+                    <span class="text-pl">Fajnie, że jesteś.</span>
+                    <span class="text-en">It's great that you are here.</span>
+                    <span class="text-no">Det er fint at du er her.</span>
+                </p>
                 
                 <div class="flex justify-center md:justify-start pt-2">
                     <img src="images/signature.webp" alt="Podpis" class="w-25 h-auto signature">
@@ -188,164 +256,201 @@
                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M21,12L14,21V16H10V8H14V3L21,12M8,8H2V16H8V8Z" />
                     </svg>
-                    <h2 class="text-2xl font-semibold">Strefa specjalisty</h2>
+                    <h2 class="text-2xl font-semibold">
+                        <span class="text-pl">Strefa specjalisty</span>
+                        <span class="text-en">Specialist Zone</span>
+                        <span class="text-no">Spesialistsone</span>
+                    </h2>
                 </div>
                 <div class="border border-brand-plum/20 rounded-xl p-8 text-brand-green bg-white/5">
-                    <p class="mb-8 font-normal leading-relaxed">Jeśli jesteś specjalistą i myślisz, że Twój wkład wniósł by wartość w mój projekt, nie wahaj się odezwać.</p>
+                    <p class="mb-8 font-normal leading-relaxed">
+                        <span class="text-pl">Jeśli jesteś specjalistą i myślisz, że Twój wkład wniósł by wartość w mój projekt, nie wahaj się odezwać.</span>
+                        <span class="text-en">If you are a specialist and think your contribution would add value to my project, do not hesitate to reach out.</span>
+                        <span class="text-no">Hvis du er en spesialist og tror at ditt bidrag vil gi verdi til prosjektet mitt, ikke nøl med å ta kontakt.</span>
+                    </p>
                     <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3">
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Psycholożką/psychologiem</li>
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Psychoterapeutyką/Psychoterapeutą</li>
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Seksuolożką/Seksuologiem</li>
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Lekarką/Lekarzem</li>
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Fizjoterapeutyką/Fizjoterapeutą</li>
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Dietetyczką/Dietetykiem</li>
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Pedagożką/Pedagogiem</li>
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Edukatorką/Edukatorzy seksuoalnym</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span><span class="text-pl">Psycholożką/psychologiem</span><span class="text-en">Psychologist</span><span class="text-no">Psykolog</span></li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span><span class="text-pl">Psychoterapeutyką/Psychoterapeutą</span><span class="text-en">Psychotherapist</span><span class="text-no">Psykoterapeut</span></li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span><span class="text-pl">Seksuolożką/Seksuologiem</span><span class="text-en">Sexologist</span><span class="text-no">Sexolog</span></li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span><span class="text-pl">Lekarką/Lekarzem</span><span class="text-en">Doctor</span><span class="text-no">Lege</span></li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span><span class="text-pl">Fizjoterapeutyką/Fizjoterapeutą</span><span class="text-en">Physiotherapist</span><span class="text-no">Fysioterapeut</span></li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span><span class="text-pl">Dietetyczką/Dietetykiem</span><span class="text-en">Dietitian</span><span class="text-no">Ernæringsfysiolog</span></li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span><span class="text-pl">Pedagożką/Pedagogiem</span><span class="text-en">Educator / Pedagogue</span><span class="text-no">Pedagog</span></li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span><span class="text-pl">Edukatorką/Edukatorzy seksuoalnym</span><span class="text-en">Sex Educator</span><span class="text-no">Sex-edukator</span></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ORYGINALNA STOPKA -->
-    <footer class="bg-brand-green text-brand-white pt-8 pb-4">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-2">
-                <div>
-                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Dowiedz się więcej</h3>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="about.html" class="hover:text-brand-lavender">O Mnie</a></li>
-                        <li><a href="works.html" class="hover:text-brand-lavender">Workshop</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Kontakt</h3>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="contact.html" class="hover:text-brand-lavender">Napisz do nas</a></li>
-                        <li>
-                            <a href="https://www.instagram.com/joaboutsex" target="_blank" class="hover:text-brand-lavender">Instagram</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Interakcja</h3>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="contact.html" class="hover:text-brand-lavender">Wizyty</a></li>
-                    </ul>
-                </div>
-                <div class="flex flex-col items-end justify-start">
-                    <div class="text-4xl font-light mb-4">Joanna <span class="font-bold text-brand-lavender">Filek</span></div>
-                    <div class="w-16 h-16 opacity-30">
-                        <img src="images/logospining.png" alt="Logo" class="animate-[spin_20s_linear_infinite] w-full h-full object-contain">
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-white/30 text-xs flex justify-between border-t border-white/10 pt-4 mt-4">
-                <p>Prawo autorskie © 2026 Joanna Filek</p>
-                <div class="flex gap-4">
-                    <a href="index.html" class="hover:text-white">Polski</a>
-                    <span>/</span>
-                    <a href="#" class="hover:text-white opacity-50">English</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- MODAL: NEWSLETTER -->
     <div id="newsletterModal" class="modal">
         <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
             <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
             <h2 class="text-3xl font-bold text-brand-plum mb-4">Newsletter</h2>
-            <p class="text-sm text-brand-green/70 mb-6">Bądź na bieżąco z nadchodzącymi warsztatami, świątyniami tantry i wydarzeniami.</p>
+            <p class="text-sm text-brand-green/70 mb-6">
+                <span class="text-pl">Bądź na bieżąco z nadchodzącymi warsztatami, świątyniami tantry i wydarzeniami.</span>
+                <span class="text-en">Stay up to date with upcoming workshops, tantra temples, and events.</span>
+                <span class="text-no">Hold deg oppdatert med kommende workshops, tantratempler og arrangementer.</span>
+            </p>
             <form class="space-y-4">
-                <input type="email" placeholder="Twój E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                <input type="email" data-lang-pl="Twój E-mail" data-lang-en="Your E-mail" data-lang-no="Din E-post" placeholder="Twój E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder">
                 <div class="flex items-start gap-3">
                     <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
-                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach, świątyniach i specjalnych wydarzeniach od Conscious Wolf.</label>
+                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">
+                        <span class="text-pl">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach, świątyniach i specjalnych wydarzeniach od Conscious Wolf.</span>
+                        <span class="text-en">I agree to receive marketing information about upcoming workshops, temples, and special events from Conscious Wolf.</span>
+                        <span class="text-no">Jeg samtykker til å motta markedsinformasjon om kommende workshops, templer og spesielle arrangementer fra Conscious Wolf.</span>
+                    </label>
                 </div>
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">Zapisz się</button>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                    <span class="text-pl">Zapisz się</span><span class="text-en">Subscribe</span><span class="text-no">Abonner</span>
+                </button>
             </form>
         </div>
     </div>
 
-    <!-- MODAL: SIGN-UP (WORKSHOP/TEMPLE) -->
     <div id="signupModal" class="modal">
         <div class="bg-white rounded-[40px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold text-brand-green mb-2">Rejestracja na Wydarzenie</h2>
-            <p class="text-brand-plum font-semibold text-sm mb-8">Warsztaty / Świątynie / Festiwale</p>
+            <h2 class="text-3xl font-bold text-brand-green mb-2">
+                <span class="text-pl">Rejestracja na Wydarzenie</span>
+                <span class="text-en">Event Registration</span>
+                <span class="text-no">Arrangementregistrering</span>
+            </h2>
+            <p class="text-brand-plum font-semibold text-sm mb-8">
+                <span class="text-pl">Warsztaty / Świątynie / Festiwale</span>
+                <span class="text-en">Workshops / Temples / Festivals</span>
+                <span class="text-no">Workshops / Templer / Festivaler</span>
+            </p>
             
             <form class="space-y-6">
-                <!-- Obligatory Fields -->
                 <div class="grid md:grid-cols-2 gap-4">
                     <div class="space-y-1">
-                        <label class="text-xs font-bold uppercase text-brand-green/50">Imię i Nazwisko *</label>
+                        <label class="text-xs font-bold uppercase text-brand-green/50">
+                            <span class="text-pl">Imię i Nazwisko *</span><span class="text-en">Full Name *</span><span class="text-no">Fullt Navn *</span>
+                        </label>
                         <input type="text" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
                     </div>
                     <div class="space-y-1">
-                        <label class="text-xs font-bold uppercase text-brand-green/50">Numer Telefonu *</label>
+                        <label class="text-xs font-bold uppercase text-brand-green/50">
+                            <span class="text-pl">Numer Telefonu *</span><span class="text-en">Phone Number *</span><span class="text-no">Telefonnummer *</span>
+                        </label>
                         <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
                     </div>
                 </div>
 
                 <div class="space-y-1">
-                    <label class="text-xs font-bold uppercase text-brand-green/50">Metoda Płatności *</label>
+                    <label class="text-xs font-bold uppercase text-brand-green/50">
+                        <span class="text-pl">Metoda Płatności *</span><span class="text-en">Payment Method *</span><span class="text-no">Betalingsmetode *</span>
+                    </label>
                     <select required class="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white">
-                        <option value="">Wybierz metodę płatności...</option>
-                        <option value="transfer">Tradycyjny Przelew Bankowy</option>
-                        <option value="blik">BLIK</option>
-                        <option value="card">Płatność Kartą / Online</option>
+                        <option value="" class="lang-option" data-lang-pl="Wybierz metodę płatności..." data-lang-en="Select payment method..." data-lang-no="Velg betalingsmetode...">Wybierz metodę płatności...</option>
+                        <option value="transfer" class="lang-option" data-lang-pl="Tradycyjny Przelew Bankowy" data-lang-en="Traditional Bank Transfer" data-lang-no="Tradisjonell Bankoverføring">Tradycyjny Przelew Bankowy</option>
+                        <option value="blik" class="lang-option" data-lang-pl="BLIK" data-lang-en="BLIK" data-lang-no="BLIK">BLIK</option>
+                        <option value="card" class="lang-option" data-lang-pl="Płatność Kartą / Online" data-lang-en="Card Payment / Online" data-lang-no="Kortbetaling / Online">Płatność Kartą / Online</option>
                     </select>
                 </div>
 
-                <!-- Consent Section -->
                 <div class="bg-brand-green-light p-6 rounded-3xl border border-brand-lavender space-y-4">
-                    <h3 class="font-bold text-brand-green text-sm">Zgoda na Wizerunek (Zdjęcia i Wideo)</h3>
-                    <p class="text-[10px] text-brand-green/70">Materiały do wykorzystania w mediach społecznościowych, na stronie WWW i w materiałach promocyjnych.</p>
+                    <h3 class="font-bold text-brand-green text-sm">
+                        <span class="text-pl">Zgoda na Wizerunek (Zdjęcia i Wideo)</span>
+                        <span class="text-en">Image Consent (Photos and Video)</span>
+                        <span class="text-no">Bilde samtykke (Bilder og Video)</span>
+                    </h3>
+                    <p class="text-[10px] text-brand-green/70">
+                        <span class="text-pl">Materiały do wykorzystania w mediach społecznościowych, na stronie WWW i w materiałach promocyjnych.</span>
+                        <span class="text-en">Materials for use in social media, on the website, and in promotional materials.</span>
+                        <span class="text-no">Materialer til bruk i sosiale medier, på nettsiden og i reklamemateriell.</span>
+                    </p>
                     
                     <div class="space-y-3">
                         <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
                             <input type="radio" name="mediaConsent" value="yes" class="accent-brand-plum" required>
-                            <span class="text-xs font-medium"><strong>TAK</strong> — Wyrażam zgodę na wykorzystanie mojego wizerunku w celach promocyjnych.</span>
+                            <span class="text-xs font-medium">
+                                <span class="text-pl"><strong>TAK</strong> — Wyrażam zgodę na wykorzystanie mojego wizerunku w celach promocyjnych.</span>
+                                <span class="text-en"><strong>YES</strong> — I consent to the use of my image for promotional purposes.</span>
+                                <span class="text-no"><strong>JA</strong> — Jeg samtykker til bruk av mitt bilde for salgsfremmende formål.</span>
+                            </span>
                         </label>
                         <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
                             <input type="radio" name="mediaConsent" value="limited" class="accent-brand-plum">
-                            <span class="text-xs font-medium"><strong>OGRANICZONA ZGODA</strong> — Tylko zdjęcia grupowe/szerokie kadry. Bez identyfikowalnych zbliżeń.</span>
+                            <span class="text-xs font-medium">
+                                <span class="text-pl"><strong>OGRANICZONA ZGODA</strong> — Tylko zdjęcia grupowe/szerokie kadry. Bez identyfikowalnych zbliżeń.</span>
+                                <span class="text-en"><strong>LIMITED CONSENT</strong> — Group photos/wide shots only. No identifiable close-ups.</span>
+                                <span class="text-no"><strong>BEGRENSET SAMTYKKE</strong> — Bare gruppebilder/vide vinkler. Ingen identifiserbare nærbilder.</span>
+                            </span>
                         </label>
                         <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
                             <input type="radio" name="mediaConsent" value="no" class="accent-brand-plum">
-                            <span class="text-xs font-medium"><strong>NIE</strong> — Nie wyrażam zgody. Proszę mnie nie fotografować ani nie filmować.</span>
+                            <span class="text-xs font-medium">
+                                <span class="text-pl"><strong>NIE</strong> — Nie wyrażam zgody. Proszę mnie nie fotografować ani nie filmować.</span>
+                                <span class="text-en"><strong>NO</strong> — I do not consent. Please do not photograph or film me.</span>
+                                <span class="text-no"><strong>NEI</strong> — Jeg samtykker ikke. Vennligst ikke fotografer eller film meg.</span>
+                            </span>
                         </label>
                     </div>
                 </div>
 
-                <!-- Legal Scrollbox -->
                 <div class="h-32 overflow-y-scroll bg-brand-violet-light/30 p-4 rounded-xl text-[9px] leading-normal text-brand-green/60 border border-brand-lavender">
-                    <p class="font-bold mb-2">Informacja o Ochronie Danych Osobowych (RODO)</p>
+                    <p class="font-bold mb-2">
+                        <span class="text-pl">Informacja o Ochronie Danych Osobowych (RODO)</span>
+                        <span class="text-en">Data Protection Information (GDPR)</span>
+                        <span class="text-no">Informasjon om Databeskyttelse (GDPR)</span>
+                    </p>
                     The controller of personal data, including participants’ image and likeness, is Conscious Wolf. Photos and video recordings will be processed solely on the basis of voluntary consent for promoting Conscious Wolf events, social media publication (Instagram, Facebook), website content, and newsletters. Materials may be stored indefinitely or until consent is withdrawn. You have the right to access, request deletion, restrict processing, and withdraw consent at any time. Withdrawal does not affect the lawfulness of processing carried out prior to withdrawal. Due to publication on social media, data may be transferred outside the EEA in accordance with platform policies.
                 </div>
 
-                <button type="submit" class="w-full bg-brand-green text-white font-bold py-5 rounded-2xl shadow-xl hover:bg-brand-plum transition-all uppercase tracking-widest">Wyślij Zgłoszenie i Opłać</button>
+                <button type="submit" class="w-full bg-brand-green text-white font-bold py-5 rounded-2xl shadow-xl hover:bg-brand-plum transition-all uppercase tracking-widest">
+                    <span class="text-pl">Wyślij Zgłoszenie i Opłać</span>
+                    <span class="text-en">Submit Registration and Pay</span>
+                    <span class="text-no">Send inn påmelding og betal</span>
+                </button>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
+        // Language Switcher Logic
+        function setLanguage(lang) {
+            document.body.classList.remove('lang-pl', 'lang-en', 'lang-no');
+            document.body.classList.add('lang-' + lang);
+            localStorage.setItem('preferredLanguage', lang);
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
+            // Update placeholders
+            document.querySelectorAll('.lang-placeholder').forEach(el => {
+                const translation = el.getAttribute('data-lang-' + lang);
+                if(translation) el.placeholder = translation;
+            });
+
+            // Update select options
+            document.querySelectorAll('.lang-option').forEach(el => {
+                const translation = el.getAttribute('data-lang-' + lang);
+                if(translation) el.textContent = translation;
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'pl';
+            setLanguage(savedLang);
         });
 
-        // Function to toggle popups
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        // Modals Logic
         function toggleModal(id) {
             const modal = document.getElementById(id);
-            modal.classList.toggle('active');
-            // Prevent body scroll when modal open
-            document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+            if(modal) {
+                modal.classList.toggle('active');
+                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+            }
         }
     </script>
 </body>
