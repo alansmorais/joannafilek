@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Joanna Filek</title>
+    <link rel="icon" type="image/png" href="../images/1.jpg">
+
+    <link rel="alternate" hreflang="pl" href="https://joannafilek.com/about.html" />
+    <link rel="alternate" hreflang="en" href="https://joannafilek.com/en/about.html" />
+    <link rel="alternate" hreflang="no" href="https://joannafilek.com/no/about.html" />
+    <link rel="alternate" hreflang="x-default" href="https://joannafilek.com/about.html" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-plum': '#722D64',
+                        'brand-lavender': '#E2E6F3', 
+                        'brand-green': '#1B3D2F',
+                        'brand-green-light': '#FDF9FB',
+                        'brand-white': '#FCFCFC',
+                        'brand-violet-light': '#F4E6EF'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; font-weight: 400; }
+        
+        .no-gap { margin-top: -1px; }
+
+        @keyframes customFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .image-fade {
+            animation: customFadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .signature-tint {
+            filter: invert(21%) sepia(35%) saturate(2250%) hue-rotate(282deg) brightness(95%) contrast(88%);
+        }
+
+        .smooth-transition { transition: all 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-3px); }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: flex; }
+        
+        .modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            z-index: 100; 
+            background: rgba(0,0,0,0.5); 
+            backdrop-filter: blur(4px); 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .modal.active { display: flex; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
+        <span class="hidden sm:inline">
+            Contact (+48) 733 777 542 • psycholog.joannafilek@gmail.com
+        </span>
+        <span class="sm:hidden">
+            Contact (+48) 733 777 542
+        </span>
+        
+        <div class="absolute right-6 flex items-center gap-3">
+            <a href="../about.html" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></a>
+            <a href="about.html" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></a>
+            <a href="../no/about.html" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></a>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="../images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50">
+                <div>
+                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">
+                        Joanna <span class="font-bold">Filek</span>
+                    </div>
+                    <p class="text-xs text-brand-plum -mt-1">
+                        Psychotherapist | Inspiro Clinic
+                    </p>
+                </div>
+            </a>
+
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
+                <a href="index.html" class="hover:text-brand-plum smooth-transition">Home</a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition">About me</a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition">Workshops</a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition">Contact</a>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Sign-up</button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
+                    Book consultation
+                </a>
+                <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">Menu</button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
+            <a href="index.html">Home</a>
+            <a href="about.html">About me</a>
+            <a href="works.html">Workshops</a>
+            <a href="contact.html">Contact</a>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Sign-up</button>            
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
+            <a href="work-with-us.html">Work with us</a>
+            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Book consultation</a>
+        </div>
+    </header>
+
+    <section class="bg-brand-lavender pb-2 no-gap">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-8">
+                <div class="image-fade w-32 h-32 lg:w-44 lg:h-44 rounded-full overflow-hidden shadow-lg border-4 border-white/20" style="animation-delay: 0.6s;">
+                    <img src="../images/1.webp" class="w-full h-full object-cover grayscale" alt="About 1">
+                </div>
+                <div class="image-fade w-36 h-36 lg:w-52 lg:h-52 rounded-full overflow-hidden shadow-lg border-4 border-white/20" style="animation-delay: 0.3s;">
+                    <img src="../images/2.webp" class="w-full h-full object-cover grayscale" alt="About 2">
+                </div>
+                <div class="image-fade w-44 h-44 lg:w-64 lg:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white/40 z-10" style="animation-delay: 0s;">
+                    <img src="../images/joanna.png" class="w-full h-full object-cover" alt="Joanna Filek">
+                </div>
+                <div class="image-fade w-36 h-36 lg:w-52 lg:h-52 rounded-full overflow-hidden shadow-lg border-4 border-white/20" style="animation-delay: 0.3s;">
+                    <img src="../images/4.webp" class="w-full h-full object-cover grayscale" alt="About 4">
+                </div>
+                <div class="image-fade w-32 h-32 lg:w-44 lg:h-44 rounded-full overflow-hidden shadow-lg border-4 border-white/20" style="animation-delay: 0.6s;">
+                    <img src="../images/5.webp" class="w-full h-full object-cover grayscale" alt="About 5">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-brand-lavender py-6 no-gap">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl lg:text-4xl text-brand-plum font-light mb-4">
+                Hi, my name is <span class="font-bold">Joanna.</span>
+            </h2>
+
+            <div class="border-l-2 border-brand-plum pl-6 mb-6">
+                <p class="text-brand-plum text-lg lg:text-xl italic font-medium leading-relaxed">
+                    When I was growing up, no one talked to me about sex.
+                </p>
+            </div>
+
+            <div class="space-y-6 text-brand-green text-sm lg:text-base leading-relaxed opacity-90">
+                <p>
+                    At school, we weren't taught anything about it either. At home, it was a taboo subject. So I drew my knowledge mostly from "Bravo", a monthly magazine that had a column with questions about puberty and sexual initiation. The rest of the information I got from friends. Neither source was reliable. When I decided to start having sex, I went to my mom to ask about contraception. I didn't learn anything, but my mom made an appointment for me with a gynecologist. I was terrified. When I told the doctor that I wanted to start having sex with my boyfriend, she answered sternly: "What for???!!!".
+                </p>
+                
+                <p>
+                    It is worth mentioning that I was almost 18 years old. When I asked for contraception (having no clue about it, I only knew about the existence of condoms and some pills, but what those pills were and how they were supposed to work, no one explained to me), the doctor prescribed me a morning-after pill... without explaining anything and ending the visit there. So we filled the prescription and read the leaflet, completely disoriented... "am I supposed to take it after every time we have sex?". Finally, after the first time, when the pill completely deregulated my period, we decided to stick with condoms. And try to somehow figure out what this whole sex thing is all about.
+                </p>
+
+                <div class="border-l-2 border-brand-plum pl-6 mb-6">
+                    <p class="text-brand-plum text-lg lg:text-xl italic font-medium leading-relaxed">
+                        Now I am a psychologist and sexologist, and I observe that the topic of sex is still often a taboo subject in family homes.
+                    </p>
+                </div>
+
+                <p>
+                    Parents do not know how and are afraid to talk to their children about sex. Sexual education in Polish schools does not exist... Young people often do not receive reliable knowledge, which multiplies difficulties and problems that sometimes drag on for many years, requiring specialized help from psychologists, therapists, and sexologists to deal with them. I believe that many of the difficulties my patients come to me with could be avoided.
+                </p>
+                <p>
+                    Hence the idea for this website, a space where everyone can ask a question, share their experiences, talk about what causes difficulties. You can also ask questions to specialists, and if you feel you want to talk longer, I invite you to a sexological consultation with me.
+                </p>
+
+                <p><b class="text-brand-plum">Education</b></p>
+                <p>
+                    I am a psychologist and sexologist. I graduated in Clinical Psychology at the SWPS University in Warsaw and in Developmental Psychology and Coaching at the WSE in Krakow. Then I completed postgraduate studies in Clinical Sexology at the SWPS University in Katowice.
+                </p>
+                <p>
+                    In addition, I hold a master's degree in Religious Studies from the Jagiellonian University in Krakow and in Pedagogy at the Ignatianum Academy in Krakow. I am therefore familiar with various religions and beliefs from all over the world. This helps me greatly in working with people from different cultural backgrounds.
+                </p>
+                <p>
+                    Every person, regardless of gender, identity, orientation, religion, or origin, will be fully accepted in sessions with me.
+                </p>
+                <p>
+                    It's great that you are here.
+                </p>
+                
+                <div class="flex justify-center md:justify-start pt-2">
+                    <img src="../images/signature.webp" alt="Signature" class="w-25 h-auto signature">
+                </div>
+            </div>
+
+            <div class="mt-12 mb-20">
+                <div class="flex items-center gap-3 mb-6 text-brand-plum">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21,12L14,21V16H10V8H14V3L21,12M8,8H2V16H8V8Z" />
+                    </svg>
+                    <h2 class="text-2xl font-semibold">Specialist Zone</h2>
+                </div>
+                <div class="border border-brand-plum/20 rounded-xl p-8 text-brand-green bg-white/5">
+                    <p class="mb-8 font-normal leading-relaxed">
+                        If you are a specialist and think your contribution would add value to my project, do not hesitate to reach out.
+                    </p>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3">
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Psychologist</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Psychotherapist</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Sexologist</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Doctor</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Physiotherapist</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Dietitian</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Educator / Pedagogue</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-brand-plum"></span>Sex Educator</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="newsletterModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
+            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">Newsletter</h2>
+            <p class="text-sm text-brand-green/70 mb-6">Stay up to date with upcoming workshops, tantra temples, and events.</p>
+            <form class="space-y-4">
+                <input type="email" placeholder="Your E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">I agree to receive marketing information about upcoming workshops, temples, and special events from Conscious Wolf.</label>
+                </div>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="bg-white rounded-[40px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-green mb-2">Event Registration</h2>
+            <p class="text-brand-plum font-semibold text-sm mb-8">Workshops / Temples / Festivals</p>
+            
+            <form class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold uppercase text-brand-green/50">Full Name *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold uppercase text-brand-green/50">Phone Number *</label>
+                        <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-bold uppercase text-brand-green/50">Payment Method *</label>
+                    <select required class="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white">
+                        <option value="">Select payment method...</option>
+                        <option value="transfer">Traditional Bank Transfer</option>
+                        <option value="blik">BLIK</option>
+                        <option value="card">Card Payment / Online</option>
+                    </select>
+                </div>
+
+                <div class="bg-brand-green-light p-6 rounded-3xl border border-brand-lavender space-y-4">
+                    <h3 class="font-bold text-brand-green text-sm">Image Consent (Photos and Video)</h3>
+                    <p class="text-[10px] text-brand-green/70">Materials for use in social media, on the website, and in promotional materials.</p>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="yes" class="accent-brand-plum" required>
+                            <span class="text-xs font-medium"><strong>YES</strong> — I consent to the use of my image for promotional purposes.</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="limited" class="accent-brand-plum">
+                            <span class="text-xs font-medium"><strong>LIMITED CONSENT</strong> — Group photos/wide shots only. No identifiable close-ups.</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="no" class="accent-brand-plum">
+                            <span class="text-xs font-medium"><strong>NO</strong> — I do not consent. Please do not photograph or film me.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="h-32 overflow-y-scroll bg-brand-violet-light/30 p-4 rounded-xl text-[9px] leading-normal text-brand-green/60 border border-brand-lavender">
+                    <p class="font-bold mb-2">Data Protection Information (GDPR)</p>
+                    The controller of personal data, including participants’ image and likeness, is Conscious Wolf...
+                </div>
+
+                <button type="submit" class="w-full bg-brand-green text-white font-bold py-5 rounded-2xl shadow-xl hover:bg-brand-plum transition-all uppercase tracking-widest">Submit Registration and Pay</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-brand-green text-white pt-16 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <div class="text-3xl font-light mb-2">Joanna <span class="font-bold">Filek</span></div>
+                    <p class="text-sm opacity-75">Inspiro Psychotherapy Clinic</p>
+                    <p class="text-sm opacity-75 mt-1">Krakow • Skalica St.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Navigation</h4>
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">About me</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Workshops</a></li>
+                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li>
+                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Sign-up</h4>
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Event Sign-up</button></li>
+                        <li><a href="work-with-us.html" class="hover:text-brand-lavender smooth-transition">Work with us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Information</h4>
+                    <p class="text-sm opacity-75 leading-relaxed">Confidentiality of sessions is fully guaranteed. Consultations available online and in-person.</p>
+                    <p class="text-sm opacity-60 mt-6">© 2026 Joanna Filek</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="text-xs text-white/50 uppercase tracking-widest font-bold">Our Partners:</div>
+                    <a href="https://n69.pl" target="_blank" class="hover:opacity-70 smooth-transition opacity-80 grayscale hover:grayscale-0 bg-white/10 px-4 py-2 rounded-xl">
+                        <img src="../images/n69-logo.png" alt="N69 Partner" class="h-8 object-contain">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if(modal) {
+                modal.classList.toggle('active');
+                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+            }
+        }
+    </script>
+</body>
+</html>
