@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couples Workshops | Joanna Filek</title>
+    <link rel="icon" type="image/png" href="../images/1.jpg">
+
+    <link rel="alternate" hreflang="pl" href="https://joannafilek.com/works.html" />
+    <link rel="alternate" hreflang="en" href="https://joannafilek.com/en/works.html" />
+    <link rel="alternate" hreflang="no" href="https://joannafilek.com/no/works.html" />
+    <link rel="alternate" hreflang="x-default" href="https://joannafilek.com/works.html" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-plum': '#722D64',
+                        'brand-lavender': '#E2E6F3', 
+                        'brand-green': '#1B3D2F',
+                        'brand-green-light': '#FDF9FB',
+                        'brand-white': '#FCFCFC',
+                        'brand-violet-light': '#F4E6EF'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; scroll-behavior: smooth; }
+        .no-gap { margin-top: -1px; }
+        .hero-bg-image {
+            background-image: linear-gradient(to bottom, rgba(27, 61, 47, 0.7), rgba(114, 45, 100, 0.8)), url('../images/WSImage.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .smooth-transition { transition: all 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-3px); }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: flex; }
+        
+        .modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            z-index: 100; 
+            background: rgba(0,0,0,0.5); 
+            backdrop-filter: blur(4px); 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .modal.active { display: flex; }
+    </style>
+</head>
+<body class="overflow-x-hidden text-brand-green">
+
+    <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
+        <div class="hidden md:block">
+            Contact (+48) 733 777 542 • psycholog.joannafilek@gmail.com
+        </div>
+        
+        <div class="absolute right-6 flex items-center gap-3">
+            <a href="../works.html" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></a>
+            <a href="works.html" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></a>
+            <a href="../no/works.html" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></a>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="../images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50">
+                <div>
+                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">Joanna <span class="font-bold">Filek</span></div>
+                    <p class="text-xs text-brand-plum -mt-1">
+                        Psychotherapist | Inspiro Clinic
+                    </p>
+                </div>
+            </a>
+
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
+                <a href="index.html" class="hover:text-brand-plum smooth-transition">Home</a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition">About me</a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition">Workshops</a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition">Contact</a>
+                <a href="work-with-us.html" class="hover:text-brand-plum smooth-transition">Work with us</a>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Sign-up</button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
+                    Book consultation
+                </a>
+                <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">Menu</button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
+            <a href="index.html">Home</a>
+            <a href="about.html">About me</a>
+            <a href="works.html">Workshops</a>
+            <a href="contact.html">Contact</a>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Sign-up</button>           
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
+            <a href="work-with-us.html">Work with us</a>
+            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Book consultation</a>
+        </div>
+    </header>
+
+    <section class="hero-bg-image pt-28 pb-40 no-gap">
+        <div class="max-w-5xl mx-auto px-6 text-center text-white">
+            <span class="bg-white/20 backdrop-blur-md text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/30 italic mb-8 inline-block">
+                Practical tools for communication and emotional regulation
+            </span>
+            <h1 class="text-5xl md:text-7xl font-bold mt-4 mb-8 leading-tight">
+                Couples Workshop Series <br>in Krakow
+            </h1>
+            
+            <div class="text-lg md:text-xl text-brand-lavender/90 font-light max-w-2xl mx-auto space-y-6 mb-12 leading-relaxed">
+                <p>Do you and your partner keep arguing about the same thing?</p>
+                <p>Do conversations sometimes quickly turn into frustration, defensiveness, or distance?</p>
+                <p class="font-bold text-white text-2xl pt-2">You are not alone.</p>
+                
+                <div class="space-y-4 pt-6 border-t border-white/20">
+                    <p>Most couples don't need more love.</p>
+                    <p>They need <strong>better tools</strong> for moments of stress and conflict.</p>
+                    <p>This series will help you recognize activation, communicate clearly, and <strong>effectively return to intimacy</strong>.</p>
+                </div>
+            </div>
+            
+            <div class="bg-brand-plum/90 backdrop-blur-md border border-brand-lavender/30 p-8 rounded-[40px] inline-block shadow-2xl mt-4 max-w-xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-2">Workshop has ended</h2>
+                <p class="text-brand-lavender text-lg mb-6">
+                    Subscribe to the newsletter to receive information about upcoming editions and new events.
+                </p>
+                <button onclick="toggleModal('newsletterModal')" class="bg-white text-brand-plum px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-xl uppercase tracking-widest inline-block">
+                    Subscribe to Newsletter
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white no-gap relative z-10 -mt-12 rounded-t-[60px]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="max-w-xl">
+                    <h2 class="text-4xl font-bold mb-8 text-brand-plum leading-snug">
+                        Why do couples get stuck?
+                    </h2>
+                    <p class="text-lg text-brand-green/80 mb-8 leading-relaxed">
+                        During conflict, many of us lose access to calm communication. Instead, the body goes into <strong>stress responses</strong>.
+                    </p>
+                    <p class="text-base text-brand-green/70 mb-6 font-semibold uppercase tracking-wider">
+                        Typical reactions include:
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-10">
+                        <ul class="list-disc pl-5 space-y-3 text-base font-medium text-brand-green/80">
+                            <li>Tension</li>
+                            <li>Raised voice</li>
+                            <li>Shutting down</li>
+                            <li>Criticism</li>
+                        </ul>
+                        <ul class="list-disc pl-5 space-y-3 text-base font-medium text-brand-green/80">
+                            <li>Avoiding eye contact</li>
+                            <li>Emotional flooding</li>
+                            <li>Withdrawal</li>
+                            <li>Defensiveness</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="text-lg font-bold text-brand-plum bg-brand-lavender/40 p-6 rounded-3xl leading-relaxed">
+                        When this happens, the conversation is no longer about the topic – it becomes a clash of <strong>two nervous systems reacting to stress</strong>. Good news: these patterns can be changed.
+                    </p>
+                </div>
+                <div class="rounded-[50px] overflow-hidden shadow-2xl">
+                    <img src="../images/argue-image.png" alt="Stress responses" class="w-full h-[550px] object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="curriculum" class="py-24 bg-brand-green-light border-y border-brand-lavender">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    Participants will learn how to:
+                </h2>
+                <p class="text-brand-plum font-medium text-lg italic max-w-2xl mx-auto">
+                    Concrete skills for navigating relationship difficulties.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        Recognize early signs of activation
+                    </h3>
+                    <p class="text-sm text-brand-green/70 leading-relaxed">
+                        Notice what happens in your body <strong>before</strong> the conflict escalates:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
+                        <li>Tension in the stomach or jaw</li>
+                        <li>Shallow breathing</li>
+                        <li>Neck and shoulder tension</li>
+                        <li>A sense of urgency or desire to escape</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        Communicate feelings clearly
+                    </h3>
+                    <p class="text-sm text-brand-green/70 leading-relaxed">
+                        Instead of blaming, learn to express your inner self to <strong>reduce defensiveness</strong>:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-sm italic text-brand-plum font-semibold">
+                        <li>"I feel unheard right now"</li>
+                        <li>"I feel overwhelmed"</li>
+                        <li>"I feel sadness / frustration / anger"</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        Notice your partner's reactions
+                    </h3>
+                    <p class="text-sm text-brand-green/70 leading-relaxed">
+                        Recognize your partner's signals respectfully and <strong>without judgment</strong>:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
+                        <li>Raised voice or silence</li>
+                        <li>Avoiding eye contact</li>
+                        <li>Pacing or turning away</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        Regulate emotions during conversation
+                    </h3>
+                    <p class="text-sm text-brand-green/80 leading-relaxed">
+                        Practical tools for calming the nervous system in moments of tension:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
+                        <li>Grounding techniques</li>
+                        <li>Breath and posture regulation</li>
+                        <li>Slowing down the pace of exchange</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        Pause, Reset, and Reconnect
+                    </h3>
+                    <p class="text-sm text-brand-green/80 leading-relaxed">
+                        Sometimes the healthiest step is to <strong>stop</strong>:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
+                        <li>How to pause without abandoning the topic</li>
+                        <li>Separate regulation and return to the conversation</li>
+                        <li>Mutual return to connection</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
+                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
+                        Working with anger
+                    </h3>
+                    <p class="text-sm text-brand-green/80 leading-relaxed">
+                        Anger is a signal of <strong>important needs</strong>. Learn to listen to it without attacking:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
+                        <li>Crossed boundaries</li>
+                        <li>Pain hidden beneath the surface</li>
+                        <li>The need for change or repair</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 p-8 bg-brand-lavender/30 rounded-[40px] border border-brand-plum/10 text-center max-w-3xl mx-auto">
+                <p class="text-base italic opacity-80 leading-relaxed">
+                    Exercises may include healthy movement, emotional release practices, and regulation – individually and in pairs – in a safe environment.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-brand-green text-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8 max-w-2xl">
+                    <h2 class="text-4xl font-bold leading-tight">Workshop Format</h2>
+                    <p class="text-lg opacity-90 leading-relaxed">
+                        It is a structured educational and experiential program that combines:
+                    </p>
+                    <ul class="space-y-4 text-base font-medium">
+                        <li class="flex gap-3"><span>❖</span> Short theoretical segments</li>
+                        <li class="flex gap-3"><span>❖</span> Private exercises for couples (not in public)</li>
+                        <li class="flex gap-3"><span>❖</span> Emotional regulation practices</li>
+                        <li class="flex gap-3"><span>❖</span> Support and guidance from facilitators</li>
+                    </ul>
+                </div>
+                <div class="bg-white/10 p-12 rounded-[50px] border border-white/20 space-y-6">
+                    <h3 class="text-2xl font-bold mb-4 text-brand-lavender">Privacy and Voluntariness</h3>
+                    <p class="text-base leading-relaxed">
+                        Participants are <strong>not asked</strong> to share details of their relationship with the group.
+                    </p>
+                    <p class="text-base leading-relaxed">
+                        All exercises take place <strong>privately between partners</strong>. Participation in each is always voluntary.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white no-gap">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-20 text-center">Series Structure</h2>
+            
+            <div class="space-y-16">
+                <div class="relative pl-12 border-l-2 border-brand-plum/20">
+                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-brand-plum ring-8 ring-brand-plum/10"></div>
+                    <h3 class="text-2xl font-bold text-brand-plum mb-2">Module 1 – Understanding Emotional Reactivity</h3>
+                    <p class="font-bold text-base text-brand-green mb-4">Saturday, May 9 | 10:00 AM – 1:00 PM</p>
+                    <p class="text-base text-brand-green/70 leading-relaxed">
+                        Learn the mechanisms of conflict formation in the body. Learn to recognize nervous system activation and apply <strong>regulation tools in moments of stress</strong>.
+                    </p>
+                </div>
+
+                <div class="relative pl-12 border-l-2 border-brand-plum/20">
+                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-brand-plum ring-8 ring-brand-plum/10"></div>
+                    <h3 class="text-2xl font-bold text-brand-plum mb-2">Module 2 – Working with strong emotions without escalation</h3>
+                    <p class="font-bold text-base text-brand-green mb-4">Saturday, May 9 | 1:30 PM – 4:30 PM</p>
+                    <p class="text-base text-brand-green/70 leading-relaxed">
+                        Learn to communicate needs and emotions (including <strong>anger as information</strong>) constructively, expressing the impact of a situation without blaming your partner.
+                    </p>
+                </div>
+
+                <div class="relative pl-12 border-l-2 border-brand-plum/20">
+                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-brand-plum ring-8 ring-brand-plum/10"></div>
+                    <h3 class="text-2xl font-bold text-brand-plum mb-2">Part 3 – Weekend Immersion: Repair and Safety</h3>
+                    <p class="font-bold text-xs uppercase tracking-widest text-brand-plum/60 mb-2">Dates to be announced soon</p>
+                    <div class="bg-brand-lavender/30 p-8 rounded-3xl space-y-4">
+                        <p class="text-base font-semibold text-brand-plum/90 italic">
+                            During this session, we will recall the foundations from Modules 1 and 2, and then move on to advanced bonding skills.
+                        </p>
+                        <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80">
+                            <li><strong>Boundaries:</strong> Clear requests and communicating needs.</li>
+                            <li><strong>Advanced:</strong> Skillful pausing and returning to difficult conversations.</li>
+                            <li><strong>The Art of Repair:</strong> Regaining intimacy after an emotional rupture.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-brand-white border-y border-brand-lavender no-gap">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8 text-brand-plum">What makes us different?</h2>
+            <p class="text-lg mb-10 opacity-80 leading-relaxed">
+                This is not group therapy. It is not about blaming each other or publicly revealing private matters. It is a guided learning space where you build:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-semibold">
+                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ Awareness and resilience</div>
+                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ Communication skills</div>
+                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ Healthy conflict habits</div>
+                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ A stronger bond</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="py-24 bg-brand-green-light no-gap">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="max-w-xl space-y-8">
+                    <h2 class="text-4xl font-bold text-brand-plum leading-tight">Who is this series for?</h2>
+                    <ul class="list-disc pl-6 space-y-3 text-lg font-medium text-brand-green/80">
+                        <li>You repeat the same arguments and disputes</li>
+                        <li>You care about each other, but get stuck in stress</li>
+                        <li>You want to feel closeness even in difficult times</li>
+                        <li>You want support before problems grow</li>
+                    </ul>
+                    <div class="bg-brand-plum/5 p-8 rounded-[40px] border border-brand-plum/10">
+                        <p class="text-base font-bold text-brand-plum italic">
+                            "You don't have to be in a crisis to benefit. No prior experience in therapy is required."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-12 rounded-[50px] shadow-2xl border border-brand-lavender relative overflow-hidden text-center">
+                    <div class="absolute top-0 right-0 bg-gray-500 text-white px-8 py-2 rounded-bl-3xl text-xs font-bold uppercase tracking-widest">
+                        Ended
+                    </div>
+                    
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-brand-plum">Workshop Ended</span>
+                        <p class="text-lg text-brand-green/80 mt-4 leading-relaxed">
+                            Thank you for the huge interest! Registration for this event is now closed.
+                        </p>
+                    </div>
+                    
+                    <div class="text-left space-y-4 mb-10 text-sm bg-brand-green-light p-6 rounded-3xl border border-brand-lavender">
+                        <p class="font-bold text-brand-plum uppercase tracking-widest text-xs">What's next?</p>
+                        <p class="text-brand-green/80 text-base">
+                            Subscribe to the newsletter to be the first to receive notifications about upcoming workshop editions and new events.
+                        </p>
+                    </div>
+                    
+                    <button onclick="toggleModal('newsletterModal')" class="block w-full bg-brand-plum text-white text-center py-6 rounded-3xl font-bold text-xl hover:scale-105 transition-all shadow-xl uppercase tracking-widest">
+                        Subscribe to Newsletter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="newsletterModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
+            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">Newsletter</h2>
+            <p class="text-sm text-brand-green/70 mb-6">Stay up to date with upcoming workshops, tantra temples, and events.</p>
+            <form class="space-y-4">
+                <input type="email" placeholder="Your E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">
+                        I agree to receive marketing information about upcoming workshops, temples, and special events from Conscious Wolf.
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="bg-white rounded-[40px] p-8 max-w-md w-full shadow-2xl relative text-center">
+            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">No spots available</h2>
+            <p class="text-sm text-brand-green/70 mb-6">
+                We currently have no new dates scheduled for this workshop. Subscribe to the newsletter to be the first to know when new registrations open!
+            </p>
+            <form class="space-y-4">
+                <input type="email" placeholder="Your E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
+                <div class="flex items-start gap-3 text-left">
+                    <input type="checkbox" id="newsConsent2" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent2" class="text-[11px] leading-tight text-brand-green/80">
+                        I agree to receive marketing information about upcoming workshops and events.
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                    Subscribe to Newsletter
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-brand-green text-white pt-16 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <div class="text-3xl font-light mb-2">Joanna <span class="font-bold">Filek</span></div>
+                    <p class="text-sm opacity-75">Inspiro Psychotherapy Clinic</p>
+                    <p class="text-sm opacity-75 mt-1">Krakow • Skalica St.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Navigation</h4>
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">About me</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Workshops</a></li>
+                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li>
+                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Sign-up</h4>
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Event Sign-up</button></li>
+                        <li><a href="work-with-us.html" class="hover:text-brand-lavender smooth-transition">Work with us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Information</h4>
+                    <p class="text-sm opacity-75 leading-relaxed">Confidentiality of sessions is fully guaranteed. Consultations available online and in-person.</p>
+                    <p class="text-sm opacity-60 mt-6">© 2026 Joanna Filek</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="text-xs text-white/50 uppercase tracking-widest font-bold">Our Partners:</div>
+                    <a href="https://n69.pl" target="_blank" class="hover:opacity-70 smooth-transition opacity-80 grayscale hover:grayscale-0 bg-white/10 px-4 py-2 rounded-xl">
+                        <img src="../images/n69-logo.png" alt="N69 Partner" class="h-8 object-contain">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if(modal) {
+                modal.classList.toggle('active');
+                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+            }
+        }
+    </script>
+</body>
+</html>
