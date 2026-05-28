@@ -635,15 +635,59 @@
         </div>
     </div>
 
-    <footer class="bg-brand-green text-brand-white pt-20 pb-10 no-gap">
+    <footer class="bg-brand-green text-white pt-16 pb-10">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center border-t border-white/10 pt-10 gap-8">
-                <div class="text-4xl font-light">Joanna <span class="font-bold text-brand-lavender">Filek</span></div>
-                <p class="text-white/40 text-sm">
-                    <span class="text-pl">© 2026 Joanna Filek. Wspieramy zdrowe relacje poprzez świadomość.</span>
-                    <span class="text-en">© 2026 Joanna Filek. Supporting healthy relationships through awareness.</span>
-                    <span class="text-no">© 2026 Joanna Filek. Støtter sunne relasjoner gjennom bevissthet.</span>
-                </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <div class="text-3xl font-light mb-2">
+                        Joanna <span class="font-bold">Filek</span>
+                    </div>
+
+                    <p class="text-sm opacity-75">
+                        Gabinet Psychoterapii Inspiro
+                    </p>
+
+                    <address class="text-sm opacity-75 mt-1 not-italic">
+                        ul. Skalica 15A, 30-376 Kraków
+                    </address>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Nawigacja</h4>
+
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Strona główna</a></li>
+                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">O mnie</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Warsztaty</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Zapisy</h4>
+
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Sign-up (Zapisy)</button></li>
+			<li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li> 
+                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>                  
+		 </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Informacje</h4>
+
+                    <p class="text-sm opacity-75 leading-relaxed">
+                        Poufność sesji jest w pełni gwarantowana.
+                        Konsultacje dostępne online oraz stacjonarnie.
+                    </p>
+
+                    <p class="text-sm opacity-60 mt-6">
+                        © 2026 Joanna Filek
+                    </p>
+                    <p class="text-[10px] opacity-40 mt-1">
+                        Designed & Developed by <a href="https://alansmorais.github.io/alans.morais/" target="_blank" rel="noopener" class="hover:text-brand-lavender underline transition-colors">ASM</a>
+                    </p>
+                </div>
             </div>
         </div>
     </footer>
