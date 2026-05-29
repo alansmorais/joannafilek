@@ -214,5 +214,21 @@
             }
         }
     </script>
+    <script>
+    // Price database
+    const prices = {
+        EUR: { psych: "€60", sex: "€70" },
+        NOK: { psych: "680 NOK", sex: "810 NOK" }
+    };
+
+    // Detect if user is likely in Norway or using Norwegian language
+    const isNorway = navigator.language.includes('nb') || navigator.language.includes('nn') || navigator.language.includes('no');
+
+    if (isNorway) {
+        document.getElementById('price-psych').textContent = prices.NOK.psych;
+        document.getElementById('price-sex').textContent = prices.NOK.sex;
+        document.getElementById('price-title').textContent = "Priser (NOK)";
+    }
+</script>
 </body>
 </html>
