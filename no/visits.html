@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polsk Psykolog og Sexolog på Nett | Joanna Filek</title>
+    <meta name="description" content="Profesjonell polsktalende psykolog, sexolog og psykoterapeut. Online terapi for polakker i Norge og fysiske konsultasjoner i Krakow. Bestill time.">
+
+    <link rel="icon" type="image/png" href="../images/1.jpg">
+
+    <link rel="alternate" hreflang="pl" href="https://joannafilek.com/" />
+    <link rel="alternate" hreflang="en" href="https://joannafilek.com/en/" />
+    <link rel="alternate" hreflang="no" href="https://joannafilek.com/no/" />
+    <link rel="alternate" hreflang="x-default" href="https:/joannafilek.com/" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-plum': '#722D64',
+                        'brand-lavender': '#E8C1D9',
+                        'brand-green': '#1B3D2F',
+                        'brand-green-light': '#FDF9FB',
+                        'brand-white': '#FCFCFC',
+                        'brand-violet-light': '#F4E6EF'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: #FDF9FB;
+            color: #1B3D2F;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-bg { background: linear-gradient(135deg, #E8C1D9 0%, #F4E6EF 100%); }
+        .smooth-transition { transition: all 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-3px); }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: flex; }
+
+        .modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            z-index: 100; 
+            background: rgba(0,0,0,0.5); 
+            backdrop-filter: blur(4px); 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .modal.active { display: flex; }
+    </style>
+</head>
+
+<body>
+
+    <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
+        <div class="hidden md:block">Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</div>
+        
+        <div class="absolute right-6 flex items-center gap-3">
+            <a href="../index.html" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></a>
+            <a href="../en/index.html" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></a>
+            <a href="index.html" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></a>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="../images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50">
+                <div>
+                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">Joanna <span class="font-bold">Filek</span></div>
+                    <p class="text-xs font-semibold text-brand-plum -mt-1">Psykoterapeut | Inspiro Klinikk</p>
+                </div>
+            </a>
+
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
+                <a href="index.html" class="hover:text-brand-plum smooth-transition">Hjem</a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition">Om meg</a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition">Verksteder</a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Nyhetsbrev</button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Påmelding</button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">Bestill konsultasjon</a>
+                <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">Meny</button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
+            <a href="index.html">Hjem</a>
+            <a href="about.html">Om meg</a>
+            <a href="works.html">Verksteder</a>
+            <a href="contact.html">Kontakt</a>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Påmelding</button>           
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Nyhetsbrev</button>
+            <a href="work-with-us.html">Jobb med oss</a>
+            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Bestill konsultasjon</a>
+        </div>
+    </header>
+
+
+    <section class="bg-brand-lavender pt-8 pb-12 no-gap">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white p-6 md:p-10 rounded-[32px] shadow-sm border border-brand-plum/10">
+                <div class="calendly-inline-widget" data-url="https://calendly.com/psycholog-joannafilek/30min" style="min-width:320px;height:700px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-brand-green-light">
+        <div class="max-w-4xl mx-auto px-6">
+            <h3 class="text-xl font-bold text-brand-plum mb-6">Pricing (EUR)</h3>
+            <div class="bg-[#E2E6F3]/30 border border-brand-plum/20 rounded-2xl p-8 text-brand-plum">
+                <table class="w-full">
+                    <tr class="border-b border-dashed border-brand-plum"><td class="py-4">Psychological Session</td><td class="text-right font-bold">€60</td></tr>
+                    <tr class="border-b border-dashed border-brand-plum"><td class="py-4">Sexological Session</td><td class="text-right font-bold">€70</td></tr>
+                </table>
+            </div>
+        </div>
+    </section>
+     <footer class="bg-brand-green text-white pt-16 pb-10">
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <div class="text-3xl font-light mb-2">
+                        Joanna <span class="font-bold">Filek</span>
+                    </div>
+
+                    <p class="text-sm opacity-75">
+                        Gabinet Psychoterapii Inspiro
+                    </p>
+
+                    <address class="text-sm opacity-75 mt-1 not-italic">
+                        ul. Skalica 15A, 30-376 Kraków
+                    </address>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Nawigacja</h4>
+
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Strona główna</a></li>
+                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">O mnie</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Warsztaty</a></li>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Zapisy</h4>
+
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Sign-up (Zapisy)</button></li>
+                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li>
+                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>
+                        <li><a href="online-terapi.html">Online Terapi for Expats</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Informacje</h4>
+
+                    <p class="text-sm opacity-75 leading-relaxed">
+                        Poufność sesji jest w pełni gwarantowana.
+                        Konsultacje dostępne online oraz stacjonarnie.
+                    </p>
+
+                    <p class="text-sm opacity-60 mt-6">
+                        © 2026 Joanna Filek
+                    </p>
+                    <p class="text-[10px] opacity-40 mt-1">
+                        Designed & Developed by <a href="https://alansmorais.github.io/alans.morais/" target="_blank" rel="noopener" class="hover:text-brand-lavender underline transition-colors">ASM</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if(modal) {
+                modal.classList.toggle('active');
+                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+            }
+        }
+    </script>
+</body>
+</html>
