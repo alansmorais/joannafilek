@@ -12,11 +12,7 @@
   <lastmod>2026-05-18T12:22:59+00:00</lastmod>
   <priority>1.00</priority>
 </url>
-<url>
-  <loc>https://joannafilek.com/index.html</loc>
-  <lastmod>2026-05-18T12:22:59+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+
 <url>
   <loc>https://joannafilek.com/en/index.html</loc>
   <lastmod>2026-05-18T12:22:59+00:00</lastmod>
@@ -72,7 +68,13 @@
   <loc>https://joannafilek.com/en/online-therapy.html</loc>
   <lastmod>2026-05-18T12:22:59+00:00</lastmod>
   <priority>0.80</priority>
-</url
+</url>
+
+<url>
+  <loc>https://joannafilek.com/no/online-terapi.html</loc>
+  <lastmod>2026-05-18T12:22:59+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
       
 <url>
   <loc>https://joannafilek.com/no/about.html</loc>
