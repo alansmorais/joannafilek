@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Own Booking Widget | Joanna Filek</title>
+  <title>Appointment Request | Joanna Filek</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -39,13 +39,25 @@
 </head>
 <body>
   <main class="w-full">
+    <section class="mb-6 bg-brand-green-light border border-brand-plum/10 rounded-[28px] p-5 md:p-6">
+      <div class="flex items-center gap-4">
+        <img src="../images/logo.png" alt="Joanna Filek logo" class="w-14 h-14 object-contain grayscale brightness-50" onerror="this.style.display='none';document.getElementById('logoFallback').style.display='grid';">
+        <div id="logoFallback" class="hidden w-14 h-14 rounded-2xl bg-brand-violet-light text-brand-plum font-bold place-items-center">JF</div>
+        <div>
+          <p class="text-xs uppercase tracking-[0.22em] text-brand-plum font-bold">Appointment request</p>
+          <h1 class="font-serif text-3xl text-brand-green">Joanna Filek</h1>
+          <p class="text-sm text-brand-green/60">The clinic will confirm the appointment after reviewing your request.</p>
+        </div>
+      </div>
+    </section>
+
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <section class="bg-brand-green-light border border-brand-plum/10 rounded-[28px] p-5 md:p-6">
         <p class="text-xs uppercase tracking-[0.22em] text-brand-plum font-bold mb-2">Step 1</p>
-        <h2 class="font-serif text-3xl text-brand-green mb-4">Choose your consultation</h2>
+        <h2 class="font-serif text-3xl text-brand-green mb-4">Choose consultation</h2>
         <div id="serviceGrid" class="grid gap-3"></div>
         <div class="mt-6 rounded-2xl bg-white border border-brand-plum/10 p-4 text-sm text-brand-green/80">
-          Availability is checked against the clinic Calendar before booking.
+          The time is reserved as pending first. The clinic confirms it from the panel.
         </div>
       </section>
 
@@ -75,23 +87,37 @@
           Full name
           <input name="patientName" required placeholder="Your full name" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
         </label>
+
         <label class="grid gap-2 text-sm font-bold">
           Email
           <input name="email" type="email" required placeholder="your@email.com" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
         </label>
+
         <label class="grid gap-2 text-sm font-bold">
           Phone
           <input name="phone" required placeholder="+48 000 000 000" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
         </label>
+
         <label class="grid gap-2 text-sm font-bold">
-          Notes
-          <input name="notes" placeholder="Optional" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
+          Preferred contact
+          <select name="preferredContact" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
+            <option value="Email">Email</option>
+            <option value="Phone">Phone</option>
+            <option value="WhatsApp">WhatsApp</option>
+          </select>
         </label>
+
+        <label class="md:col-span-2 grid gap-2 text-sm font-bold">
+          Message to doctor
+          <textarea name="doctorMessage" rows="4" placeholder="Write a short message for the doctor. Please do not include sensitive medical information." class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum"></textarea>
+        </label>
+
         <div class="md:col-span-2 bg-amber-50 border border-amber-200 text-amber-900 rounded-2xl p-4 text-sm leading-relaxed">
-          Please do not send sensitive medical information in this form.
+          This sends an appointment request. The clinic will review it and confirm the appointment.
         </div>
+
         <button id="submitBtn" disabled class="md:col-span-2 bg-brand-green text-white font-bold px-6 py-4 rounded-2xl hover:bg-brand-plum smooth-transition disabled:opacity-50 disabled:cursor-not-allowed">
-          Book appointment
+          Send appointment request
         </button>
       </form>
 
@@ -104,36 +130,19 @@
     const API_URL = "https://script.google.com/macros/s/AKfycbzDEt8NQg6zimzq7K_P_AC9X89G2ZtVHWB_UyaZLuO36HqvEB-5Tsp8MYTaI8vH4mU-0g/exec";
 
     const services = [
-      { id:"individual_psychotherapy", name:"Individual Psychotherapy", duration:50, price:"130 EUR", channel:"Online Consultation", location:"Online / Video consultation" },
-      { id:"individual_sexological_consultation", name:"Individual Sexological Consultation", duration:50, price:"150 EUR", channel:"Online Consultation", location:"Online / Video consultation" },
+      { id:"individual_psychotherapy", name:"Individual Psychotherapy", duration:50, price:"122 EUR", channel:"Online Consultation", location:"Online / Video consultation" },
+      { id:"individual_sexological_consultation", name:"Individual Sexological Consultation", duration:50, price:"131 EUR", channel:"Online Consultation", location:"Online / Video consultation" },
       { id:"couples_psychotherapy", name:"Couples Psychotherapy", duration:75, price:"225 EUR", channel:"Online Consultation", location:"Online / Video consultation" },
-      { id:"couples_sexological_consultation", name:"Couples Sexological Consultation", duration:75, price:"260 EUR", channel:"Online Consultation", location:"Online / Video consultation" }
+      { id:"couples_sexological_consultation", name:"Couples Sexological Consultation", duration:75, price:"248 EUR", channel:"Online Consultation", location:"Online / Video consultation" }
     ];
 
-    const state = {
-      service:null,
-      dateISO:null,
-      startTime:null,
-      endTime:null,
-      slotsByDate:{},
-      loading:false
-    };
-
-    const demoSlots = {
-      "2026-06-22":["10:00","11:00","15:00","18:00"],
-      "2026-06-23":["09:00","10:00","14:00","16:00"],
-      "2026-06-24":["10:30","13:30","15:30"],
-      "2026-06-25":["09:00","11:00","14:00","17:00"],
-      "2026-06-26":["10:00","12:00","15:00"]
-    };
+    const state = { service:null, dateISO:null, startTime:null, endTime:null, slotsByDate:{}, loading:false };
 
     renderServices();
     renderDays();
     updateSummary();
 
-    function isApiConfigured(){
-      return API_URL && !API_URL.includes("PASTE_YOUR_GOOGLE_APPS_SCRIPT");
-    }
+    function isApiConfigured(){ return API_URL && !API_URL.includes("PASTE_YOUR"); }
 
     function renderServices(){
       document.getElementById("serviceGrid").innerHTML = services.map(service => `
@@ -154,7 +163,7 @@
       document.querySelectorAll(".service-card").forEach(el => el.classList.remove("active"));
       document.getElementById("service-" + id).classList.add("active");
 
-      setSyncStatus(true, "Checking Google Calendar availability...");
+      setSyncStatus(true, "Checking available times...");
       renderDays();
       renderHours();
       updateSummary();
@@ -190,32 +199,26 @@
       const end = toISODate(dates[dates.length - 1]);
 
       if(!isApiConfigured()){
-        state.slotsByDate = demoSlots;
+        state.slotsByDate = {};
+        showError("API URL is not configured.");
         return;
       }
 
       try{
         const url = `${API_URL}?action=availability&service=${encodeURIComponent(state.service.id)}&start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}&t=${Date.now()}`;
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 25000);
-
-        const response = await fetch(url, { method:"GET", redirect:"follow", signal:controller.signal });
-        clearTimeout(timeout);
-
+        const response = await fetch(url, { method:"GET", redirect:"follow" });
         const json = await response.json();
         if(!json.ok) throw new Error(json.error || "Could not load availability.");
-
         state.slotsByDate = json.slotsByDate || {};
       } catch(error){
         state.slotsByDate = {};
+        showError("Availability failed to load. Please try again.");
         console.error(error);
-        showError("Availability is taking too long or failed to load. Please try again in a moment.");
       }
     }
 
     function renderDays(){
       const dates = nextBusinessDates(10);
-
       document.getElementById("daysGrid").innerHTML = dates.map(date => {
         const iso = toISODate(date);
         const slots = state.slotsByDate[iso] || [];
@@ -234,8 +237,7 @@
 
     function autoSelectFirstAvailableDate(){
       if(!state.service || state.dateISO) return;
-      const dates = nextBusinessDates(10);
-      const first = dates.map(toISODate).find(iso => (state.slotsByDate[iso] || []).length > 0);
+      const first = nextBusinessDates(10).map(toISODate).find(iso => (state.slotsByDate[iso] || []).length > 0);
       if(first) state.dateISO = first;
     }
 
@@ -263,12 +265,11 @@
 
       if(!state.dateISO){
         const hasAny = Object.values(state.slotsByDate).some(slots => Array.isArray(slots) && slots.length);
-        grid.innerHTML = `<div class="text-sm text-brand-green/60">${hasAny ? "Select an available date." : "No available dates returned. Check calendar working hours and busy events."}</div>`;
+        grid.innerHTML = `<div class="text-sm text-brand-green/60">${hasAny ? "Select an available date." : "No available dates returned."}</div>`;
         return;
       }
 
       const slots = state.slotsByDate[state.dateISO] || [];
-
       if(!slots.length){
         grid.innerHTML = `<div class="text-sm text-brand-green/60">No available times for this date.</div>`;
         return;
@@ -310,51 +311,37 @@
 
       const button = document.getElementById("submitBtn");
       button.disabled = true;
-      button.textContent = "Booking...";
+      button.textContent = "Sending request...";
 
       const formData = new FormData(event.target);
-
       const payload = {
         action:"book",
         serviceId:state.service.id,
-        service:state.service.name,
         duration:state.service.duration,
-        channel:state.service.channel,
-        location:state.service.location,
         dateISO:state.dateISO,
         startTime:state.startTime,
         endTime:state.endTime,
         patientName:formData.get("patientName"),
         email:formData.get("email"),
         phone:formData.get("phone"),
-        notes:formData.get("notes")
+        preferredContact:formData.get("preferredContact"),
+        doctorMessage:formData.get("doctorMessage")
       };
-
-      if(!isApiConfigured()){
-        showSuccess("Demo booking created. Connect Apps Script to save it to Google Calendar.");
-        event.target.reset();
-        button.textContent = "Book appointment";
-        button.disabled = false;
-        updateSummary();
-        return;
-      }
 
       try{
         const body = new URLSearchParams();
         Object.keys(payload).forEach(key => body.append(key, payload[key] ?? ""));
-
         const response = await fetch(API_URL, { method:"POST", body, redirect:"follow" });
         const json = await response.json();
 
         if(!json.ok) throw new Error(json.error || "The selected time is no longer available.");
 
-        showSuccess("Your appointment was booked successfully. A confirmation email will be sent.");
+        showSuccess("Your request was sent. The clinic will review and confirm your appointment.");
         event.target.reset();
 
         await loadAvailability();
         state.startTime = null;
         state.endTime = null;
-
         renderDays();
         autoSelectFirstAvailableDate();
         renderHours();
@@ -362,7 +349,7 @@
       } catch(error){
         showError(error.message);
       } finally {
-        button.textContent = "Book appointment";
+        button.textContent = "Send appointment request";
         button.disabled = false;
         updateSummary();
       }
@@ -371,7 +358,6 @@
     function setSyncStatus(active, text = ""){
       state.loading = active;
       const box = document.getElementById("syncStatus");
-
       if(active){
         box.classList.remove("hidden");
         box.innerHTML = `<span class="inline-flex items-center gap-2"><span class="spinner"></span>${escapeHTML(text)}</span>`;
@@ -381,50 +367,15 @@
       }
     }
 
-    function showSuccess(message){
-      const box = document.getElementById("successBox");
-      box.classList.add("active");
-      box.textContent = message;
-    }
-
-    function showError(message){
-      const box = document.getElementById("errorBox");
-      box.classList.add("active");
-      box.textContent = message;
-    }
-
-    function hideMessages(){
-      document.getElementById("successBox").classList.remove("active");
-      document.getElementById("errorBox").classList.remove("active");
-    }
-
-    function toISODate(date){
-      return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
-    }
-
+    function showSuccess(message){ const box = document.getElementById("successBox"); box.classList.add("active"); box.textContent = message; }
+    function showError(message){ const box = document.getElementById("errorBox"); box.classList.add("active"); box.textContent = message; }
+    function hideMessages(){ document.getElementById("successBox").classList.remove("active"); document.getElementById("errorBox").classList.remove("active"); }
+    function toISODate(date){ return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`; }
     function weekdayShort(date){ return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][date.getDay()]; }
     function monthShort(date){ return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][date.getMonth()]; }
-
-    function formatDisplayDate(iso){
-      const date = new Date(iso + "T00:00:00");
-      return `${weekdayShort(date)}, ${String(date.getDate()).padStart(2,"0")} ${monthShort(date)}`;
-    }
-
-    function addMinutes(time, minutes){
-      const [hours, mins] = time.split(":").map(Number);
-      const date = new Date(2000, 0, 1, hours, mins + Number(minutes), 0);
-      return `${String(date.getHours()).padStart(2,"0")}:${String(date.getMinutes()).padStart(2,"0")}`;
-    }
-
-    function escapeHTML(value){
-      return String(value ?? "").replace(/[&<>"']/g, char => ({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-      }[char]));
-    }
+    function formatDisplayDate(iso){ const date = new Date(iso + "T00:00:00"); return `${weekdayShort(date)}, ${String(date.getDate()).padStart(2,"0")} ${monthShort(date)}`; }
+    function addMinutes(time, minutes){ const [hours, mins] = time.split(":").map(Number); const date = new Date(2000, 0, 1, hours, mins + Number(minutes), 0); return `${String(date.getHours()).padStart(2,"0")}:${String(date.getMinutes()).padStart(2,"0")}`; }
+    function escapeHTML(value){ return String(value ?? "").replace(/[&<>"']/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;" }[char])); }
   </script>
 </body>
 </html>
