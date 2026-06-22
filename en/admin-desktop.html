@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinic Desk | Joanna Filek</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f5f1;
+      --surface: #ffffff;
+      --surface-2: #fbf8f5;
+      --text: #16231d;
+      --muted: #758079;
+      --line: #e8dfd8;
+      --plum: #722D64;
+      --plum-soft: #f4e6ef;
+      --green: #1B3D2F;
+      --green-soft: #edf5f1;
+      --ok: #047857;
+      --warning: #b45309;
+      --danger: #b91c1c;
+      --shadow: 0 24px 70px rgba(22,35,29,.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top right, rgba(114,45,100,.10), transparent 34rem),
+        linear-gradient(180deg, #fffdf9, var(--bg));
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .login-screen {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+    }
+
+    .login-card {
+      width: min(100%, 420px);
+      background: rgba(255,255,255,.92);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 30px;
+    }
+
+    .brand-small {
+      color: var(--plum);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .72rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .login-card h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.35rem;
+      line-height: 1;
+      margin: 0 0 10px;
+      color: var(--green);
+    }
+
+    .login-card p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 12px;
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    .field input {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px 14px;
+      outline: none;
+      background: #fff;
+    }
+
+    .field input:focus {
+      border-color: var(--plum);
+      box-shadow: 0 0 0 4px rgba(114,45,100,.09);
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 15px;
+      min-height: 44px;
+      padding: 0 16px;
+      font-weight: 800;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .btn-plum {
+      background: var(--plum);
+      color: #fff;
+      border-color: var(--plum);
+    }
+
+    .btn-ghost {
+      background: transparent;
+    }
+
+    .btn-small {
+      min-height: 36px;
+      padding: 0 12px;
+      font-size: .85rem;
+    }
+
+    .error {
+      display: none;
+      color: var(--danger);
+      margin-top: 12px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 270px 1fr;
+    }
+
+    aside {
+      border-right: 1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(16px);
+      padding: 24px 18px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    .logo {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 8px 22px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--plum-soft);
+      color: var(--plum);
+      font-weight: 900;
+    }
+
+    .logo h2 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      color: var(--green);
+      line-height: 1;
+      font-size: 1.32rem;
+    }
+
+    .logo p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .nav button {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      border-radius: 16px;
+      padding: 12px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 800;
+      text-align: left;
+    }
+
+    .nav button.active,
+    .nav button:hover {
+      background: var(--plum-soft);
+      color: var(--plum);
+    }
+
+    .sidebar-footer {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .status-box {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 13px;
+      font-size: .83rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .status-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 99px;
+      background: var(--ok);
+    }
+
+    main {
+      padding: 28px;
+      min-width: 0;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .page-title h1 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      color: var(--green);
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      line-height: 1;
+    }
+
+    .page-title p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .search {
+      position: relative;
+    }
+
+    .search input {
+      min-height: 44px;
+      width: 280px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 15px;
+      padding: 0 14px;
+      outline: none;
+    }
+
+    .search input:focus {
+      border-color: var(--plum);
+      box-shadow: 0 0 0 4px rgba(114,45,100,.08);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,.9);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 14px 40px rgba(22,35,29,.04);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: .82rem;
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 7px;
+      font-size: 1.75rem;
+      color: var(--green);
+      letter-spacing: -.04em;
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(360px, .75fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      background: rgba(255,255,255,.92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 18px 54px rgba(22,35,29,.05);
+      overflow: hidden;
+    }
+
+    .card-head {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-head h2 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--green);
+    }
+
+    .card-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    .week-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .week-label {
+      min-width: 150px;
+      text-align: center;
+      color: var(--green);
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    .week-view {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(120px, 1fr));
+      gap: 0;
+      overflow-x: auto;
+    }
+
+    .day-col {
+      min-height: 530px;
+      border-right: 1px solid var(--line);
+      padding: 14px 10px;
+    }
+
+    .day-col:last-child {
+      border-right: 0;
+    }
+
+    .day-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .day-name {
+      font-weight: 900;
+      color: var(--green);
+      font-size: .9rem;
+    }
+
+    .day-date {
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .appt {
+      background: var(--green-soft);
+      border: 1px solid rgba(27,61,47,.12);
+      border-radius: 16px;
+      padding: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .appt:hover {
+      outline: 3px solid rgba(114,45,100,.08);
+      border-color: var(--plum);
+    }
+
+    .appt.plum {
+      background: var(--plum-soft);
+      border-color: rgba(114,45,100,.16);
+    }
+
+    .appt.unavailable {
+      background: #f2f2f0;
+      color: var(--muted);
+      cursor: default;
+    }
+
+    .appt-time {
+      font-weight: 900;
+      font-size: .82rem;
+      color: var(--plum);
+      margin-bottom: 5px;
+    }
+
+    .appt-name {
+      font-weight: 900;
+      color: var(--green);
+      font-size: .88rem;
+      line-height: 1.25;
+      word-break: break-word;
+    }
+
+    .appt-service {
+      color: var(--muted);
+      font-size: .78rem;
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+
+    .empty-day {
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      font-size: .82rem;
+      text-align: center;
+    }
+
+    .agenda-list {
+      padding: 10px;
+      max-height: 594px;
+      overflow: auto;
+    }
+
+    .list-row {
+      display: grid;
+      grid-template-columns: 66px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 18px;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .list-row:hover {
+      background: var(--surface-2);
+      border-color: var(--line);
+    }
+
+    .list-time {
+      font-weight: 900;
+      color: var(--plum);
+      font-size: .88rem;
+    }
+
+    .list-title strong {
+      display: block;
+      color: var(--green);
+      margin-bottom: 3px;
+    }
+
+    .list-title span {
+      color: var(--muted);
+      font-size: .83rem;
+    }
+
+    .badge {
+      border-radius: 999px;
+      padding: 6px 9px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-weight: 900;
+      font-size: .72rem;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    td {
+      font-size: .9rem;
+    }
+
+    .table-wrap {
+      overflow: auto;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(22,35,29,.35);
+      backdrop-filter: blur(6px);
+      z-index: 20;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(100%, 560px);
+      background: #fff;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      padding: 24px;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .modal-head h2 {
+      font-family: "Playfair Display", serif;
+      color: var(--green);
+      font-size: 2rem;
+      line-height: 1;
+      margin: 0 0 6px;
+    }
+
+    .modal-head p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .detail {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px;
+    }
+
+    .detail small {
+      display: block;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      font-size: .7rem;
+      margin-bottom: 5px;
+    }
+
+    .detail strong {
+      color: var(--green);
+      font-size: .92rem;
+      word-break: break-word;
+    }
+
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 50;
+      background: var(--green);
+      color: #fff;
+      border-radius: 16px;
+      padding: 12px 14px;
+      box-shadow: 0 18px 40px rgba(27,61,47,.24);
+      font-weight: 800;
+      display: none;
+    }
+
+    .toast.active {
+      display: block;
+    }
+
+    @media (max-width: 1180px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        position: static;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .logo {
+        border: 0;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav {
+        display: flex;
+        overflow-x: auto;
+      }
+
+      .nav button {
+        white-space: nowrap;
+      }
+
+      .sidebar-footer {
+        position: static;
+      }
+
+      .status-box {
+        display: none;
+      }
+
+      .panel-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 840px) {
+      main {
+        padding: 18px;
+      }
+
+      .topbar {
+        display: grid;
+      }
+
+      .top-actions {
+        justify-content: flex-start;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .search input {
+        width: min(100%, 320px);
+      }
+
+      .week-view {
+        grid-template-columns: 1fr;
+      }
+
+      .day-col {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="brand-small">Clinic Desk</div>
+      <h1>Welcome back</h1>
+      <p>Minimal desktop panel for appointments, patients, and weekly clinic overview.</p>
+
+      <div class="field">
+        <label>Username</label>
+        <input id="username" placeholder="admin" autocomplete="username" />
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input id="password" type="password" placeholder="clinic123" autocomplete="current-password" />
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;" onclick="login()">Open clinic panel</button>
+      <div id="loginError" class="error">Invalid credentials.</div>
+    </div>
+  </section>
+
+  <section id="appScreen" class="app hidden">
+    <aside>
+      <div>
+        <div class="logo">
+          <div class="logo-mark">JF</div>
+          <div>
+            <h2>Joanna Filek</h2>
+            <p>Clinic Desk</p>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button id="navDashboard" class="active" onclick="showView('Dashboard')">Overview</button>
+          <button id="navAppointments" onclick="showView('Appointments')">Appointments</button>
+          <button id="navPatients" onclick="showView('Patients')">Patients</button>
+          <button id="navSettings" onclick="showView('Settings')">Settings</button>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="status-box">
+          <div class="status-line"><span id="statusDot" class="dot"></span><span id="statusText">Connecting</span></div>
+          <div id="statusSub">Europe/Warsaw clinic time</div>
+        </div>
+        <button class="btn btn-small" onclick="logout()">Log out</button>
+      </div>
+    </aside>
+
+    <main>
+      <div class="topbar">
+        <div class="page-title">
+          <h1 id="pageTitle">Overview</h1>
+          <p id="pageSubtitle">Appointments are displayed in clinic time: Europe/Warsaw.</p>
+        </div>
+
+        <div class="top-actions">
+          <div class="search">
+            <input id="searchInput" placeholder="Search patient, service, phone..." oninput="renderCurrentView()" />
+          </div>
+          <button class="btn" onclick="setThisWeek()">This week</button>
+          <button class="btn btn-primary" onclick="loadAgenda()">Refresh</button>
+        </div>
+      </div>
+
+      <div id="dashboardView" class="view active">
+        <section class="stats">
+          <div class="stat"><span>This week</span><strong id="statWeek">0</strong></div>
+          <div class="stat"><span>Today</span><strong id="statToday">0</strong></div>
+          <div class="stat"><span>Patients</span><strong id="statPatients">0</strong></div>
+          <div class="stat"><span>Next booking</span><strong id="statNext">—</strong></div>
+        </section>
+
+        <section class="panel-grid">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h2>Weekly calendar</h2>
+                <p>Clean desktop view for the clinic week.</p>
+              </div>
+              <div class="week-controls">
+                <button class="btn btn-small" onclick="changeWeek(-1)">←</button>
+                <div id="weekLabel" class="week-label">Week</div>
+                <button class="btn btn-small" onclick="changeWeek(1)">→</button>
+              </div>
+            </div>
+            <div id="weekView" class="week-view"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h2>Upcoming</h2>
+                <p>Next appointments only.</p>
+              </div>
+            </div>
+            <div id="upcomingList" class="agenda-list"></div>
+          </div>
+        </section>
+      </div>
+
+      <div id="appointmentsView" class="view">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>All appointments</h2>
+              <p>Current selected week.</p>
+            </div>
+            <div class="week-controls">
+              <button class="btn btn-small" onclick="changeWeek(-1)">←</button>
+              <div id="weekLabelTable" class="week-label">Week</div>
+              <button class="btn btn-small" onclick="changeWeek(1)">→</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Patient</th>
+                  <th>Service</th>
+                  <th>Contact</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="appointmentsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="patientsView" class="view">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>Patients</h2>
+              <p>Grouped from appointments in the selected week.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Patient</th>
+                  <th>Last service</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Appointments</th>
+                </tr>
+              </thead>
+              <tbody id="patientsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="settingsView" class="view">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>Settings</h2>
+              <p>Current front-end configuration.</p>
+            </div>
+          </div>
+          <div style="padding:18px; display:grid; gap:12px;">
+            <div class="detail"><small>API URL</small><strong id="settingsApi"></strong></div>
+            <div class="detail"><small>Timezone</small><strong>Europe/Warsaw</strong></div>
+            <div class="detail"><small>Booking page</small><strong>booking / visits page uses the same backend</strong></div>
+            <div class="detail"><small>Default login</small><strong>admin / clinic123</strong></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <div id="detailModal" class="modal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <h2 id="detailName">Patient</h2>
+          <p id="detailService">Service</p>
+        </div>
+        <button class="btn btn-small" onclick="closeModal()">Close</button>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail"><small>Date</small><strong id="detailDate">—</strong></div>
+        <div class="detail"><small>Time</small><strong id="detailTime">—</strong></div>
+        <div class="detail"><small>Phone</small><strong id="detailPhone">—</strong></div>
+        <div class="detail"><small>Email</small><strong id="detailEmail">—</strong></div>
+        <div class="detail"><small>Location</small><strong id="detailLocation">—</strong></div>
+        <div class="detail"><small>Status</small><strong id="detailStatus">—</strong></div>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="openWhatsApp()">WhatsApp</button>
+        <button class="btn btn-plum" onclick="copyDetails()">Copy details</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Copied</div>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbzDEt8NQg6zimzq7K_P_AC9X89G2ZtVHWB_UyaZLuO36HqvEB-5Tsp8MYTaI8vH4mU-0g/exec";
+    const USERNAME = "admin";
+    const PASSWORD = "clinic123";
+    const CLINIC_TIMEZONE = "Europe/Warsaw";
+
+    const state = {
+      activeView: "Dashboard",
+      weekStart: getMonday(new Date()),
+      agenda: [],
+      selected: null,
+      connected: false,
+      loading: false
+    };
+
+    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    if (localStorage.getItem("joannaDesktopPanel") === "1") {
+      document.getElementById("loginScreen").classList.add("hidden");
+      document.getElementById("appScreen").classList.remove("hidden");
+      boot();
+    }
+
+    document.getElementById("password").addEventListener("keypress", event => {
+      if (event.key === "Enter") login();
+    });
+
+    function login() {
+      const user = document.getElementById("username").value.trim().toLowerCase();
+      const pass = document.getElementById("password").value.trim();
+
+      if (user === USERNAME && pass === PASSWORD) {
+        localStorage.setItem("joannaDesktopPanel", "1");
+        document.getElementById("loginError").style.display = "none";
+        document.getElementById("loginScreen").classList.add("hidden");
+        document.getElementById("appScreen").classList.remove("hidden");
+        boot();
+      } else {
+        document.getElementById("loginError").style.display = "block";
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("joannaDesktopPanel");
+      location.reload();
+    }
+
+    async function boot() {
+      document.getElementById("settingsApi").textContent = API_URL;
+      await loadAgenda();
+      setInterval(loadAgenda, 60000);
+    }
+
+    async function loadAgenda() {
+      state.loading = true;
+      setStatus("Connecting", "Loading schedule...");
+      renderCurrentView();
+
+      try {
+        const start = toISODate(state.weekStart);
+        const end = toISODate(addDays(state.weekStart, 6));
+        const url = `${API_URL}?action=agenda&start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}&t=${Date.now()}`;
+        const response = await fetch(url, { method: "GET", redirect: "follow" });
+        const json = await response.json();
+
+        if (!json.ok) throw new Error(json.error || "Invalid API response");
+
+        state.agenda = (json.appointments || []).map(normalizeAppointment);
+        state.connected = true;
+        setStatus("Connected", "Europe/Warsaw clinic time");
+      } catch (error) {
+        console.error(error);
+        state.connected = false;
+        setStatus("Offline", "Could not load appointments");
+        showToast("Could not load schedule");
+      } finally {
+        state.loading = false;
+        renderCurrentView();
+      }
+    }
+
+    function normalizeAppointment(item) {
+      return {
+        id: item.id || item.calendarEventId || Math.random().toString(36).slice(2),
+        status: item.status || "Confirmed",
+        patientName: item.patientName || "Patient",
+        email: item.email || "",
+        phone: item.phone || "",
+        service: item.service || "Consultation",
+        price: item.price || "",
+        channel: item.channel || "Clinic",
+        location: item.location || "",
+        dateISO: item.dateISO || "",
+        startTime: item.startTime || "",
+        endTime: item.endTime || "",
+        notes: item.notes || ""
+      };
+    }
+
+    function setStatus(title, subtitle) {
+      document.getElementById("statusText").textContent = title;
+      document.getElementById("statusSub").textContent = subtitle;
+      document.getElementById("statusDot").style.background = title === "Connected" ? "var(--ok)" : "var(--warning)";
+    }
+
+    function showView(view) {
+      state.activeView = view;
+
+      ["Dashboard", "Appointments", "Patients", "Settings"].forEach(name => {
+        document.getElementById("nav" + name).classList.toggle("active", name === view);
+        document.getElementById(name.toLowerCase() + "View").classList.toggle("active", name === view);
+      });
+
+      const titles = {
+        Dashboard: ["Overview", "Appointments are displayed in clinic time: Europe/Warsaw."],
+        Appointments: ["Appointments", "Weekly appointment list."],
+        Patients: ["Patients", "Patient overview from the selected week."],
+        Settings: ["Settings", "Panel configuration and connection info."]
+      };
+
+      document.getElementById("pageTitle").textContent = titles[view][0];
+      document.getElementById("pageSubtitle").textContent = titles[view][1];
+
+      renderCurrentView();
+    }
+
+    function renderCurrentView() {
+      renderStats();
+      renderWeekLabels();
+      renderWeekView();
+      renderUpcoming();
+      renderAppointmentsTable();
+      renderPatientsTable();
+    }
+
+    function filteredAgenda() {
+      const q = document.getElementById("searchInput").value.trim().toLowerCase();
+      const list = state.agenda.filter(item => {
+        if (!q) return true;
+        return [
+          item.patientName,
+          item.service,
+          item.phone,
+          item.email,
+          item.location,
+          item.channel,
+          item.status
+        ].join(" ").toLowerCase().includes(q);
+      });
+
+      return list.sort((a, b) => {
+        if (a.dateISO !== b.dateISO) return a.dateISO.localeCompare(b.dateISO);
+        return String(a.startTime).localeCompare(String(b.startTime));
+      });
+    }
+
+    function realAppointments(list = filteredAgenda()) {
+      return list.filter(item => !isUnavailable(item));
+    }
+
+    function isUnavailable(item) {
+      return String(item.status || "").toLowerCase().includes("unavailable") ||
+        String(item.patientName || "").toLowerCase() === "unavailable";
+    }
+
+    function renderStats() {
+      const list = realAppointments();
+      const todayISO = toISODate(new Date());
+      const today = list.filter(item => item.dateISO === todayISO);
+      const patients = new Set(list.map(item => item.patientName).filter(Boolean));
+      const next = list.find(item => new Date(item.dateISO + "T" + item.startTime + ":00") >= new Date());
+
+      document.getElementById("statWeek").textContent = list.length;
+      document.getElementById("statToday").textContent = today.length;
+      document.getElementById("statPatients").textContent = patients.size;
+      document.getElementById("statNext").textContent = next ? next.startTime : "—";
+    }
+
+    function renderWeekLabels() {
+      const start = state.weekStart;
+      const end = addDays(start, 6);
+      const label = `${start.getDate()} ${monthNames[start.getMonth()]} – ${end.getDate()} ${monthNames[end.getMonth()]}`;
+      document.getElementById("weekLabel").textContent = label;
+      document.getElementById("weekLabelTable").textContent = label;
+    }
+
+    function renderWeekView() {
+      const root = document.getElementById("weekView");
+
+      if (state.loading) {
+        root.innerHTML = `<div style="grid-column:1/-1; padding:24px; color:var(--muted);">Loading weekly calendar...</div>`;
+        return;
+      }
+
+      root.innerHTML = "";
+
+      for (let i = 0; i < 7; i++) {
+        const date = addDays(state.weekStart, i);
+        const dateISO = toISODate(date);
+        const items = filteredAgenda().filter(item => item.dateISO === dateISO);
+
+        const col = document.createElement("div");
+        col.className = "day-col";
+        col.innerHTML = `
+          <div class="day-head">
+            <div class="day-name">${dayNames[date.getDay()]}</div>
+            <div class="day-date">${String(date.getDate()).padStart(2, "0")} ${monthNames[date.getMonth()]}</div>
+          </div>
+        `;
+
+        if (!items.length) {
+          col.innerHTML += `<div class="empty-day">No appointments</div>`;
+        } else {
+          items.forEach(item => {
+            const div = document.createElement("div");
+            const unavailable = isUnavailable(item);
+            div.className = "appt " + (unavailable ? "unavailable" : (item.channel.toLowerCase().includes("online") ? "" : "plum"));
+            div.innerHTML = `
+              <div class="appt-time">${escapeHTML(item.startTime)} – ${escapeHTML(item.endTime)}</div>
+              <div class="appt-name">${escapeHTML(item.patientName)}</div>
+              <div class="appt-service">${escapeHTML(item.service)}</div>
+            `;
+
+            if (!unavailable) div.onclick = () => openDetail(item.id);
+            col.appendChild(div);
+          });
+        }
+
+        root.appendChild(col);
+      }
+    }
+
+    function renderUpcoming() {
+      const root = document.getElementById("upcomingList");
+      const list = realAppointments().slice(0, 10);
+
+      if (state.loading) {
+        root.innerHTML = `<div style="padding:18px; color:var(--muted);">Loading...</div>`;
+        return;
+      }
+
+      if (!list.length) {
+        root.innerHTML = `<div style="padding:18px; color:var(--muted);">No upcoming appointments for this week.</div>`;
+        return;
+      }
+
+      root.innerHTML = list.map(item => `
+        <div class="list-row" onclick="openDetail('${escapeAttr(item.id)}')">
+          <div class="list-time">${escapeHTML(item.startTime)}</div>
+          <div class="list-title">
+            <strong>${escapeHTML(item.patientName)}</strong>
+            <span>${escapeHTML(formatDateShort(item.dateISO))} • ${escapeHTML(item.service)}</span>
+          </div>
+          <span class="badge">${escapeHTML(item.status)}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderAppointmentsTable() {
+      const tbody = document.getElementById("appointmentsTable");
+      const list = filteredAgenda();
+
+      if (state.loading) {
+        tbody.innerHTML = `<tr><td colspan="6">Loading appointments...</td></tr>`;
+        return;
+      }
+
+      if (!list.length) {
+        tbody.innerHTML = `<tr><td colspan="6">No appointments found.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(item => `
+        <tr onclick="openDetail('${escapeAttr(item.id)}')" style="cursor:pointer;">
+          <td>${escapeHTML(formatDateShort(item.dateISO))}</td>
+          <td><strong>${escapeHTML(item.startTime)} – ${escapeHTML(item.endTime)}</strong></td>
+          <td>${escapeHTML(item.patientName)}</td>
+          <td>${escapeHTML(item.service)}${item.price ? `<br><span style="color:var(--muted);">${escapeHTML(item.price)}</span>` : ""}</td>
+          <td>${escapeHTML(item.phone || item.email || "—")}</td>
+          <td><span class="badge">${escapeHTML(item.status)}</span></td>
+        </tr>
+      `).join("");
+    }
+
+    function renderPatientsTable() {
+      const tbody = document.getElementById("patientsTable");
+      const grouped = {};
+
+      realAppointments(filteredAgenda()).forEach(item => {
+        const key = item.patientName || "Patient";
+        if (!grouped[key]) {
+          grouped[key] = {
+            patientName: key,
+            phone: item.phone,
+            email: item.email,
+            service: item.service,
+            count: 0
+          };
+        }
+        grouped[key].count++;
+        if (item.phone) grouped[key].phone = item.phone;
+        if (item.email) grouped[key].email = item.email;
+        if (item.service) grouped[key].service = item.service;
+      });
+
+      const list = Object.values(grouped).sort((a, b) => a.patientName.localeCompare(b.patientName));
+
+      if (!list.length) {
+        tbody.innerHTML = `<tr><td colspan="5">No patients found.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(patient => `
+        <tr>
+          <td><strong>${escapeHTML(patient.patientName)}</strong></td>
+          <td>${escapeHTML(patient.service || "—")}</td>
+          <td>${escapeHTML(patient.phone || "—")}</td>
+          <td>${escapeHTML(patient.email || "—")}</td>
+          <td>${patient.count}</td>
+        </tr>
+      `).join("");
+    }
+
+    function openDetail(id) {
+      const item = state.agenda.find(entry => String(entry.id) === String(id));
+      if (!item || isUnavailable(item)) return;
+
+      state.selected = item;
+
+      document.getElementById("detailName").textContent = item.patientName || "Patient";
+      document.getElementById("detailService").textContent = item.service || "Consultation";
+      document.getElementById("detailDate").textContent = formatDateShort(item.dateISO);
+      document.getElementById("detailTime").textContent = `${item.startTime || "—"} – ${item.endTime || "—"}`;
+      document.getElementById("detailPhone").textContent = item.phone || "—";
+      document.getElementById("detailEmail").textContent = item.email || "—";
+      document.getElementById("detailLocation").textContent = [item.channel, item.location].filter(Boolean).join(" • ") || "—";
+      document.getElementById("detailStatus").textContent = item.status || "Confirmed";
+
+      document.getElementById("detailModal").classList.add("active");
+    }
+
+    function closeModal() {
+      document.getElementById("detailModal").classList.remove("active");
+    }
+
+    function closeModalOnBackdrop(event) {
+      if (event.target.id === "detailModal") closeModal();
+    }
+
+    function openWhatsApp() {
+      if (!state.selected) return;
+      const phone = String(state.selected.phone || "").replace(/\D/g, "");
+      if (!phone) {
+        showToast("No phone number");
+        return;
+      }
+      const text = encodeURIComponent(`Hello ${state.selected.patientName}, this is the clinic regarding your appointment on ${state.selected.dateISO} at ${state.selected.startTime}.`);
+      window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
+    }
+
+    async function copyDetails() {
+      if (!state.selected) return;
+      const item = state.selected;
+      const text = [
+        `Patient: ${item.patientName}`,
+        `Service: ${item.service}`,
+        `Date: ${item.dateISO}`,
+        `Time: ${item.startTime} - ${item.endTime}`,
+        `Phone: ${item.phone || ""}`,
+        `Email: ${item.email || ""}`,
+        `Location: ${item.location || ""}`
+      ].join("\n");
+
+      await navigator.clipboard.writeText(text);
+      showToast("Appointment copied");
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById("toast");
+      toast.textContent = text;
+      toast.classList.add("active");
+      setTimeout(() => toast.classList.remove("active"), 2200);
+    }
+
+    function changeWeek(delta) {
+      state.weekStart = addDays(state.weekStart, delta * 7);
+      loadAgenda();
+    }
+
+    function setThisWeek() {
+      state.weekStart = getMonday(new Date());
+      loadAgenda();
+    }
+
+    function getMonday(date) {
+      const d = new Date(date);
+      d.setHours(0, 0, 0, 0);
+      const day = d.getDay();
+      const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+      d.setDate(diff);
+      return d;
+    }
+
+    function addDays(date, days) {
+      const next = new Date(date);
+      next.setDate(next.getDate() + days);
+      return next;
+    }
+
+    function toISODate(date) {
+      return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
+    }
+
+    function formatDateShort(iso) {
+      if (!iso) return "—";
+      const date = new Date(iso + "T00:00:00");
+      return `${String(date.getDate()).padStart(2, "0")} ${monthNames[date.getMonth()]}`;
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char]));
+    }
+
+    function escapeAttr(value) {
+      return String(value ?? "").replace(/["'\\]/g, "");
+    }
+  </script>
+</body>
+</html>
