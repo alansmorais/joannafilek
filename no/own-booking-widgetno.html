@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeforespørsel | Joanna Filek</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-plum': '#722D64',
+            'brand-lavender': '#E8C1D9',
+            'brand-green': '#1B3D2F',
+            'brand-green-light': '#FDF9FB',
+            'brand-white': '#FCFCFC',
+            'brand-violet-light': '#F4E6EF'
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+    body { margin:0; background:#fff; color:#1B3D2F; font-family:'Poppins',sans-serif; }
+    .service-card,.day-card,.hour-chip{transition:all .25s ease}
+    .service-card.active,.day-card.active{border-color:#722D64;background:#F4E6EF;box-shadow:0 0 0 3px rgba(114,45,100,.08)}
+    .hour-chip.active{background:#722D64;color:#fff;border-color:#722D64}
+    .service-card:disabled,.day-card:disabled,.hour-chip:disabled{opacity:.42;cursor:not-allowed}
+    .message{display:none}.message.active{display:block}
+    .spinner{width:18px;height:18px;border:2px solid rgba(114,45,100,.18);border-top-color:#722D64;border-radius:999px;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+  <main class="w-full">
+    <section class="mb-6 bg-brand-green-light border border-brand-plum/10 rounded-[28px] p-5 md:p-6">
+      <div class="flex items-center gap-4">
+        <img src="../images/logo.png" alt="Joanna Filek logo" class="w-14 h-14 object-contain grayscale brightness-50" onerror="this.style.display='none';document.getElementById('logoFallback').style.display='grid';">
+        <div id="logoFallback" class="hidden w-14 h-14 rounded-2xl bg-brand-violet-light text-brand-plum font-bold place-items-center">JF</div>
+        <div>
+          <p class="text-xs uppercase tracking-[0.22em] text-brand-plum font-bold">Timeforespørsel</p>
+          <h1 class="font-serif text-3xl text-brand-green">Joanna Filek</h1>
+          <p class="text-sm text-brand-green/60">Klinikken bekrefter timen etter å ha vurdert forespørselen din.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <section class="bg-brand-green-light border border-brand-plum/10 rounded-[28px] p-5 md:p-6">
+        <p class="text-xs uppercase tracking-[0.22em] text-brand-plum font-bold mb-2">Steg 1</p>
+        <h2 class="font-serif text-3xl text-brand-green mb-4">Velg konsultasjon</h2>
+        <div id="serviceGrid" class="grid gap-3"></div>
+        <div class="mt-6 rounded-2xl bg-white border border-brand-plum/10 p-4 text-sm text-brand-green/80">
+          Valgt tidspunkt reserveres først som ventende. Klinikken bekrefter timen i panelet.
+        </div>
+      </section>
+
+      <section class="bg-white border border-brand-plum/10 rounded-[28px] p-5 md:p-6">
+        <p class="text-xs uppercase tracking-[0.22em] text-brand-plum font-bold mb-2">Steg 2</p>
+        <h2 class="font-serif text-3xl text-brand-green mb-4">Velg dato og tidspunkt</h2>
+        <div id="syncStatus" class="hidden mb-4 bg-brand-violet-light/60 border border-brand-plum/10 text-brand-green rounded-2xl p-3 text-sm"></div>
+        <div id="daysGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-5"></div>
+        <h3 class="font-bold text-brand-green mb-3">Ledige tider</h3>
+        <div id="hoursGrid" class="flex flex-wrap gap-2 min-h-[48px]">
+          <div class="text-sm text-brand-green/60">Velg en konsultasjon først.</div>
+        </div>
+      </section>
+    </div>
+
+    <section class="mt-6 bg-brand-violet-light/60 border border-brand-plum/10 rounded-[28px] p-5 md:p-6">
+      <p class="text-xs uppercase tracking-[0.22em] text-brand-plum font-bold mb-2">Steg 3</p>
+      <h2 class="font-serif text-3xl text-brand-green mb-4">Dine opplysninger</h2>
+
+      <div class="bg-white border border-brand-plum/10 rounded-2xl p-4 mb-4">
+        <p class="text-xs uppercase tracking-widest text-brand-plum font-bold">Valgt time</p>
+        <strong id="summaryText" class="block text-brand-green mt-1">Velg konsultasjon, dato og tidspunkt</strong>
+      </div>
+
+      <form id="bookingForm" class="grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="submitBooking(event)">
+        <label class="grid gap-2 text-sm font-bold">
+          Fullt navn
+          <input name="patientName" required placeholder="Ditt fulle navn" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
+        </label>
+
+        <label class="grid gap-2 text-sm font-bold">
+          E-post
+          <input name="email" type="email" required placeholder="din@email.com" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
+        </label>
+
+        <label class="grid gap-2 text-sm font-bold">
+          Telefon
+          <input name="phone" required placeholder="+47 000 00 000" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
+        </label>
+
+        <label class="grid gap-2 text-sm font-bold">
+          Foretrukket kontakt
+          <select name="preferredContact" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
+            <option value="Email">E-post</option>
+            <option value="Phone">Telefon</option>
+            <option value="WhatsApp">WhatsApp</option>
+          </select>
+        </label>
+
+        <label class="md:col-span-2 grid gap-2 text-sm font-bold">
+          Melding til behandler
+          <textarea name="doctorMessage" rows="4" placeholder="Skriv en kort melding. Ikke send sensitiv medisinsk informasjon her." class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum"></textarea>
+        </label>
+
+        <div class="md:col-span-2 bg-amber-50 border border-amber-200 text-amber-900 rounded-2xl p-4 text-sm leading-relaxed">
+          Dette sender en timeforespørsel. Klinikken vurderer og bekrefter timen.
+        </div>
+
+        <button id="submitBtn" disabled class="md:col-span-2 bg-brand-green text-white font-bold px-6 py-4 rounded-2xl hover:bg-brand-plum smooth-transition disabled:opacity-50 disabled:cursor-not-allowed">
+          Send timeforespørsel
+        </button>
+      </form>
+
+      <div id="successBox" class="message mt-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl p-4 text-sm font-medium"></div>
+      <div id="errorBox" class="message mt-4 bg-red-50 border border-red-200 text-red-800 rounded-2xl p-4 text-sm font-medium"></div>
+    </section>
+  </main>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbzDEt8NQg6zimzq7K_P_AC9X89G2ZtVHWB_UyaZLuO36HqvEB-5Tsp8MYTaI8vH4mU-0g/exec";
+
+    const services = [
+      { id:"individual_psychotherapy", name:"Individuell psykoterapi", duration:50, price:"1350 NOK", channel:"Online Consultation", location:"Online / videokonsultasjon" },
+      { id:"individual_sexological_consultation", name:"Individuell sexologisk konsultasjon", duration:50, price:"1450 NOK", channel:"Online Consultation", location:"Online / videokonsultasjon" },
+      { id:"couples_psychotherapy", name:"Parterapi", duration:75, price:"2500 NOK", channel:"Online Consultation", location:"Online / videokonsultasjon" },
+      { id:"couples_sexological_consultation", name:"Sexologisk konsultasjon for par", duration:75, price:"2750 NOK", channel:"Online Consultation", location:"Online / videokonsultasjon" }
+    ];
+
+    const state = { service:null, dateISO:null, startTime:null, endTime:null, slotsByDate:{}, loading:false };
+
+    renderServices();
+    renderDays();
+    updateSummary();
+
+    function renderServices(){
+      document.getElementById("serviceGrid").innerHTML = services.map(service => `
+        <button type="button" id="service-${service.id}" class="service-card text-left bg-white border border-brand-plum/10 rounded-2xl p-4 hover:border-brand-plum" onclick="selectService('${service.id}')">
+          <strong class="block text-brand-green">${escapeHTML(service.name)}</strong>
+          <span class="block text-sm text-brand-green/60 mt-1">${service.duration} min • ${service.price}</span>
+        </button>
+      `).join("");
+    }
+
+    async function selectService(id){
+      hideMessages();
+      state.service = services.find(service => service.id === id);
+      state.dateISO = null;
+      state.startTime = null;
+      state.endTime = null;
+
+      document.querySelectorAll(".service-card").forEach(el => el.classList.remove("active"));
+      document.getElementById("service-" + id).classList.add("active");
+
+      setSyncStatus(true, "Sjekker ledige tider...");
+      renderDays();
+      renderHours();
+      updateSummary();
+
+      await loadAvailability();
+
+      setSyncStatus(false);
+      renderDays();
+      autoSelectFirstAvailableDate();
+      renderHours();
+      updateSummary();
+    }
+
+    function nextBusinessDates(count = 10){
+      const dates = [];
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      let cursor = new Date(today);
+      while(dates.length < count){
+        const day = cursor.getDay();
+        if(day >= 1 && day <= 5) dates.push(new Date(cursor));
+        cursor.setDate(cursor.getDate() + 1);
+      }
+      return dates;
+    }
+
+    async function loadAvailability(){
+      if(!state.service) return;
+      const dates = nextBusinessDates(10);
+      const start = toISODate(dates[0]);
+      const end = toISODate(dates[dates.length - 1]);
+
+      try{
+        const url = `${API_URL}?action=availability&service=${encodeURIComponent(state.service.id)}&start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}&t=${Date.now()}`;
+        const response = await fetch(url, { method:"GET", redirect:"follow" });
+        const json = await response.json();
+        if(!json.ok) throw new Error(json.error || "Could not load availability.");
+        state.slotsByDate = json.slotsByDate || {};
+      } catch(error){
+        state.slotsByDate = {};
+        showError("Kunne ikke laste ledige tider. Prøv igjen.");
+        console.error(error);
+      }
+    }
+
+    function renderDays(){
+      const dates = nextBusinessDates(10);
+      document.getElementById("daysGrid").innerHTML = dates.map(date => {
+        const iso = toISODate(date);
+        const slots = state.slotsByDate[iso] || [];
+        const hasSlots = state.service && slots.length > 0;
+        const disabled = !state.service || state.loading || !hasSlots;
+        return `
+          <button type="button" class="day-card border border-brand-plum/10 bg-white rounded-2xl py-3 px-2 text-center font-bold ${state.dateISO === iso ? "active" : ""}" ${disabled ? "disabled" : ""} onclick="selectDate('${iso}')">
+            <span class="block text-[10px] uppercase tracking-wider text-brand-green/50">${weekdayShort(date)}</span>
+            ${String(date.getDate()).padStart(2,"0")} ${monthShort(date)}
+            ${state.service && !state.loading ? `<small class="block mt-1 text-[10px] text-brand-green/50">${slots.length ? slots.length + " tider" : "Ingen tider"}</small>` : ""}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function autoSelectFirstAvailableDate(){
+      if(!state.service || state.dateISO) return;
+      const first = nextBusinessDates(10).map(toISODate).find(iso => (state.slotsByDate[iso] || []).length > 0);
+      if(first) state.dateISO = first;
+    }
+
+    function selectDate(iso){
+      state.dateISO = iso;
+      state.startTime = null;
+      state.endTime = null;
+      renderDays();
+      renderHours();
+      updateSummary();
+    }
+
+    function renderHours(){
+      const grid = document.getElementById("hoursGrid");
+      if(!state.service){ grid.innerHTML = `<div class="text-sm text-brand-green/60">Velg en konsultasjon først.</div>`; return; }
+      if(state.loading){ grid.innerHTML = `<div class="flex items-center gap-2 text-sm text-brand-green/70"><span class="spinner"></span> Sjekker kalender...</div>`; return; }
+      if(!state.dateISO){
+        const hasAny = Object.values(state.slotsByDate).some(slots => Array.isArray(slots) && slots.length);
+        grid.innerHTML = `<div class="text-sm text-brand-green/60">${hasAny ? "Velg en ledig dato." : "Ingen ledige datoer funnet."}</div>`;
+        return;
+      }
+      const slots = state.slotsByDate[state.dateISO] || [];
+      if(!slots.length){ grid.innerHTML = `<div class="text-sm text-brand-green/60">Ingen ledige tider denne datoen.</div>`; return; }
+      grid.innerHTML = slots.map(time => `
+        <button type="button" class="hour-chip border border-brand-plum/10 bg-white rounded-full px-4 py-3 font-bold ${state.startTime === time ? "active" : ""}" onclick="selectTime('${time}')">${time}</button>
+      `).join("");
+    }
+
+    function selectTime(time){
+      state.startTime = time;
+      state.endTime = addMinutes(time, state.service.duration);
+      renderHours();
+      updateSummary();
+    }
+
+    function updateSummary(){
+      const summary = document.getElementById("summaryText");
+      const button = document.getElementById("submitBtn");
+      if(state.service && state.dateISO && state.startTime){
+        summary.textContent = `${state.service.name} • ${formatDisplayDate(state.dateISO)} • ${state.startTime} - ${state.endTime}`;
+        button.disabled = false;
+      } else {
+        summary.textContent = "Velg konsultasjon, dato og tidspunkt";
+        button.disabled = true;
+      }
+    }
+
+    async function submitBooking(event){
+      event.preventDefault();
+      hideMessages();
+      if(!state.service || !state.dateISO || !state.startTime){ showError("Velg konsultasjon, dato og tidspunkt."); return; }
+      const button = document.getElementById("submitBtn");
+      button.disabled = true;
+      button.textContent = "Sender forespørsel...";
+
+      const formData = new FormData(event.target);
+      const payload = {
+        action:"book",
+        serviceId:state.service.id,
+        duration:state.service.duration,
+        price:state.service.price,
+        serviceLabel:state.service.name,
+        channel:state.service.channel,
+        location:state.service.location,
+        dateISO:state.dateISO,
+        startTime:state.startTime,
+        endTime:state.endTime,
+        patientName:formData.get("patientName"),
+        email:formData.get("email"),
+        phone:formData.get("phone"),
+        preferredContact:formData.get("preferredContact"),
+        doctorMessage:formData.get("doctorMessage"),
+        language:"no"
+      };
+
+      try{
+        const body = new URLSearchParams();
+        Object.keys(payload).forEach(key => body.append(key, payload[key] ?? ""));
+        const response = await fetch(API_URL, { method:"POST", body, redirect:"follow" });
+        const json = await response.json();
+        if(!json.ok) throw new Error(json.error || "Det valgte tidspunktet er ikke lenger tilgjengelig.");
+        showSuccess("Forespørselen din er sendt. Klinikken vil vurdere og bekrefte timen.");
+        event.target.reset();
+        await loadAvailability();
+        state.startTime = null;
+        state.endTime = null;
+        renderDays();
+        autoSelectFirstAvailableDate();
+        renderHours();
+        updateSummary();
+      } catch(error){
+        showError(error.message);
+      } finally {
+        button.textContent = "Send timeforespørsel";
+        button.disabled = false;
+        updateSummary();
+      }
+    }
+
+    function setSyncStatus(active, text = ""){
+      state.loading = active;
+      const box = document.getElementById("syncStatus");
+      if(active){ box.classList.remove("hidden"); box.innerHTML = `<span class="inline-flex items-center gap-2"><span class="spinner"></span>${escapeHTML(text)}</span>`; }
+      else { box.classList.add("hidden"); box.innerHTML = ""; }
+    }
+    function showSuccess(message){ const box = document.getElementById("successBox"); box.classList.add("active"); box.textContent = message; }
+    function showError(message){ const box = document.getElementById("errorBox"); box.classList.add("active"); box.textContent = message; }
+    function hideMessages(){ document.getElementById("successBox").classList.remove("active"); document.getElementById("errorBox").classList.remove("active"); }
+    function toISODate(date){ return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`; }
+    function weekdayShort(date){ return ["Søn","Man","Tir","Ons","Tor","Fre","Lør"][date.getDay()]; }
+    function monthShort(date){ return ["Jan","Feb","Mar","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Des"][date.getMonth()]; }
+    function formatDisplayDate(iso){ const date = new Date(iso + "T00:00:00"); return `${weekdayShort(date)}, ${String(date.getDate()).padStart(2,"0")} ${monthShort(date)}`; }
+    function addMinutes(time, minutes){ const [hours, mins] = time.split(":").map(Number); const date = new Date(2000, 0, 1, hours, mins + Number(minutes), 0); return `${String(date.getHours()).padStart(2,"0")}:${String(date.getMinutes()).padStart(2,"0")}`; }
+    function escapeHTML(value){ return String(value ?? "").replace(/[&<>"']/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;" }[char])); }
+  </script>
+</body>
+</html>
