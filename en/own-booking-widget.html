@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Own Booking Widget | Joanna Filek</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-plum': '#722D64',
+            'brand-lavender': '#E8C1D9',
+            'brand-green': '#1B3D2F',
+            'brand-green-light': '#FDF9FB',
+            'brand-white': '#FCFCFC',
+            'brand-violet-light': '#F4E6EF'
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: #1B3D2F;
+      font-family: 'Poppins', sans-serif;
+    }
+    .service-card, .day-card, .hour-chip {
+      transition: all .25s ease;
+    }
+    .service-card.active, .day-card.active {
+      border-color: #722D64;
+      background: #F4E6EF;
+      box-shadow: 0 0 0 3px rgba(114,45,100,.08);
+    }
+    .hour-chip.active {
+      background: #722D64;
+      color: #fff;
+      border-color: #722D64;
+    }
+    .service-card:disabled,
+    .day-card:disabled,
+    .hour-chip:disabled {
+      opacity: .42;
+      cursor: not-allowed;
+    }
+    .message {
+      display: none;
+    }
+    .message.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <main class="w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <section class="bg-brand-green-light border border-brand-plum/10 rounded-[28px] p-5 md:p-6">
+        <p class="text-xs uppercase tracking-[0.22em] text-brand-plum font-bold mb-2">Step 1</p>
+        <h2 class="font-serif text-3xl text-brand-green mb-4">Choose your consultation</h2>
+
+        <div id="serviceGrid" class="grid gap-3"></div>
+
+        <div class="mt-6 rounded-2xl bg-white border border-brand-plum/10 p-4 text-sm text-brand-green/80">
+          Availability is checked against the clinic Google Calendar before booking.
+        </div>
+      </section>
+
+      <section class="bg-white border border-brand-plum/10 rounded-[28px] p-5 md:p-6">
+        <p class="text-xs uppercase tracking-[0.22em] text-brand-plum font-bold mb-2">Step 2</p>
+        <h2 class="font-serif text-3xl text-brand-green mb-4">Select date and time</h2>
+
+        <div id="daysGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-5"></div>
+
+        <h3 class="font-bold text-brand-green mb-3">Available times</h3>
+        <div id="hoursGrid" class="flex flex-wrap gap-2 min-h-[48px]">
+          <div class="text-sm text-brand-green/60">Select a service first.</div>
+        </div>
+      </section>
+    </div>
+
+    <section class="mt-6 bg-brand-violet-light/60 border border-brand-plum/10 rounded-[28px] p-5 md:p-6">
+      <p class="text-xs uppercase tracking-[0.22em] text-brand-plum font-bold mb-2">Step 3</p>
+      <h2 class="font-serif text-3xl text-brand-green mb-4">Your details</h2>
+
+      <div class="bg-white border border-brand-plum/10 rounded-2xl p-4 mb-4">
+        <p class="text-xs uppercase tracking-widest text-brand-plum font-bold">Selected appointment</p>
+        <strong id="summaryText" class="block text-brand-green mt-1">Select service, date and time</strong>
+      </div>
+
+      <form id="bookingForm" class="grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="submitBooking(event)">
+        <label class="grid gap-2 text-sm font-bold">
+          Full name
+          <input name="patientName" required placeholder="Your full name" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
+        </label>
+
+        <label class="grid gap-2 text-sm font-bold">
+          Email
+          <input name="email" type="email" required placeholder="your@email.com" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
+        </label>
+
+        <label class="grid gap-2 text-sm font-bold">
+          Phone
+          <input name="phone" required placeholder="+48 000 000 000" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
+        </label>
+
+        <label class="grid gap-2 text-sm font-bold">
+          Notes
+          <input name="notes" placeholder="Optional" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
+        </label>
+
+        <div class="md:col-span-2 bg-amber-50 border border-amber-200 text-amber-900 rounded-2xl p-4 text-sm leading-relaxed">
+          Please do not send sensitive medical information in this form.
+        </div>
+
+        <button id="submitBtn" disabled class="md:col-span-2 bg-brand-green text-white font-bold px-6 py-4 rounded-2xl hover:bg-brand-plum smooth-transition disabled:opacity-50 disabled:cursor-not-allowed">
+          Book appointment
+        </button>
+      </form>
+
+      <div id="successBox" class="message mt-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl p-4 text-sm font-medium"></div>
+      <div id="errorBox" class="message mt-4 bg-red-50 border border-red-200 text-red-800 rounded-2xl p-4 text-sm font-medium"></div>
+    </section>
+  </main>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbzDEt8NQg6zimzq7K_P_AC9X89G2ZtVHWB_UyaZLuO36HqvEB-5Tsp8MYTaI8vH4mU-0g/exec";
+
+    const services = [
+      {
+        id: "individual_psychotherapy",
+        name: "Individual Psychotherapy",
+        duration: 50,
+        price: "122 EUR",
+        channel: "Online Consultation",
+        location: "Online / Video consultation"
+      },
+      {
+        id: "individual_sexological_consultation",
+        name: "Individual Sexological Consultation",
+        duration: 50,
+        price: "131 EUR",
+        channel: "Online Consultation",
+        location: "Online / Video consultation"
+      },
+      {
+        id: "couples_psychotherapy",
+        name: "Couples Psychotherapy",
+        duration: 75,
+        price: "225 EUR",
+        channel: "Online Consultation",
+        location: "Online / Video consultation"
+      },
+      {
+        id: "couples_sexological_consultation",
+        name: "Couples Sexological Consultation",
+        duration: 75,
+        price: "248 EUR",
+        channel: "Online Consultation",
+        location: "Online / Video consultation"
+      }
+    ];
+
+    const state = {
+      service: null,
+      dateISO: null,
+      startTime: null,
+      endTime: null,
+      slotsByDate: {}
+    };
+
+    const demoSlots = {
+      "2026-06-22": ["10:00", "11:00", "15:00", "18:00"],
+      "2026-06-23": ["09:00", "10:00", "14:00", "16:00"],
+      "2026-06-24": ["10:30", "13:30", "15:30"],
+      "2026-06-25": ["09:00", "11:00", "14:00", "17:00"],
+      "2026-06-26": ["10:00", "12:00", "15:00"]
+    };
+
+    renderServices();
+    renderDays();
+    updateSummary();
+
+    function isApiConfigured() {
+      return API_URL && !API_URL.includes("PASTE_YOUR_GOOGLE_APPS_SCRIPT");
+    }
+
+    function renderServices() {
+      document.getElementById("serviceGrid").innerHTML = services.map(service => `
+        <button type="button" id="service-${service.id}" class="service-card text-left bg-white border border-brand-plum/10 rounded-2xl p-4 hover:border-brand-plum" onclick="selectService('${service.id}')">
+          <strong class="block text-brand-green">${escapeHTML(service.name)}</strong>
+          <span class="block text-sm text-brand-green/60 mt-1">${service.duration} min • ${service.price}</span>
+        </button>
+      `).join("");
+    }
+
+    async function selectService(id) {
+      state.service = services.find(service => service.id === id);
+      state.dateISO = null;
+      state.startTime = null;
+      state.endTime = null;
+
+      document.querySelectorAll(".service-card").forEach(el => el.classList.remove("active"));
+      document.getElementById("service-" + id).classList.add("active");
+
+      await loadAvailability();
+      renderDays();
+      renderHours();
+      updateSummary();
+    }
+
+    function nextBusinessDates(count = 10) {
+      const dates = [];
+      const today = new Date();
+      today.setHours(0,0,0,0);
+
+      let cursor = new Date(today);
+      while (dates.length < count) {
+        const day = cursor.getDay();
+        if (day >= 1 && day <= 5) dates.push(new Date(cursor));
+        cursor.setDate(cursor.getDate() + 1);
+      }
+      return dates;
+    }
+
+    async function loadAvailability() {
+      if (!state.service) return;
+
+      document.getElementById("hoursGrid").innerHTML = `<div class="text-sm text-brand-green/60">Loading available times...</div>`;
+
+      const dates = nextBusinessDates(10);
+      const start = toISODate(dates[0]);
+      const end = toISODate(dates[dates.length - 1]);
+
+      if (!isApiConfigured()) {
+        state.slotsByDate = demoSlots;
+        return;
+      }
+
+      try {
+        const url = `${API_URL}?action=availability&service=${encodeURIComponent(state.service.id)}&start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}`;
+        const response = await fetch(url, { method: "GET", redirect: "follow" });
+        const json = await response.json();
+
+        if (!json.ok) throw new Error(json.error || "Could not load availability.");
+        state.slotsByDate = json.slotsByDate || {};
+      } catch (error) {
+        state.slotsByDate = {};
+        showError("Could not load availability. Please try again.");
+        console.error(error);
+      }
+    }
+
+    function renderDays() {
+      const dates = nextBusinessDates(10);
+      document.getElementById("daysGrid").innerHTML = dates.map(date => {
+        const iso = toISODate(date);
+        const hasSlots = state.service && (state.slotsByDate[iso] || []).length > 0;
+
+        return `
+          <button type="button" class="day-card border border-brand-plum/10 bg-white rounded-2xl py-3 px-2 text-center font-bold ${state.dateISO === iso ? "active" : ""}" ${hasSlots ? "" : "disabled"} onclick="selectDate('${iso}')">
+            <span class="block text-[10px] uppercase tracking-wider text-brand-green/50">${weekdayShort(date)}</span>
+            ${String(date.getDate()).padStart(2,"0")} ${monthShort(date)}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function selectDate(iso) {
+      state.dateISO = iso;
+      state.startTime = null;
+      state.endTime = null;
+      renderDays();
+      renderHours();
+      updateSummary();
+    }
+
+    function renderHours() {
+      const grid = document.getElementById("hoursGrid");
+
+      if (!state.service) {
+        grid.innerHTML = `<div class="text-sm text-brand-green/60">Select a service first.</div>`;
+        return;
+      }
+
+      if (!state.dateISO) {
+        grid.innerHTML = `<div class="text-sm text-brand-green/60">Select an available date.</div>`;
+        return;
+      }
+
+      const slots = state.slotsByDate[state.dateISO] || [];
+
+      if (!slots.length) {
+        grid.innerHTML = `<div class="text-sm text-brand-green/60">No available times for this date.</div>`;
+        return;
+      }
+
+      grid.innerHTML = slots.map(time => `
+        <button type="button" class="hour-chip border border-brand-plum/10 bg-white rounded-full px-4 py-3 font-bold ${state.startTime === time ? "active" : ""}" onclick="selectTime('${time}')">${time}</button>
+      `).join("");
+    }
+
+    function selectTime(time) {
+      state.startTime = time;
+      state.endTime = addMinutes(time, state.service.duration);
+      renderHours();
+      updateSummary();
+    }
+
+    function updateSummary() {
+      const summary = document.getElementById("summaryText");
+      const button = document.getElementById("submitBtn");
+
+      if (state.service && state.dateISO && state.startTime) {
+        summary.textContent = `${state.service.name} • ${formatDisplayDate(state.dateISO)} • ${state.startTime} - ${state.endTime}`;
+        button.disabled = false;
+      } else {
+        summary.textContent = "Select service, date and time";
+        button.disabled = true;
+      }
+    }
+
+    async function submitBooking(event) {
+      event.preventDefault();
+      hideMessages();
+
+      if (!state.service || !state.dateISO || !state.startTime) {
+        showError("Please select service, date and time.");
+        return;
+      }
+
+      const button = document.getElementById("submitBtn");
+      button.disabled = true;
+      button.textContent = "Booking...";
+
+      const formData = new FormData(event.target);
+
+      const payload = {
+        action: "book",
+        serviceId: state.service.id,
+        service: state.service.name,
+        duration: state.service.duration,
+        channel: state.service.channel,
+        location: state.service.location,
+        dateISO: state.dateISO,
+        startTime: state.startTime,
+        endTime: state.endTime,
+        patientName: formData.get("patientName"),
+        email: formData.get("email"),
+        phone: formData.get("phone"),
+        notes: formData.get("notes")
+      };
+
+      if (!isApiConfigured()) {
+        showSuccess("Demo booking created. Connect Apps Script to save it to Google Calendar.");
+        event.target.reset();
+        button.textContent = "Book appointment";
+        button.disabled = false;
+        updateSummary();
+        return;
+      }
+
+      try {
+        const body = new URLSearchParams();
+        Object.keys(payload).forEach(key => body.append(key, payload[key] ?? ""));
+
+        const response = await fetch(API_URL, { method: "POST", body, redirect: "follow" });
+        const json = await response.json();
+
+        if (!json.ok) {
+          throw new Error(json.error || "The selected time is no longer available.");
+        }
+
+        showSuccess("Your appointment was booked successfully. A confirmation email will be sent.");
+        event.target.reset();
+
+        await loadAvailability();
+        state.startTime = null;
+        state.endTime = null;
+
+        renderDays();
+        renderHours();
+        updateSummary();
+      } catch (error) {
+        showError(error.message);
+      } finally {
+        button.textContent = "Book appointment";
+        button.disabled = false;
+        updateSummary();
+      }
+    }
+
+    function showSuccess(message) {
+      const box = document.getElementById("successBox");
+      box.classList.add("active");
+      box.textContent = message;
+    }
+
+    function showError(message) {
+      const box = document.getElementById("errorBox");
+      box.classList.add("active");
+      box.textContent = message;
+    }
+
+    function hideMessages() {
+      document.getElementById("successBox").classList.remove("active");
+      document.getElementById("errorBox").classList.remove("active");
+    }
+
+    function toISODate(date) {
+      return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
+    }
+
+    function weekdayShort(date) {
+      return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][date.getDay()];
+    }
+
+    function monthShort(date) {
+      return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][date.getMonth()];
+    }
+
+    function formatDisplayDate(iso) {
+      const date = new Date(iso + "T00:00:00");
+      return `${weekdayShort(date)}, ${String(date.getDate()).padStart(2,"0")} ${monthShort(date)}`;
+    }
+
+    function addMinutes(time, minutes) {
+      const [hours, mins] = time.split(":").map(Number);
+      const date = new Date(2000, 0, 1, hours, mins + Number(minutes), 0);
+      return `${String(date.getHours()).padStart(2,"0")}:${String(date.getMinutes()).padStart(2,"0")}`;
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char]));
+    }
+  </script>
+</body>
+</html>
