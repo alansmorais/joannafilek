@@ -19,7 +19,7 @@
     .card-head{padding:18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center}.card-head h2{margin:0;color:var(--green);font-size:1rem}.card-head p{margin:4px 0 0;font-size:.84rem}.week-controls{display:flex;align-items:center;gap:8px}.week-label{min-width:150px;text-align:center;font-weight:800;color:var(--green)}
     .grid2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);gap:18px}.week-view{display:grid;grid-template-columns:repeat(7,minmax(125px,1fr));overflow-x:auto}.day{min-height:500px;border-right:1px solid var(--line);padding:14px 10px}.day:last-child{border-right:0}.day-head{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:900;color:var(--green)}.day-head small{color:var(--muted)}.empty{border:1px dashed var(--line);border-radius:14px;color:var(--muted);padding:12px;text-align:center;font-size:.82rem}
     .appt{background:#edf5f1;border:1px solid rgba(27,61,47,.12);border-radius:16px;padding:12px;margin-bottom:10px;cursor:pointer}.appt:hover{outline:3px solid rgba(114,45,100,.08);border-color:var(--plum)}.appt.plum{background:var(--soft)}.appt.pending{background:#fff7ed;border-color:#fdba74}.appt.unavailable{background:#f2f2f0;color:var(--muted);cursor:default}.appt-time{font-weight:900;color:var(--plum);font-size:.82rem}.appt-name{font-weight:900;color:var(--green);font-size:.88rem;margin-top:5px}.appt-service{color:var(--muted);font-size:.78rem;margin-top:4px}
-    .list{padding:10px;max-height:574px;overflow:auto}.row{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center;padding:12px;border-radius:18px;cursor:pointer}.row:hover{background:#fbf8f5}.time{font-weight:900;color:var(--plum)}.badge{border-radius:999px;padding:6px 9px;background:#edf5f1;color:var(--green);font-size:.72rem;font-weight:900}.badge.pending{background:#fff7ed;color:#9a3412}.badge.unread{background:var(--soft);color:var(--plum)}
+    .list{padding:10px;max-height:574px;overflow:auto}.row{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center;padding:12px;border-radius:18px;cursor:pointer}.row:hover{background:#fbf8f5}.row .badge.unread{box-shadow:0 0 0 3px rgba(114,45,100,.08)}.time{font-weight:900;color:var(--plum)}.badge{border-radius:999px;padding:6px 9px;background:#edf5f1;color:var(--green);font-size:.72rem;font-weight:900}.badge.pending{background:#fff7ed;color:#9a3412}.badge.unread{background:var(--soft);color:var(--plum)}
     table{width:100%;border-collapse:collapse}th,td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:.9rem}th{color:var(--muted);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}.table-wrap{overflow:auto}.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:18px}.info{background:#fbf8f5;border:1px solid var(--line);border-radius:18px;padding:16px}.info h3{margin:0 0 8px;color:var(--green)}.info p{margin:0 0 12px;font-size:.9rem}.detail{background:#fbf8f5;border:1px solid var(--line);border-radius:16px;padding:13px;margin:12px 0}.detail small{display:block;color:var(--muted);font-weight:800;text-transform:uppercase;font-size:.7rem;margin-bottom:5px}.detail strong{color:var(--green);word-break:break-word}
     .modal{position:fixed;inset:0;background:rgba(22,35,29,.35);backdrop-filter:blur(6px);z-index:30;display:none;align-items:center;justify-content:center;padding:24px}.modal.active{display:flex}.modal-card{width:min(100%,620px);background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:24px}.modal-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}.modal-head h2{font-family:"Playfair Display",serif;color:var(--green);font-size:2rem;line-height:1;margin:0 0 6px}.details{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}.toast{position:fixed;right:24px;bottom:24px;background:var(--green);color:#fff;padding:12px 14px;border-radius:15px;box-shadow:0 18px 40px rgba(27,61,47,.24);font-weight:800;display:none;z-index:50}.toast.active{display:block}
     .bottom-nav{display:none;position:fixed;left:0;right:0;bottom:0;height:78px;background:#fff;border-top:1px solid var(--line);z-index:20;grid-template-columns:repeat(5,1fr);box-shadow:0 -10px 30px rgba(22,35,29,.06)}.bottom-nav button{border:0;background:#fff;color:#9ca3af;display:grid;place-items:center;gap:2px;font-size:.72rem;font-weight:700;padding:8px 0}.bottom-nav button .ico{font-size:1.35rem}.bottom-nav button.active{color:var(--ok)}
@@ -87,13 +87,44 @@
   </section>
 
   <div id="modal" class="modal" onclick="if(event.target.id==='modal') closeModal()"><div class="modal-card"><div class="modal-head"><div><h2 id="detailName">Patient</h2><p id="detailService">Service</p></div><button class="btn" onclick="closeModal()">Close</button></div><div class="details"><div class="detail"><small>Date</small><strong id="detailDate">—</strong></div><div class="detail"><small>Time</small><strong id="detailTime">—</strong></div><div class="detail"><small>Phone</small><strong id="detailPhone">—</strong></div><div class="detail"><small>Email</small><strong id="detailEmail">—</strong></div><div class="detail"><small>Location</small><strong id="detailLocation">—</strong></div><div class="detail"><small>Status</small><strong id="detailStatus">—</strong></div></div><div class="detail"><small>Message to doctor</small><strong id="detailMessage">—</strong></div><label>Clinic note<textarea id="clinicNote" placeholder="Optional note for patient"></textarea></label><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-primary" onclick="openWhatsApp()">WhatsApp</button><button class="btn btn-plum" onclick="confirmSelected()">Confirm</button><button class="btn" onclick="declineSelected()">Decline</button><button class="btn" onclick="copyDetails()">Copy details</button></div></div></div>
+
+  <div id="messageModal" class="modal" onclick="if(event.target.id==='messageModal') closeMessageModal()">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <h2 id="messagePatient">Patient message</h2>
+          <p id="messageMeta">Message details</p>
+        </div>
+        <button class="btn" onclick="closeMessageModal()">Close</button>
+      </div>
+
+      <div class="details">
+        <div class="detail"><small>Patient</small><strong id="messageName">—</strong></div>
+        <div class="detail"><small>Contact</small><strong id="messageContact">—</strong></div>
+        <div class="detail"><small>Date / Time</small><strong id="messageDateTime">—</strong></div>
+        <div class="detail"><small>Status</small><strong id="messageStatus">—</strong></div>
+      </div>
+
+      <div class="detail">
+        <small>Message to doctor</small>
+        <strong id="messageText">—</strong>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="markSelectedMessageRead()">Mark as read</button>
+        <button class="btn btn-plum" onclick="openRelatedAppointment()">Open appointment</button>
+        <button class="btn" onclick="copyMessage()">Copy message</button>
+      </div>
+    </div>
+  </div>
+
   <div id="toast" class="toast">Copied</div>
 
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbzDEt8NQg6zimzq7K_P_AC9X89G2ZtVHWB_UyaZLuO36HqvEB-5Tsp8MYTaI8vH4mU-0g/exec";
     const USERNAME = "admin";
     const PASSWORD = "clinic123";
-    const state = {active:"Calendar", weekStart:getMonday(new Date()), agenda:[], messages:[], selected:null, loading:false};
+    const state = {active:"Calendar", weekStart:getMonday(new Date()), agenda:[], messages:[], selected:null, selectedMessage:null, loading:false};
     const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
@@ -117,9 +148,48 @@
     function renderWeek(){document.getElementById("weekLabel").textContent=`${state.weekStart.getDate()} ${months[state.weekStart.getMonth()]} – ${addDays(state.weekStart,6).getDate()} ${months[addDays(state.weekStart,6).getMonth()]}`;const root=document.getElementById("weekView");if(state.loading){root.innerHTML='<div style="grid-column:1/-1;padding:24px;color:var(--muted)">Loading weekly calendar...</div>';return;}root.innerHTML="";for(let i=0;i<7;i++){const d=addDays(state.weekStart,i), date=iso(d), items=filtered().filter(x=>x.dateISO===date), col=document.createElement("div");col.className="day";col.innerHTML=`<div class="day-head"><span>${days[d.getDay()]}</span><small>${String(d.getDate()).padStart(2,"0")} ${months[d.getMonth()]}</small></div>`;if(!items.length)col.innerHTML+='<div class="empty">No appointments</div>';items.forEach(x=>{const div=document.createElement("div");div.className="appt "+(unavailable(x)?"unavailable":(pending(x)?"pending":(x.channel.toLowerCase().includes("online")?"":"plum")));div.innerHTML=`<div class="appt-time">${esc(x.startTime)} – ${esc(x.endTime)}</div><div class="appt-name">${esc(x.patientName)}</div><div class="appt-service">${esc(x.status)} • ${esc(x.service)}</div>`;if(!unavailable(x))div.onclick=()=>openDetail(x.id);col.appendChild(div);});root.appendChild(col);}}
     function renderPending(){const root=document.getElementById("pendingList"), list=real().filter(pending);if(state.loading){root.innerHTML='<div style="padding:18px;color:var(--muted)">Loading...</div>';return;}if(!list.length){root.innerHTML='<div style="padding:18px;color:var(--muted)">No pending requests.</div>';return;}root.innerHTML=list.map(x=>`<div class="row" onclick="openDetail('${attr(x.id)}')"><div class="time">${esc(x.startTime)}</div><div><strong>${esc(x.patientName)}</strong><br><span style="color:var(--muted);font-size:.84rem">${dateShort(x.dateISO)} • ${esc(x.service)}</span></div><span class="badge pending">Pending</span></div>`).join("");}
     function renderPatients(){const body=document.getElementById("patientsTable"), g={};real(filtered()).forEach(x=>{const k=x.patientName||"Patient";if(!g[k])g[k]={patientName:k,service:x.service,phone:x.phone,email:x.email,count:0};g[k].count++;if(x.phone)g[k].phone=x.phone;if(x.email)g[k].email=x.email;if(x.service)g[k].service=x.service;});const list=Object.values(g).sort((a,b)=>a.patientName.localeCompare(b.patientName));body.innerHTML=list.length?list.map(p=>`<tr><td><strong>${esc(p.patientName)}</strong></td><td>${esc(p.service||"—")}</td><td>${esc(p.phone||"—")}</td><td>${esc(p.email||"—")}</td><td>${p.count}</td></tr>`).join(""):'<tr><td colspan="5">No patients found.</td></tr>';}
-    function renderMessages(){const root=document.getElementById("messagesList");if(!root)return;if(!state.messages.length){root.innerHTML='<div style="padding:18px;color:var(--muted)">No messages yet.</div>';return;}root.innerHTML=state.messages.map(m=>`<div class="row" onclick="openMessage('${attr(m.appointmentId)}')"><div class="time">${esc(m.startTime||"")}</div><div><strong>${esc(m.patientName)}</strong><br><span style="color:var(--muted);font-size:.84rem">${esc(m.subject)} • ${esc(m.message)}</span></div><span class="badge ${m.status==='Unread'?'unread':''}">${esc(m.status)}</span></div>`).join("");}
+    function renderMessages(){const root=document.getElementById("messagesList");if(!root)return;if(!state.messages.length){root.innerHTML='<div style="padding:18px;color:var(--muted)">No messages yet.</div>';return;}root.innerHTML=state.messages.map(m=>`<div class="row" onclick="openMessage('${attr(m.messageId)}')"><div class="time">${esc(m.startTime||"")}</div><div><strong>${esc(m.patientName)}</strong><br><span style="color:var(--muted);font-size:.84rem">${esc(m.subject)} • ${esc(m.message)}</span></div><span class="badge ${m.status==='Unread'?'unread':''}">${esc(m.status)}</span></div>`).join("");}
     function renderMessageCount(){const c=state.messages.filter(m=>m.status==="Unread").length;document.getElementById("messageCount").textContent=c;}
-    function openMessage(appointmentId){const appt=state.agenda.find(x=>x.id===appointmentId);if(appt)openDetail(appt.id);}
+    function openMessage(messageId){
+      const msg=state.messages.find(m=>String(m.messageId)===String(messageId));
+      if(!msg){toast("Message not found");return;}
+      state.selectedMessage=msg;
+      document.getElementById("messagePatient").textContent=msg.patientName||"Patient message";
+      document.getElementById("messageMeta").textContent=(msg.subject||"Message")+" • "+(msg.status||"");
+      document.getElementById("messageName").textContent=msg.patientName||"—";
+      document.getElementById("messageContact").textContent=[msg.phone,msg.email,msg.preferredContact].filter(Boolean).join(" • ")||"—";
+      document.getElementById("messageDateTime").textContent=[msg.dateISO,msg.startTime].filter(Boolean).join(" at ")||"—";
+      document.getElementById("messageStatus").textContent=msg.status||"—";
+      document.getElementById("messageText").textContent=msg.message||"No message provided.";
+      document.getElementById("messageModal").classList.add("active");
+    }
+    function closeMessageModal(){document.getElementById("messageModal").classList.remove("active");}
+    async function markSelectedMessageRead(){
+      if(!state.selectedMessage){toast("No message selected");return;}
+      try{
+        const body=new URLSearchParams();
+        body.append("action","markread");
+        body.append("messageId",state.selectedMessage.messageId);
+        const r=await fetch(API_URL,{method:"POST",body,redirect:"follow"});
+        const j=await r.json();
+        if(!j.ok)throw new Error(j.error||"Could not mark as read");
+        toast("Message marked as read");
+        closeMessageModal();
+        await loadMessages();
+      }catch(e){toast(e.message);}
+    }
+    function openRelatedAppointment(){
+      if(!state.selectedMessage){toast("No message selected");return;}
+      const appt=state.agenda.find(x=>String(x.id)===String(state.selectedMessage.appointmentId));
+      if(appt){closeMessageModal();openDetail(appt.id);}
+      else{toast("Appointment is outside selected week. Go to that week and refresh.");}
+    }
+    async function copyMessage(){
+      if(!state.selectedMessage)return;
+      const m=state.selectedMessage;
+      await navigator.clipboard.writeText([`Patient: ${m.patientName||""}`,`Phone: ${m.phone||""}`,`Email: ${m.email||""}`,`Date: ${m.dateISO||""}`,`Time: ${m.startTime||""}`,`Message: ${m.message||""}`].join("\n"));
+      toast("Message copied");
+    }
     function openDetail(id){const x=state.agenda.find(a=>String(a.id)===String(id));if(!x||unavailable(x))return;state.selected=x;document.getElementById("detailName").textContent=x.patientName;document.getElementById("detailService").textContent=x.service;document.getElementById("detailDate").textContent=dateShort(x.dateISO);document.getElementById("detailTime").textContent=`${x.startTime} – ${x.endTime}`;document.getElementById("detailPhone").textContent=x.phone||"—";document.getElementById("detailEmail").textContent=x.email||"—";document.getElementById("detailLocation").textContent=[x.channel,x.location].filter(Boolean).join(" • ")||"—";document.getElementById("detailStatus").textContent=x.status;document.getElementById("detailMessage").textContent=x.doctorMessage||"—";document.getElementById("clinicNote").value=x.clinicNote||"";document.getElementById("modal").classList.add("active");}
     function closeModal(){document.getElementById("modal").classList.remove("active");}
     async function postAction(action,id){const body=new URLSearchParams();body.append("action",action);body.append("id",id);body.append("clinicNote",document.getElementById("clinicNote").value||"");const r=await fetch(API_URL,{method:"POST",body,redirect:"follow"});const j=await r.json();if(!j.ok)throw new Error(j.error||"Action failed");return j;}
