@@ -27,37 +27,14 @@
   </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
-    body {
-      margin: 0;
-      background: #ffffff;
-      color: #1B3D2F;
-      font-family: 'Poppins', sans-serif;
-    }
-    .service-card, .day-card, .hour-chip {
-      transition: all .25s ease;
-    }
-    .service-card.active, .day-card.active {
-      border-color: #722D64;
-      background: #F4E6EF;
-      box-shadow: 0 0 0 3px rgba(114,45,100,.08);
-    }
-    .hour-chip.active {
-      background: #722D64;
-      color: #fff;
-      border-color: #722D64;
-    }
-    .service-card:disabled,
-    .day-card:disabled,
-    .hour-chip:disabled {
-      opacity: .42;
-      cursor: not-allowed;
-    }
-    .message {
-      display: none;
-    }
-    .message.active {
-      display: block;
-    }
+    body { margin:0; background:#fff; color:#1B3D2F; font-family:'Poppins',sans-serif; }
+    .service-card,.day-card,.hour-chip{transition:all .25s ease}
+    .service-card.active,.day-card.active{border-color:#722D64;background:#F4E6EF;box-shadow:0 0 0 3px rgba(114,45,100,.08)}
+    .hour-chip.active{background:#722D64;color:#fff;border-color:#722D64}
+    .service-card:disabled,.day-card:disabled,.hour-chip:disabled{opacity:.42;cursor:not-allowed}
+    .message{display:none}.message.active{display:block}
+    .spinner{width:18px;height:18px;border:2px solid rgba(114,45,100,.18);border-top-color:#722D64;border-radius:999px;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
   </style>
 </head>
 <body>
@@ -66,9 +43,7 @@
       <section class="bg-brand-green-light border border-brand-plum/10 rounded-[28px] p-5 md:p-6">
         <p class="text-xs uppercase tracking-[0.22em] text-brand-plum font-bold mb-2">Step 1</p>
         <h2 class="font-serif text-3xl text-brand-green mb-4">Choose your consultation</h2>
-
         <div id="serviceGrid" class="grid gap-3"></div>
-
         <div class="mt-6 rounded-2xl bg-white border border-brand-plum/10 p-4 text-sm text-brand-green/80">
           Availability is checked against the clinic Calendar before booking.
         </div>
@@ -77,9 +52,8 @@
       <section class="bg-white border border-brand-plum/10 rounded-[28px] p-5 md:p-6">
         <p class="text-xs uppercase tracking-[0.22em] text-brand-plum font-bold mb-2">Step 2</p>
         <h2 class="font-serif text-3xl text-brand-green mb-4">Select date and time</h2>
-
+        <div id="syncStatus" class="hidden mb-4 bg-brand-violet-light/60 border border-brand-plum/10 text-brand-green rounded-2xl p-3 text-sm"></div>
         <div id="daysGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-5"></div>
-
         <h3 class="font-bold text-brand-green mb-3">Available times</h3>
         <div id="hoursGrid" class="flex flex-wrap gap-2 min-h-[48px]">
           <div class="text-sm text-brand-green/60">Select a service first.</div>
@@ -101,26 +75,21 @@
           Full name
           <input name="patientName" required placeholder="Your full name" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
         </label>
-
         <label class="grid gap-2 text-sm font-bold">
           Email
           <input name="email" type="email" required placeholder="your@email.com" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
         </label>
-
         <label class="grid gap-2 text-sm font-bold">
           Phone
           <input name="phone" required placeholder="+48 000 000 000" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
         </label>
-
         <label class="grid gap-2 text-sm font-bold">
           Notes
           <input name="notes" placeholder="Optional" class="rounded-2xl border border-brand-plum/20 px-4 py-3 outline-none focus:border-brand-plum">
         </label>
-
         <div class="md:col-span-2 bg-amber-50 border border-amber-200 text-amber-900 rounded-2xl p-4 text-sm leading-relaxed">
           Please do not send sensitive medical information in this form.
         </div>
-
         <button id="submitBtn" disabled class="md:col-span-2 bg-brand-green text-white font-bold px-6 py-4 rounded-2xl hover:bg-brand-plum smooth-transition disabled:opacity-50 disabled:cursor-not-allowed">
           Book appointment
         </button>
@@ -135,65 +104,38 @@
     const API_URL = "https://script.google.com/macros/s/AKfycbzDEt8NQg6zimzq7K_P_AC9X89G2ZtVHWB_UyaZLuO36HqvEB-5Tsp8MYTaI8vH4mU-0g/exec";
 
     const services = [
-      {
-        id: "individual_psychotherapy",
-        name: "Individual Psychotherapy",
-        duration: 50,
-        price: "130 EUR",
-        channel: "Online Consultation",
-        location: "Online / Video consultation"
-      },
-      {
-        id: "individual_sexological_consultation",
-        name: "Individual Sexological Consultation",
-        duration: 50,
-        price: "150 EUR",
-        channel: "Online Consultation",
-        location: "Online / Video consultation"
-      },
-      {
-        id: "couples_psychotherapy",
-        name: "Couples Psychotherapy",
-        duration: 75,
-        price: "225 EUR",
-        channel: "Online Consultation",
-        location: "Online / Video consultation"
-      },
-      {
-        id: "couples_sexological_consultation",
-        name: "Couples Sexological Consultation",
-        duration: 75,
-        price: "260 EUR",
-        channel: "Online Consultation",
-        location: "Online / Video consultation"
-      }
+      { id:"individual_psychotherapy", name:"Individual Psychotherapy", duration:50, price:"130 EUR", channel:"Online Consultation", location:"Online / Video consultation" },
+      { id:"individual_sexological_consultation", name:"Individual Sexological Consultation", duration:50, price:"150 EUR", channel:"Online Consultation", location:"Online / Video consultation" },
+      { id:"couples_psychotherapy", name:"Couples Psychotherapy", duration:75, price:"225 EUR", channel:"Online Consultation", location:"Online / Video consultation" },
+      { id:"couples_sexological_consultation", name:"Couples Sexological Consultation", duration:75, price:"260 EUR", channel:"Online Consultation", location:"Online / Video consultation" }
     ];
 
     const state = {
-      service: null,
-      dateISO: null,
-      startTime: null,
-      endTime: null,
-      slotsByDate: {}
+      service:null,
+      dateISO:null,
+      startTime:null,
+      endTime:null,
+      slotsByDate:{},
+      loading:false
     };
 
     const demoSlots = {
-      "2026-06-22": ["10:00", "11:00", "15:00", "18:00"],
-      "2026-06-23": ["09:00", "10:00", "14:00", "16:00"],
-      "2026-06-24": ["10:30", "13:30", "15:30"],
-      "2026-06-25": ["09:00", "11:00", "14:00", "17:00"],
-      "2026-06-26": ["10:00", "12:00", "15:00"]
+      "2026-06-22":["10:00","11:00","15:00","18:00"],
+      "2026-06-23":["09:00","10:00","14:00","16:00"],
+      "2026-06-24":["10:30","13:30","15:30"],
+      "2026-06-25":["09:00","11:00","14:00","17:00"],
+      "2026-06-26":["10:00","12:00","15:00"]
     };
 
     renderServices();
     renderDays();
     updateSummary();
 
-    function isApiConfigured() {
+    function isApiConfigured(){
       return API_URL && !API_URL.includes("PASTE_YOUR_GOOGLE_APPS_SCRIPT");
     }
 
-    function renderServices() {
+    function renderServices(){
       document.getElementById("serviceGrid").innerHTML = services.map(service => `
         <button type="button" id="service-${service.id}" class="service-card text-left bg-white border border-brand-plum/10 rounded-2xl p-4 hover:border-brand-plum" onclick="selectService('${service.id}')">
           <strong class="block text-brand-green">${escapeHTML(service.name)}</strong>
@@ -202,7 +144,8 @@
       `).join("");
     }
 
-    async function selectService(id) {
+    async function selectService(id){
+      hideMessages();
       state.service = services.find(service => service.id === id);
       state.dateISO = null;
       state.startTime = null;
@@ -211,70 +154,92 @@
       document.querySelectorAll(".service-card").forEach(el => el.classList.remove("active"));
       document.getElementById("service-" + id).classList.add("active");
 
-      await loadAvailability();
+      setSyncStatus(true, "Checking Google Calendar availability...");
       renderDays();
+      renderHours();
+      updateSummary();
+
+      await loadAvailability();
+
+      setSyncStatus(false);
+      renderDays();
+      autoSelectFirstAvailableDate();
       renderHours();
       updateSummary();
     }
 
-    function nextBusinessDates(count = 10) {
+    function nextBusinessDates(count = 10){
       const dates = [];
       const today = new Date();
       today.setHours(0,0,0,0);
-
       let cursor = new Date(today);
-      while (dates.length < count) {
+
+      while(dates.length < count){
         const day = cursor.getDay();
-        if (day >= 1 && day <= 5) dates.push(new Date(cursor));
+        if(day >= 1 && day <= 5) dates.push(new Date(cursor));
         cursor.setDate(cursor.getDate() + 1);
       }
       return dates;
     }
 
-    async function loadAvailability() {
-      if (!state.service) return;
-
-      document.getElementById("hoursGrid").innerHTML = `<div class="text-sm text-brand-green/60">Loading available times...</div>`;
+    async function loadAvailability(){
+      if(!state.service) return;
 
       const dates = nextBusinessDates(10);
       const start = toISODate(dates[0]);
       const end = toISODate(dates[dates.length - 1]);
 
-      if (!isApiConfigured()) {
+      if(!isApiConfigured()){
         state.slotsByDate = demoSlots;
         return;
       }
 
-      try {
-        const url = `${API_URL}?action=availability&service=${encodeURIComponent(state.service.id)}&start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}`;
-        const response = await fetch(url, { method: "GET", redirect: "follow" });
-        const json = await response.json();
+      try{
+        const url = `${API_URL}?action=availability&service=${encodeURIComponent(state.service.id)}&start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}&t=${Date.now()}`;
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 25000);
 
-        if (!json.ok) throw new Error(json.error || "Could not load availability.");
+        const response = await fetch(url, { method:"GET", redirect:"follow", signal:controller.signal });
+        clearTimeout(timeout);
+
+        const json = await response.json();
+        if(!json.ok) throw new Error(json.error || "Could not load availability.");
+
         state.slotsByDate = json.slotsByDate || {};
-      } catch (error) {
+      } catch(error){
         state.slotsByDate = {};
-        showError("Could not load availability. Please try again.");
         console.error(error);
+        showError("Availability is taking too long or failed to load. Please try again in a moment.");
       }
     }
 
-    function renderDays() {
+    function renderDays(){
       const dates = nextBusinessDates(10);
+
       document.getElementById("daysGrid").innerHTML = dates.map(date => {
         const iso = toISODate(date);
-        const hasSlots = state.service && (state.slotsByDate[iso] || []).length > 0;
+        const slots = state.slotsByDate[iso] || [];
+        const hasSlots = state.service && slots.length > 0;
+        const disabled = !state.service || state.loading || !hasSlots;
 
         return `
-          <button type="button" class="day-card border border-brand-plum/10 bg-white rounded-2xl py-3 px-2 text-center font-bold ${state.dateISO === iso ? "active" : ""}" ${hasSlots ? "" : "disabled"} onclick="selectDate('${iso}')">
+          <button type="button" class="day-card border border-brand-plum/10 bg-white rounded-2xl py-3 px-2 text-center font-bold ${state.dateISO === iso ? "active" : ""}" ${disabled ? "disabled" : ""} onclick="selectDate('${iso}')">
             <span class="block text-[10px] uppercase tracking-wider text-brand-green/50">${weekdayShort(date)}</span>
             ${String(date.getDate()).padStart(2,"0")} ${monthShort(date)}
+            ${state.service && !state.loading ? `<small class="block mt-1 text-[10px] text-brand-green/50">${slots.length ? slots.length + " times" : "No times"}</small>` : ""}
           </button>
         `;
       }).join("");
     }
 
-    function selectDate(iso) {
+    function autoSelectFirstAvailableDate(){
+      if(!state.service || state.dateISO) return;
+      const dates = nextBusinessDates(10);
+      const first = dates.map(toISODate).find(iso => (state.slotsByDate[iso] || []).length > 0);
+      if(first) state.dateISO = first;
+    }
+
+    function selectDate(iso){
       state.dateISO = iso;
       state.startTime = null;
       state.endTime = null;
@@ -283,22 +248,28 @@
       updateSummary();
     }
 
-    function renderHours() {
+    function renderHours(){
       const grid = document.getElementById("hoursGrid");
 
-      if (!state.service) {
+      if(!state.service){
         grid.innerHTML = `<div class="text-sm text-brand-green/60">Select a service first.</div>`;
         return;
       }
 
-      if (!state.dateISO) {
-        grid.innerHTML = `<div class="text-sm text-brand-green/60">Select an available date.</div>`;
+      if(state.loading){
+        grid.innerHTML = `<div class="flex items-center gap-2 text-sm text-brand-green/70"><span class="spinner"></span> Checking calendar...</div>`;
+        return;
+      }
+
+      if(!state.dateISO){
+        const hasAny = Object.values(state.slotsByDate).some(slots => Array.isArray(slots) && slots.length);
+        grid.innerHTML = `<div class="text-sm text-brand-green/60">${hasAny ? "Select an available date." : "No available dates returned. Check calendar working hours and busy events."}</div>`;
         return;
       }
 
       const slots = state.slotsByDate[state.dateISO] || [];
 
-      if (!slots.length) {
+      if(!slots.length){
         grid.innerHTML = `<div class="text-sm text-brand-green/60">No available times for this date.</div>`;
         return;
       }
@@ -308,18 +279,18 @@
       `).join("");
     }
 
-    function selectTime(time) {
+    function selectTime(time){
       state.startTime = time;
       state.endTime = addMinutes(time, state.service.duration);
       renderHours();
       updateSummary();
     }
 
-    function updateSummary() {
+    function updateSummary(){
       const summary = document.getElementById("summaryText");
       const button = document.getElementById("submitBtn");
 
-      if (state.service && state.dateISO && state.startTime) {
+      if(state.service && state.dateISO && state.startTime){
         summary.textContent = `${state.service.name} • ${formatDisplayDate(state.dateISO)} • ${state.startTime} - ${state.endTime}`;
         button.disabled = false;
       } else {
@@ -328,11 +299,11 @@
       }
     }
 
-    async function submitBooking(event) {
+    async function submitBooking(event){
       event.preventDefault();
       hideMessages();
 
-      if (!state.service || !state.dateISO || !state.startTime) {
+      if(!state.service || !state.dateISO || !state.startTime){
         showError("Please select service, date and time.");
         return;
       }
@@ -344,22 +315,22 @@
       const formData = new FormData(event.target);
 
       const payload = {
-        action: "book",
-        serviceId: state.service.id,
-        service: state.service.name,
-        duration: state.service.duration,
-        channel: state.service.channel,
-        location: state.service.location,
-        dateISO: state.dateISO,
-        startTime: state.startTime,
-        endTime: state.endTime,
-        patientName: formData.get("patientName"),
-        email: formData.get("email"),
-        phone: formData.get("phone"),
-        notes: formData.get("notes")
+        action:"book",
+        serviceId:state.service.id,
+        service:state.service.name,
+        duration:state.service.duration,
+        channel:state.service.channel,
+        location:state.service.location,
+        dateISO:state.dateISO,
+        startTime:state.startTime,
+        endTime:state.endTime,
+        patientName:formData.get("patientName"),
+        email:formData.get("email"),
+        phone:formData.get("phone"),
+        notes:formData.get("notes")
       };
 
-      if (!isApiConfigured()) {
+      if(!isApiConfigured()){
         showSuccess("Demo booking created. Connect Apps Script to save it to Google Calendar.");
         event.target.reset();
         button.textContent = "Book appointment";
@@ -368,16 +339,14 @@
         return;
       }
 
-      try {
+      try{
         const body = new URLSearchParams();
         Object.keys(payload).forEach(key => body.append(key, payload[key] ?? ""));
 
-        const response = await fetch(API_URL, { method: "POST", body, redirect: "follow" });
+        const response = await fetch(API_URL, { method:"POST", body, redirect:"follow" });
         const json = await response.json();
 
-        if (!json.ok) {
-          throw new Error(json.error || "The selected time is no longer available.");
-        }
+        if(!json.ok) throw new Error(json.error || "The selected time is no longer available.");
 
         showSuccess("Your appointment was booked successfully. A confirmation email will be sent.");
         event.target.reset();
@@ -387,9 +356,10 @@
         state.endTime = null;
 
         renderDays();
+        autoSelectFirstAvailableDate();
         renderHours();
         updateSummary();
-      } catch (error) {
+      } catch(error){
         showError(error.message);
       } finally {
         button.textContent = "Book appointment";
@@ -398,53 +368,61 @@
       }
     }
 
-    function showSuccess(message) {
+    function setSyncStatus(active, text = ""){
+      state.loading = active;
+      const box = document.getElementById("syncStatus");
+
+      if(active){
+        box.classList.remove("hidden");
+        box.innerHTML = `<span class="inline-flex items-center gap-2"><span class="spinner"></span>${escapeHTML(text)}</span>`;
+      } else {
+        box.classList.add("hidden");
+        box.innerHTML = "";
+      }
+    }
+
+    function showSuccess(message){
       const box = document.getElementById("successBox");
       box.classList.add("active");
       box.textContent = message;
     }
 
-    function showError(message) {
+    function showError(message){
       const box = document.getElementById("errorBox");
       box.classList.add("active");
       box.textContent = message;
     }
 
-    function hideMessages() {
+    function hideMessages(){
       document.getElementById("successBox").classList.remove("active");
       document.getElementById("errorBox").classList.remove("active");
     }
 
-    function toISODate(date) {
+    function toISODate(date){
       return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
     }
 
-    function weekdayShort(date) {
-      return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][date.getDay()];
-    }
+    function weekdayShort(date){ return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][date.getDay()]; }
+    function monthShort(date){ return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][date.getMonth()]; }
 
-    function monthShort(date) {
-      return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][date.getMonth()];
-    }
-
-    function formatDisplayDate(iso) {
+    function formatDisplayDate(iso){
       const date = new Date(iso + "T00:00:00");
       return `${weekdayShort(date)}, ${String(date.getDate()).padStart(2,"0")} ${monthShort(date)}`;
     }
 
-    function addMinutes(time, minutes) {
+    function addMinutes(time, minutes){
       const [hours, mins] = time.split(":").map(Number);
       const date = new Date(2000, 0, 1, hours, mins + Number(minutes), 0);
       return `${String(date.getHours()).padStart(2,"0")}:${String(date.getMinutes()).padStart(2,"0")}`;
     }
 
-    function escapeHTML(value) {
+    function escapeHTML(value){
       return String(value ?? "").replace(/[&<>"']/g, char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;"
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
       }[char]));
     }
   </script>
