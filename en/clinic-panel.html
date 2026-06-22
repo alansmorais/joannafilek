@@ -113,6 +113,7 @@
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button class="btn btn-primary" onclick="markSelectedMessageRead()">Mark as read</button>
         <button class="btn btn-plum" onclick="openRelatedAppointment()">Open appointment</button>
+        <button class="btn" onclick="deleteSelectedMessage()">Delete message</button>
         <button class="btn" onclick="copyMessage()">Copy message</button>
       </div>
     </div>
@@ -174,6 +175,21 @@
         const j=await r.json();
         if(!j.ok)throw new Error(j.error||"Could not mark as read");
         toast("Message marked as read");
+        closeMessageModal();
+        await loadMessages();
+      }catch(e){toast(e.message);}
+    }
+    async function deleteSelectedMessage(){
+      if(!state.selectedMessage){toast("No message selected");return;}
+      if(!confirm("Delete this message from the panel?")) return;
+      try{
+        const body=new URLSearchParams();
+        body.append("action","deletemessage");
+        body.append("messageId",state.selectedMessage.messageId);
+        const r=await fetch(API_URL,{method:"POST",body,redirect:"follow"});
+        const j=await r.json();
+        if(!j.ok)throw new Error(j.error||"Could not delete message");
+        toast("Message deleted");
         closeMessageModal();
         await loadMessages();
       }catch(e){toast(e.message);}
