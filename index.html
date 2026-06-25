@@ -586,6 +586,63 @@
             document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
         }
     </script>
+<button onclick="toggleModal('bioModal')"
+  class="fixed bottom-24 right-5 bg-brand-plum text-white px-6 py-4 rounded-full shadow-2xl z-50 font-bold hover:bg-brand-green smooth-transition">
+  Linki
+</button>
 
+<div id="bioModal" class="modal">
+  <div class="bg-white rounded-[36px] p-8 max-w-md w-full shadow-2xl relative text-center">
+    <button onclick="toggleModal('bioModal')" 
+      class="absolute top-5 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+
+    <img src="https://joannafilek.com/images/profile.jpg"
+         alt="Joanna Filek"
+         class="w-28 h-28 rounded-full object-cover mx-auto mb-4 shadow-xl border-4 border-brand-lavender">
+
+    <h2 class="text-3xl font-bold text-brand-green mb-1">Joanna Filek</h2>
+
+    <p class="text-sm text-brand-plum font-semibold mb-6">
+      Psycholog • Seksuolog • Psychoterapeutka
+    </p>
+
+    <div class="space-y-3">
+      <a href="visits.html"
+         class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+        Umów wizytę
+      </a>
+
+      <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener"
+         class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+        Facebook
+      </a>
+
+      <a href="https://instagram.com/joaboutsex" target="_blank" rel="noopener"
+         class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+        Instagram
+      </a>
+
+      <a href="https://tiktok.com/@jo.about.sex" target="_blank" rel="noopener"
+         class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+        TikTok
+      </a>
+
+      <a href="https://youtube.com/@YOUR-CHANNEL" target="_blank" rel="noopener"
+         class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+        YouTube
+      </a>
+
+      <a href="https://maps.app.goo.gl/Y7YWpux5F7nxE2nz9" target="_blank" rel="noopener"
+         class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+        Gabinet Inspiro
+      </a>
+
+      <a href="works.html"
+         class="block w-full bg-brand-lavender text-brand-green py-4 rounded-2xl font-bold hover:bg-brand-violet-light smooth-transition hover-lift">
+        Warsztaty i Webinary
+      </a>
+    </div>
+  </div>
+</div>
 </body>
 </html>
