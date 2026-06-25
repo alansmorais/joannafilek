@@ -586,14 +586,38 @@
             document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
         }
     </script>
-<button onclick="toggleModal('bioModal')"
-  class="fixed bottom-24 right-5 bg-brand-plum text-white px-6 py-4 rounded-full shadow-2xl z-50 font-bold hover:bg-brand-green smooth-transition">
-  Linki
-</button>
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+  }
+
+  function toggleModal(id) {
+    const modal = document.getElementById(id);
+    modal.classList.toggle('active');
+    document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+  }
+
+  function closeBioModal() {
+    const modal = document.getElementById('bioModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  window.addEventListener('load', function () {
+    const modal = document.getElementById('bioModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+</script>
 
 <div id="bioModal" class="modal">
-  <div class="bg-white rounded-[36px] p-8 max-w-md w-full shadow-2xl relative text-center">
-    <button onclick="toggleModal('bioModal')" 
+  <div class="bg-white rounded-[36px] p-8 max-w-md w-full shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
+    <button onclick="closeBioModal()" 
       class="absolute top-5 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
 
     <img src="https://joannafilek.com/images/profile.jpg"
@@ -644,5 +668,8 @@
     </div>
   </div>
 </div>
+
+</body>
+</html>
 </body>
 </html>
