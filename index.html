@@ -572,56 +572,10 @@
         Umów wizytę
     </a>
 
+<div id="bioModal" class="modal active">
+  <div class="bg-white rounded-[36px] p-8 max-w-md w-full shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
 
-    <script>
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-        });
-
-        function toggleModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.toggle('active');
-            document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
-        }
-    </script>
-<script>
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-    });
-  }
-
-  function toggleModal(id) {
-    const modal = document.getElementById(id);
-    modal.classList.toggle('active');
-    document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
-  }
-
-  function closeBioModal() {
-    const modal = document.getElementById('bioModal');
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-
-  window.addEventListener('load', function () {
-    const modal = document.getElementById('bioModal');
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  });
-</script>
-
-<div id="bioModal" class="modal active" onclick="closeBioModal()">
-  <div onclick="event.stopPropagation()"
-       class="bg-white rounded-[36px] p-8 max-w-md w-full shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
-
-    <button type="button"
-      onclick="closeBioModal()"
+    <button type="button" id="closeBioBtn"
       class="absolute top-5 right-6 text-brand-green opacity-70 text-3xl font-bold z-[9999] cursor-pointer">
       &times;
     </button>
@@ -669,39 +623,48 @@
 </div>
 
 <script>
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
+  document.addEventListener('DOMContentLoaded', function () {
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var bioModal = document.getElementById('bioModal');
+    var closeBioBtn = document.getElementById('closeBioBtn');
 
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', function () {
-      mobileMenu.classList.toggle('active');
-    });
-  }
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', function () {
+        mobileMenu.classList.toggle('active');
+      });
+    }
 
-  function toggleModal(id) {
-    const modal = document.getElementById(id);
-    if (!modal) return;
+    window.toggleModal = function (id) {
+      var modal = document.getElementById(id);
+      if (!modal) return;
 
-    modal.classList.toggle('active');
-    document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
-  }
+      modal.classList.toggle('active');
+      document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+    };
 
-  function closeBioModal() {
-    const modal = document.getElementById('bioModal');
-    if (!modal) return;
+    function closeBioModal() {
+      if (!bioModal) return;
+      bioModal.classList.remove('active');
+      bioModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
 
-    modal.classList.remove('active');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
+    if (bioModal) {
+      bioModal.style.display = 'flex';
+      bioModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
 
-  window.addEventListener('DOMContentLoaded', function () {
-    const modal = document.getElementById('bioModal');
-    if (!modal) return;
+      bioModal.addEventListener('click', function (event) {
+        if (event.target === bioModal) {
+          closeBioModal();
+        }
+      });
+    }
 
-    modal.style.display = 'flex';
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    if (closeBioBtn) {
+      closeBioBtn.addEventListener('click', closeBioModal);
+    }
   });
 </script>
     
