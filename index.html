@@ -673,11 +673,14 @@
   });
 </script>
 
-
 <div id="bioModal" class="modal active">
   <div class="bg-white rounded-[36px] p-8 max-w-md w-full shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
-    <button onclick="closeBioModal()" 
-      class="absolute top-5 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+
+    <button 
+      onclick="document.getElementById('bioModal').classList.remove('active'); document.body.style.overflow='auto';"
+      class="absolute top-5 right-6 text-brand-green opacity-50 text-2xl font-bold z-[110]">
+      &times;
+    </button>
 
     <img src="https://joannafilek.com/images/profile.jpg"
          alt="Joanna Filek"
@@ -690,31 +693,38 @@
     </p>
 
     <div class="space-y-3">
-      <a href="visits.html" class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+      <a href="visits.html"
+         class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
         Umów wizytę
       </a>
 
-      <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener" class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+      <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener"
+         class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
         Facebook
       </a>
 
-      <a href="https://instagram.com/joaboutsex" target="_blank" rel="noopener" class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+      <a href="https://instagram.com/joaboutsex" target="_blank" rel="noopener"
+         class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
         Instagram
       </a>
 
-      <a href="https://tiktok.com/@jo.about.sex" target="_blank" rel="noopener" class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+      <a href="https://tiktok.com/@jo.about.sex" target="_blank" rel="noopener"
+         class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
         TikTok
       </a>
 
-      <a href="https://youtube.com/@YOUR-CHANNEL" target="_blank" rel="noopener" class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+      <a href="https://youtube.com/@YOUR-CHANNEL" target="_blank" rel="noopener"
+         class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
         YouTube
       </a>
 
-      <a href="https://maps.app.goo.gl/Y7YWpux5F7nxE2nz9" target="_blank" rel="noopener" class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+      <a href="https://maps.app.goo.gl/Y7YWpux5F7nxE2nz9" target="_blank" rel="noopener"
+         class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
         Gabinet Inspiro
       </a>
 
-      <a href="works.html" class="block w-full bg-brand-lavender text-brand-green py-4 rounded-2xl font-bold hover:bg-brand-violet-light smooth-transition hover-lift">
+      <a href="works.html"
+         class="block w-full bg-brand-lavender text-brand-green py-4 rounded-2xl font-bold hover:bg-brand-violet-light smooth-transition hover-lift">
         Warsztaty i Webinary
       </a>
     </div>
@@ -739,20 +749,13 @@
     document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
   }
 
-  function closeBioModal() {
-    const modal = document.getElementById('bioModal');
-    if (!modal) return;
-
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-
   window.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('bioModal');
-    if (!modal) return;
 
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
   });
 </script>
 
