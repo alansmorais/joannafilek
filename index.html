@@ -395,16 +395,75 @@
     <div id="newsletterModal" class="modal">
         <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
             <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold text-brand-plum mb-4">Newsletter</h2>
-            <p class="text-sm text-brand-green/70 mb-6">Bądź na bieżąco z nadchodzącymi warsztatami, świątyniami tantry i wydarzeniami.</p>
-            <form class="space-y-4">
-                <input type="email" placeholder="Twój E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
-                <div class="flex items-start gap-3">
-                    <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
-                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach, świątyniach i specjalnych wydarzeniach od Conscious Wolf.</label>
+
+            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">
+                Newsletter psychoedukacyjny
+            </div>
+
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">
+                Dołącz do newslettera
+            </h2>
+
+            <p class="text-sm text-brand-green/75 mb-6 leading-relaxed">
+                Otrzymasz spokojne, psychoedukacyjne materiały o emocjach, relacjach,
+                bliskości i samoświadomości. Pierwszy materiał zostanie wysłany od razu,
+                a kolejne automatycznie raz w tygodniu.
+            </p>
+
+            <!-- Replace the action URL with your Google Apps Script Web App URL -->
+            <form
+                id="newsletterFormPL"
+                action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
+                method="POST"
+                target="newsletterTargetPL"
+                class="space-y-4"
+                onsubmit="document.getElementById('newsletterSuccessPL').classList.remove('hidden'); setTimeout(() => this.reset(), 600);"
+            >
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Imię (opcjonalnie)"
+                    class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"
+                >
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Twój adres e-mail"
+                    required
+                    class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"
+                >
+
+                <input type="hidden" name="language" value="PL">
+                <input type="hidden" name="source_page" value="Polish homepage newsletter modal">
+
+                <!-- Honeypot anti-spam field: keep hidden -->
+                <input
+                    type="text"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                    style="display:none"
+                >
+
+                <div class="flex items-start gap-3 bg-brand-green-light p-4 rounded-2xl border border-brand-lavender/60">
+                    <input type="checkbox" id="newsConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent" class="text-[11px] leading-relaxed text-brand-green/80">
+                        Wyrażam zgodę na otrzymywanie newslettera psychoedukacyjnego od Joanny Filek
+                        na podany adres e-mail. Wiem, że mogę wycofać zgodę w każdej chwili.
+                    </label>
                 </div>
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">Zapisz się</button>
+
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                    Zapisz się
+                </button>
+
+                <p id="newsletterSuccessPL" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed">
+                    Dziękujemy. Jeśli adres jest poprawny, pierwszy newsletter zostanie wysłany na Twoją skrzynkę.
+                </p>
             </form>
+
+            <iframe name="newsletterTargetPL" style="display:none"></iframe>
         </div>
     </div>
 
