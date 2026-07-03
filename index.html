@@ -393,7 +393,7 @@
     </section>
 
     <div id="newsletterModal" class="modal">
-        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
+        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
 
             <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">
@@ -405,37 +405,59 @@
             </h2>
 
             <p class="text-sm text-brand-green/75 mb-6 leading-relaxed">
-                Otrzymasz spokojne, psychoedukacyjne materiały o emocjach, relacjach,
-                bliskości i samoświadomości. Pierwszy materiał zostanie wysłany od razu,
-                a kolejne automatycznie raz w tygodniu.
+                Wybierz język newslettera. Pierwszy materiał zostanie wysłany od razu,
+                a kolejne automatycznie raz w tygodniu — w wybranej wersji językowej.
             </p>
 
             <!-- Replace the action URL with your Google Apps Script Web App URL -->
             <form
-                id="newsletterFormPL"
+                id="newsletterForm"
                 action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
                 method="POST"
-                target="newsletterTargetPL"
+                target="newsletterTarget"
                 class="space-y-4"
-                onsubmit="document.getElementById('newsletterSuccessPL').classList.remove('hidden'); setTimeout(() => this.reset(), 600);"
+                onsubmit="document.getElementById('newsletterSuccess').classList.remove('hidden'); setTimeout(() => this.reset(), 600);"
             >
                 <input
                     type="text"
                     name="name"
-                    placeholder="Imię (opcjonalnie)"
+                    placeholder="Imię / Name (opcjonalnie)"
                     class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"
                 >
 
                 <input
                     type="email"
                     name="email"
-                    placeholder="Twój adres e-mail"
+                    placeholder="Twój adres e-mail / Your email"
                     required
                     class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"
                 >
 
-                <input type="hidden" name="language" value="PL">
-                <input type="hidden" name="source_page" value="Polish homepage newsletter modal">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3">
+                        Język newslettera / Newsletter language
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="language" value="PL" class="peer sr-only" checked required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">
+                                Polski
+                                <small class="block font-normal text-[10px] mt-1 opacity-80">wersja PL</small>
+                            </span>
+                        </label>
+
+                        <label class="cursor-pointer">
+                            <input type="radio" name="language" value="EN" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">
+                                English
+                                <small class="block font-normal text-[10px] mt-1 opacity-80">EN version</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <input type="hidden" name="source_page" value="Homepage newsletter modal with language selector">
 
                 <!-- Honeypot anti-spam field: keep hidden -->
                 <input
@@ -450,20 +472,23 @@
                     <input type="checkbox" id="newsConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
                     <label for="newsConsent" class="text-[11px] leading-relaxed text-brand-green/80">
                         Wyrażam zgodę na otrzymywanie newslettera psychoedukacyjnego od Joanny Filek
-                        na podany adres e-mail. Wiem, że mogę wycofać zgodę w każdej chwili.
+                        na podany adres e-mail. Wiem, że mogę wycofać zgodę w każdej chwili.<br><br>
+                        I agree to receive Joanna Filek’s psychoeducational newsletter at the email address provided.
+                        I understand I can withdraw my consent at any time.
                     </label>
                 </div>
 
                 <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
-                    Zapisz się
+                    Zapisz się / Subscribe
                 </button>
 
-                <p id="newsletterSuccessPL" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed">
-                    Dziękujemy. Jeśli adres jest poprawny, pierwszy newsletter zostanie wysłany na Twoją skrzynkę.
+                <p id="newsletterSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed">
+                    Dziękujemy. Jeśli adres jest poprawny, pierwszy newsletter zostanie wysłany w wybranym języku.<br>
+                    Thank you. If the email is correct, the first newsletter will be sent in the selected language.
                 </p>
             </form>
 
-            <iframe name="newsletterTargetPL" style="display:none"></iframe>
+            <iframe name="newsletterTarget" style="display:none"></iframe>
         </div>
     </div>
 
@@ -645,33 +670,76 @@
 
     <h2 class="text-3xl font-bold text-brand-green mb-1">Joanna Filek</h2>
 
-    <p class="text-sm text-brand-plum font-semibold mb-6">
+    <p class="text-sm text-brand-plum font-semibold mb-4">
       Psycholog • Seksuolog • Psychoterapeutka
     </p>
 
+    <!-- Linktree-style social icon row -->
+    <div class="flex items-center justify-center gap-3 mb-6" aria-label="Social media links">
+      <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener" aria-label="Facebook"
+         class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
+        <span class="text-xl font-bold leading-none">f</span>
+      </a>
+
+      <a href="https://instagram.com/joaboutsex" target="_blank" rel="noopener" aria-label="Instagram"
+         class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle cx="17.5" cy="6.5" r="1"></circle>
+        </svg>
+      </a>
+
+      <a href="https://tiktok.com/@jo.about.sex" target="_blank" rel="noopener" aria-label="TikTok"
+         class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M14.8 3c.4 2.6 1.8 4.2 4.2 4.7v3.1c-1.5 0-2.9-.4-4.1-1.2v6.1c0 3.2-2.1 5.3-5.2 5.3-2.8 0-4.9-1.9-4.9-4.5 0-2.8 2.2-4.6 5.1-4.6.4 0 .8 0 1.1.1v3.2c-.3-.1-.6-.1-.9-.1-1.2 0-2 .6-2 1.5 0 .9.7 1.5 1.7 1.5 1.1 0 1.8-.7 1.8-2.1V3h3.2z"></path>
+        </svg>
+      </a>
+
+      <a href="https://youtube.com/@YOUR-CHANNEL" target="_blank" rel="noopener" aria-label="YouTube"
+         class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.7-.8-2.1-.9C15.8 4 12 4 12 4s-3.8 0-6.7.2c-.4.1-1.3.1-2.1.9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.8v1.7c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.9.8 2.4.9 1.7.2 6.4.2 6.4.2s3.8 0 6.7-.2c.4-.1 1.3-.1 2.1-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.7c0-1.8-.2-3.6-.2-3.6zM10.1 14.8V8.9l5.7 3-5.7 2.9z"></path>
+        </svg>
+      </a>
+
+      <a href="https://maps.app.goo.gl/Y7YWpux5F7nxE2nz9" target="_blank" rel="noopener" aria-label="Gabinet Inspiro - lokalizacja"
+         class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 21s7-5.4 7-12a7 7 0 0 0-14 0c0 6.6 7 12 7 12z"></path>
+          <circle cx="12" cy="9" r="2.5"></circle>
+        </svg>
+      </a>
+    </div>
+
     <div class="space-y-3">
-      <a href="visits.html" class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
-        Umów wizytę
+      <a href="visits.html" class="flex items-center justify-center gap-2 w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+        <span>Umów wizytę</span>
       </a>
 
-      <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener" class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
-        Facebook
+      <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+        <span class="text-lg font-bold leading-none">f</span><span>Facebook</span>
       </a>
 
-      <a href="https://instagram.com/joaboutsex" target="_blank" rel="noopener" class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
-        Instagram
+      <a href="https://instagram.com/joaboutsex" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>
+        <span>Instagram</span>
       </a>
 
-      <a href="https://tiktok.com/@jo.about.sex" target="_blank" rel="noopener" class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
-        TikTok
+      <a href="https://tiktok.com/@jo.about.sex" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.8 3c.4 2.6 1.8 4.2 4.2 4.7v3.1c-1.5 0-2.9-.4-4.1-1.2v6.1c0 3.2-2.1 5.3-5.2 5.3-2.8 0-4.9-1.9-4.9-4.5 0-2.8 2.2-4.6 5.1-4.6.4 0 .8 0 1.1.1v3.2c-.3-.1-.6-.1-.9-.1-1.2 0-2 .6-2 1.5 0 .9.7 1.5 1.7 1.5 1.1 0 1.8-.7 1.8-2.1V3h3.2z"></path></svg>
+        <span>TikTok</span>
       </a>
 
-      <a href="https://youtube.com/@YOUR-CHANNEL" target="_blank" rel="noopener" class="block w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
-        YouTube
+      <a href="https://youtube.com/@YOUR-CHANNEL" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.7-.8-2.1-.9C15.8 4 12 4 12 4s-3.8 0-6.7.2c-.4.1-1.3.1-2.1.9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.8v1.7c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.9.8 2.4.9 1.7.2 6.4.2 6.4.2s3.8 0 6.7-.2c.4-.1 1.3-.1 2.1-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.7c0-1.8-.2-3.6-.2-3.6zM10.1 14.8V8.9l5.7 3-5.7 2.9z"></path></svg>
+        <span>YouTube</span>
       </a>
 
-      <a href="https://maps.app.goo.gl/Y7YWpux5F7nxE2nz9" target="_blank" rel="noopener" class="block w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
-        Gabinet Inspiro
+      <a href="https://maps.app.goo.gl/Y7YWpux5F7nxE2nz9" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.4 7-12a7 7 0 0 0-14 0c0 6.6 7 12 7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+        <span>Gabinet Inspiro</span>
       </a>
 
       <a href="works.html" class="block w-full bg-brand-lavender text-brand-green py-4 rounded-2xl font-bold hover:bg-brand-violet-light smooth-transition hover-lift">
