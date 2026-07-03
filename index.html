@@ -109,6 +109,7 @@
                 <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
                 <a href="works.html" class="hover:text-brand-plum smooth-transition">Warsztaty</a>
                 <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
+                <button onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Lista oczekujących</button>
                 <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
                 <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Zapisy</button>
             </nav>
@@ -133,6 +134,7 @@
             <a href="works.html">Warsztaty</a>
             <a href="contact.html">Kontakt</a>
             
+            <button onclick="toggleModal('waitingListModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum">Lista oczekujących</button>
             <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Zapisy (Sign-up)</button>           
             <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
 
@@ -394,7 +396,7 @@
 
     <div id="newsletterModal" class="modal">
         <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <button onclick="closeModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
 
             <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">
                 Newsletter psychoedukacyjny
@@ -492,9 +494,144 @@
         </div>
     </div>
 
+
+    <div id="waitingListModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button type="button" onclick="closeModal('waitingListModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+
+            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">
+                Lista oczekujących
+            </div>
+
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">
+                Dołącz do listy oczekujących
+            </h2>
+
+            <p class="text-sm text-brand-green/75 mb-6 leading-relaxed">
+                Jeśli obecnie nie widzisz dogodnego terminu, możesz zostawić swoje dane.
+                Skontaktuję się, gdy pojawi się możliwość konsultacji lub regularnego procesu terapeutycznego.
+            </p>
+
+            <div class="bg-brand-green-light border border-brand-lavender/70 rounded-2xl p-4 mb-6">
+                <p class="text-[11px] leading-relaxed text-brand-green/75">
+                    Ten formularz nie służy do kontaktu kryzysowego. Jeśli znajdujesz się w sytuacji bezpośredniego zagrożenia zdrowia lub życia,
+                    skontaktuj się z numerem alarmowym 112 lub najbliższą placówką medyczną.
+                </p>
+            </div>
+
+            <form
+                id="waitingListForm"
+                action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
+                method="POST"
+                target="waitingListTarget"
+                class="space-y-5"
+                onsubmit="document.getElementById('waitingListSuccess').classList.remove('hidden'); setTimeout(() => this.reset(), 700);"
+            >
+                <input type="hidden" name="form_type" value="waitinglist">
+                <input type="hidden" name="source_page" value="Homepage waiting list modal">
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Imię i nazwisko *</label>
+                        <input type="text" name="name" required placeholder="Imię i nazwisko" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">E-mail *</label>
+                        <input type="email" name="email" required placeholder="Twój adres e-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Telefon opcjonalnie</label>
+                    <input type="tel" name="phone" placeholder="Numer telefonu" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                </div>
+
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3">Forma spotkania</p>
+                    <div class="grid sm:grid-cols-3 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="preferred_format" value="Online" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">Online</span>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="preferred_format" value="Stacjonarnie w Krakowie" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">Stacjonarnie</span>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="preferred_format" value="Bez preferencji" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">Bez preferencji</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Rodzaj wsparcia *</label>
+                        <select name="support_type" required class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
+                            <option value="">Wybierz...</option>
+                            <option value="Terapia indywidualna">Terapia indywidualna</option>
+                            <option value="Terapia par">Terapia par</option>
+                            <option value="Konsultacja seksuologiczna / terapia seksuologiczna">Konsultacja seksuologiczna / terapia seksuologiczna</option>
+                            <option value="Regularny proces terapeutyczny">Regularny proces terapeutyczny</option>
+                            <option value="Nie wiem jeszcze">Nie wiem jeszcze</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Preferowana pora *</label>
+                        <select name="preferred_time" required class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
+                            <option value="">Wybierz...</option>
+                            <option value="Rano">Rano</option>
+                            <option value="Popołudnie">Popołudnie</option>
+                            <option value="Wieczór">Wieczór</option>
+                            <option value="Elastycznie">Elastycznie</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Preferowane dni</label>
+                    <select name="preferred_days" class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
+                        <option value="">Wybierz opcjonalnie...</option>
+                        <option value="Poniedziałek - piątek">Poniedziałek - piątek</option>
+                        <option value="Weekend, jeśli dostępny">Weekend, jeśli dostępny</option>
+                        <option value="Elastycznie">Elastycznie</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Czy jest coś ważnego, co chcesz dodać?</label>
+                    <textarea name="message" rows="4" placeholder="Krótka wiadomość opcjonalnie" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"></textarea>
+                </div>
+
+                <!-- Honeypot anti-spam field: keep hidden -->
+                <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
+
+                <div class="flex items-start gap-3 bg-brand-green-light p-4 rounded-2xl border border-brand-lavender/60">
+                    <input type="checkbox" id="waitingConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
+                    <label for="waitingConsent" class="text-[11px] leading-relaxed text-brand-green/80">
+                        Wyrażam zgodę na kontakt w sprawie listy oczekujących oraz przetwarzanie podanych danych w celu obsługi zgłoszenia.
+                        Wiem, że mogę wycofać zgodę w każdej chwili.
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                    Dołącz do listy oczekujących
+                </button>
+
+                <p id="waitingListSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed">
+                    Dziękujemy. Zgłoszenie zostało zapisane. Skontaktujemy się, gdy pojawi się odpowiednia możliwość spotkania.
+                </p>
+            </form>
+
+            <iframe name="waitingListTarget" style="display:none"></iframe>
+        </div>
+    </div>
+
     <div id="signupModal" class="modal">
         <div class="bg-white rounded-[40px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <button onclick="closeModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
             <h2 class="text-3xl font-bold text-brand-green mb-2">Rejestracja na Wydarzenie</h2>
             <p class="text-brand-plum font-semibold text-sm mb-8">Warsztaty / Świątynie / Festiwale</p>
             
@@ -618,6 +755,7 @@
                         <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Strona główna</a></li>
                         <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">O mnie</a></li>
                         <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Warsztaty</a></li>
+                        <li><button onclick="toggleModal('waitingListModal')" class="hover:text-brand-lavender smooth-transition">Lista oczekujących</button></li>
                         <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li>
                         <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>
                     </ul>
@@ -718,6 +856,10 @@
         <span>Umów wizytę</span>
       </a>
 
+      <button type="button" onclick="closeModal('bioModal'); openModal('waitingListModal')" class="flex items-center justify-center gap-2 w-full bg-brand-lavender text-brand-green py-4 rounded-2xl font-bold hover:bg-brand-violet-light smooth-transition hover-lift">
+        <span>Lista oczekujących</span>
+      </button>
+
       <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
         <span class="text-lg font-bold leading-none">f</span><span>Facebook</span>
       </a>
@@ -762,35 +904,51 @@
       });
     }
 
+    window.openModal = function (id) {
+      var modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.add('active');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeModal = function (id) {
+      var modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.remove('active');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    };
+
     window.toggleModal = function (id) {
       var modal = document.getElementById(id);
       if (!modal) return;
-
-      modal.classList.toggle('active');
-      document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+      if (modal.classList.contains('active') || modal.style.display === 'flex') {
+        window.closeModal(id);
+      } else {
+        window.openModal(id);
+      }
     };
 
-    function closeBioModal() {
-      if (!bioModal) return;
-      bioModal.classList.remove('active');
-      bioModal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
+    // Close any modal when clicking outside its white card.
+    document.querySelectorAll('.modal').forEach(function (modal) {
+      modal.addEventListener('click', function (event) {
+        if (event.target === modal) {
+          window.closeModal(modal.id);
+        }
+      });
+    });
 
     if (bioModal) {
       bioModal.style.display = 'flex';
       bioModal.classList.add('active');
       document.body.style.overflow = 'hidden';
-
-      bioModal.addEventListener('click', function (event) {
-        if (event.target === bioModal) {
-          closeBioModal();
-        }
-      });
     }
 
     if (closeBioBtn) {
-      closeBioBtn.addEventListener('click', closeBioModal);
+      closeBioBtn.addEventListener('click', function () {
+        window.closeModal('bioModal');
+      });
     }
   });
 </script>
