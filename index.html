@@ -135,7 +135,7 @@
             <a href="contact.html">Kontakt</a>
             
             <button onclick="toggleModal('waitingListModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum">Lista oczekujących</button>
-            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Zapisy (Sign-up)</button>           
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Zapisy (Sign-up)</button>            
             <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
 
             <a href="work-with-us.html">Pracuj z nami</a>
@@ -146,7 +146,6 @@
             </a>
         </div>
     </header>
-
 
     <section class="hero-bg pt-16 pb-20 overflow-hidden">
         <div class="container mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
@@ -205,7 +204,6 @@
             </div>
         </div>
     </section>
-
 
     <section class="py-20 bg-white">
         <div class="container mx-auto px-6">
@@ -280,7 +278,6 @@
         </div>
     </section>
 
-
     <section class="py-20 bg-brand-green-light">
         <div class="container mx-auto px-6 max-w-6xl">
 
@@ -341,7 +338,6 @@
         </div>
     </section>
 
-
     <section class="py-20 bg-white">
         <div class="container mx-auto px-6">
 
@@ -374,7 +370,6 @@
             </div>
         </div>
     </section>
-
 
     <section class="bg-brand-plum py-20 text-white text-center">
         <div class="container mx-auto px-6 max-w-3xl">
@@ -411,7 +406,6 @@
                 a kolejne automatycznie raz w tygodniu — w wybranej wersji językowej.
             </p>
 
-            <!-- Replace the action URL with your Google Apps Script Web App URL -->
             <form
                 id="newsletterForm"
                 action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
@@ -493,7 +487,6 @@
             <iframe name="newsletterTarget" style="display:none"></iframe>
         </div>
     </div>
-
 
     <div id="waitingListModal" class="modal">
         <div class="bg-white rounded-[32px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
@@ -635,21 +628,32 @@
             <h2 class="text-3xl font-bold text-brand-green mb-2">Rejestracja na Wydarzenie</h2>
             <p class="text-brand-plum font-semibold text-sm mb-8">Warsztaty / Świątynie / Festiwale</p>
             
-            <form class="space-y-6">
+            <form 
+                id="signupForm"
+                action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
+                method="POST"
+                target="signupTarget"
+                class="space-y-6"
+                onsubmit="document.getElementById('signupSuccess').classList.remove('hidden'); setTimeout(() => { this.reset(); closeModal('signupModal'); document.getElementById('signupSuccess').classList.add('hidden'); }, 3000);"
+            >
+                <!-- HIDDEN FIELDS: Tells your Google Script to send this to the 'SignUp' tab -->
+                <input type="hidden" name="form_type" value="SignUp">
+                <input type="hidden" name="source_page" value="Homepage Sign Up Modal">
+
                 <div class="grid md:grid-cols-2 gap-4">
                     <div class="space-y-1">
                         <label class="text-xs font-bold uppercase text-brand-green/50">Imię i Nazwisko *</label>
-                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
+                        <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
                     </div>
                     <div class="space-y-1">
                         <label class="text-xs font-bold uppercase text-brand-green/50">Numer Telefonu *</label>
-                        <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
+                        <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
                     </div>
                 </div>
 
                 <div class="space-y-1">
                     <label class="text-xs font-bold uppercase text-brand-green/50">Metoda Płatności *</label>
-                    <select required class="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white">
+                    <select name="payment_method" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white">
                         <option value="">Wybierz metodę płatności...</option>
                         <option value="transfer">Tradycyjny Przelew Bankowy</option>
                         <option value="blik">BLIK</option>
@@ -683,53 +687,58 @@
                 </div>
 
                 <button type="submit" class="w-full bg-brand-green text-white font-bold py-5 rounded-2xl shadow-xl hover:bg-brand-plum transition-all uppercase tracking-widest">Wyślij Zgłoszenie i Opłać</button>
+                
+                <p id="signupSuccess" class="hidden mt-4 text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed text-center">
+                    Dziękujemy! Twoje zgłoszenie zostało wysłane.
+                </p>
             </form>
+            <iframe name="signupTarget" style="display:none"></iframe>
         </div>
     </div>
 
-<!-- White Hat SEO FAQ Section - Polish Market -->
-<section class="py-16 bg-white border-t border-brand-lavender">
-    <div class="max-w-4xl mx-auto px-6">
-        <h3 class="text-2xl font-bold text-brand-green mb-8 text-center">
-            Psychoterapia i Konsultacje Seksuologiczne – FAQ
-        </h3>
+    <!-- White Hat SEO FAQ Section - Polish Market -->
+    <section class="py-16 bg-white border-t border-brand-lavender">
+        <div class="max-w-4xl mx-auto px-6">
+            <h3 class="text-2xl font-bold text-brand-green mb-8 text-center">
+                Psychoterapia i Konsultacje Seksuologiczne – FAQ
+            </h3>
+            
+            <div class="space-y-6">
+
+                <!-- Keyword: psychoterapeuta Kraków prywatnie / konsultacja psychologiczna / gabinet psychoterapii -->
+                <div class="border-b border-brand-lavender pb-6">
+                    <h4 class="text-base font-bold text-brand-plum mb-2">
+                        Jak wygląda profesjonalna psychoterapia prywatna?
+                    </h4>
+                    <p class="text-sm text-brand-green opacity-80 leading-relaxed">
+                        Prywatny gabinet psychoterapii oferuje bezpieczne i w pełni poufne wsparcie dla osób zmagających się z kryzysami życiowymi, lękiem czy wypaleniem zawodowym. Jeśli szukasz sprawdzonego psychoterapeuty, profesjonalna konsultacja psychologiczna pozwala zidentyfikować źródło problemów oraz wdrożyć skuteczne strategie radzenia sobie z codziennymi trudnościami.
+                    </p>
+                </div>
+
+                <!-- Keyword: dobry seksuolog / seksuolog opinie -->
+                <div class="border-b border-brand-lavender pb-6">
+                    <h4 class="text-base font-bold text-brand-plum mb-2">
+                        Kiedy warto skorzystać z konsultacji seksuologicznej?
+                    </h4>
+                    <p class="text-sm text-brand-green opacity-80 leading-relaxed">
+                        Problemy z intymnością i komunikacją w relacji dotyczą wielu osób. Jeśli szukasz specjalisty, który pomoże przełamać wstyd i zredukować napięcie, konsultacja seksuologiczna może być właściwym krokiem. Wsparcie specjalisty pomaga parom oraz osobom indywidualnym odzyskać harmonię i satysfakcję w życiu intymnym.
+                    </p>
+                </div>
+
+                <!-- Keyword: terapia par -->
+                <div class="border-b border-brand-lavender pb-6">
+                    <h4 class="text-base font-bold text-brand-plum mb-2">
+                        Czy terapia par to dobre rozwiązanie dla związku w kryzysie?
+                    </h4>
+                    <p class="text-sm text-brand-green opacity-80 leading-relaxed">
+                        Tak, terapia par pomaga odbudować nadszarpnięte więzi i poprawić wzajemną komunikację. Spotkania w gabinecie pozwalają zidentyfikować destrukcyjne schematy konfliktów oraz wypracować zdrowsze sposoby porozumiewania się, niezależnie od długości i charakteru relacji.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
         
-        <div class="space-y-6">
-
-            <!-- Keyword: psychoterapeuta Kraków prywatnie / konsultacja psychologiczna / gabinet psychoterapii -->
-            <div class="border-b border-brand-lavender pb-6">
-                <h4 class="text-base font-bold text-brand-plum mb-2">
-                    Jak wygląda profesjonalna psychoterapia prywatna?
-                </h4>
-                <p class="text-sm text-brand-green opacity-80 leading-relaxed">
-                    Prywatny gabinet psychoterapii oferuje bezpieczne i w pełni poufne wsparcie dla osób zmagających się z kryzysami życiowymi, lękiem czy wypaleniem zawodowym. Jeśli szukasz sprawdzonego psychoterapeuty, profesjonalna konsultacja psychologiczna pozwala zidentyfikować źródło problemów oraz wdrożyć skuteczne strategie radzenia sobie z codziennymi trudnościami.
-                </p>
-            </div>
-
-            <!-- Keyword: dobry seksuolog / seksuolog opinie -->
-            <div class="border-b border-brand-lavender pb-6">
-                <h4 class="text-base font-bold text-brand-plum mb-2">
-                    Kiedy warto skorzystać z konsultacji seksuologicznej?
-                </h4>
-                <p class="text-sm text-brand-green opacity-80 leading-relaxed">
-                    Problemy z intymnością i komunikacją w relacji dotyczą wielu osób. Jeśli szukasz specjalisty, który pomoże przełamać wstyd i zredukować napięcie, konsultacja seksuologiczna może być właściwym krokiem. Wsparcie specjalisty pomaga parom oraz osobom indywidualnym odzyskać harmonię i satysfakcję w życiu intymnym.
-                </p>
-            </div>
-
-            <!-- Keyword: terapia par -->
-            <div class="border-b border-brand-lavender pb-6">
-                <h4 class="text-base font-bold text-brand-plum mb-2">
-                    Czy terapia par to dobre rozwiązanie dla związku w kryzysie?
-                </h4>
-                <p class="text-sm text-brand-green opacity-80 leading-relaxed">
-                    Tak, terapia par pomaga odbudować nadszarpnięte więzi i poprawić wzajemną komunikację. Spotkania w gabinecie pozwalają zidentyfikować destrukcyjne schematy konfliktów oraz wypracować zdrowsze sposoby porozumiewania się, niezależnie od długości i charakteru relacji.
-                </p>
-            </div>
-
-        </div>
-    </div>
-</section>
-    
     <footer class="bg-brand-green text-white pt-16 pb-10">
         <div class="container mx-auto px-6">
 
@@ -788,170 +797,169 @@
         </div>
     </footer>
 
-
     <a href="visits.html"
        class="fixed bottom-5 right-5 sm:hidden bg-brand-green text-white px-6 py-4 rounded-full shadow-2xl z-50 font-semibold hover:bg-brand-plum smooth-transition">
         Umów wizytę
     </a>
 
-<div id="bioModal" class="modal active">
-  <div class="bg-white rounded-[36px] p-8 max-w-md w-full shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
+    <div id="bioModal" class="modal active">
+        <div class="bg-white rounded-[36px] p-8 max-w-md w-full shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
 
-    <button type="button" id="closeBioBtn"
-      class="absolute top-5 right-6 text-brand-green opacity-70 text-3xl font-bold z-[9999] cursor-pointer">
-      &times;
-    </button>
+            <button type="button" id="closeBioBtn"
+              class="absolute top-5 right-6 text-brand-green opacity-70 text-3xl font-bold z-[9999] cursor-pointer">
+              &times;
+            </button>
 
-    <img src="https://joannafilek.com/images/profile.jpg"
-         alt="Joanna Filek"
-         class="w-28 h-28 rounded-full object-cover mx-auto mb-4 shadow-xl border-4 border-brand-lavender">
+            <img src="https://joannafilek.com/images/profile.jpg"
+                 alt="Joanna Filek"
+                 class="w-28 h-28 rounded-full object-cover mx-auto mb-4 shadow-xl border-4 border-brand-lavender">
 
-    <h2 class="text-3xl font-bold text-brand-green mb-1">Joanna Filek</h2>
+            <h2 class="text-3xl font-bold text-brand-green mb-1">Joanna Filek</h2>
 
-    <p class="text-sm text-brand-plum font-semibold mb-4">
-      Psycholog • Seksuolog • Psychoterapeutka
-    </p>
+            <p class="text-sm text-brand-plum font-semibold mb-4">
+              Psycholog • Seksuolog • Psychoterapeutka
+            </p>
 
-    <!-- Linktree-style social icon row -->
-    <div class="flex items-center justify-center gap-3 mb-6" aria-label="Social media links">
-      <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener" aria-label="Facebook"
-         class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
-        <span class="text-xl font-bold leading-none">f</span>
-      </a>
+            <!-- Linktree-style social icon row -->
+            <div class="flex items-center justify-center gap-3 mb-6" aria-label="Social media links">
+              <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener" aria-label="Facebook"
+                 class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
+                <span class="text-xl font-bold leading-none">f</span>
+              </a>
 
-      <a href="https://instagram.com/joaboutsex" target="_blank" rel="noopener" aria-label="Instagram"
-         class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-          <circle cx="12" cy="12" r="4"></circle>
-          <circle cx="17.5" cy="6.5" r="1"></circle>
-        </svg>
-      </a>
+              <a href="https://instagram.com/joaboutsex" target="_blank" rel="noopener" aria-label="Instagram"
+                 class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.5" cy="6.5" r="1"></circle>
+                </svg>
+              </a>
 
-      <a href="https://tiktok.com/@jo.about.sex" target="_blank" rel="noopener" aria-label="TikTok"
-         class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M14.8 3c.4 2.6 1.8 4.2 4.2 4.7v3.1c-1.5 0-2.9-.4-4.1-1.2v6.1c0 3.2-2.1 5.3-5.2 5.3-2.8 0-4.9-1.9-4.9-4.5 0-2.8 2.2-4.6 5.1-4.6.4 0 .8 0 1.1.1v3.2c-.3-.1-.6-.1-.9-.1-1.2 0-2 .6-2 1.5 0 .9.7 1.5 1.7 1.5 1.1 0 1.8-.7 1.8-2.1V3h3.2z"></path>
-        </svg>
-      </a>
+              <a href="https://tiktok.com/@jo.about.sex" target="_blank" rel="noopener" aria-label="TikTok"
+                 class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M14.8 3c.4 2.6 1.8 4.2 4.2 4.7v3.1c-1.5 0-2.9-.4-4.1-1.2v6.1c0 3.2-2.1 5.3-5.2 5.3-2.8 0-4.9-1.9-4.9-4.5 0-2.8 2.2-4.6 5.1-4.6.4 0 .8 0 1.1.1v3.2c-.3-.1-.6-.1-.9-.1-1.2 0-2 .6-2 1.5 0 .9.7 1.5 1.7 1.5 1.1 0 1.8-.7 1.8-2.1V3h3.2z"></path>
+                </svg>
+              </a>
 
-      <a href="https://youtube.com/@YOUR-CHANNEL" target="_blank" rel="noopener" aria-label="YouTube"
-         class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.7-.8-2.1-.9C15.8 4 12 4 12 4s-3.8 0-6.7.2c-.4.1-1.3.1-2.1.9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.8v1.7c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.9.8 2.4.9 1.7.2 6.4.2 6.4.2s3.8 0 6.7-.2c.4-.1 1.3-.1 2.1-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.7c0-1.8-.2-3.6-.2-3.6zM10.1 14.8V8.9l5.7 3-5.7 2.9z"></path>
-        </svg>
-      </a>
+              <a href="https://youtube.com/@YOUR-CHANNEL" target="_blank" rel="noopener" aria-label="YouTube"
+                 class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.7-.8-2.1-.9C15.8 4 12 4 12 4s-3.8 0-6.7.2c-.4.1-1.3.1-2.1.9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.8v1.7c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.9.8 2.4.9 1.7.2 6.4.2 6.4.2s3.8 0 6.7-.2c.4-.1 1.3-.1 2.1-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.7c0-1.8-.2-3.6-.2-3.6zM10.1 14.8V8.9l5.7 3-5.7 2.9z"></path>
+                </svg>
+              </a>
 
-      <a href="https://maps.app.goo.gl/Y7YWpux5F7nxE2nz9" target="_blank" rel="noopener" aria-label="Gabinet Inspiro - lokalizacja"
-         class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 21s7-5.4 7-12a7 7 0 0 0-14 0c0 6.6 7 12 7 12z"></path>
-          <circle cx="12" cy="9" r="2.5"></circle>
-        </svg>
-      </a>
+              <a href="https://maps.app.goo.gl/Y7YWpux5F7nxE2nz9" target="_blank" rel="noopener" aria-label="Gabinet Inspiro - lokalizacja"
+                 class="w-11 h-11 rounded-full bg-brand-violet-light text-brand-plum border border-brand-lavender flex items-center justify-center shadow-sm hover:bg-brand-plum hover:text-white smooth-transition hover-lift">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 21s7-5.4 7-12a7 7 0 0 0-14 0c0 6.6 7 12 7 12z"></path>
+                  <circle cx="12" cy="9" r="2.5"></circle>
+                </svg>
+              </a>
+            </div>
+
+            <div class="space-y-3">
+              <a href="visits.html" class="flex items-center justify-center gap-2 w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+                <span>Umów wizytę</span>
+              </a>
+
+              <button type="button" onclick="closeModal('bioModal'); openModal('waitingListModal')" class="flex items-center justify-center gap-2 w-full bg-brand-lavender text-brand-green py-4 rounded-2xl font-bold hover:bg-brand-violet-light smooth-transition hover-lift">
+                <span>Lista oczekujących</span>
+              </button>
+
+              <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+                <span class="text-lg font-bold leading-none">f</span><span>Facebook</span>
+              </a>
+
+              <a href="https://instagram.com/joaboutsex" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>
+                <span>Instagram</span>
+              </a>
+
+              <a href="https://tiktok.com/@jo.about.sex" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.8 3c.4 2.6 1.8 4.2 4.2 4.7v3.1c-1.5 0-2.9-.4-4.1-1.2v6.1c0 3.2-2.1 5.3-5.2 5.3-2.8 0-4.9-1.9-4.9-4.5 0-2.8 2.2-4.6 5.1-4.6.4 0 .8 0 1.1.1v3.2c-.3-.1-.6-.1-.9-.1-1.2 0-2 .6-2 1.5 0 .9.7 1.5 1.7 1.5 1.1 0 1.8-.7 1.8-2.1V3h3.2z"></path></svg>
+                <span>TikTok</span>
+              </a>
+
+              <a href="https://youtube.com/@YOUR-CHANNEL" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.7-.8-2.1-.9C15.8 4 12 4 12 4s-3.8 0-6.7.2c-.4.1-1.3.1-2.1.9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.8v1.7c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.9.8 2.4.9 1.7.2 6.4.2 6.4.2s3.8 0 6.7-.2c.4-.1 1.3-.1 2.1-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.7c0-1.8-.2-3.6-.2-3.6zM10.1 14.8V8.9l5.7 3-5.7 2.9z"></path></svg>
+                <span>YouTube</span>
+              </a>
+
+              <a href="https://maps.app.goo.gl/Y7YWpux5F7nxE2nz9" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.4 7-12a7 7 0 0 0-14 0c0 6.6 7 12 7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+                <span>Gabinet Inspiro</span>
+              </a>
+
+              <a href="works.html" class="block w-full bg-brand-lavender text-brand-green py-4 rounded-2xl font-bold hover:bg-brand-violet-light smooth-transition hover-lift">
+                Warsztaty i Webinary
+              </a>
+            </div>
+        </div>
     </div>
 
-    <div class="space-y-3">
-      <a href="visits.html" class="flex items-center justify-center gap-2 w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
-        <span>Umów wizytę</span>
-      </a>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var menuBtn = document.getElementById('menuBtn');
+            var mobileMenu = document.getElementById('mobileMenu');
+            var bioModal = document.getElementById('bioModal');
+            var closeBioBtn = document.getElementById('closeBioBtn');
 
-      <button type="button" onclick="closeModal('bioModal'); openModal('waitingListModal')" class="flex items-center justify-center gap-2 w-full bg-brand-lavender text-brand-green py-4 rounded-2xl font-bold hover:bg-brand-violet-light smooth-transition hover-lift">
-        <span>Lista oczekujących</span>
-      </button>
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('active');
+                });
+            }
 
-      <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
-        <span class="text-lg font-bold leading-none">f</span><span>Facebook</span>
-      </a>
+            window.openModal = function (id) {
+                var modal = document.getElementById(id);
+                if (!modal) return;
+                modal.classList.add('active');
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            };
 
-      <a href="https://instagram.com/joaboutsex" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>
-        <span>Instagram</span>
-      </a>
+            window.closeModal = function (id) {
+                var modal = document.getElementById(id);
+                if (!modal) return;
+                modal.classList.remove('active');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            };
 
-      <a href="https://tiktok.com/@jo.about.sex" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.8 3c.4 2.6 1.8 4.2 4.2 4.7v3.1c-1.5 0-2.9-.4-4.1-1.2v6.1c0 3.2-2.1 5.3-5.2 5.3-2.8 0-4.9-1.9-4.9-4.5 0-2.8 2.2-4.6 5.1-4.6.4 0 .8 0 1.1.1v3.2c-.3-.1-.6-.1-.9-.1-1.2 0-2 .6-2 1.5 0 .9.7 1.5 1.7 1.5 1.1 0 1.8-.7 1.8-2.1V3h3.2z"></path></svg>
-        <span>TikTok</span>
-      </a>
+            window.toggleModal = function (id) {
+                var modal = document.getElementById(id);
+                if (!modal) return;
+                if (modal.classList.contains('active') || modal.style.display === 'flex') {
+                    window.closeModal(id);
+                } else {
+                    window.openModal(id);
+                }
+            };
 
-      <a href="https://youtube.com/@YOUR-CHANNEL" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-green text-white py-4 rounded-2xl font-bold hover:bg-brand-plum smooth-transition hover-lift">
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.7-.8-2.1-.9C15.8 4 12 4 12 4s-3.8 0-6.7.2c-.4.1-1.3.1-2.1.9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.8v1.7c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.9.8 2.4.9 1.7.2 6.4.2 6.4.2s3.8 0 6.7-.2c.4-.1 1.3-.1 2.1-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.7c0-1.8-.2-3.6-.2-3.6zM10.1 14.8V8.9l5.7 3-5.7 2.9z"></path></svg>
-        <span>YouTube</span>
-      </a>
+            // Close any modal when clicking outside its white card.
+            document.querySelectorAll('.modal').forEach(function (modal) {
+                modal.addEventListener('click', function (event) {
+                    if (event.target === modal) {
+                        window.closeModal(modal.id);
+                    }
+                });
+            });
 
-      <a href="https://maps.app.goo.gl/Y7YWpux5F7nxE2nz9" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full bg-brand-plum text-white py-4 rounded-2xl font-bold hover:bg-brand-green smooth-transition hover-lift">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.4 7-12a7 7 0 0 0-14 0c0 6.6 7 12 7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
-        <span>Gabinet Inspiro</span>
-      </a>
+            if (bioModal) {
+                bioModal.style.display = 'flex';
+                bioModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
 
-      <a href="works.html" class="block w-full bg-brand-lavender text-brand-green py-4 rounded-2xl font-bold hover:bg-brand-violet-light smooth-transition hover-lift">
-        Warsztaty i Webinary
-      </a>
-    </div>
-  </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var menuBtn = document.getElementById('menuBtn');
-    var mobileMenu = document.getElementById('mobileMenu');
-    var bioModal = document.getElementById('bioModal');
-    var closeBioBtn = document.getElementById('closeBioBtn');
-
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', function () {
-        mobileMenu.classList.toggle('active');
-      });
-    }
-
-    window.openModal = function (id) {
-      var modal = document.getElementById(id);
-      if (!modal) return;
-      modal.classList.add('active');
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    };
-
-    window.closeModal = function (id) {
-      var modal = document.getElementById(id);
-      if (!modal) return;
-      modal.classList.remove('active');
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    };
-
-    window.toggleModal = function (id) {
-      var modal = document.getElementById(id);
-      if (!modal) return;
-      if (modal.classList.contains('active') || modal.style.display === 'flex') {
-        window.closeModal(id);
-      } else {
-        window.openModal(id);
-      }
-    };
-
-    // Close any modal when clicking outside its white card.
-    document.querySelectorAll('.modal').forEach(function (modal) {
-      modal.addEventListener('click', function (event) {
-        if (event.target === modal) {
-          window.closeModal(modal.id);
-        }
-      });
-    });
-
-    if (bioModal) {
-      bioModal.style.display = 'flex';
-      bioModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    if (closeBioBtn) {
-      closeBioBtn.addEventListener('click', function () {
-        window.closeModal('bioModal');
-      });
-    }
-  });
-</script>
+            if (closeBioBtn) {
+                closeBioBtn.addEventListener('click', function () {
+                    window.closeModal('bioModal');
+                });
+            }
+        });
+    </script>
     
 </body>
 </html>
