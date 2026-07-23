@@ -336,18 +336,18 @@
                 <span class="text-no">Fyll ut skjemaet for å registrere deg for de kommende arrangementene.</span>
             </p>
             
-            <form class="space-y-4 text-left">
+            <form id="templeSignupForm" class="space-y-4 text-left">
                 <div>
-                    <input type="text" data-lang-pl="Imię i nazwisko *" data-lang-en="Full Name *" data-lang-no="Fullt Navn *" placeholder="Imię i nazwisko *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                    <input type="text" name="name" data-lang-pl="Imię i nazwisko *" data-lang-en="Full Name *" data-lang-no="Fullt Navn *" placeholder="Imię i nazwisko *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
                 </div>
                 <div>
-                    <input type="email" data-lang-pl="Twój E-mail *" data-lang-en="Your E-mail *" data-lang-no="Din E-post *" placeholder="Twój E-mail *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                    <input type="email" name="email" data-lang-pl="Twój E-mail *" data-lang-en="Your E-mail *" data-lang-no="Din E-post *" placeholder="Twój E-mail *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
                 </div>
                 <div>
-                    <input type="tel" data-lang-pl="Numer Telefonu *" data-lang-en="Phone Number *" data-lang-no="Telefonnummer *" placeholder="Numer Telefonu *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                    <input type="tel" name="phone" data-lang-pl="Numer Telefonu *" data-lang-en="Phone Number *" data-lang-no="Telefonnummer *" placeholder="Numer Telefonu *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
                 </div>
                 <div>
-                    <select class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white text-brand-green" required>
+                    <select name="event" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white text-brand-green" required>
                         <option value="" disabled selected class="lang-option" data-lang-pl="Wybierz wydarzenie..." data-lang-en="Select event..." data-lang-no="Velg arrangement...">Wybierz wydarzenie...</option>
                         <option value="temple1" class="lang-option" data-lang-pl="Świątynia 1 (8 Listopada) - 250 PLN" data-lang-en="Temple 1 (Nov 8) - 250 PLN" data-lang-no="Tempel 1 (8. Nov) - 250 PLN">Świątynia 1 (8 Listopada) - 250 PLN</option>
                         <option value="temple2" class="lang-option" data-lang-pl="Świątynia 2 (22 Listopada) - 250 PLN" data-lang-en="Temple 2 (Nov 22) - 250 PLN" data-lang-no="Tempel 2 (22. Nov) - 250 PLN">Świątynia 2 (22 Listopada) - 250 PLN</option>
@@ -355,36 +355,46 @@
                     </select>
                 </div>
                 
-                <div class="bg-brand-lavender/30 p-4 rounded-xl text-[12px] text-brand-green/80 mt-2 mb-2 border border-brand-lavender text-center">
-                    <span class="text-pl"><strong>Ważne:</strong> Każde zgłoszenie będzie rozpatrywane indywidualnie przez zespół. Potwierdzenie uczestnictwa oraz szczegóły płatności zostaną wysłane po weryfikacji.</span>
-                    <span class="text-en"><strong>Note:</strong> Each registration will be evaluated individually by our team. Confirmation of participation and payment details will be sent after verification.</span>
-                    <span class="text-no"><strong>Merk:</strong> Hver registrering vil bli vurdert individuelt av teamet vårt. Bekreftelse på deltakelse og betalingsdetaljer vil bli sendt etter verifisering.</span>
-                </div>
-
-                <div class="flex items-start gap-3 mt-2">
-                    <input type="checkbox" id="termsConsent" class="mt-1 accent-brand-plum" required>
-                    <label for="termsConsent" class="text-[11px] leading-tight text-brand-green/80">
-                        <span class="text-pl">Wyrażam zgodę na przetwarzanie danych w celu realizacji zgłoszenia i akceptuję regulamin. *</span>
-                        <span class="text-en">I agree to the processing of data to process the application and accept the terms. *</span>
-                        <span class="text-no">Jeg samtykker til behandling av data for å behandle søknaden og godtar vilkårene. *</span>
-                    </label>
-                </div>
-                
-                <div class="flex items-start gap-3 mt-2">
-                    <input type="checkbox" id="marketingConsent" class="mt-1 accent-brand-plum">
+                <div class="flex items-start gap-3 mt-4">
+                    <input type="checkbox" id="marketingConsent" name="consent" value="true" class="mt-1 accent-brand-plum">
                     <label for="marketingConsent" class="text-[11px] leading-tight text-brand-green/80">
-                        <span class="text-pl">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach, świątyniach i wydarzeniach.</span>
-                        <span class="text-en">I agree to receive marketing information about upcoming workshops, temples, and events.</span>
-                        <span class="text-no">Jeg samtykker til å motta markedsinformasjon om kommende workshops, templer og arrangementer.</span>
+                        <span class="text-pl">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach i wydarzeniach.</span>
+                        <span class="text-en">I agree to receive marketing information about upcoming workshops and events.</span>
+                        <span class="text-no">Jeg samtykker til å motta markedsinformasjon om kommende workshops og arrangementer.</span>
                     </label>
                 </div>
 
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all mt-4">
+                <button type="submit" id="submitSignupBtn" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all mt-4 flex justify-center items-center gap-2">
                     <span class="text-pl">Wyślij Zgłoszenie</span>
                     <span class="text-en">Submit Registration</span>
                     <span class="text-no">Send Registrering</span>
                 </button>
+                <div id="signupFormMessage" class="text-center mt-3 text-sm font-semibold hidden"></div>
             </form>
+        </div>
+    </div>
+
+    <!-- Custom Confirmation Modal -->
+    <div id="confirmModal" class="modal" style="z-index: 110;">
+        <div class="bg-white rounded-[32px] p-8 max-w-sm w-full shadow-2xl relative text-center">
+            <h2 class="text-2xl font-bold text-brand-plum mb-4">
+                <span class="text-pl">Ważna Informacja</span>
+                <span class="text-en">Important Note</span>
+                <span class="text-no">Viktig Merknad</span>
+            </h2>
+            <p class="text-sm text-brand-green/80 mb-8 leading-relaxed">
+                <span class="text-pl">Każde zgłoszenie będzie rozpatrywane indywidualnie przez zespół. Potwierdzenie uczestnictwa oraz szczegóły płatności zostaną wysłane po weryfikacji.</span>
+                <span class="text-en">Each registration will be evaluated individually by our team. Confirmation of participation and payment details will be sent after verification.</span>
+                <span class="text-no">Hver registrering vil bli vurdert individuelt av teamet vårt. Bekreftelse på deltakelse og betalingsdetaljer vil bli sendt etter verifisering.</span>
+            </p>
+            <div class="flex gap-4 justify-center">
+                <button onclick="toggleModal('confirmModal')" class="w-full px-4 py-3 rounded-xl border border-brand-lavender text-brand-green font-bold hover:bg-brand-lavender smooth-transition text-sm">
+                    <span class="text-pl">Anuluj</span><span class="text-en">Cancel</span><span class="text-no">Avbryt</span>
+                </button>
+                <button id="confirmSubmitBtn" class="w-full px-4 py-3 rounded-xl bg-brand-plum text-white font-bold hover:opacity-90 smooth-transition text-sm">
+                    <span class="text-pl">Rozumiem</span><span class="text-en">I understand</span><span class="text-no">Jeg forstår</span>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -483,9 +493,83 @@
             const modal = document.getElementById(id);
             if(modal) {
                 modal.classList.toggle('active');
-                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+                
+                // Only hide overflow if at least one modal is active
+                const anyActive = document.querySelectorAll('.modal.active').length > 0;
+                document.body.style.overflow = anyActive ? 'hidden' : 'auto';
             }
         }
+        
+        let pendingForm = null;
+
+        // 1. Intercept the submit and show the custom confirmation modal
+        document.getElementById('templeSignupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            pendingForm = this;
+            toggleModal('confirmModal');
+        });
+
+        // 2. Handle the actual submission once the user clicks "I understand"
+        document.getElementById('confirmSubmitBtn').addEventListener('click', function() {
+            toggleModal('confirmModal');
+            
+            if(!pendingForm) return;
+
+            const form = pendingForm;
+            const submitBtn = document.getElementById('submitSignupBtn');
+            const messageDiv = document.getElementById('signupFormMessage');
+            
+            // Collect data
+            const formData = new FormData(form);
+            formData.append('form_type', 'templesignup');
+            
+            // Add a parameter for language context if the backend needs it to reply
+            const currentLang = document.body.classList.contains('lang-en') ? 'EN' : (document.body.classList.contains('lang-no') ? 'NO' : 'PL');
+            formData.append('language', currentLang);
+            formData.append('source_page', 'Blisshouse Temples Landing Page');
+
+            // UI Loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> WYSYŁANIE...`;
+            messageDiv.classList.add('hidden');
+            messageDiv.className = 'text-center mt-3 text-sm font-semibold'; // reset classes
+
+            // POST to Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec', {
+                method: 'POST',
+                mode: 'no-cors', // Added to bypass CORS restriction
+                body: formData
+            })
+            .then(() => {
+                // With no-cors, we cannot read the response, so we display a hardcoded success message.
+                if (currentLang === 'EN') {
+                    messageDiv.innerHTML = 'Thank you! Your registration has been sent.';
+                } else if (currentLang === 'NO') {
+                    messageDiv.innerHTML = 'Takk! Din registrering er sendt.';
+                } else {
+                    messageDiv.innerHTML = 'Dziękujemy! Twoje zgłoszenie zostało wysłane.';
+                }
+                
+                messageDiv.classList.add('text-green-600');
+                messageDiv.classList.remove('hidden');
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                messageDiv.textContent = 'Wystąpił błąd podczas wysyłania. Spróbuj ponownie później.';
+                messageDiv.classList.add('text-red-500');
+                messageDiv.classList.remove('hidden');
+            })
+            .finally(() => {
+                // Reset Button
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                submitBtn.innerHTML = originalBtnHtml;
+                pendingForm = null;
+            });
+        });
     </script>
 </body>
 </html>
