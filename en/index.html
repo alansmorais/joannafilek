@@ -4,81 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Speaking Therapist & Sexologist Online | Joanna Filek</title>
-    <meta name="description" content="English-speaking psychotherapist and sexologist. Safe online therapy for expats in Norway, the US, and globally. In-person sessions available in Krakow/Oslo (Dates to be Schedule).">
-    <link rel="canonical" href="https://joannafilek.com/en/" />
-
+    <meta name="description" content="English-speaking psychotherapist and sexologist. Safe online therapy for expats in Norway, the US, and globally. In-person sessions available in Krakow/Oslo.">
     <link rel="icon" type="image/png" href="../images/1.jpg">
-
     <link rel="alternate" hreflang="pl" href="https://joannafilek.com/" />
     <link rel="alternate" hreflang="en" href="https://joannafilek.com/en/" />
     <link rel="alternate" hreflang="no" href="https://joannafilek.com/no/" />
     <link rel="alternate" hreflang="x-default" href="https://joannafilek.com/" />
-
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-plum': '#722D64',
-                        'brand-lavender': '#E8C1D9',
-                        'brand-green': '#1B3D2F',
-                        'brand-green-light': '#FDF9FB',
-                        'brand-white': '#FCFCFC',
-                        'brand-violet-light': '#F4E6EF'
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    }
-                }
-            }
-        }
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 
+                        'brand-plum': '#722D64', 
+                        'brand-lavender': '#E8C1D9', 
+                        'brand-green': '#1B3D2F', 
+                        'brand-green-light': '#FDF9FB', 
+                        'brand-white': '#FCFCFC', 
+                        'brand-violet-light': '#F4E6EF',
+                        'bg-pink': '#E3C5D6' 
+                    }, 
+                    fontFamily: { 
+                        sans: ['Poppins', 'sans-serif'], 
+                        serif: ['Playfair Display', 'serif'] 
+                    } 
+                } 
+            } 
+        };
     </script>
-
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
-
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair Display:wght@700&display=swap');
         html { scroll-behavior: smooth; }
-
-        body {
-            background-color: #FDF9FB;
-            color: #1B3D2F;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .hero-bg { background: linear-gradient(135deg, #E8C1D9 0%, #F4E6EF 100%); }
+        body { background-color: #FDF9FB; color: #1B3D2F; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
         .smooth-transition { transition: all 0.3s ease; }
         .hover-lift:hover { transform: translateY(-3px); }
         .mobile-menu { display: none; }
         .mobile-menu.active { display: flex; }
-
-        .modal { 
-            display: none; 
-            position: fixed; 
-            inset: 0; 
-            z-index: 100; 
-            background: rgba(0,0,0,0.5); 
-            backdrop-filter: blur(4px); 
-            align-items: center; 
-            justify-content: center; 
-            padding: 20px; 
-        }
+        .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; }
         .modal.active { display: flex; }
+
+        /* Custom Scrollbar for the booking widget */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #888; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+
+        /* Booking Form Interactive Styles */
+        .selectable-card { border: 1px solid #E5E7EB; transition: all 0.2s ease; cursor: pointer; background: white; }
+        .selectable-card:hover { border-color: #722D64; }
+        .selectable-card.selected { border-color: #722D64; background-color: #FDF9FB; border-width: 2px; }
+        
+        .date-card { border: 1px solid #E5E7EB; border-radius: 12px; padding: 12px; text-align: center; cursor: pointer; background: white; transition: all 0.2s ease; }
+        .date-card:hover { border-color: #722D64; }
+        .date-card.selected { border-color: #722D64; background-color: #722D64; color: white; }
+        .date-card.selected .date-subtext { color: #E8C1D9; }
+        
+        .time-chip { border: 1px solid #E5E7EB; border-radius: 8px; padding: 8px 16px; text-align: center; cursor: pointer; background: white; transition: all 0.2s ease; font-weight: 600; }
+        .time-chip:hover { border-color: #722D64; }
+        .time-chip.selected { border-color: #722D64; background-color: #722D64; color: white; }
+
+        .form-input { border: 1px solid #E5E7EB; border-radius: 12px; padding: 12px 16px; width: 100%; outline: none; transition: border-color 0.2s ease; color: #4B5563; font-weight: 500; }
+        .form-input::placeholder { color: #9CA3AF; font-weight: 400; }
+        .form-input:focus { border-color: #722D64; }
     </style>
 </head>
-
 <body>
-
     <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
         <div class="hidden md:block">Contact (+48) 733 777 542 • psycholog.joannafilek@gmail.com</div>
-        
         <div class="absolute right-6 flex items-center gap-3">
             <a href="../index.html" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></a>
-            <a href="index.html" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></a>
-            <a href="../no/index.html" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></a>
+            <a href="../en/index.html" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></a>
+            <a href="../no/visits.html" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></a>
         </div>
     </div>
 
@@ -91,7 +99,6 @@
                     <p class="text-xs font-semibold text-brand-plum -mt-1">Psychotherapist & Sexologist</p>
                 </div>
             </a>
-
             <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
                 <a href="index.html" class="hover:text-brand-plum smooth-transition">Home</a>
                 <a href="about.html" class="hover:text-brand-plum smooth-transition">About me</a>
@@ -100,349 +107,206 @@
                 <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
                 <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Sign-up</button>
             </nav>
-
             <div class="flex items-center gap-3">
                 <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">Book consultation</a>
                 <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">Menu</button>
             </div>
         </div>
-
         <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
             <a href="index.html">Home</a>
             <a href="about.html">About me</a>
-            <a href="s.html">shops</a>
+            <a href="works.html">Workshops</a>
             <a href="contact.html">Contact</a>
-            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Sign-up</button>           
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Sign-up</button>
             <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
             <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Book consultation</a>
         </div>
     </header>
 
-    <section class="hero-bg pt-16 pb-20 overflow-hidden">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
-            <div>
-                <div class="inline-block bg-white/70 text-brand-plum text-sm font-semibold px-5 py-2 rounded-full mb-6 shadow-sm">
-                    Psychotherapy & Sexology • Krakow
-                </div>
-
-                <h1 class="text-5xl lg:text-6xl font-bold leading-tight text-brand-green mb-6">
-                    Support in difficult times. <br>
-                    <span class="text-brand-plum">The path to emotional balance.</span>
-                </h1>
-
-                <p class="text-xl text-brand-green/90 leading-relaxed max-w-xl mb-8">
-                    I offer a safe space to work with emotions, life crises, stress, anxiety, relationships, and self-esteem. I help you regain control and inner peace.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                    <a href="visits.html" class="bg-brand-green text-white text-lg font-bold py-5 px-10 rounded-2xl text-center shadow-lg hover:bg-brand-plum smooth-transition hover-lift">Book your first session</a>
-                    <a href="about.html" class="border-2 border-brand-green text-brand-green text-lg font-bold py-5 px-10 rounded-2xl text-center hover:bg-white smooth-transition hover-lift">Get to know me better</a>
-                </div>
-
-                <div class="flex flex-wrap gap-4 mb-8">
-                    <div class="bg-white/70 px-4 py-2 rounded-full text-sm font-medium text-brand-green shadow-sm">100% Confidentiality</div>
-                    <div class="bg-white/70 px-4 py-2 rounded-full text-sm font-medium text-brand-green shadow-sm">No judgment</div>
-                    <div class="bg-white/70 px-4 py-2 rounded-full text-sm font-medium text-brand-green shadow-sm">Online and in-person</div>
-                </div>
-
-                <div class="text-sm text-brand-green/70 flex flex-wrap gap-6 font-medium">
-                    <div>Inspiro Clinic • Skalica St., Krakow</div>
-                </div>
-            </div>
-
-            <div class="relative flex justify-center md:justify-end">
-                <img src="../images/profile.jpg" alt="Joanna Filek - Psychotherapist and Sexologist" class="w-full max-w-[520px] rounded-[32px] shadow-2xl object-cover">
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-14">
-                <h2 class="text-4xl font-bold text-brand-green mb-4">How can I help you?</h2>
-                <p class="text-lg text-brand-green/75 max-w-3xl mx-auto leading-relaxed">
-                    I work mainly with people experiencing emotional crises, difficulties in daily functioning, and relationship challenges.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
-                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Crises and emotional difficulties</h3>
-                    <p class="text-brand-green/80 leading-relaxed">Depression, anxiety, chronic stress, burnout, grief, life crises.</p>
-                </div>
-                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
-                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Relationships and intimacy</h3>
-                    <p class="text-brand-green/80 leading-relaxed">Communication difficulties, relationship crises, feeling lonely, building healthy relationships.</p>
-                </div>
-                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift">
-                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Self-esteem</h3>
-                    <p class="text-brand-green/80 leading-relaxed">Low self-esteem, difficulty setting boundaries, inner critic, self-acceptance.</p>
-                </div>
-                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift border-t-4 border-brand-plum/20">
-                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Sexual difficulties</h3>
-                    <p class="text-brand-green/80 leading-relaxed">Premature ejaculation, lack of sexual desire, difficulties with erection and orgasm.</p>
-                </div>
-                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift border-t-4 border-brand-plum/20">
-                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Pain and discomfort</h3>
-                    <p class="text-brand-green/80 leading-relaxed">Dyspareunia, vaginismus, pain during intercourse, and psychogenic physical blockages.</p>
-                </div>
-                <div class="bg-brand-violet-light p-8 rounded-3xl smooth-transition hover:shadow-lg hover-lift border-t-4 border-brand-plum/20">
-                    <h3 class="font-semibold text-xl mb-3 text-brand-green">Sexual anxiety and shame</h3>
-                    <p class="text-brand-green/80 leading-relaxed">Fear of body judgment, lowered self-worth, support in accepting one's sexuality.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 bg-brand-green-light">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="text-center mb-14">
-                <h2 class="text-4xl font-bold text-brand-green mb-4">What does the first consultation look like?</h2>
-                <p class="text-lg text-brand-green/75 max-w-2xl mx-auto leading-relaxed">
-                    The first meeting is a calm conversation about your situation, difficulties, and needs.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
-                    <div class="text-brand-plum text-2xl font-bold mb-4">1.</div>
-                    <h3 class="text-xl font-semibold mb-3 text-brand-green">We talk without pressure</h3>
-                    <p class="text-brand-green/80 leading-relaxed">You can say as much as you feel ready to. You don't have to force anything.</p>
-                </div>
-                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
-                    <div class="text-brand-plum text-2xl font-bold mb-4">2.</div>
-                    <h3 class="text-xl font-semibold mb-3 text-brand-green">We establish needs</h3>
-                    <p class="text-brand-green/80 leading-relaxed">Together we determine what you want to work on and what support you need.</p>
-                </div>
-                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
-                    <div class="text-brand-plum text-2xl font-bold mb-4">3.</div>
-                    <h3 class="text-xl font-semibold mb-3 text-brand-green">We create a safe space</h3>
-                    <p class="text-brand-green/80 leading-relaxed">We work in complete discretion, without judgment, shaming, or time pressure.</p>
-                </div>
-                <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md smooth-transition hover-lift">
-                    <div class="text-brand-plum text-2xl font-bold mb-4">4.</div>
-                    <h3 class="text-xl font-semibold mb-3 text-brand-green">We look for a solution</h3>
-                    <p class="text-brand-green/80 leading-relaxed">Together we develop a therapy plan that will help you regain balance.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="bg-brand-green-light rounded-[40px] p-8 md:p-16 flex flex-col xl:flex-row items-center gap-12 border border-brand-plum/10 shadow-sm">
-                <div class="shrink-0">
-                    <img src="../images/joanna.png" alt="Joanna Filek" class="w-72 rounded-3xl shadow-xl object-cover">
-                </div>
-                <div>
-                    <h2 class="text-4xl font-bold text-brand-plum mb-6">Hi, I'm Joanna Filek</h2>
-                    <p class="text-lg text-brand-green/90 leading-relaxed mb-6">
-                        I am a psychotherapist, psychologist, and sexologist. I accompany people in the process of coping with emotional difficulties, life crises, and relationship challenges.
-                    </p>
-                    <p class="text-lg text-brand-green/90 leading-relaxed mb-8">
-                        I believe everyone deserves a space where they can be fully themselves – without judgment and pressure. I create a safe place where you can honestly talk about what you are going through.
-                    </p>
-                    <a href="about.html" class="inline-flex items-center gap-3 text-brand-plum font-bold text-lg hover:underline smooth-transition">
-                        Learn more about me →
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-brand-plum py-20 text-white text-center">
-        <div class="container mx-auto px-6 max-w-3xl">
-            <h2 class="text-4xl font-bold mb-6 leading-tight">You don't have to face this alone.</h2>
-            <p class="text-lg opacity-90 leading-relaxed mb-8">
-                Whether you are going through a difficult time in your life, struggling with anxiety, or need support in the area of intimacy — we will talk about what you need right now in a calm atmosphere.
-            </p>
-            <a href="visits.html" class="inline-block bg-white text-brand-plum text-lg font-bold px-12 py-5 rounded-2xl hover:bg-brand-lavender smooth-transition shadow-lg hover-lift">
-                Book your first consultation
-            </a>
-        </div>
-    </section>
-
-    <div id="newsletterModal" class="modal">
-        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
-            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold text-brand-plum mb-4">Newsletter</h2>
-            <p class="text-sm text-brand-green/70 mb-6">Stay up to date with upcoming workshops, tantra temples, and events.</p>
-            <form class="space-y-4">
-                <input type="email" placeholder="Your E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
-                <div class="flex items-start gap-3">
-                    <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
-                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">I agree to receive marketing information about upcoming workshops, temples, and special events from Conscious Wolf.</label>
-                </div>
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">Subscribe</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="signupModal" class="modal">
-        <div class="bg-white rounded-[40px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold text-brand-green mb-2">Event Registration</h2>
-            <p class="text-brand-plum font-semibold text-sm mb-8">Workshops / Temples / Festivals</p>
+    <section class="bg-bg-pink py-12 md:py-20 no-gap min-h-screen flex items-center">
+        <div class="max-w-3xl w-full mx-auto px-4 sm:px-6">
             
-            <form class="space-y-6">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="space-y-1">
-                        <label class="text-xs font-bold uppercase text-brand-green/50">Full Name *</label>
-                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-xs font-bold uppercase text-brand-green/50">Phone Number *</label>
-                        <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
-                    </div>
-                </div>
-
-                <div class="space-y-1">
-                    <label class="text-xs font-bold uppercase text-brand-green/50">Payment Method *</label>
-                    <select required class="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white">
-                        <option value="">Select payment method...</option>
-                        <option value="transfer">Traditional Bank Transfer</option>
-                        <option value="blik">BLIK</option>
-                        <option value="card">Card Payment / Online</option>
-                    </select>
-                </div>
-
-                <div class="bg-brand-green-light p-6 rounded-3xl border border-brand-lavender space-y-4">
-                    <h3 class="font-bold text-brand-green text-sm">Image Consent (Photos and Video)</h3>
-                    <p class="text-[10px] text-brand-green/70">Materials for use in social media, on the website, and in promotional materials.</p>
-                    <div class="space-y-3">
-                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
-                            <input type="radio" name="mediaConsent" value="yes" class="accent-brand-plum" required>
-                            <span class="text-xs font-medium"><strong>YES</strong> — I consent to the use of my image for promotional purposes.</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
-                            <input type="radio" name="mediaConsent" value="limited" class="accent-brand-plum">
-                            <span class="text-xs font-medium"><strong>LIMITED CONSENT</strong> — Group photos/wide shots only. No identifiable close-ups.</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
-                            <input type="radio" name="mediaConsent" value="no" class="accent-brand-plum">
-                            <span class="text-xs font-medium"><strong>NO</strong> — I do not consent. Please do not photograph or film me.</span>
-                        </label>
+            <div class="bg-white rounded-[32px] shadow-2xl relative overflow-hidden flex flex-col md:max-h-[85vh]">
+                
+                <!-- Widget Header -->
+                <div class="p-6 md:p-8 border-b border-gray-100 flex items-start gap-4 flex-shrink-0 z-10 bg-white">
+                    <img src="../images/logo.png" alt="Logo" class="w-14 h-14 rounded-full border border-gray-200 p-1 object-cover">
+                    <div>
+                        <div class="text-[10px] font-bold tracking-widest text-brand-plum uppercase">Appointment Request</div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-brand-green font-serif mt-1">Joanna Filek</h2>
+                        <p class="text-sm text-gray-500 mt-1">The clinic will confirm the appointment after reviewing your request.</p>
                     </div>
                 </div>
 
-                <div class="h-32 overflow-y-scroll bg-brand-violet-light/30 p-4 rounded-xl text-[9px] leading-normal text-brand-green/60 border border-brand-lavender">
-                    <p class="font-bold mb-2">Data Protection Information (GDPR)</p>
-                    The controller of personal data, including participants’ image and likeness, is Conscious Wolf...
-                </div>
+                <!-- Scrollable Form Area -->
+                <div class="p-6 md:p-10 overflow-y-auto custom-scrollbar flex-grow bg-white/50" id="bookingScrollArea">
+                    <form id="bookingForm" class="space-y-12">
+                        
+                        <!-- STEP 1: Service Selection -->
+                        <div class="bg-brand-violet-light/30 rounded-3xl p-6 md:p-8 border border-brand-lavender/40">
+                            <div class="text-[10px] font-bold tracking-widest text-brand-plum uppercase mb-2">Step 1</div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-brand-green font-serif mb-6">Choose consultation</h3>
+                            
+                            <div class="space-y-3" id="serviceOptions">
+                                <div class="selectable-card rounded-xl p-5" data-service="Individual Psychotherapy">
+                                    <h4 class="font-bold text-brand-green text-lg">Individual Psychotherapy</h4>
+                                    <p class="text-sm text-gray-500 mt-1">50 min • 122 EUR</p>
+                                </div>
+                                <div class="selectable-card rounded-xl p-5" data-service="Individual Sexological Consultation">
+                                    <h4 class="font-bold text-brand-green text-lg">Individual Sexological Consultation</h4>
+                                    <p class="text-sm text-gray-500 mt-1">50 min • 131 EUR</p>
+                                </div>
+                                <div class="selectable-card rounded-xl p-5" data-service="Couples Psychotherapy">
+                                    <h4 class="font-bold text-brand-green text-lg">Couples Psychotherapy</h4>
+                                    <p class="text-sm text-gray-500 mt-1">75 min • 225 EUR</p>
+                                </div>
+                                <div class="selectable-card rounded-xl p-5" data-service="Couples Sexological Consultation">
+                                    <h4 class="font-bold text-brand-green text-lg">Couples Sexological Consultation</h4>
+                                    <p class="text-sm text-gray-500 mt-1">75 min • 248 EUR</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-xs text-gray-400 bg-white p-4 rounded-xl border border-gray-100">
+                                The time is reserved as pending first. The clinic confirms it afterwards.
+                            </div>
+                        </div>
 
-                <button type="submit" class="w-full bg-brand-green text-white font-bold py-5 rounded-2xl shadow-xl hover:bg-brand-plum transition-all uppercase tracking-widest">Submit Registration and Pay</button>
-            </form>
+                        <!-- STEP 2: Date & Time Selection -->
+                        <div class="bg-brand-violet-light/30 rounded-3xl p-6 md:p-8 border border-brand-lavender/40 relative">
+                            <div id="step2Overlay" class="absolute inset-0 bg-white/60 backdrop-blur-[1px] z-10 rounded-3xl flex items-center justify-center transition-opacity duration-300">
+                                <span class="bg-white px-6 py-2 rounded-full shadow-sm text-sm font-bold text-brand-plum">Select a service first</span>
+                            </div>
+
+                            <div class="text-[10px] font-bold tracking-widest text-brand-plum uppercase mb-2">Step 2</div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-brand-green font-serif mb-6">Select date and time</h3>
+                            
+                            <div class="grid grid-cols-3 sm:grid-cols-4 gap-3 mb-8" id="dateGrid">
+                                <!-- Dates injected via JS -->
+                            </div>
+                            
+                            <h4 class="font-bold text-brand-green mb-3">Available times</h4>
+                            <div id="timeGrid" class="text-sm text-gray-500 min-h-[50px] flex flex-wrap gap-2">
+                                Select a date first.
+                            </div>
+                        </div>
+
+                        <!-- STEP 3: Details -->
+                        <div class="bg-brand-violet-light/30 rounded-3xl p-6 md:p-8 border border-brand-lavender/40 relative">
+                            <div id="step3Overlay" class="absolute inset-0 bg-white/60 backdrop-blur-[1px] z-10 rounded-3xl flex items-center justify-center transition-opacity duration-300">
+                                <span class="bg-white px-6 py-2 rounded-full shadow-sm text-sm font-bold text-brand-plum">Select date and time first</span>
+                            </div>
+
+                            <div class="text-[10px] font-bold tracking-widest text-brand-plum uppercase mb-2">Step 3</div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-brand-green font-serif mb-6">Your details</h3>
+                            
+                            <div class="bg-white rounded-xl border border-gray-200 p-5 mb-8 shadow-sm">
+                                <div class="text-[10px] font-bold tracking-widest text-brand-plum uppercase mb-1">Selected appointment</div>
+                                <div id="summaryText" class="font-bold text-brand-green text-lg">Select service, date and time</div>
+                            </div>
+                            
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="block text-sm font-bold text-brand-green mb-2">Full name</label>
+                                    <input type="text" id="inputName" required placeholder="Your full name" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-brand-green mb-2">Email</label>
+                                    <input type="email" id="inputEmail" required placeholder="your@email.com" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-brand-green mb-2">Phone</label>
+                                    <input type="tel" id="inputPhone" required placeholder="+48 000 000 000" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-brand-green mb-2">Preferred contact</label>
+                                    <select id="inputContactPref" class="form-input bg-white cursor-pointer">
+                                        <option value="Email">Email</option>
+                                        <option value="Phone">Phone</option>
+                                        <option value="WhatsApp">WhatsApp</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-brand-green mb-2">Message to doctor</label>
+                                    <textarea id="inputMessage" rows="3" placeholder="Write a short message for the doctor. Please do not include sensitive medical information." class="form-input resize-none"></textarea>
+                                </div>
+                                
+                                <div class="flex items-start gap-3 py-2 hidden">
+                                    <input type="checkbox" id="inputConsent" checked value="true">
+                                </div>
+                            </div>
+
+                            <div class="bg-[#FFF9E6] border border-[#F2E5B5] text-[#8C7314] text-sm p-5 rounded-xl my-8 font-medium">
+                                This sends an appointment request. The clinic will review it and confirm the appointment.
+                            </div>
+                            
+                            <button type="submit" id="submitBookingBtn" class="w-full bg-[#829288] hover:bg-brand-green text-white font-bold py-5 rounded-xl transition-all shadow-md text-lg flex justify-center items-center gap-2">
+                                Send appointment request
+                            </button>
+                            
+                            <div id="bookingFormMessage" class="text-center mt-4 text-sm font-semibold hidden p-4 rounded-xl"></div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
         </div>
-    </div>
-<!-- White Hat SEO FAQ Section - English Expat Market -->
-<section class="py-16 bg-white border-t border-brand-lavender">
-    <div class="max-w-4xl mx-auto px-6">
-        <h3 class="text-2xl font-bold text-brand-green mb-8 text-center">
-            Online Therapy & Sexology for Expats – FAQ
-        </h3>
-        
-        <div class="space-y-6">
+    </section>
 
-            <!-- Keyword: English speaking therapist online -->
-            <div class="border-b border-brand-lavender pb-6">
-                <h4 class="text-base font-bold text-brand-plum mb-2">
-                    How do I find a qualified English-speaking therapist online?
-                </h4>
-                <p class="text-sm text-brand-green opacity-80 leading-relaxed">
-                    Finding a licensed English-speaking therapist online is essential for expats who want to work through emotional challenges, cultural transitions, or relationship adjustments in their native language. Online therapy provides the same clinical depth as in-person sessions, helping you manage anxiety, isolation, and life transitions safely from anywhere in the world.
-                </p>
+    <section class="py-16 bg-brand-green-light">
+        <div class="max-w-4xl mx-auto px-6">
+            <h3 id="price-title" class="text-xl font-bold text-brand-plum mb-6">Pricing (EUR)</h3>
+            <div class="bg-[#E2E6F3]/30 border border-brand-plum/20 rounded-2xl p-8 text-brand-plum">
+                <table class="w-full">
+                    <tr class="border-b border-dashed border-brand-plum"><td class="py-4">🧠 Individual Psychotherapy (50 min)</td><td id="price-1" class="text-right font-bold">122 EUR</td></tr>
+                    <tr class="border-b border-dashed border-brand-plum"><td class="py-4">🔥 Individual Sexological Consultation (50 min)</td><td id="price-2" class="text-right font-bold">131 EUR</td></tr>
+                    <tr class="border-b border-dashed border-brand-plum"><td class="py-4">💞 Couples Psychotherapy (75 min)</td><td id="price-3" class="text-right font-bold">225 EUR</td></tr>
+                    <tr class="border-b border-dashed border-brand-plum"><td class="py-4">🔥 Couples Sexological Consultation (75 min)</td><td id="price-4" class="text-right font-bold">248 EUR</td></tr>
+                </table>
             </div>
-
-            <!-- Keyword: English speaking sexologist online / culturally sensitive therapy online -->
-            <div class="border-b border-brand-lavender pb-6">
-                <h4 class="text-base font-bold text-brand-plum mb-2">
-                    What are the benefits of consulting an English-speaking sexologist online?
-                </h4>
-                <p class="text-sm text-brand-green opacity-80 leading-relaxed">
-                    Working with an English-speaking sexologist online allows individuals and international couples to address intimacy concerns, performance anxiety, or communication difficulties without cultural or language barriers. This format ensures full confidentiality and provides culturally sensitive support tailored to your personal background and lifestyle.
-                </p>
-            </div>
-
-            <!-- Keyword: online couples counseling expats / English psychologist online Europe -->
-            <div class="border-b border-brand-lavender pb-6">
-                <h4 class="text-base font-bold text-brand-plum mb-2">
-                    Do you offer online couples counseling for expats worldwide?
-                </h4>
-                <p class="text-sm text-brand-green opacity-80 leading-relaxed">
-                    Yes. Online couples counseling for expats is designed to address relationship challenges caused by cross-cultural differences, relocation, or long-distance living. Working with an experienced English-speaking psychologist helps both partners build emotional safety, improve communication, and restore a healthy and fulfilling connection.
-                </p>
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
+
     <footer class="bg-brand-green text-white pt-16 pb-10">
         <div class="container mx-auto px-6">
-
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
                 <div>
-                    <div class="text-3xl font-light mb-2">
-                        Joanna <span class="font-bold">Filek</span>
-                    </div>
-
-                    <p class="text-sm opacity-75">
-                        Gabinet Psychoterapii Inspiro
-                    </p>
-
-                    <address class="text-sm opacity-75 mt-1 not-italic">
-                        ul. Skalica 15A, 30-376 Kraków
-                    </address>
+                    <div class="text-3xl font-light mb-2">Joanna <span class="font-bold">Filek</span></div>
+                    <p class="text-sm opacity-75">Gabinet Psychoterapii Inspiro</p>
+                    <address class="text-sm opacity-75 mt-1 not-italic">ul. Skalica 15A, 30-376 Kraków</address>
                 </div>
-
                 <div>
-                    <h4 class="font-semibold mb-4 text-brand-lavender">Nawigacja</h4>
-
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Navigation</h4>
                     <ul class="space-y-3 text-sm opacity-90">
-                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Strona główna</a></li>
-                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">O mnie</a></li>
-                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Warsztaty</a></li>
-
+                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">About me</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Workshops</a></li>
                     </ul>
                 </div>
-
                 <div>
-                    <h4 class="font-semibold mb-4 text-brand-lavender">Zapisy</h4>
-
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Sign-ups</h4>
                     <ul class="space-y-3 text-sm opacity-90">
-                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Sign-up (Zapisy)</button></li>
+                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Sign-up</button></li>
                         <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li>
                         <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>
                         <li><a href="online-therapy.html">Online Therapy for Expats</a></li>
                     </ul>
                 </div>
-
                 <div>
-                    <h4 class="font-semibold mb-4 text-brand-lavender">Informacje</h4>
-
-                    <p class="text-sm opacity-75 leading-relaxed">
-                        Poufność sesji jest w pełni gwarantowana.
-                        Konsultacje dostępne online oraz stacjonarnie.
-                    </p>
-
-                    <p class="text-sm opacity-60 mt-6">
-                        © 2026 Joanna Filek
-                    </p>
-                    <p class="text-[10px] opacity-40 mt-1">
-                        Designed & Developed by <a href="https://alansmorais.github.io/alans.morais/" target="_blank" rel="noopener" class="hover:text-brand-lavender underline transition-colors">ASM</a>
-                    </p>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Information</h4>
+                    <p class="text-sm opacity-75 leading-relaxed">Confidentiality is fully guaranteed. Consultations available online and in-person.</p>
+                    <p class="text-sm opacity-60 mt-6">© 2026 Joanna Filek</p>
+                    <p class="text-[10px] opacity-40 mt-1">Designed & Developed by <a href="https://alansmorais.github.io/alans.morais/" target="_blank" rel="noopener" class="hover:text-brand-lavender underline transition-colors">ASM</a></p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
+        // Mobile Menu
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
-
         if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-            });
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('active'));
         }
 
         function toggleModal(id) {
@@ -451,6 +315,215 @@
                 modal.classList.toggle('active');
                 document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
             }
+        }
+
+        /* -----------------------------------------------------
+           BOOKING FORM LOGIC (ENGLISH)
+           ----------------------------------------------------- */
+        
+        let state = {
+            service: null,
+            date: null,
+            time: null
+        };
+
+        const overlays = {
+            step2: document.getElementById('step2Overlay'),
+            step3: document.getElementById('step3Overlay')
+        };
+        const summaryText = document.getElementById('summaryText');
+
+        // 1. Service Selection
+        const serviceCards = document.querySelectorAll('.selectable-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Clear active
+                serviceCards.forEach(c => c.classList.remove('selected'));
+                // Set active
+                card.classList.add('selected');
+                
+                state.service = card.getAttribute('data-service');
+                
+                // Reset downstream state
+                state.time = null; 
+                renderTimes();
+                updateSummary();
+
+                // Unlock step 2
+                overlays.step2.style.opacity = '0';
+                setTimeout(() => overlays.step2.classList.add('hidden'), 300);
+            });
+        });
+
+        // 2. Generate Dates dynamically (Next 10 weekdays)
+        const dateGrid = document.getElementById('dateGrid');
+        const today = new Date('2026-07-23'); // Fixed to context date for demo consistency
+        
+        function getNextWeekdays(startDate, count) {
+            let dates = [];
+            let currDate = new Date(startDate);
+            while(dates.length < count) {
+                const day = currDate.getDay();
+                if(day !== 0 && day !== 6) { // Skip Sunday & Saturday
+                    dates.push(new Date(currDate));
+                }
+                currDate.setDate(currDate.getDate() + 1);
+            }
+            return dates;
+        }
+
+        const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        
+        const upcomingDates = getNextWeekdays(today, 10);
+        
+        upcomingDates.forEach(d => {
+            const dayName = days[d.getDay()];
+            const dayNum = String(d.getDate()).padStart(2, '0');
+            const monthName = months[d.getMonth()];
+            
+            const card = document.createElement('div');
+            card.className = 'date-card';
+            card.innerHTML = `
+                <div class="text-[10px] font-bold text-gray-400 mb-1 date-subtext">${dayName}</div>
+                <div class="font-bold text-lg">${dayNum} ${monthName}</div>
+            `;
+            
+            const dateString = `${dayName}, ${dayNum} ${monthName} ${d.getFullYear()}`;
+            
+            card.addEventListener('click', () => {
+                if(!state.service) return; // Locked
+                
+                document.querySelectorAll('.date-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                state.date = dateString;
+                
+                state.time = null; // Reset time
+                renderTimes();
+                updateSummary();
+            });
+            dateGrid.appendChild(card);
+        });
+
+        // 3. Render Times
+        const timeGrid = document.getElementById('timeGrid');
+        const dummyTimes = ['10:00 AM', '11:30 AM', '02:00 PM', '04:30 PM'];
+
+        function renderTimes() {
+            if (!state.date) {
+                timeGrid.innerHTML = 'Select a date first.';
+                return;
+            }
+            
+            timeGrid.innerHTML = '';
+            dummyTimes.forEach(t => {
+                const chip = document.createElement('div');
+                chip.className = 'time-chip';
+                chip.textContent = t;
+                
+                chip.addEventListener('click', () => {
+                    document.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
+                    chip.classList.add('selected');
+                    state.time = t;
+                    updateSummary();
+
+                    // Unlock step 3
+                    overlays.step3.style.opacity = '0';
+                    setTimeout(() => overlays.step3.classList.add('hidden'), 300);
+                });
+                timeGrid.appendChild(chip);
+            });
+        }
+
+        // 4. Update Summary
+        function updateSummary() {
+            if (state.service && state.date && state.time) {
+                summaryText.textContent = `${state.service} — ${state.date} at ${state.time}`;
+                summaryText.classList.remove('text-brand-green');
+                summaryText.classList.add('text-brand-plum');
+            } else {
+                summaryText.textContent = 'Select service, date and time';
+                summaryText.classList.remove('text-brand-plum');
+                summaryText.classList.add('text-brand-green');
+            }
+        }
+
+        // 5. Form Submission
+        const bookingForm = document.getElementById('bookingForm');
+        if(bookingForm) {
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!state.service || !state.date || !state.time) {
+                    alert("Please select a service, date, and time to continue.");
+                    return;
+                }
+
+                const submitBtn = document.getElementById('submitBookingBtn');
+                const messageDiv = document.getElementById('bookingFormMessage');
+                
+                // Manually construct FormData since we are using custom UI elements
+                const formData = new FormData();
+                formData.append('form_type', 'booking');
+                formData.append('name', document.getElementById('inputName').value);
+                formData.append('email', document.getElementById('inputEmail').value);
+                formData.append('phone', document.getElementById('inputPhone').value);
+                formData.append('service', state.service);
+                formData.append('preferred_date', `${state.date} at ${state.time}`);
+                
+                // Combine message and preferred contact
+                const msg = document.getElementById('inputMessage').value;
+                const prefContact = document.getElementById('inputContactPref').value;
+                formData.append('message', `[Preferred Contact: ${prefContact}]\n${msg}`);
+                
+                formData.append('consent', 'Yes'); // From the yellow explicit consent box
+
+                // UI Loading state
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                const originalBtnHtml = submitBtn.innerHTML;
+                submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> SENDING...`;
+                messageDiv.classList.add('hidden');
+                messageDiv.className = 'text-center mt-6 text-sm font-semibold p-4 rounded-xl'; 
+
+                // POST to Google Apps Script
+                fetch('https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                })
+                .then(() => {
+                    messageDiv.innerHTML = 'Thank you! Your appointment request has been sent to the clinic.';
+                    messageDiv.classList.add('bg-green-50', 'text-green-700', 'border', 'border-green-200');
+                    messageDiv.classList.remove('hidden');
+                    
+                    // Reset UI
+                    bookingForm.reset();
+                    state = { service: null, date: null, time: null };
+                    document.querySelectorAll('.selectable-card, .date-card, .time-chip').forEach(c => c.classList.remove('selected'));
+                    timeGrid.innerHTML = 'Select a date first.';
+                    updateSummary();
+                    
+                    // Lock steps again
+                    overlays.step2.classList.remove('hidden');
+                    overlays.step3.classList.remove('hidden');
+                    setTimeout(() => {
+                        overlays.step2.style.opacity = '1';
+                        overlays.step3.style.opacity = '1';
+                    }, 50);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    messageDiv.textContent = 'There was an error sending your request. Please try again later.';
+                    messageDiv.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
+                    messageDiv.classList.remove('hidden');
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    submitBtn.innerHTML = originalBtnHtml;
+                });
+            });
         }
     </script>
 </body>
