@@ -104,7 +104,7 @@
             <a href="about.html">About me</a>
             <a href="works.html">Workshops</a>
             <a href="contact.html">Contact</a>
-            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Sign-up</button>           
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Sign-up</button>            
             <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
             <a href="work-with-us.html">Work with us</a>
             <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Book consultation</a>
@@ -126,7 +126,7 @@
         <div class="container mx-auto px-6">
             <div class="max-w-2xl mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-brand-plum/5">
                 
-                <form id="my-form" action="https://formspree.io/f/mwvwwzaj" method="POST" class="space-y-5">
+                <form id="my-form" class="space-y-5">
                     
                     <div>
                         <label for="name" class="block text-xs font-semibold text-brand-plum uppercase tracking-wider mb-2">
@@ -163,14 +163,21 @@
                             placeholder="How can I help you?"></textarea>
                     </div>
 
+                    <div class="flex items-start gap-3 mt-4">
+                        <input type="checkbox" id="contactConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
+                        <label for="contactConsent" class="text-[11px] leading-tight text-brand-green/80">
+                            I agree to the processing of my personal data for the purpose of receiving a response to my message.
+                        </label>
+                    </div>
+
                     <div class="pt-4">
                         <button type="submit" id="my-form-button"
-                            class="w-full md:w-auto bg-brand-plum text-white px-10 py-4 rounded-xl font-bold text-sm hover:opacity-90 transition-all shadow-md uppercase tracking-widest">
+                            class="w-full md:w-auto bg-brand-plum text-white px-10 py-4 rounded-xl font-bold text-sm hover:opacity-90 transition-all shadow-md uppercase tracking-widest flex justify-center items-center gap-2">
                             Send message
                         </button>
                     </div>
                     
-                    <p id="my-form-status" class="mt-4 text-sm font-medium"></p>
+                    <p id="my-form-status" class="mt-4 text-sm font-medium text-center hidden"></p>
                 </form>
 
             </div>
@@ -209,7 +216,7 @@
                 <div class="flex flex-col items-end justify-start">
                     <div class="text-4xl font-light mb-4">Joanna <span class="font-bold text-brand-lavender">Filek</span></div>
                     <div class="w-16 h-16 opacity-30">
-                        <img src="../images/logospining.png" alt="Logo" class="animate-[spin_20s_linear_infinite] w-full h-full object-contain">
+                        <img src="../images/logospining.png" alt="Logo" class="animate-[spin_20s_linear_infinite] w-full h-full object-contain" onerror="this.style.display='none'">
                     </div>
                 </div>
             </div>
@@ -286,46 +293,54 @@
             }
         }
 
-        var form = document.getElementById("my-form");
+        // Handle Contact Form Submission via Google Apps Script
+        const contactForm = document.getElementById("my-form");
         
-        async function handleSubmit(event) {
-          event.preventDefault();
-          var status = document.getElementById("my-form-status");
-          var data = new FormData(event.target);
-          
-          status.innerHTML = "Sending...";
-          status.classList.remove("text-red-500", "text-green-600");
-          status.classList.add("text-brand-plum");
+        if (contactForm) {
+            contactForm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                
+                const form = this;
+                const submitBtn = document.getElementById('my-form-button');
+                const status = document.getElementById('my-form-status');
+                
+                // Collect data and append form_type
+                const formData = new FormData(form);
+                formData.append('form_type', 'contact');
+                formData.append('source_page', 'English Contact Page');
+                
+                // UI Loading state
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                const originalBtnHtml = submitBtn.innerHTML;
+                submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> SENDING...`;
+                
+                status.classList.remove('hidden', 'text-red-500', 'text-green-600');
+                status.classList.add('text-brand-plum');
+                status.innerHTML = 'Sending...';
 
-          fetch(event.target.action, {
-            method: form.method,
-            body: data,
-            headers: {
-                'Accept': 'application/json'
-            }
-          }).then(response => {
-            if (response.ok) {
-              status.innerHTML = "Thank you! Your message has been sent.";
-              status.classList.replace("text-brand-plum", "text-green-600");
-              form.reset();
-            } else {
-              response.json().then(data => {
-                if (Object.hasOwn(data, 'errors')) {
-                  status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
-                } else {
-                  status.innerHTML = "Oops! There was a problem sending.";
-                }
-                status.classList.replace("text-brand-plum", "text-red-500");
-              })
-            }
-          }).catch(error => {
-            status.innerHTML = "Oops! Connection error.";
-            status.classList.replace("text-brand-plum", "text-red-500");
-          });
-        }
-        
-        if (form) {
-            form.addEventListener("submit", handleSubmit);
+                // POST to Google Apps Script
+                fetch('https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                })
+                .then(() => {
+                    status.innerHTML = 'Thank you! Your message has been sent.';
+                    status.classList.replace('text-brand-plum', 'text-green-600');
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    status.innerHTML = 'Oops! There was a problem sending your message.';
+                    status.classList.replace('text-brand-plum', 'text-red-500');
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    submitBtn.innerHTML = originalBtnHtml;
+                });
+            });
         }
     </script>
 </body>
