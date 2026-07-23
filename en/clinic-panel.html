@@ -135,7 +135,7 @@
           <div style="padding:18px">
             <div class="detail"><small>API URL</small><strong id="apiText" style="font-size:0.8rem"></strong></div>
             <div class="detail"><small>Timezone</small><strong>Europe/Warsaw</strong></div>
-            <div class="detail"><small>Status</small><strong>All 5 sheets connected successfully</strong></div>
+            <div class="detail"><small>Status</small><strong>Connected Cuccessfully</strong></div>
             <button class="btn btn-primary" onclick="loadAll()">Test connection</button>
           </div>
         </div>
@@ -243,7 +243,7 @@
     async function loadAll(){
       if(state.loading) return;
       state.loading = true;
-      status("Connecting", "Syncing all 5 sheets...");
+      status("Connecting", "Syncing...");
       renderAll();
       
       try {
@@ -264,7 +264,7 @@
         state.waitinglist = rWtl.ok ? rWtl.data : [];
         state.subscribers = rSub.ok ? rSub.data : [];
         
-        status("Connected", "Live with Google Sheets");
+        status("Connected", "Live");
       } catch(err) {
         console.error(err);
         status("Offline", "Could not load data");
