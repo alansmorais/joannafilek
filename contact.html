@@ -104,7 +104,7 @@
             <a href="about.html"><span class="text-pl">O mnie</span><span class="text-en">About me</span><span class="text-no">Om meg</span></a>
             <a href="works.html"><span class="text-pl">Warsztaty</span><span class="text-en">Workshops</span><span class="text-no">Verksteder</span></a>
             <a href="contact.html"><span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span></a>
-            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2"><span class="text-pl">Zapisy (Sign-up)</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span></button>           
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2"><span class="text-pl">Zapisy (Sign-up)</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span></button>            
             <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium"><span class="text-pl">Newsletter</span><span class="text-en">Newsletter</span><span class="text-no">Nyhetsbrev</span></button>
             <a href="work-with-us.html"><span class="text-pl">Pracuj z nami</span><span class="text-en">Work with us</span><span class="text-no">Jobb med oss</span></a>
             <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2"><span class="text-pl">Umów konsultację</span><span class="text-en">Book consultation</span><span class="text-no">Bestill konsultasjon</span></a>
@@ -114,9 +114,7 @@
     <section class="bg-brand-lavender pt-8 pb-10 no-gap">
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl lg:text-5xl font-bold text-brand-green mb-4">
-                <span class="text-pl">Napisz do mnie</span>
-                <span class="text-en">Write to me</span>
-                <span class="text-no">Skriv til meg</span>
+                <span class="text-pl">Napisz do mnie</span><span class="text-en">Write to me</span><span class="text-no">Skriv til meg</span>
             </h1>
             <p class="text-brand-plum max-w-xl mx-auto opacity-80 text-sm lg:text-base">
                 <span class="text-pl">Masz pytania? Chcesz umówić się na sesję? Wypełnij poniższy formularz, a odpowiem tak szybko, jak to możliwe.</span>
@@ -130,15 +128,11 @@
         <div class="container mx-auto px-6">
             <div class="max-w-2xl mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-brand-plum/5 mb-8 text-center text-brand-plum">
                 <p class="font-bold text-base md:text-lg mb-2">
-                    <span class="text-pl">Gabinet Stacjonarny:</span>
-                    <span class="text-en">In-Person Clinic:</span>
-                    <span class="text-no">Fysisk Klinikk:</span>
+                    <span class="text-pl">Gabinet Stacjonarny:</span><span class="text-en">In-Person Clinic:</span><span class="text-no">Fysisk Klinikk:</span>
                 </p>
                 <p class="text-sm md:text-base mb-4 opacity-90">ul. Skalica 15A, 30-376 Kraków</p>
                 <p class="font-bold text-base md:text-lg mb-2 border-t border-brand-plum/10 pt-4">
-                    <span class="text-pl">Konsultacje Online:</span>
-                    <span class="text-en">Online Consultations:</span>
-                    <span class="text-no">Online Konsultasjoner:</span>
+                    <span class="text-pl">Konsultacje Online:</span><span class="text-en">Online Consultations:</span><span class="text-no">Online Konsultasjoner:</span>
                 </p>
                 <p class="text-sm md:text-base opacity-90">
                     <span class="text-pl">Sesje przez internet dla pacjentów z całej Polski oraz dla Polaków w Norwegii i za granicą.</span>
@@ -149,7 +143,7 @@
 
             <div class="max-w-2xl mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-brand-plum/5">
                 
-                <form id="my-form" action="https://formspree.io/f/mwvwwzaj" method="POST" class="space-y-5">
+                <form id="my-form" class="space-y-5">
                     
                     <div>
                         <label for="name" class="block text-xs font-semibold text-brand-plum uppercase tracking-wider mb-2">
@@ -186,19 +180,73 @@
                             data-lang-pl="W czym mogę pomóc?" data-lang-en="How can I help you?" data-lang-no="Hvordan kan jeg hjelpe deg?" placeholder="W czym mogę pomóc?"></textarea>
                     </div>
 
+                    <div class="flex items-start gap-3 mt-4">
+                        <input type="checkbox" id="contactConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
+                        <label for="contactConsent" class="text-[11px] leading-tight text-brand-green/80">
+                            <span class="text-pl">Wyrażam zgodę na przetwarzanie moich danych osobowych w celu udzielenia odpowiedzi na wiadomość.</span>
+                            <span class="text-en">I agree to the processing of my personal data for the purpose of receiving a response to my message.</span>
+                            <span class="text-no">Jeg samtykker til behandling av personopplysningene mine for å motta svar på meldingen.</span>
+                        </label>
+                    </div>
+
                     <div class="pt-4">
                         <button type="submit" id="my-form-button"
-                            class="w-full md:w-auto bg-brand-plum text-white px-10 py-4 rounded-xl font-bold text-sm hover:opacity-90 transition-all shadow-md uppercase tracking-widest">
+                            class="w-full md:w-auto bg-brand-plum text-white px-10 py-4 rounded-xl font-bold text-sm hover:opacity-90 transition-all shadow-md uppercase tracking-widest flex justify-center items-center gap-2">
                             <span class="text-pl">Wyślij wiadomość</span><span class="text-en">Send message</span><span class="text-no">Send melding</span>
                         </button>
                     </div>
                     
-                    <p id="my-form-status" class="mt-4 text-sm font-medium"></p>
+                    <p id="my-form-status" class="mt-4 text-sm font-medium text-center hidden"></p>
                 </form>
 
             </div>
         </div>
     </section>
+
+    <footer class="bg-brand-green text-brand-white pt-8 pb-4">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-2">
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">
+                        <span class="text-pl">Dowiedz się więcej</span><span class="text-en">Learn more</span><span class="text-no">Lær mer</span>
+                    </h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="about.html" class="hover:text-brand-lavender"><span class="text-pl">O mnie</span><span class="text-en">About Me</span><span class="text-no">Om Meg</span></a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender"><span class="text-pl">Warsztaty</span><span class="text-en">Workshops</span><span class="text-no">Verksteder</span></a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">
+                        <span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span>
+                    </h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="contact.html" class="hover:text-brand-lavender font-bold"><span class="text-pl">Napisz do nas</span><span class="text-en">Write to us</span><span class="text-no">Skriv til oss</span></a></li>
+                        <li><a href="https://www.instagram.com/joaboutsex" target="_blank" class="hover:text-brand-lavender">Instagram</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">
+                        <span class="text-pl">Interakcja</span><span class="text-en">Interaction</span><span class="text-no">Interaksjon</span>
+                    </h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="visits.html" class="hover:text-brand-lavender"><span class="text-pl">Wizyty</span><span class="text-en">Visits</span><span class="text-no">Besøk</span></a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col items-end justify-start">
+                    <div class="text-4xl font-light mb-4">Joanna <span class="font-bold text-brand-lavender">Filek</span></div>
+                    <div class="w-16 h-16 opacity-30">
+                        <img src="images/logospining.png" alt="Logo" class="animate-[spin_20s_linear_infinite] w-full h-full object-contain" onerror="this.style.display='none'">
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-white/30 text-xs flex justify-between border-t border-white/10 pt-4 mt-4">
+                <p>
+                    Copyright © 2026 Joanna Filek
+                </p>
+            </div>
+        </div>
+    </footer>
 
     <div id="newsletterModal" class="modal">
         <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
@@ -257,62 +305,7 @@
             </form>
         </div>
     </div>
-    <footer class="bg-brand-green text-white pt-16 pb-10">
-        <div class="container mx-auto px-6">
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-                <div>
-                    <div class="text-3xl font-light mb-2">
-                        Joanna <span class="font-bold">Filek</span>
-                    </div>
-
-                    <p class="text-sm opacity-75">
-                        Gabinet Psychoterapii Inspiro
-                    </p>
-
-                    <address class="text-sm opacity-75 mt-1 not-italic">
-                        ul. Skalica 15A, 30-376 Kraków
-                    </address>
-                </div>
-
-                <div>
-                    <h4 class="font-semibold mb-4 text-brand-lavender">Nawigacja</h4>
-
-                    <ul class="space-y-3 text-sm opacity-90">
-                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Strona główna</a></li>
-                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">O mnie</a></li>
-                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Warsztaty</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-semibold mb-4 text-brand-lavender">Zapisy</h4>
-
-                    <ul class="space-y-3 text-sm opacity-90">
-                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Sign-up (Zapisy)</button></li>
-			<li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li> 
-                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>                  
-		 </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-semibold mb-4 text-brand-lavender">Informacje</h4>
-
-                    <p class="text-sm opacity-75 leading-relaxed">
-                        Poufność sesji jest w pełni gwarantowana.
-                        Konsultacje dostępne online oraz stacjonarnie.
-                    </p>
-
-                    <p class="text-sm opacity-60 mt-6">
-                        © 2026 Joanna Filek
-                    </p>
-                    <p class="text-[10px] opacity-40 mt-1">
-                        Designed & Developed by <a href="https://alansmorais.github.io/alans.morais/" target="_blank" rel="noopener" class="hover:text-brand-lavender underline transition-colors">ASM</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
     <script>
         let currentLang = 'pl';
 
@@ -352,9 +345,7 @@
             }
         }
 
-        // Formspree Logic with Translated Messages
-        var form = document.getElementById("my-form");
-        
+        // Form Messages for multiple languages
         const formMessages = {
             sending: { pl: "Wysyłanie...", en: "Sending...", no: "Sender..." },
             success: { pl: "Dziękujemy! Twoja wiadomość została wysłana.", en: "Thank you! Your message has been sent.", no: "Takk! Meldingen din er sendt." },
@@ -362,44 +353,54 @@
             error_conn: { pl: "Ups! Wystąpił błąd połączenia.", en: "Oops! Connection error.", no: "Oops! Tilkoblingsfeil." }
         };
 
-        async function handleSubmit(event) {
-          event.preventDefault();
-          var status = document.getElementById("my-form-status");
-          var data = new FormData(event.target);
-          
-          status.innerHTML = formMessages.sending[currentLang];
-          status.classList.remove("text-red-500", "text-green-600");
-          status.classList.add("text-brand-plum");
-
-          fetch(event.target.action, {
-            method: form.method,
-            body: data,
-            headers: {
-                'Accept': 'application/json'
-            }
-          }).then(response => {
-            if (response.ok) {
-              status.innerHTML = formMessages.success[currentLang];
-              status.classList.replace("text-brand-plum", "text-green-600");
-              form.reset();
-            } else {
-              response.json().then(data => {
-                if (Object.hasOwn(data, 'errors')) {
-                  status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
-                } else {
-                  status.innerHTML = formMessages.error_gen[currentLang];
-                }
-                status.classList.replace("text-brand-plum", "text-red-500");
-              })
-            }
-          }).catch(error => {
-            status.innerHTML = formMessages.error_conn[currentLang];
-            status.classList.replace("text-brand-plum", "text-red-500");
-          });
-        }
+        // Handle Contact Form Submission via Google Apps Script Backend
+        const contactForm = document.getElementById("my-form");
         
-        if (form) {
-            form.addEventListener("submit", handleSubmit);
+        if (contactForm) {
+            contactForm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                
+                const form = this;
+                const submitBtn = document.getElementById('my-form-button');
+                const status = document.getElementById('my-form-status');
+                
+                // Collect data and append form_type
+                const formData = new FormData(form);
+                formData.append('form_type', 'contact');
+                formData.append('source_page', 'Contact Page');
+                
+                // UI Loading state
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                const originalBtnHtml = submitBtn.innerHTML;
+                submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white inline mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>` + formMessages.sending[currentLang];
+                
+                status.classList.remove('hidden', 'text-red-500', 'text-green-600');
+                status.classList.add('text-brand-plum');
+                status.innerHTML = formMessages.sending[currentLang];
+
+                // POST to Google Apps Script
+                fetch('https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                })
+                .then(() => {
+                    status.innerHTML = formMessages.success[currentLang];
+                    status.classList.replace('text-brand-plum', 'text-green-600');
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    status.innerHTML = formMessages.error_conn[currentLang];
+                    status.classList.replace('text-brand-plum', 'text-red-500');
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    submitBtn.innerHTML = originalBtnHtml;
+                });
+            });
         }
     </script>
 </body>
