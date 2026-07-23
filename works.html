@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warsztaty dla Par | Joanna Filek</title>
+    <title>Warsztaty i Wydarzenia | Joanna Filek</title>
     <link rel="icon" type="image/png" href="images/1.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -30,11 +30,17 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
         body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; scroll-behavior: smooth; }
         .no-gap { margin-top: -1px; }
+        
         .hero-bg-image {
-            background-image: linear-gradient(to bottom, rgba(27, 61, 47, 0.7), rgba(114, 45, 100, 0.8)), url('images/WSImage.jpg');
+            /* Using a multi-layered gradient for depth and an atmospheric Unsplash image (temple/candles vibe) */
+            background-image: 
+                radial-gradient(circle at center, rgba(114, 45, 100, 0.4) 0%, rgba(27, 61, 47, 0.85) 100%),
+                linear-gradient(to bottom, rgba(27, 61, 47, 0.5), rgba(114, 45, 100, 0.9)), 
+                url('https://images.unsplash.com/photo-1528319725582-ddc096101511?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed; /* Adds a premium parallax scrolling effect */
         }
         
         /* Nav and Modal Styles */
@@ -82,7 +88,7 @@
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
-                <img src="images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50">
+                <img src="images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50" onerror="this.style.display='none'">
                 <div>
                     <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">Joanna <span class="font-bold">Filek</span></div>
                     <p class="text-xs text-brand-plum -mt-1">
@@ -115,464 +121,177 @@
             <a href="about.html"><span class="text-pl">O mnie</span><span class="text-en">About me</span><span class="text-no">Om meg</span></a>
             <a href="works.html"><span class="text-pl">Warsztaty</span><span class="text-en">Workshops</span><span class="text-no">Verksteder</span></a>
             <a href="contact.html"><span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span></a>
-            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2"><span class="text-pl">Zapisy (Sign-up)</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span></button>           
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2"><span class="text-pl">Zapisy (Sign-up)</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span></button>            
             <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium"><span class="text-pl">Newsletter</span><span class="text-en">Newsletter</span><span class="text-no">Nyhetsbrev</span></button>
             <a href="work-with-us.html"><span class="text-pl">Pracuj z nami</span><span class="text-en">Work with us</span><span class="text-no">Jobb med oss</span></a>
             <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2"><span class="text-pl">Umów konsultację</span><span class="text-en">Book consultation</span><span class="text-no">Bestill konsultasjon</span></a>
         </div>
     </header>
 
-    <section class="hero-bg-image pt-28 pb-40 no-gap">
+    <section class="hero-bg-image pt-20 pb-24 no-gap">
         <div class="max-w-5xl mx-auto px-6 text-center text-white">
             <span class="bg-white/20 backdrop-blur-md text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/30 italic mb-8 inline-block">
-                <span class="text-pl">Praktyczne narzędzia komunikacji i regulacji emocji</span>
-                <span class="text-en">Practical tools for communication and emotional regulation</span>
-                <span class="text-no">Praktiske verktøy for kommunikasjon og følelsesregulering</span>
+                <span class="text-pl">Wydarzenia w Krakowie</span>
+                <span class="text-en">Events in Krakow</span>
+                <span class="text-no">Arrangementer i Krakow</span>
             </span>
             <h1 class="text-5xl md:text-7xl font-bold mt-4 mb-8 leading-tight">
-                <span class="text-pl">Cykl Warsztatów dla Par <br>w Krakowie</span>
-                <span class="text-en">Couples Workshop Series <br>in Krakow</span>
-                <span class="text-no">Samlivskurs for Par <br>i Krakow</span>
+                <span class="text-pl">Świątynie Tantry <br>w Blisshouse Kraków</span>
+                <span class="text-en">Tantra Temples <br>at Blisshouse Kraków</span>
+                <span class="text-no">Tantra Templer <br>på Blisshouse Kraków</span>
             </h1>
             
             <div class="text-lg md:text-xl text-brand-lavender/90 font-light max-w-2xl mx-auto space-y-6 mb-12 leading-relaxed">
                 <p>
-                    <span class="text-pl">Czy Ty i Twój partner wciąż kłócicie się o to samo?</span>
-                    <span class="text-en">Do you and your partner keep arguing about the same thing?</span>
-                    <span class="text-no">Krangler du og partneren din stadig om det samme?</span>
-                </p>
-                <p>
-                    <span class="text-pl">Czy rozmowy czasem szybko zmieniają się w frustrację, defensywność lub dystans?</span>
-                    <span class="text-en">Do conversations sometimes quickly turn into frustration, defensiveness, or distance?</span>
-                    <span class="text-no">Går samtaler noen ganger raskt over i frustrasjon, forsvarsposisjon eller avstand?</span>
+                    <span class="text-pl">Dołącz do Bhody'ego i Joanny podczas naszych nadchodzących wydarzeń.</span>
+                    <span class="text-en">Join Bhody and Joanna for our upcoming events.</span>
+                    <span class="text-no">Bli med Bhody og Joanna på våre kommende arrangementer.</span>
                 </p>
                 <p class="font-bold text-white text-2xl pt-2">
-                    <span class="text-pl">Nie jesteście sami.</span>
-                    <span class="text-en">You are not alone.</span>
-                    <span class="text-no">Dere er ikke alene.</span>
+                    <span class="text-pl">Przestrzeń eksploracji i połączenia.</span>
+                    <span class="text-en">A space for exploration and connection.</span>
+                    <span class="text-no">Et rom for utforskning og forbindelse.</span>
                 </p>
-                
-                <div class="space-y-4 pt-6 border-t border-white/20">
-                    <p>
-                        <span class="text-pl">Większość par nie potrzebuje więcej miłości.</span>
-                        <span class="text-en">Most couples don't need more love.</span>
-                        <span class="text-no">De fleste par trenger ikke mer kjærlighet.</span>
-                    </p>
-                    <p>
-                        <span class="text-pl">Potrzebują <strong>lepszych narzędzi</strong> na momenty stresu i konfliktu.</span>
-                        <span class="text-en">They need <strong>better tools</strong> for moments of stress and conflict.</span>
-                        <span class="text-no">De trenger <strong>bedre verktøy</strong> for øyeblikk med stress og konflikt.</span>
-                    </p>
-                    <p>
-                        <span class="text-pl">Ten cykl pomoże Wam rozpoznawać aktywację, komunikować się jasno i <strong>skutecznie wracać do bliskości</strong>.</span>
-                        <span class="text-en">This series will help you recognize activation, communicate clearly, and <strong>effectively return to intimacy</strong>.</span>
-                        <span class="text-no">Dette kurset vil hjelpe dere å gjenkjenne aktivering, kommunisere tydelig og <strong>effektivt finne tilbake til nærhet</strong>.</span>
-                    </p>
-                </div>
             </div>
             
-            <div class="bg-brand-plum/90 backdrop-blur-md border border-brand-lavender/30 p-8 rounded-[40px] inline-block shadow-2xl mt-4 max-w-xl mx-auto">
-                <h2 class="text-3xl font-bold text-white mb-2">
-                    <span class="text-pl">Warsztat został zakończony</span>
-                    <span class="text-en">Workshop has ended</span>
-                    <span class="text-no">Workshopen er avsluttet</span>
-                </h2>
-                <p class="text-brand-lavender text-lg mb-6">
-                    <span class="text-pl">Zapisz się do newslettera, aby otrzymywać informacje o kolejnych edycjach i nowych wydarzeniach.</span>
-                    <span class="text-en">Subscribe to the newsletter to receive information about upcoming editions and new events.</span>
-                    <span class="text-no">Meld deg på nyhetsbrevet for å motta informasjon om kommende utgaver og nye arrangementer.</span>
-                </p>
-                <button onclick="toggleModal('newsletterModal')" class="bg-white text-brand-plum px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-xl uppercase tracking-widest inline-block">
-                    <span class="text-pl">Zapisz się do Newslettera</span>
-                    <span class="text-en">Subscribe to Newsletter</span>
-                    <span class="text-no">Meld deg på Nyhetsbrevet</span>
+            <div class="mt-4 max-w-xl mx-auto">
+                <button onclick="toggleModal('signupModal')" class="bg-white text-brand-plum px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-xl uppercase tracking-widest inline-block">
+                    <span class="text-pl">Zarejestruj się teraz</span>
+                    <span class="text-en">Register Now</span>
+                    <span class="text-no">Registrer deg nå</span>
                 </button>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-white no-gap relative z-10 -mt-12 rounded-t-[60px]">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                <div class="max-w-xl">
-                    <h2 class="text-4xl font-bold mb-8 text-brand-plum leading-snug">
-                        <span class="text-pl">Dlaczego pary utykają?</span>
-                        <span class="text-en">Why do couples get stuck?</span>
-                        <span class="text-no">Hvorfor setter par seg fast?</span>
-                    </h2>
-                    <p class="text-lg text-brand-green/80 mb-8 leading-relaxed">
-                        <span class="text-pl">Podczas konfliktu wielu z nas traci dostęp do spokojnej komunikacji. Zamiast tego, ciało przechodzi w <strong>reakcje stresowe</strong>.</span>
-                        <span class="text-en">During conflict, many of us lose access to calm communication. Instead, the body goes into <strong>stress responses</strong>.</span>
-                        <span class="text-no">Under konflikt mister mange av oss tilgangen til rolig kommunikasjon. I stedet går kroppen i <strong>stressreaksjoner</strong>.</span>
-                    </p>
-                    <p class="text-base text-brand-green/70 mb-6 font-semibold uppercase tracking-wider">
-                        <span class="text-pl">Typowe reakcje to:</span>
-                        <span class="text-en">Typical reactions include:</span>
-                        <span class="text-no">Typiske reaksjoner inkluderer:</span>
-                    </p>
-                    
-                    <div class="grid grid-cols-2 gap-6 mb-10">
-                        <ul class="list-disc pl-5 space-y-3 text-base font-medium text-brand-green/80">
-                            <li><span class="text-pl">Napięcie</span><span class="text-en">Tension</span><span class="text-no">Spenning</span></li>
-                            <li><span class="text-pl">Podniesiony głos</span><span class="text-en">Raised voice</span><span class="text-no">Hevet stemme</span></li>
-                            <li><span class="text-pl">Zamykanie się</span><span class="text-en">Shutting down</span><span class="text-no">Lukke seg</span></li>
-                            <li><span class="text-pl">Krytyka</span><span class="text-en">Criticism</span><span class="text-no">Kritikk</span></li>
-                        </ul>
-                        <ul class="list-disc pl-5 space-y-3 text-base font-medium text-brand-green/80">
-                            <li><span class="text-pl">Unikanie wzroku</span><span class="text-en">Avoiding eye contact</span><span class="text-no">Unngå blikkontakt</span></li>
-                            <li><span class="text-pl">Zalanie emocjami</span><span class="text-en">Emotional flooding</span><span class="text-no">Følelsesmessig overveldelse</span></li>
-                            <li><span class="text-pl">Wycofanie</span><span class="text-en">Withdrawal</span><span class="text-no">Tilbaketrekning</span></li>
-                            <li><span class="text-pl">Defensywność</span><span class="text-en">Defensiveness</span><span class="text-no">Forsvarsposisjon</span></li>
-                        </ul>
-                    </div>
-                    
-                    <p class="text-lg font-bold text-brand-plum bg-brand-lavender/40 p-6 rounded-3xl leading-relaxed">
-                        <span class="text-pl">Kiedy to się dzieje, rozmowa przestaje dotyczyć tematu – staje się starciem <strong>dwóch układów nerwowych reagujących na stres</strong>. Dobra wiadomość: te wzorce można zmienić.</span>
-                        <span class="text-en">When this happens, the conversation is no longer about the topic – it becomes a clash of <strong>two nervous systems reacting to stress</strong>. Good news: these patterns can be changed.</span>
-                        <span class="text-no">Når dette skjer, handler ikke lenger samtalen om emnet – det blir et sammenstøt mellom <strong>to nervesystemer som reagerer på stress</strong>. Gode nyheter: disse mønstrene kan endres.</span>
-                    </p>
-                </div>
-                <div class="rounded-[50px] overflow-hidden shadow-2xl">
-                    <img src="images/argue-image.png" alt="Reakcje stresowe" class="w-full h-[550px] object-cover">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="curriculum" class="py-24 bg-brand-green-light border-y border-brand-lavender">
-        <div class="max-w-6xl mx-auto px-6">
+    <section id="dates" class="pt-16 pb-12 bg-brand-green-light relative z-10 -mt-12 rounded-t-[60px] border-b border-brand-lavender">
+        <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">
-                    <span class="text-pl">Uczestnicy nauczą się jak:</span>
-                    <span class="text-en">Participants will learn how to:</span>
-                    <span class="text-no">Deltakerne vil lære å:</span>
+                <h2 class="text-4xl font-bold mb-4 text-brand-plum">
+                    <span class="text-pl">Nadchodzące Daty</span>
+                    <span class="text-en">Upcoming Dates</span>
+                    <span class="text-no">Kommende Datoer</span>
                 </h2>
-                <p class="text-brand-plum font-medium text-lg italic max-w-2xl mx-auto">
-                    <span class="text-pl">Konkretne umiejętności nawigowania po trudnościach w relacji.</span>
-                    <span class="text-en">Concrete skills for navigating relationship difficulties.</span>
-                    <span class="text-no">Konkrete ferdigheter for å navigere i relasjonsvansker.</span>
+                <p class="text-brand-green font-medium text-lg italic max-w-2xl mx-auto">
+                    <span class="text-pl">Wybierz jeden z terminów lub weź udział w obu, aby pogłębić swoje doświadczenie.</span>
+                    <span class="text-en">Choose one of the dates or attend both to deepen your experience.</span>
+                    <span class="text-no">Velg en av datoene eller delta på begge for å utdype opplevelsen din.</span>
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
-                        <span class="text-pl">Rozpoznawać wczesne oznaki aktywacji</span>
-                        <span class="text-en">Recognize early signs of activation</span>
-                        <span class="text-no">Gjenkjenne tidlige tegn på aktivering</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Temple 1 -->
+                <div class="bg-white p-6 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-lg transition-all text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-brand-plum"></div>
+                    <img src="https://joannafilek.com/images/Divine%20Intimacy%20Temple_Cacao.png" alt="Divine Intimacy Temple Cacao" class="w-full mx-auto h-auto object-contain rounded-[24px] mb-4 shadow-sm">
+                    <h3 class="font-bold text-3xl text-brand-green leading-tight mb-4 mt-2">
+                        <span class="text-pl">Świątynia 1</span>
+                        <span class="text-en">Temple 1</span>
+                        <span class="text-no">Tempel 1</span>
                     </h3>
-                    <p class="text-sm text-brand-green/70 leading-relaxed">
-                        <span class="text-pl">Zauważ co dzieje się w Twoim ciele <strong>zanim</strong> konflikt eskaluje:</span>
-                        <span class="text-en">Notice what happens in your body <strong>before</strong> the conflict escalates:</span>
-                        <span class="text-no">Legg merke til hva som skjer i kroppen din <strong>før</strong> konflikten eskalerer:</span>
-                    </p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
-                        <li><span class="text-pl">Napięcie w brzuchu lub szczęce</span><span class="text-en">Tension in the stomach or jaw</span><span class="text-no">Spenning i magen eller kjeven</span></li>
-                        <li><span class="text-pl">Płytki oddech</span><span class="text-en">Shallow breathing</span><span class="text-no">Overflatisk pust</span></li>
-                        <li><span class="text-pl">Napięcie karku i ramion</span><span class="text-en">Neck and shoulder tension</span><span class="text-no">Spenning i nakke og skuldre</span></li>
-                        <li><span class="text-pl">Poczucie pilności lub chęć ucieczki</span><span class="text-en">A sense of urgency or desire to escape</span><span class="text-no">En følelse av hastverk eller ønske om å flykte</span></li>
-                    </ul>
+                    <div class="text-brand-plum font-bold text-xl mb-2">
+                        <span class="text-pl">Niedziela, 8 Listopada</span>
+                        <span class="text-en">Sunday, November 8</span>
+                        <span class="text-no">Søndag, 8. November</span>
+                    </div>
+                    <div class="text-brand-green/70 text-lg font-medium bg-brand-lavender/30 inline-block px-6 py-2 rounded-full mt-2">
+                        5:00 PM – 11:30 PM
+                    </div>
                 </div>
 
-                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
-                        <span class="text-pl">Jasno komunikować uczucia</span>
-                        <span class="text-en">Communicate feelings clearly</span>
-                        <span class="text-no">Kommunisere følelser tydelig</span>
+                <!-- Temple 2 -->
+                <div class="bg-white p-6 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-lg transition-all text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-brand-green"></div>
+                    <img src="https://joannafilek.com/images/Sacred_Power_and_Polarity_Play.png" alt="Sacred Power and Polarity Play" class="w-full mx-auto h-auto object-contain rounded-[24px] mb-4 shadow-sm">
+                    <h3 class="font-bold text-3xl text-brand-green leading-tight mb-4 mt-2">
+                        <span class="text-pl">Świątynia 2</span>
+                        <span class="text-en">Temple 2</span>
+                        <span class="text-no">Tempel 2</span>
                     </h3>
-                    <p class="text-sm text-brand-green/70 leading-relaxed">
-                        <span class="text-pl">Zamiast obwiniania, naucz się wyrażać wnętrze, aby <strong>zmniejszyć defensywność</strong>:</span>
-                        <span class="text-en">Instead of blaming, learn to express your inner self to <strong>reduce defensiveness</strong>:</span>
-                        <span class="text-no">I stedet for å klandre, lær å uttrykke ditt indre for å <strong>redusere forsvarsposisjon</strong>:</span>
-                    </p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm italic text-brand-plum font-semibold">
-                        <li><span class="text-pl">"Czuję się teraz niesłyszany/a"</span><span class="text-en">"I feel unheard right now"</span><span class="text-no">"Jeg føler meg ikke hørt akkurat nå"</span></li>
-                        <li><span class="text-pl">"Czuję się przytłoczony/a"</span><span class="text-en">"I feel overwhelmed"</span><span class="text-no">"Jeg føler meg overveldet"</span></li>
-                        <li><span class="text-pl">"Czuję smutek / frustrację / złość"</span><span class="text-en">"I feel sadness / frustration / anger"</span><span class="text-no">"Jeg føler tristhet / frustrasjon / sinne"</span></li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
-                        <span class="text-pl">Zauważać reakcje u partnera</span>
-                        <span class="text-en">Notice your partner's reactions</span>
-                        <span class="text-no">Legge merke til partnerens reaksjoner</span>
-                    </h3>
-                    <p class="text-sm text-brand-green/70 leading-relaxed">
-                        <span class="text-pl">Rozpoznawaj sygnały partnera w sposób pełen szacunku i <strong>bez oceniania</strong>:</span>
-                        <span class="text-en">Recognize your partner's signals respectfully and <strong>without judgment</strong>:</span>
-                        <span class="text-no">Gjenkjenne partnerens signaler på en respektfull måte og <strong>uten å dømme</strong>:</span>
-                    </p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
-                        <li><span class="text-pl">Podniesiony głos lub milczenie</span><span class="text-en">Raised voice or silence</span><span class="text-no">Hevet stemme eller stillhet</span></li>
-                        <li><span class="text-pl">Unikanie kontaktu wzrokowego</span><span class="text-en">Avoiding eye contact</span><span class="text-no">Unngå blikkontakt</span></li>
-                        <li><span class="text-pl">Chodzenie w kółko lub odwracanie się</span><span class="text-en">Pacing or turning away</span><span class="text-no">Vandre rundt eller snu seg bort</span></li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
-                        <span class="text-pl">Regulować emocje w trakcie rozmowy</span>
-                        <span class="text-en">Regulate emotions during conversation</span>
-                        <span class="text-no">Regulere følelser under samtalen</span>
-                    </h3>
-                    <p class="text-sm text-brand-green/80 leading-relaxed">
-                        <span class="text-pl">Praktyczne narzędzia uspokajania układu nerwowego w momentach napięcia:</span>
-                        <span class="text-en">Practical tools for calming the nervous system in moments of tension:</span>
-                        <span class="text-no">Praktiske verktøy for å roe nervesystemet i anspente øyeblikk:</span>
-                    </p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
-                        <li><span class="text-pl">Techniki uziemiające</span><span class="text-en">Grounding techniques</span><span class="text-no">Jordingsteknikker</span></li>
-                        <li><span class="text-pl">Regulacja oddechu i postawy</span><span class="text-en">Breath and posture regulation</span><span class="text-no">Pust- og holdningsregulering</span></li>
-                        <li><span class="text-pl">Spowalnianie tempa wymiany zdań</span><span class="text-en">Slowing down the pace of exchange</span><span class="text-no">Senke tempoet i utvekslingen</span></li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
-                        <span class="text-pl">Pauza, Reset i Reconnect</span>
-                        <span class="text-en">Pause, Reset, and Reconnect</span>
-                        <span class="text-no">Pause, Tilbakestill og Koble til igjen</span>
-                    </h3>
-                    <p class="text-sm text-brand-green/80 leading-relaxed">
-                        <span class="text-pl">Czasem najzdrowszym krokiem jest <strong>zatrzymanie się</strong>:</span>
-                        <span class="text-en">Sometimes the healthiest step is to <strong>stop</strong>:</span>
-                        <span class="text-no">Noen ganger er det sunneste å <strong>stoppe</strong>:</span>
-                    </p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
-                        <li><span class="text-pl">Jak zrobić pauzę bez porzucania tematu</span><span class="text-en">How to pause without abandoning the topic</span><span class="text-no">Hvordan ta en pause uten å forlate emnet</span></li>
-                        <li><span class="text-pl">Osobna regulacja i powrót do rozmowy</span><span class="text-en">Separate regulation and return to the conversation</span><span class="text-no">Separat regulering og retur til samtalen</span></li>
-                        <li><span class="text-pl">Wspólny powrót do połączenia</span><span class="text-en">Mutual return to connection</span><span class="text-no">Gjensidig retur til forbindelse</span></li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-10 space-y-5 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-md transition-all">
-                    <h3 class="font-bold text-xl text-brand-plum leading-tight border-b border-brand-lavender pb-4">
-                        <span class="text-pl">Praca ze złością</span>
-                        <span class="text-en">Working with anger</span>
-                        <span class="text-no">Å jobbe med sinne</span>
-                    </h3>
-                    <p class="text-sm text-brand-green/80 leading-relaxed">
-                        <span class="text-pl">Złość to sygnał o <strong>ważnych potrzebach</strong>. Naucz się jej słuchać bez ataku:</span>
-                        <span class="text-en">Anger is a signal of <strong>important needs</strong>. Learn to listen to it without attacking:</span>
-                        <span class="text-no">Sinne er et signal om <strong>viktige behov</strong>. Lær å lytte til det uten å angripe:</span>
-                    </p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80 font-medium">
-                        <li><span class="text-pl">Przekroczone granice</span><span class="text-en">Crossed boundaries</span><span class="text-no">Overskredne grenser</span></li>
-                        <li><span class="text-pl">Ukryty pod powierzchnią ból</span><span class="text-en">Pain hidden beneath the surface</span><span class="text-no">Smerte skjult under overflaten</span></li>
-                        <li><span class="text-pl">Potrzeba zmiany lub naprawy</span><span class="text-en">The need for change or repair</span><span class="text-no">Behovet for endring eller reparasjon</span></li>
-                    </ul>
+                    <div class="text-brand-plum font-bold text-xl mb-2">
+                        <span class="text-pl">Niedziela, 22 Listopada</span>
+                        <span class="text-en">Sunday, November 22</span>
+                        <span class="text-no">Søndag, 22. November</span>
+                    </div>
+                    <div class="text-brand-green/70 text-lg font-medium bg-brand-lavender/30 inline-block px-6 py-2 rounded-full mt-2">
+                        6:30 PM – 12:30 AM
+                    </div>
                 </div>
             </div>
             
-            <div class="mt-12 p-8 bg-brand-lavender/30 rounded-[40px] border border-brand-plum/10 text-center max-w-3xl mx-auto">
-                <p class="text-base italic opacity-80 leading-relaxed">
-                    <span class="text-pl">Ćwiczenia mogą obejmować zdrowy ruch, praktyki uwalniania emocji i regulacji – indywidualnie oraz w parach – w bezpiecznym środowisku.</span>
-                    <span class="text-en">Exercises may include healthy movement, emotional release practices, and regulation – individually and in pairs – in a safe environment.</span>
-                    <span class="text-no">Øvelser kan inkludere sunn bevegelse, praksis for frigjøring av følelser og regulering – individuelt og i par – i et trygt miljø.</span>
-                </p>
+            <div class="text-center mt-12 text-sm text-brand-green/50 italic">
+                <span class="text-pl">* Uwaga organizacyjna: Zaplanowano 1 godzinę na przygotowanie i 30 minut na zamknięcie po każdym wydarzeniu.</span>
+                <span class="text-en">* Venue note: 1 hour setup and 30 minutes take-down time scheduled per event.</span>
+                <span class="text-no">* Lokalet notat: 1 time oppsett og 30 minutter nedrigg planlagt per arrangement.</span>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-brand-green text-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="space-y-8 max-w-2xl">
-                    <h2 class="text-4xl font-bold leading-tight">
-                        <span class="text-pl">Format Warsztatu</span>
-                        <span class="text-en">Workshop Format</span>
-                        <span class="text-no">Workshopformat</span>
-                    </h2>
-                    <p class="text-lg opacity-90 leading-relaxed">
-                        <span class="text-pl">To ustrukturyzowany program edukacyjno-doświadczalny, który łączy:</span>
-                        <span class="text-en">It is a structured educational and experiential program that combines:</span>
-                        <span class="text-no">Det er et strukturert pedagogisk og erfaringsbasert program som kombinerer:</span>
-                    </p>
-                    <ul class="space-y-4 text-base font-medium">
-                        <li class="flex gap-3"><span>❖</span> <span class="text-pl">Krótkie segmenty merytoryczne</span><span class="text-en">Short theoretical segments</span><span class="text-no">Korte teoretiske segmenter</span></li>
-                        <li class="flex gap-3"><span>❖</span> <span class="text-pl">Prywatne ćwiczenia dla par (nie na forum)</span><span class="text-en">Private exercises for couples (not in public)</span><span class="text-no">Private øvelser for par (ikke i plenum)</span></li>
-                        <li class="flex gap-3"><span>❖</span> <span class="text-pl">Praktyki regulacji emocjonalnej</span><span class="text-en">Emotional regulation practices</span><span class="text-no">Praksis for emosjonell regulering</span></li>
-                        <li class="flex gap-3"><span>❖</span> <span class="text-pl">Wsparcie i prowadzenie przez facylitatorów</span><span class="text-en">Support and guidance from facilitators</span><span class="text-no">Støtte og veiledning fra fasilitatorer</span></li>
-                    </ul>
-                </div>
-                <div class="bg-white/10 p-12 rounded-[50px] border border-white/20 space-y-6">
-                    <h3 class="text-2xl font-bold mb-4 text-brand-lavender">
-                        <span class="text-pl">Prywatność i Dobrowolność</span>
-                        <span class="text-en">Privacy and Voluntariness</span>
-                        <span class="text-no">Personvern og Frivillighet</span>
-                    </h3>
-                    <p class="text-base leading-relaxed">
-                        <span class="text-pl">Uczestnicy <strong>nie są proszeni</strong> o dzielenie się szczegółami swojej relacji z grupą.</span>
-                        <span class="text-en">Participants are <strong>not asked</strong> to share details of their relationship with the group.</span>
-                        <span class="text-no">Deltakerne blir <strong>ikke bedt</strong> om å dele detaljer om forholdet sitt med gruppen.</span>
-                    </p>
-                    <p class="text-base leading-relaxed">
-                        <span class="text-pl">Wszystkie ćwiczenia odbywają się <strong>prywatnie między partnerami</strong>. Udział w każdym z nich jest zawsze dobrowolny.</span>
-                        <span class="text-en">All exercises take place <strong>privately between partners</strong>. Participation in each is always voluntary.</span>
-                        <span class="text-no">Alle øvelser foregår <strong>privat mellom partnerne</strong>. Deltakelse i hver av dem er alltid frivillig.</span>
-                    </p>
+    <section id="pricing" class="pt-12 pb-24 bg-white no-gap">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-brand-plum">
+                    <span class="text-pl">Specjalne Ceny Letnie</span>
+                    <span class="text-en">Special Summer Pricing</span>
+                    <span class="text-no">Spesielle Sommerpriser</span>
+                </h2>
+                <div class="inline-block bg-brand-green text-white px-6 py-2 rounded-full text-sm font-bold tracking-widest uppercase">
+                    <span class="text-pl">Dostępne tylko do 31 sierpnia</span>
+                    <span class="text-en">Available now until August 31st</span>
+                    <span class="text-no">Tilgjengelig frem til 31. august</span>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-white no-gap">
-        <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-20 text-center">
-                <span class="text-pl">Struktura Cyklu</span>
-                <span class="text-en">Series Structure</span>
-                <span class="text-no">Kursstruktur</span>
-            </h2>
             
-            <div class="space-y-16">
-                <div class="relative pl-12 border-l-2 border-brand-plum/20">
-                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-brand-plum ring-8 ring-brand-plum/10"></div>
-                    <h3 class="text-2xl font-bold text-brand-plum mb-2">
-                        <span class="text-pl">Moduł 1 – Zrozumienie Reaktywności Emocjonalnej</span>
-                        <span class="text-en">Module 1 – Understanding Emotional Reactivity</span>
-                        <span class="text-no">Modul 1 – Forstå Emosjonell Reaktivitet</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Single Ticket -->
+                <div class="bg-brand-green-light border border-brand-lavender p-10 rounded-[40px] text-center hover-lift smooth-transition">
+                    <h3 class="text-2xl font-bold text-brand-green mb-2">
+                        <span class="text-pl">Pojedyncze Wydarzenie</span>
+                        <span class="text-en">Single Event</span>
+                        <span class="text-no">Enkelt Arrangement</span>
                     </h3>
-                    <p class="font-bold text-base text-brand-green mb-4">
-                        <span class="text-pl">Sobota, 9 maja | 10:00 – 13:00</span>
-                        <span class="text-en">Saturday, May 9 | 10:00 AM – 1:00 PM</span>
-                        <span class="text-no">Lørdag, 9. mai | 10:00 – 13:00</span>
-                    </p>
-                    <p class="text-base text-brand-green/70 leading-relaxed">
-                        <span class="text-pl">Poznaj mechanizmy powstawania konfliktu w ciele. Naucz się rozpoznawać aktywację układu nerwowego i stosować <strong>narzędzia regulacji w momentach stresu</strong>.</span>
-                        <span class="text-en">Learn the mechanisms of conflict formation in the body. Learn to recognize nervous system activation and apply <strong>regulation tools in moments of stress</strong>.</span>
-                        <span class="text-no">Lær mekanismene for konfliktdannelse i kroppen. Lær å gjenkjenne aktivering av nervesystemet og bruke <strong>reguleringsverktøy i stressende øyeblikk</strong>.</span>
-                    </p>
-                </div>
-
-                <div class="relative pl-12 border-l-2 border-brand-plum/20">
-                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-brand-plum ring-8 ring-brand-plum/10"></div>
-                    <h3 class="text-2xl font-bold text-brand-plum mb-2">
-                        <span class="text-pl">Moduł 2 – Praca z silnymi emocjami bez eskalacji</span>
-                        <span class="text-en">Module 2 – Working with strong emotions without escalation</span>
-                        <span class="text-no">Modul 2 – Jobbe med sterke følelser uten eskalering</span>
-                    </h3>
-                    <p class="font-bold text-base text-brand-green mb-4">
-                        <span class="text-pl">Sobota, 9 maja | 13:30 – 16:30</span>
-                        <span class="text-en">Saturday, May 9 | 1:30 PM – 4:30 PM</span>
-                        <span class="text-no">Lørdag, 9. mai | 13:30 – 16:30</span>
-                    </p>
-                    <p class="text-base text-brand-green/70 leading-relaxed">
-                        <span class="text-pl">Naucz się komunikować potrzeby i emocje (w tym <strong>złość jako informację</strong>) konstruktywnie, wyrażając wpływ sytuacji bez obwiniania partnera.</span>
-                        <span class="text-en">Learn to communicate needs and emotions (including <strong>anger as information</strong>) constructively, expressing the impact of a situation without blaming your partner.</span>
-                        <span class="text-no">Lær å kommunisere behov og følelser (inkludert <strong>sinne som informasjon</strong>) konstruktivt, ved å uttrykke virkningen av en situasjon uten å klandre partneren din.</span>
-                    </p>
-                </div>
-
-                <div class="relative pl-12 border-l-2 border-brand-plum/20">
-                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-brand-plum ring-8 ring-brand-plum/10"></div>
-                    <h3 class="text-2xl font-bold text-brand-plum mb-2">
-                        <span class="text-pl">Część 3 – Weekendowe Zanurzenie: Naprawa i Bezpieczeństwo</span>
-                        <span class="text-en">Part 3 – Weekend Immersion: Repair and Safety</span>
-                        <span class="text-no">Del 3 – Helgefordypning: Reparasjon og Trygghet</span>
-                    </h3>
-                    <p class="font-bold text-xs uppercase tracking-widest text-brand-plum/60 mb-2">
-                        <span class="text-pl">Daty zostaną ogłoszone wkrótce</span>
-                        <span class="text-en">Dates to be announced soon</span>
-                        <span class="text-no">Datoer annonseres snart</span>
-                    </p>
-                    <div class="bg-brand-lavender/30 p-8 rounded-3xl space-y-4">
-                        <p class="text-base font-semibold text-brand-plum/90 italic">
-                            <span class="text-pl">Podczas tego zjazdu przypomnimy fundamenty z Modułów 1 i 2, a następnie przejdziemy do zaawansowanych umiejętności budowania więzi.</span>
-                            <span class="text-en">During this session, we will recall the foundations from Modules 1 and 2, and then move on to advanced bonding skills.</span>
-                            <span class="text-no">I løpet av denne økten vil vi repetere grunnlaget fra Modul 1 og 2, og deretter gå videre til avanserte tilknytningsferdigheter.</span>
-                        </p>
-                        <ul class="list-disc pl-5 space-y-2 text-sm text-brand-green/80">
-                            <li><span class="text-pl"><strong>Granice:</strong> Jasne prośby i komunikacja potrzeb.</span><span class="text-en"><strong>Boundaries:</strong> Clear requests and communicating needs.</span><span class="text-no"><strong>Grenser:</strong> Tydelige forespørsler og kommunikasjon av behov.</span></li>
-                            <li><span class="text-pl"><strong>Zaawansowane:</strong> Umiejętne pauzowanie i powrót do trudnych rozmów.</span><span class="text-en"><strong>Advanced:</strong> Skillful pausing and returning to difficult conversations.</span><span class="text-no"><strong>Avansert:</strong> Dyktig pausing og retur til vanskelige samtaler.</span></li>
-                            <li><span class="text-pl"><strong>Sztuka Naprawy:</strong> Odzyskiwanie bliskości po emocjonalnym pęknięciu.</span><span class="text-en"><strong>The Art of Repair:</strong> Regaining intimacy after an emotional rupture.</span><span class="text-no"><strong>Reparasjonens kunst:</strong> Gjenvinne nærhet etter et emosjonelt brudd.</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-brand-white border-y border-brand-lavender no-gap">
-        <div class="max-w-3xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8 text-brand-plum">
-                <span class="text-pl">Co nas wyróżnia?</span>
-                <span class="text-en">What makes us different?</span>
-                <span class="text-no">Hva gjør oss annerledes?</span>
-            </h2>
-            <p class="text-lg mb-10 opacity-80 leading-relaxed">
-                <span class="text-pl">To nie jest terapia grupowa. Nie polega na obwinianiu się ani publicznym wyjawianiu prywatnych spraw. To prowadzona przestrzeń nauki, gdzie budujecie:</span>
-                <span class="text-en">This is not group therapy. It is not about blaming each other or publicly revealing private matters. It is a guided learning space where you build:</span>
-                <span class="text-no">Dette er ikke gruppeterapi. Det handler ikke om å klandre hverandre eller offentliggjøre private saker. Det er et veiledet læringsrom hvor dere bygger:</span>
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-semibold">
-                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ <span class="text-pl">Świadomość i odporność</span><span class="text-en">Awareness and resilience</span><span class="text-no">Bevissthet og robusthet</span></div>
-                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ <span class="text-pl">Umiejętności komunikacyjne</span><span class="text-en">Communication skills</span><span class="text-no">Kommunikasjonsferdigheter</span></div>
-                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ <span class="text-pl">Zdrowe nawyki konfliktowe</span><span class="text-en">Healthy conflict habits</span><span class="text-no">Sunne konfliktvaner</span></div>
-                <div class="bg-white p-4 rounded-xl border border-brand-lavender flex items-center gap-3">✅ <span class="text-pl">Silniejszą więź</span><span class="text-en">A stronger bond</span><span class="text-no">Et sterkere bånd</span></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="booking" class="py-24 bg-brand-green-light no-gap">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                <div class="max-w-xl space-y-8">
-                    <h2 class="text-4xl font-bold text-brand-plum leading-tight">
-                        <span class="text-pl">Dla kogo jest ten cykl?</span>
-                        <span class="text-en">Who is this series for?</span>
-                        <span class="text-no">Hvem er dette kurset for?</span>
-                    </h2>
-                    <ul class="list-disc pl-6 space-y-3 text-lg font-medium text-brand-green/80">
-                        <li><span class="text-pl">Powtarzacie te same kłótnie i spory</span><span class="text-en">You repeat the same arguments and disputes</span><span class="text-no">Dere gjentar de samme kranglene og konfliktene</span></li>
-                        <li><span class="text-pl">Zależy Wam na sobie, ale utykacie w stresie</span><span class="text-en">You care about each other, but get stuck in stress</span><span class="text-no">Dere bryr dere om hverandre, men setter dere fast i stress</span></li>
-                        <li><span class="text-pl">Chcecie czuć bliskość nawet w trudnych chwilach</span><span class="text-en">You want to feel closeness even in difficult times</span><span class="text-no">Dere ønsker å føle nærhet selv i vanskelige tider</span></li>
-                        <li><span class="text-pl">Chcecie wsparcia, zanim problemy urosną</span><span class="text-en">You want support before problems grow</span><span class="text-no">Dere ønsker støtte før problemene vokser</span></li>
-                    </ul>
-                    <div class="bg-brand-plum/5 p-8 rounded-[40px] border border-brand-plum/10">
-                        <p class="text-base font-bold text-brand-plum italic">
-                            <span class="text-pl">"Nie musicie być w kryzysie, aby skorzystać. Nie jest wymagane wcześniejsze doświadczenie w terapii."</span>
-                            <span class="text-en">"You don't have to be in a crisis to benefit. No prior experience in therapy is required."</span>
-                            <span class="text-no">"Dere trenger ikke å være i en krise for å dra nytte av dette. Tidligere erfaring med terapi er ikke nødvendig."</span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bg-white p-12 rounded-[50px] shadow-2xl border border-brand-lavender relative overflow-hidden text-center">
-                    <div class="absolute top-0 right-0 bg-gray-500 text-white px-8 py-2 rounded-bl-3xl text-xs font-bold uppercase tracking-widest">
-                        <span class="text-pl">Zakończone</span><span class="text-en">Ended</span><span class="text-no">Avsluttet</span>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <span class="text-4xl font-bold text-brand-plum">
-                            <span class="text-pl">Warsztat Zakończony</span>
-                            <span class="text-en">Workshop Ended</span>
-                            <span class="text-no">Workshop Avsluttet</span>
-                        </span>
-                        <p class="text-lg text-brand-green/80 mt-4 leading-relaxed">
-                            <span class="text-pl">Dziękujemy za ogromne zainteresowanie! Rejestracja na to wydarzenie jest już zamknięta.</span>
-                            <span class="text-en">Thank you for the huge interest! Registration for this event is now closed.</span>
-                            <span class="text-no">Takk for den enorme interessen! Påmeldingen til dette arrangementet er nå stengt.</span>
-                        </p>
-                    </div>
-                    
-                    <div class="text-left space-y-4 mb-10 text-sm bg-brand-green-light p-6 rounded-3xl border border-brand-lavender">
-                        <p class="font-bold text-brand-plum uppercase tracking-widest text-xs">
-                            <span class="text-pl">Co dalej?</span><span class="text-en">What's next?</span><span class="text-no">Hva nå?</span>
-                        </p>
-                        <p class="text-brand-green/80 text-base">
-                            <span class="text-pl">Zapisz się do newslettera, aby jako pierwsza/y otrzymywać powiadomienia o kolejnych edycjach warsztatów i nowych wydarzeniach.</span>
-                            <span class="text-en">Subscribe to the newsletter to be the first to receive notifications about upcoming workshop editions and new events.</span>
-                            <span class="text-no">Meld deg på nyhetsbrevet for å bli den første som mottar varsler om kommende workshoputgaver og nye arrangementer.</span>
-                        </p>
-                    </div>
-                    
-                    <button onclick="toggleModal('newsletterModal')" class="block w-full bg-brand-plum text-white text-center py-6 rounded-3xl font-bold text-xl hover:scale-105 transition-all shadow-xl uppercase tracking-widest">
-                        <span class="text-pl">Zapisz się do Newslettera</span>
-                        <span class="text-en">Subscribe to Newsletter</span>
-                        <span class="text-no">Meld deg på Nyhetsbrevet</span>
+                    <p class="text-brand-plum font-semibold mb-6">Super Early Bird</p>
+                    <div class="text-5xl font-bold text-brand-plum mb-6">250 PLN</div>
+                    <button onclick="toggleModal('signupModal')" class="w-full bg-brand-green text-white py-3 rounded-full font-bold hover:bg-brand-plum transition-colors">
+                        <span class="text-pl">Wybierz</span><span class="text-en">Select</span><span class="text-no">Velg</span>
                     </button>
                 </div>
+                
+                <!-- Bundle Ticket -->
+                <div class="bg-brand-plum border border-brand-plum p-10 rounded-[40px] text-center text-white hover-lift smooth-transition shadow-xl relative overflow-hidden">
+                    <div class="absolute top-6 right-[-35px] bg-white text-brand-plum font-bold text-xs py-1 px-10 rotate-45">
+                        BEST VALUE
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">
+                        <span class="text-pl">Obie Świątynie</span>
+                        <span class="text-en">Both Events</span>
+                        <span class="text-no">Begge Arrangementer</span>
+                    </h3>
+                    <p class="text-brand-lavender font-semibold mb-6">
+                        <span class="text-pl">Pakiet Specjalny</span>
+                        <span class="text-en">Special Bundle</span>
+                        <span class="text-no">Spesialpakke</span>
+                    </p>
+                    <div class="text-5xl font-bold mb-6">400 PLN</div>
+                    <button onclick="toggleModal('signupModal')" class="w-full bg-white text-brand-plum py-3 rounded-full font-bold hover:bg-brand-lavender transition-colors">
+                        <span class="text-pl">Wybierz</span><span class="text-en">Select</span><span class="text-no">Velg</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Women's Promotion Box -->
+            <div class="bg-brand-violet-light/50 border-l-4 border-brand-plum p-8 rounded-r-[30px] max-w-3xl mx-auto shadow-sm">
+                <h4 class="text-xl font-bold text-brand-plum mb-3 flex items-center gap-2">
+                    ✨ 
+                    <span class="text-pl">Specjalna Promocja dla Kobiet</span>
+                    <span class="text-en">Special Women's Promotion</span>
+                    <span class="text-no">Spesiell Kampanje for Kvinner</span>
+                </h4>
+                <p class="text-brand-green/80 text-base leading-relaxed">
+                    <span class="text-pl">Przyprowadź 1 lub więcej przyjaciółek i otrzymaj dodatkowe <strong>50 PLN zniżki</strong> na własny bilet! Twoja przyjaciółka zagwarantuje sobie również cenę Super Early Bird (do 31 sierpnia) lub Early Bird (od 1 września).</span>
+                    <span class="text-en">Bring 1 or more girlfriends and receive an additional <strong>50 PLN off</strong> your own ticket! Your girlfriend(s) will also lock in the Super Early Bird price (until Aug 31) or the Early Bird price anytime starting Sept 1.</span>
+                    <span class="text-no">Ta med 1 eller flere venninner og få ytterligere <strong>50 PLN i rabatt</strong> på din egen billett! Din venninne vil også sikre seg Super Early Bird-prisen (frem til 31. aug) eller Early Bird-prisen når som helst fra 1. sept.</span>
+                </p>
             </div>
         </div>
     </section>
@@ -604,32 +323,66 @@
     </div>
 
     <div id="signupModal" class="modal">
-        <div class="bg-white rounded-[40px] p-8 max-w-md w-full shadow-2xl relative text-center">
+        <div class="bg-white rounded-[40px] p-8 max-w-md w-full shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
             <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold text-brand-plum mb-4">
-                <span class="text-pl">Brak dostępnych miejsc</span>
-                <span class="text-en">No spots available</span>
-                <span class="text-no">Ingen ledige plasser</span>
+            <h2 class="text-3xl font-bold text-brand-plum mb-2">
+                <span class="text-pl">Zapisz się</span>
+                <span class="text-en">Sign up</span>
+                <span class="text-no">Meld deg på</span>
             </h2>
             <p class="text-sm text-brand-green/70 mb-6">
-                <span class="text-pl">Obecnie nie mamy zaplanowanych nowych terminów tego warsztatu. Zapisz się do newslettera, aby otrzymać powiadomienie jako pierwszy/a, gdy tylko ruszą nowe zapisy!</span>
-                <span class="text-en">We currently have no new dates scheduled for this workshop. Subscribe to the newsletter to be the first to know when new registrations open!</span>
-                <span class="text-no">Vi har for øyeblikket ingen nye datoer planlagt for denne workshopen. Meld deg på nyhetsbrevet for å få beskjed først når nye påmeldinger åpner!</span>
+                <span class="text-pl">Wypełnij formularz, aby zarejestrować się na nadchodzące wydarzenia.</span>
+                <span class="text-en">Fill out the form to register for the upcoming events.</span>
+                <span class="text-no">Fyll ut skjemaet for å registrere deg for de kommende arrangementene.</span>
             </p>
-            <form class="space-y-4">
-                <input type="email" data-lang-pl="Twój E-mail" data-lang-en="Your E-mail" data-lang-no="Din E-post" placeholder="Twój E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
-                <div class="flex items-start gap-3 text-left">
-                    <input type="checkbox" id="newsConsent2" class="mt-1 accent-brand-plum" required>
-                    <label for="newsConsent2" class="text-[11px] leading-tight text-brand-green/80">
-                        <span class="text-pl">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach i wydarzeniach.</span>
-                        <span class="text-en">I agree to receive marketing information about upcoming workshops and events.</span>
-                        <span class="text-no">Jeg samtykker til å motta markedsinformasjon om kommende workshops og arrangementer.</span>
+            
+            <form class="space-y-4 text-left">
+                <div>
+                    <input type="text" data-lang-pl="Imię i nazwisko *" data-lang-en="Full Name *" data-lang-no="Fullt Navn *" placeholder="Imię i nazwisko *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                </div>
+                <div>
+                    <input type="email" data-lang-pl="Twój E-mail *" data-lang-en="Your E-mail *" data-lang-no="Din E-post *" placeholder="Twój E-mail *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                </div>
+                <div>
+                    <input type="tel" data-lang-pl="Numer Telefonu *" data-lang-en="Phone Number *" data-lang-no="Telefonnummer *" placeholder="Numer Telefonu *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                </div>
+                <div>
+                    <select class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white text-brand-green" required>
+                        <option value="" disabled selected class="lang-option" data-lang-pl="Wybierz wydarzenie..." data-lang-en="Select event..." data-lang-no="Velg arrangement...">Wybierz wydarzenie...</option>
+                        <option value="temple1" class="lang-option" data-lang-pl="Świątynia 1 (8 Listopada) - 250 PLN" data-lang-en="Temple 1 (Nov 8) - 250 PLN" data-lang-no="Tempel 1 (8. Nov) - 250 PLN">Świątynia 1 (8 Listopada) - 250 PLN</option>
+                        <option value="temple2" class="lang-option" data-lang-pl="Świątynia 2 (22 Listopada) - 250 PLN" data-lang-en="Temple 2 (Nov 22) - 250 PLN" data-lang-no="Tempel 2 (22. Nov) - 250 PLN">Świątynia 2 (22 Listopada) - 250 PLN</option>
+                        <option value="both" class="lang-option" data-lang-pl="Obie Świątynie (Pakiet) - 400 PLN" data-lang-en="Both Temples (Bundle) - 400 PLN" data-lang-no="Begge Templer (Pakke) - 400 PLN">Obie Świątynie (Pakiet) - 400 PLN</option>
+                    </select>
+                </div>
+                
+                <div class="bg-brand-lavender/30 p-4 rounded-xl text-[12px] text-brand-green/80 mt-2 mb-2 border border-brand-lavender text-center">
+                    <span class="text-pl"><strong>Ważne:</strong> Każde zgłoszenie będzie rozpatrywane indywidualnie przez zespół. Potwierdzenie uczestnictwa oraz szczegóły płatności zostaną wysłane po weryfikacji.</span>
+                    <span class="text-en"><strong>Note:</strong> Each registration will be evaluated individually by our team. Confirmation of participation and payment details will be sent after verification.</span>
+                    <span class="text-no"><strong>Merk:</strong> Hver registrering vil bli vurdert individuelt av teamet vårt. Bekreftelse på deltakelse og betalingsdetaljer vil bli sendt etter verifisering.</span>
+                </div>
+
+                <div class="flex items-start gap-3 mt-2">
+                    <input type="checkbox" id="termsConsent" class="mt-1 accent-brand-plum" required>
+                    <label for="termsConsent" class="text-[11px] leading-tight text-brand-green/80">
+                        <span class="text-pl">Wyrażam zgodę na przetwarzanie danych w celu realizacji zgłoszenia i akceptuję regulamin. *</span>
+                        <span class="text-en">I agree to the processing of data to process the application and accept the terms. *</span>
+                        <span class="text-no">Jeg samtykker til behandling av data for å behandle søknaden og godtar vilkårene. *</span>
                     </label>
                 </div>
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
-                    <span class="text-pl">Zapisz się do Newslettera</span>
-                    <span class="text-en">Subscribe to Newsletter</span>
-                    <span class="text-no">Meld deg på nyhetsbrevet</span>
+                
+                <div class="flex items-start gap-3 mt-2">
+                    <input type="checkbox" id="marketingConsent" class="mt-1 accent-brand-plum">
+                    <label for="marketingConsent" class="text-[11px] leading-tight text-brand-green/80">
+                        <span class="text-pl">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach, świątyniach i wydarzeniach.</span>
+                        <span class="text-en">I agree to receive marketing information about upcoming workshops, temples, and events.</span>
+                        <span class="text-no">Jeg samtykker til å motta markedsinformasjon om kommende workshops, templer og arrangementer.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all mt-4">
+                    <span class="text-pl">Wyślij Zgłoszenie</span>
+                    <span class="text-en">Submit Registration</span>
+                    <span class="text-no">Send Registrering</span>
                 </button>
             </form>
         </div>
@@ -668,9 +421,9 @@
 
                     <ul class="space-y-3 text-sm opacity-90">
                         <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Sign-up (Zapisy)</button></li>
-			<li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li> 
+                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li> 
                         <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>                  
-		 </ul>
+                    </ul>
                 </div>
 
                 <div>
@@ -705,7 +458,7 @@
                 if(translation) el.placeholder = translation;
             });
 
-            // Update select options (if any select tags exist)
+            // Update select options
             document.querySelectorAll('.lang-option').forEach(el => {
                 const translation = el.getAttribute('data-lang-' + lang);
                 if(translation) el.textContent = translation;
