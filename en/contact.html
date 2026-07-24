@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Joanna Filek</title>
+    <title>Contact | Psychologist, Sexologist | Joanna Filek</title>
+    <meta name="description" content="Contact Joanna Filek. Book a visit online or on-site in Krakow. A safe space to work with emotions and relationships.">
     <link rel="icon" type="image/png" href="../images/1.jpg">
 
-    <link rel="alternate" hreflang="pl" href="https://joannafilek.com/contact.html" />
-    <link rel="alternate" hreflang="en" href="https://joannafilek.com/en/contact.html" />
-    <link rel="alternate" hreflang="no" href="https://joannafilek.com/no/contact.html" />
-    <link rel="alternate" hreflang="x-default" href="https://joannafilek.com/contact.html" />
-
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         'brand-plum': '#722D64',
-                        'brand-lavender': '#E2E6F3', 
+                        'brand-lavender': '#E8C1D9',
                         'brand-green': '#1B3D2F',
                         'brand-green-light': '#FDF9FB',
                         'brand-white': '#FCFCFC',
@@ -32,36 +29,29 @@
             }
         }
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
-        body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; scroll-behavior: smooth; }
-        .no-gap { margin-top: -1px; }
 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        html { scroll-behavior: smooth; }
+        body { background-color: #FDF9FB; color: #1B3D2F; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        .hero-bg { background: linear-gradient(135deg, #E8C1D9 0%, #F4E6EF 100%); }
         .smooth-transition { transition: all 0.3s ease; }
         .hover-lift:hover { transform: translateY(-3px); }
         .mobile-menu { display: none; }
         .mobile-menu.active { display: flex; }
-        
-        .modal { 
-            display: none; 
-            position: fixed; 
-            inset: 0; 
-            z-index: 100; 
-            background: rgba(0,0,0,0.5); 
-            backdrop-filter: blur(4px); 
-            align-items: center; 
-            justify-content: center; 
-            padding: 20px; 
-        }
-        .modal.active { display: flex; }
     </style>
 </head>
+
 <body class="overflow-x-hidden">
 
-    <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs">
-        <div class="hidden md:block">
+    <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
+        <span class="hidden sm:inline">
             Contact (+48) 733 777 542 • psycholog.joannafilek@gmail.com
-        </div>
+        </span>
+        <span class="sm:hidden">
+            Contact (+48) 733 777 542
+        </span>
         
         <div class="absolute right-6 flex items-center gap-3">
             <a href="../contact.html" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></a>
@@ -75,10 +65,10 @@
             <a href="index.html" class="flex items-center gap-3">
                 <img src="../images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50">
                 <div>
-                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">Joanna <span class="font-bold">Filek</span></div>
-                    <p class="text-xs text-brand-plum -mt-1">
-                        Psychotherapist | Inspiro Clinic
-                    </p>
+                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">
+                        Joanna <span class="font-bold">Filek</span>
+                    </div>
+                    <p class="text-xs text-brand-plum -mt-1">Psychotherapist & Sexologist</p>
                 </div>
             </a>
 
@@ -86,15 +76,11 @@
                 <a href="index.html" class="hover:text-brand-plum smooth-transition">Home</a>
                 <a href="about.html" class="hover:text-brand-plum smooth-transition">About me</a>
                 <a href="works.html" class="hover:text-brand-plum smooth-transition">Workshops</a>
-                <a href="contact.html" class="text-brand-plum font-bold hover:text-brand-plum smooth-transition">Contact</a>
-                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
-                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Sign-up</button>
+                <a href="contact.html" class="text-brand-plum smooth-transition underline decoration-2">Contact</a>
             </nav>
 
             <div class="flex items-center gap-3">
-                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
-                    Book consultation
-                </a>
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">Book a session</a>
                 <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">Menu</button>
             </div>
         </div>
@@ -103,244 +89,140 @@
             <a href="index.html">Home</a>
             <a href="about.html">About me</a>
             <a href="works.html">Workshops</a>
-            <a href="contact.html">Contact</a>
-            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Sign-up</button>            
-            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
-            <a href="work-with-us.html">Work with us</a>
-            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Book consultation</a>
+            <a href="contact.html" class="text-brand-plum font-bold">Contact</a>
+            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Book a session</a>
         </div>
     </header>
 
-    <section class="bg-brand-lavender pt-8 pb-10 no-gap">
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl lg:text-5xl font-bold text-brand-green mb-4">
-                Write to me
-            </h1>
-            <p class="text-brand-plum max-w-xl mx-auto opacity-80 text-sm lg:text-base">
-                Have questions? Want to book a session? Fill out the form below and I will answer as soon as possible.
-            </p>
+    <section class="hero-bg pt-16 pb-16 overflow-hidden">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-brand-green mb-4">Get in touch</h1>
+            <p class="text-lg text-brand-green/80 leading-relaxed max-w-2xl mx-auto">Do you have questions about therapy? Need to discuss details before booking an appointment? Fill out the form below and I will reply as soon as possible.</p>
         </div>
     </section>
 
-    <section class="py-12 bg-brand-green-light no-gap">
-        <div class="container mx-auto px-6">
-            <div class="max-w-2xl mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-brand-plum/5">
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <div class="bg-brand-green-light rounded-[32px] p-8 md:p-12 shadow-xl border border-brand-lavender/50">
                 
-                <form id="my-form" class="space-y-5">
+                <form 
+                    id="mainContactForm"
+                    action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec" 
+                    method="POST" 
+                    target="hiddenConfirm"
+                    onsubmit="return validateAndSubmit(event)"
+                    class="space-y-6"
+                >
+                    <!-- HIDDEN DATA FIELDS -->
+                    <input type="hidden" name="form_type" value="contact">
+                    <input type="hidden" name="source_page" value="Contact Page (EN)">
                     
-                    <div>
-                        <label for="name" class="block text-xs font-semibold text-brand-plum uppercase tracking-wider mb-2">
-                            Full Name *
-                        </label>
-                        <input type="text" id="name" name="name" required 
-                            class="w-full px-4 py-3 rounded-xl border border-brand-lavender focus:border-brand-plum focus:ring-1 focus:ring-brand-plum outline-none transition-all text-sm"
-                            placeholder="Your name">
+                    <!-- ANTI-SPAM LAYER 1: The Time Trap -->
+                    <input type="hidden" id="form_load_time" value="">
+
+                    <!-- ANTI-SPAM LAYER 2: The Ghost Field (Honeypot) -->
+                    <div class="absolute -left-[9999px]" aria-hidden="true">
+                        <label for="bot_website">Leave empty</label>
+                        <input type="text" name="website" id="bot_website" tabindex="-1" autocomplete="off">
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label for="email" class="block text-xs font-semibold text-brand-plum uppercase tracking-wider mb-2">Email *</label>
-                            <input type="email" id="email" name="email" required 
-                                class="w-full px-4 py-3 rounded-xl border border-brand-lavender focus:border-brand-plum focus:ring-1 focus:ring-brand-plum outline-none transition-all text-sm"
-                                placeholder="your@email.com">
+                            <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Name and surname *</label>
+                            <input type="text" name="name" required class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors">
                         </div>
                         <div>
-                            <label for="phone" class="block text-xs font-semibold text-brand-plum uppercase tracking-wider mb-2">
-                                Phone number *
-                            </label>
-                            <input type="tel" id="phone" name="phone" required 
-                                class="w-full px-4 py-3 rounded-xl border border-brand-lavender focus:border-brand-plum focus:ring-1 focus:ring-brand-plum outline-none transition-all text-sm"
-                                placeholder="+44 000 000 000">
+                            <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Email *</label>
+                            <input type="email" name="email" required class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors">
                         </div>
                     </div>
 
                     <div>
-                        <label for="message" class="block text-xs font-semibold text-brand-plum uppercase tracking-wider mb-2">
-                            Message description *
-                        </label>
-                        <textarea id="message" name="message" rows="4" required
-                            class="w-full px-4 py-3 rounded-xl border border-brand-lavender focus:border-brand-plum focus:ring-1 focus:ring-brand-plum outline-none transition-all text-sm"
-                            placeholder="How can I help you?"></textarea>
+                        <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Phone (optional)</label>
+                        <input type="tel" name="phone" class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors">
                     </div>
 
-                    <div class="flex items-start gap-3 mt-4">
-                        <input type="checkbox" id="contactConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
-                        <label for="contactConsent" class="text-[11px] leading-tight text-brand-green/80">
-                            I agree to the processing of my personal data for the purpose of receiving a response to my message.
+                    <div>
+                        <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Your message *</label>
+                        <textarea name="message" required rows="5" class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors"></textarea>
+                    </div>
+
+                    <div class="flex items-start gap-4 bg-white p-5 rounded-2xl border border-brand-lavender shadow-sm">
+                        <input type="checkbox" id="contactConsent" name="consent" value="Yes" class="mt-1 accent-brand-plum w-5 h-5" required>
+                        <label for="contactConsent" class="text-xs leading-relaxed text-brand-green/80">
+                            I consent to the processing of the provided personal data in order to receive a response to my message. 
+                            I know I can withdraw my consent at any time.
                         </label>
                     </div>
 
-                    <div class="pt-4">
-                        <button type="submit" id="my-form-button"
-                            class="w-full md:w-auto bg-brand-plum text-white px-10 py-4 rounded-xl font-bold text-sm hover:opacity-90 transition-all shadow-md uppercase tracking-widest flex justify-center items-center gap-2">
-                            Send message
-                        </button>
+                    <button type="submit" class="w-full bg-brand-plum text-white font-bold py-5 rounded-2xl shadow-lg hover:opacity-90 transition-all uppercase tracking-widest hover-lift">
+                        Send Message
+                    </button>
+
+                    <!-- Success Message Alert -->
+                    <div id="contactSuccess" class="hidden mt-4 bg-brand-violet-light border border-brand-lavender rounded-2xl p-5 text-center">
+                        <p class="text-brand-plum font-bold text-lg mb-1">Thank you for your message!</p>
+                        <p class="text-sm text-brand-green/80">I have received your inquiry and will respond as soon as possible.</p>
                     </div>
-                    
-                    <p id="my-form-status" class="mt-4 text-sm font-medium text-center hidden"></p>
                 </form>
-
+                <iframe name="hiddenConfirm" style="display:none"></iframe>
             </div>
         </div>
     </section>
 
-    <footer class="bg-brand-green text-brand-white pt-8 pb-4">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-2">
-                <div>
-                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">
-                        Learn more
-                    </h3>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="about.html" class="hover:text-brand-lavender">About Me</a></li>
-                        <li><a href="works.html" class="hover:text-brand-lavender">Workshops</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">
-                        Contact
-                    </h3>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="contact.html" class="hover:text-brand-lavender font-bold">Write to us</a></li>
-                        <li><a href="https://www.instagram.com/joaboutsex" target="_blank" class="hover:text-brand-lavender">Instagram</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">
-                        Interaction
-                    </h3>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="visits.html" class="hover:text-brand-lavender">Visits</a></li>
-                    </ul>
-                </div>
-                <div class="flex flex-col items-end justify-start">
-                    <div class="text-4xl font-light mb-4">Joanna <span class="font-bold text-brand-lavender">Filek</span></div>
-                    <div class="w-16 h-16 opacity-30">
-                        <img src="../images/logospining.png" alt="Logo" class="animate-[spin_20s_linear_infinite] w-full h-full object-contain" onerror="this.style.display='none'">
-                    </div>
-                </div>
+    <footer class="bg-brand-green text-white pt-16 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <div class="text-3xl font-light mb-2">Joanna <span class="font-bold">Filek</span></div>
+                <p class="text-sm opacity-75">Inspiro Psychotherapy Clinic</p>
+                <address class="text-sm opacity-75 mt-1 not-italic">ul. Skalica 15A, 30-376 Krakow</address>
             </div>
-
-            <div class="text-white/30 text-xs flex justify-between border-t border-white/10 pt-4 mt-4">
-                <p>
-                    Copyright © 2026 Joanna Filek
-                </p>
+            <div>
+                <h4 class="font-semibold mb-4 text-brand-lavender">Navigation</h4>
+                <ul class="space-y-3 text-sm opacity-90">
+                    <li><a href="index.html" class="hover:text-brand-lavender">Home</a></li>
+                    <li><a href="about.html" class="hover:text-brand-lavender">About me</a></li>
+                    <li><a href="works.html" class="hover:text-brand-lavender">Workshops</a></li>
+                    <li><a href="contact.html" class="hover:text-brand-lavender">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4 text-brand-lavender">Information</h4>
+                <p class="text-sm opacity-75 leading-relaxed">Session confidentiality is fully guaranteed.</p>
+                <p class="text-sm opacity-60 mt-6">© 2026 Joanna Filek</p>
             </div>
         </div>
     </footer>
 
-    <div id="newsletterModal" class="modal">
-        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
-            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold text-brand-plum mb-4">Newsletter</h2>
-            <p class="text-sm text-brand-green/70 mb-6">
-                Stay up to date with upcoming workshops, tantra temples, and events.
-            </p>
-            <form class="space-y-4">
-                <input type="email" placeholder="Your E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
-                <div class="flex items-start gap-3">
-                    <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
-                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">
-                        I agree to receive marketing information about upcoming workshops, temples, and special events from Conscious Wolf.
-                    </label>
-                </div>
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
-                    Subscribe
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <div id="signupModal" class="modal">
-        <div class="bg-white rounded-[40px] p-8 max-w-md w-full shadow-2xl relative text-center">
-            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold text-brand-plum mb-4">
-                No spots available
-            </h2>
-            <p class="text-sm text-brand-green/70 mb-6">
-                We currently have no new dates scheduled for this workshop. Subscribe to the newsletter to be the first to know when new registrations open!
-            </p>
-            <form class="space-y-4">
-                <input type="email" placeholder="Your E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
-                <div class="flex items-start gap-3 text-left">
-                    <input type="checkbox" id="newsConsent2" class="mt-1 accent-brand-plum" required>
-                    <label for="newsConsent2" class="text-[11px] leading-tight text-brand-green/80">
-                        I agree to receive marketing information about upcoming workshops and events.
-                    </label>
-                </div>
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
-                    Subscribe to Newsletter
-                </button>
-            </form>
-        </div>
-    </div>
-
     <script>
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-            });
-        }
-
-        function toggleModal(id) {
-            const modal = document.getElementById(id);
-            if(modal) {
-                modal.classList.toggle('active');
-                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('form_load_time').value = new Date().getTime();
+            
+            var menuBtn = document.getElementById('menuBtn');
+            var mobileMenu = document.getElementById('mobileMenu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function () { mobileMenu.classList.toggle('active'); });
             }
-        }
+        });
 
-        // Handle Contact Form Submission via Google Apps Script
-        const contactForm = document.getElementById("my-form");
-        
-        if (contactForm) {
-            contactForm.addEventListener("submit", function(e) {
-                e.preventDefault();
-                
-                const form = this;
-                const submitBtn = document.getElementById('my-form-button');
-                const status = document.getElementById('my-form-status');
-                
-                // Collect data and append form_type
-                const formData = new FormData(form);
-                formData.append('form_type', 'contact');
-                formData.append('source_page', 'English Contact Page');
-                
-                // UI Loading state
-                submitBtn.disabled = true;
-                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                const originalBtnHtml = submitBtn.innerHTML;
-                submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> SENDING...`;
-                
-                status.classList.remove('hidden', 'text-red-500', 'text-green-600');
-                status.classList.add('text-brand-plum');
-                status.innerHTML = 'Sending...';
+        function validateAndSubmit(event) {
+            const botField = document.getElementById('bot_website').value;
+            const loadTime = document.getElementById('form_load_time').value;
+            const submitTime = new Date().getTime();
+            
+            if (botField !== "" || (submitTime - loadTime) < 3500) {
+                event.preventDefault(); 
+                return false;
+            }
 
-                // POST to Google Apps Script
-                fetch('https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec', {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
-                })
-                .then(() => {
-                    status.innerHTML = 'Thank you! Your message has been sent.';
-                    status.classList.replace('text-brand-plum', 'text-green-600');
-                    form.reset();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    status.innerHTML = 'Oops! There was a problem sending your message.';
-                    status.classList.replace('text-brand-plum', 'text-red-500');
-                })
-                .finally(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                    submitBtn.innerHTML = originalBtnHtml;
-                });
-            });
+            const messageStr = document.querySelector('textarea[name="message"]').value.toLowerCase();
+            if(messageStr.includes('http://') && messageStr.length < 30) {
+                 event.preventDefault(); return false;
+            }
+
+            document.getElementById('contactSuccess').classList.remove('hidden');
+            setTimeout(() => { document.getElementById('mainContactForm').reset(); }, 1000);
+            return true;
         }
     </script>
 </body>
