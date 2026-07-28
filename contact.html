@@ -40,6 +40,14 @@
         .hover-lift:hover { transform: translateY(-3px); }
         .mobile-menu { display: none; }
         .mobile-menu.active { display: flex; }
+        
+        /* Custom styling for disabled button */
+        button:disabled {
+            background-color: #E8C1D9;
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.7;
+        }
     </style>
 </head>
 
@@ -105,22 +113,21 @@
         <div class="container mx-auto px-6 max-w-3xl">
             <div class="bg-brand-green-light rounded-[32px] p-8 md:p-12 shadow-xl border border-brand-lavender/50">
                 
+                <!-- Notice the action attribute is intentionally left empty -->
                 <form 
                     id="mainContactForm"
-                    action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec" 
+                    action="" 
                     method="POST" 
                     target="hiddenConfirm"
                     onsubmit="return validateAndSubmit(event)"
                     class="space-y-6"
                 >
-                    <!-- HIDDEN DATA FIELDS -->
                     <input type="hidden" name="form_type" value="contact">
                     <input type="hidden" name="source_page" value="Contact Page (PL)">
                     
-                    <!-- ANTI-SPAM LAYER 1: The Time Trap -->
                     <input type="hidden" id="form_load_time" value="">
 
-                    <!-- ANTI-SPAM LAYER 2: The Ghost Field (Honeypot) -->
+                    <!-- The Ghost Field (Honeypot) -->
                     <div class="absolute -left-[9999px]" aria-hidden="true">
                         <label for="bot_website">Odejdź puste</label>
                         <input type="text" name="website" id="bot_website" tabindex="-1" autocomplete="off">
@@ -147,6 +154,14 @@
                         <textarea name="message" required rows="5" class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors"></textarea>
                     </div>
 
+                    <!-- HUMAN VERIFICATION CHECKBOX -->
+                    <div class="flex items-center gap-4 bg-brand-violet-light/50 p-5 rounded-2xl border border-brand-lavender shadow-sm">
+                        <input type="checkbox" id="humanCheck" class="w-6 h-6 accent-brand-plum cursor-pointer">
+                        <label for="humanCheck" class="text-sm font-bold text-brand-green cursor-pointer select-none">
+                            Zaznacz to pole, aby udowodnić, że nie jesteś robotem.
+                        </label>
+                    </div>
+
                     <div class="flex items-start gap-4 bg-white p-5 rounded-2xl border border-brand-lavender shadow-sm">
                         <input type="checkbox" id="contactConsent" name="consent" value="Yes" class="mt-1 accent-brand-plum w-5 h-5" required>
                         <label for="contactConsent" class="text-xs leading-relaxed text-brand-green/80">
@@ -155,11 +170,11 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="w-full bg-brand-plum text-white font-bold py-5 rounded-2xl shadow-lg hover:opacity-90 transition-all uppercase tracking-widest hover-lift">
+                    <!-- Button starts disabled -->
+                    <button type="submit" id="submitBtn" disabled class="w-full bg-brand-plum text-white font-bold py-5 rounded-2xl shadow-lg transition-all uppercase tracking-widest">
                         Wyślij Wiadomość
                     </button>
 
-                    <!-- Success Message Alert -->
                     <div id="contactSuccess" class="hidden mt-4 bg-brand-violet-light border border-brand-lavender rounded-2xl p-5 text-center">
                         <p class="text-brand-plum font-bold text-lg mb-1">Dziękuję za wiadomość!</p>
                         <p class="text-sm text-brand-green/80">Otrzymałam Twoje zapytanie i odpowiem najszybciej jak to możliwe.</p>
@@ -195,6 +210,9 @@
     </footer>
 
     <script>
+        // The real Google Script URL is hidden here in a variable, not the HTML
+        const realEndpoint = "https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec";
+
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('form_load_time').value = new Date().getTime();
             
@@ -203,6 +221,23 @@
             if (menuBtn && mobileMenu) {
                 menuBtn.addEventListener('click', function () { mobileMenu.classList.toggle('active'); });
             }
+
+            // Human verification logic
+            const humanCheck = document.getElementById('humanCheck');
+            const submitBtn = document.getElementById('submitBtn');
+            const form = document.getElementById('mainContactForm');
+
+            humanCheck.addEventListener('change', function() {
+                if(this.checked) {
+                    form.action = realEndpoint; // Inject URL only when checked
+                    submitBtn.disabled = false;
+                    submitBtn.classList.add('hover:opacity-90', 'hover-lift');
+                } else {
+                    form.action = ""; // Remove URL if unchecked
+                    submitBtn.disabled = true;
+                    submitBtn.classList.remove('hover:opacity-90', 'hover-lift');
+                }
+            });
         });
 
         function validateAndSubmit(event) {
@@ -221,7 +256,13 @@
             }
 
             document.getElementById('contactSuccess').classList.remove('hidden');
-            setTimeout(() => { document.getElementById('mainContactForm').reset(); }, 1000);
+            
+            // Reset form and UI state after submission
+            setTimeout(() => { 
+                document.getElementById('mainContactForm').reset();
+                document.getElementById('submitBtn').disabled = true;
+                document.getElementById('mainContactForm').action = "";
+            }, 1000);
             return true;
         }
     </script>
