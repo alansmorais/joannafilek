@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt | Psykolog, Sexolog | Joanna Filek</title>
-    <meta name="description" content="Kontakt Joanna Filek. Bestill time online eller på klinikken i Krakow. Et trygt rom for å jobbe med følelser og relasjoner.">
+    <meta name="description" content="Kontakt Joanna Filek. Bestill en online eller fysisk time i Krakow. Et trygt rom for å jobbe med følelser og relasjoner.">
     <link rel="icon" type="image/png" href="../images/1.jpg">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -40,6 +40,13 @@
         .hover-lift:hover { transform: translateY(-3px); }
         .mobile-menu { display: none; }
         .mobile-menu.active { display: flex; }
+        
+        button:disabled {
+            background-color: #E8C1D9;
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.7;
+        }
     </style>
 </head>
 
@@ -75,7 +82,7 @@
             <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
                 <a href="index.html" class="hover:text-brand-plum smooth-transition">Hjem</a>
                 <a href="about.html" class="hover:text-brand-plum smooth-transition">Om meg</a>
-                <a href="works.html" class="hover:text-brand-plum smooth-transition">Verksteder</a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition">Kurs</a>
                 <a href="contact.html" class="text-brand-plum smooth-transition underline decoration-2">Kontakt</a>
             </nav>
 
@@ -88,7 +95,7 @@
         <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
             <a href="index.html">Hjem</a>
             <a href="about.html">Om meg</a>
-            <a href="works.html">Verksteder</a>
+            <a href="works.html">Kurs</a>
             <a href="contact.html" class="text-brand-plum font-bold">Kontakt</a>
             <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Bestill time</a>
         </div>
@@ -96,8 +103,8 @@
 
     <section class="hero-bg pt-16 pb-16 overflow-hidden">
         <div class="container mx-auto px-6 max-w-4xl text-center">
-            <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-brand-green mb-4">Ta kontakt med meg</h1>
-            <p class="text-lg text-brand-green/80 leading-relaxed max-w-2xl mx-auto">Har du spørsmål angående terapi? Ønsker du å avklare detaljer før du bestiller time? Fyll ut skjemaet nedenfor, så svarer jeg så fort som mulig.</p>
+            <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-brand-green mb-4">Kontakt meg</h1>
+            <p class="text-lg text-brand-green/80 leading-relaxed max-w-2xl mx-auto">Har du spørsmål om terapi? Vil du avklare detaljer før du bestiller time? Fyll ut skjemaet nedenfor, så svarer jeg så snart som mulig.</p>
         </div>
     </section>
 
@@ -107,28 +114,25 @@
                 
                 <form 
                     id="mainContactForm"
-                    action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec" 
+                    action="" 
                     method="POST" 
                     target="hiddenConfirm"
                     onsubmit="return validateAndSubmit(event)"
                     class="space-y-6"
                 >
-                    <!-- HIDDEN DATA FIELDS -->
                     <input type="hidden" name="form_type" value="contact">
                     <input type="hidden" name="source_page" value="Contact Page (NO)">
                     
-                    <!-- ANTI-SPAM LAYER 1: The Time Trap -->
                     <input type="hidden" id="form_load_time" value="">
 
-                    <!-- ANTI-SPAM LAYER 2: The Ghost Field (Honeypot) -->
                     <div class="absolute -left-[9999px]" aria-hidden="true">
-                        <label for="bot_website">La stå tomt</label>
+                        <label for="bot_website">La stå tom</label>
                         <input type="text" name="website" id="bot_website" tabindex="-1" autocomplete="off">
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Navn og etternavn *</label>
+                            <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Fullt navn *</label>
                             <input type="text" name="name" required class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors">
                         </div>
                         <div>
@@ -138,7 +142,7 @@
                     </div>
 
                     <div>
-                        <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Telefon (valgfritt)</label>
+                        <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Telefon (Valgfritt)</label>
                         <input type="tel" name="phone" class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors">
                     </div>
 
@@ -147,22 +151,28 @@
                         <textarea name="message" required rows="5" class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors"></textarea>
                     </div>
 
-                    <div class="flex items-start gap-4 bg-white p-5 rounded-2xl border border-brand-lavender shadow-sm">
-                        <input type="checkbox" id="contactConsent" name="consent" value="Yes" class="mt-1 accent-brand-plum w-5 h-5" required>
-                        <label for="contactConsent" class="text-xs leading-relaxed text-brand-green/80">
-                            Jeg samtykker til behandling av personopplysninger for å kunne motta et svar på min henvendelse. 
-                            Jeg vet at jeg kan trekke tilbake mitt samtykke når som helst.
+                    <div class="flex items-center gap-4 bg-brand-violet-light/50 p-5 rounded-2xl border border-brand-lavender shadow-sm">
+                        <input type="checkbox" id="humanCheck" class="w-6 h-6 accent-brand-plum cursor-pointer">
+                        <label for="humanCheck" class="text-sm font-bold text-brand-green cursor-pointer select-none">
+                            Kryss av i denne boksen for å bevise at du ikke er en robot.
                         </label>
                     </div>
 
-                    <button type="submit" class="w-full bg-brand-plum text-white font-bold py-5 rounded-2xl shadow-lg hover:opacity-90 transition-all uppercase tracking-widest hover-lift">
-                        Send Melding
+                    <div class="flex items-start gap-4 bg-white p-5 rounded-2xl border border-brand-lavender shadow-sm">
+                        <input type="checkbox" id="contactConsent" name="consent" value="Yes" class="mt-1 accent-brand-plum w-5 h-5" required>
+                        <label for="contactConsent" class="text-xs leading-relaxed text-brand-green/80">
+                            Jeg samtykker i at mine personopplysninger behandles for å kunne svare på meldingen min. 
+                            Jeg vet at jeg når som helst kan trekke tilbake samtykket mitt.
+                        </label>
+                    </div>
+
+                    <button type="submit" id="submitBtn" disabled class="w-full bg-brand-plum text-white font-bold py-5 rounded-2xl shadow-lg transition-all uppercase tracking-widest">
+                        Send melding
                     </button>
 
-                    <!-- Success Message Alert -->
                     <div id="contactSuccess" class="hidden mt-4 bg-brand-violet-light border border-brand-lavender rounded-2xl p-5 text-center">
                         <p class="text-brand-plum font-bold text-lg mb-1">Takk for meldingen din!</p>
-                        <p class="text-sm text-brand-green/80">Jeg har mottatt din forespørsel og vil svare så snart som mulig.</p>
+                        <p class="text-sm text-brand-green/80">Jeg har mottatt din henvendelse og vil svare så snart som mulig.</p>
                     </div>
                 </form>
                 <iframe name="hiddenConfirm" style="display:none"></iframe>
@@ -174,27 +184,29 @@
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
             <div>
                 <div class="text-3xl font-light mb-2">Joanna <span class="font-bold">Filek</span></div>
-                <p class="text-sm opacity-75">Inspiro Psykoterapi</p>
-                <address class="text-sm opacity-75 mt-1 not-italic">ul. Skalica 15A, 30-376 Krakow</address>
+                <p class="text-sm opacity-75">Gabinet Psychoterapii Inspiro</p>
+                <address class="text-sm opacity-75 mt-1 not-italic">ul. Skalica 15A, 30-376 Kraków</address>
             </div>
             <div>
                 <h4 class="font-semibold mb-4 text-brand-lavender">Navigasjon</h4>
                 <ul class="space-y-3 text-sm opacity-90">
                     <li><a href="index.html" class="hover:text-brand-lavender">Hjem</a></li>
                     <li><a href="about.html" class="hover:text-brand-lavender">Om meg</a></li>
-                    <li><a href="works.html" class="hover:text-brand-lavender">Verksteder</a></li>
+                    <li><a href="works.html" class="hover:text-brand-lavender">Kurs</a></li>
                     <li><a href="contact.html" class="hover:text-brand-lavender">Kontakt</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-semibold mb-4 text-brand-lavender">Informasjon</h4>
-                <p class="text-sm opacity-75 leading-relaxed">Sesjonskonfidensialitet er fullt garantert.</p>
+                <p class="text-sm opacity-75 leading-relaxed">Konfidensialitet for sesjonene er fullt ut garantert.</p>
                 <p class="text-sm opacity-60 mt-6">© 2026 Joanna Filek</p>
             </div>
         </div>
     </footer>
 
     <script>
+        const realEndpoint = "https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec";
+
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('form_load_time').value = new Date().getTime();
             
@@ -203,6 +215,22 @@
             if (menuBtn && mobileMenu) {
                 menuBtn.addEventListener('click', function () { mobileMenu.classList.toggle('active'); });
             }
+
+            const humanCheck = document.getElementById('humanCheck');
+            const submitBtn = document.getElementById('submitBtn');
+            const form = document.getElementById('mainContactForm');
+
+            humanCheck.addEventListener('change', function() {
+                if(this.checked) {
+                    form.action = realEndpoint;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.add('hover:opacity-90', 'hover-lift');
+                } else {
+                    form.action = "";
+                    submitBtn.disabled = true;
+                    submitBtn.classList.remove('hover:opacity-90', 'hover-lift');
+                }
+            });
         });
 
         function validateAndSubmit(event) {
@@ -221,7 +249,12 @@
             }
 
             document.getElementById('contactSuccess').classList.remove('hidden');
-            setTimeout(() => { document.getElementById('mainContactForm').reset(); }, 1000);
+            
+            setTimeout(() => { 
+                document.getElementById('mainContactForm').reset();
+                document.getElementById('submitBtn').disabled = true;
+                document.getElementById('mainContactForm').action = "";
+            }, 1000);
             return true;
         }
     </script>
