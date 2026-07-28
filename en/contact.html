@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Psychologist, Sexologist | Joanna Filek</title>
-    <meta name="description" content="Contact Joanna Filek. Book a visit online or on-site in Krakow. A safe space to work with emotions and relationships.">
+    <meta name="description" content="Contact Joanna Filek. Book an online or in-person visit in Krakow. A safe space to work on emotions and relationships.">
     <link rel="icon" type="image/png" href="../images/1.jpg">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -40,6 +40,13 @@
         .hover-lift:hover { transform: translateY(-3px); }
         .mobile-menu { display: none; }
         .mobile-menu.active { display: flex; }
+        
+        button:disabled {
+            background-color: #E8C1D9;
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.7;
+        }
     </style>
 </head>
 
@@ -63,12 +70,12 @@
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
-                <img src="../images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50">
+                <img src="../images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain">
                 <div>
                     <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">
                         Joanna <span class="font-bold">Filek</span>
                     </div>
-                    <p class="text-xs text-brand-plum -mt-1">Psychotherapist & Sexologist</p>
+                    <p class="text-xs text-brand-plum -mt-1">Psychologist | Sexologist | Psychotherapist</p>
                 </div>
             </a>
 
@@ -80,7 +87,7 @@
             </nav>
 
             <div class="flex items-center gap-3">
-                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">Book a session</a>
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">Book a consultation</a>
                 <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">Menu</button>
             </div>
         </div>
@@ -90,14 +97,14 @@
             <a href="about.html">About me</a>
             <a href="works.html">Workshops</a>
             <a href="contact.html" class="text-brand-plum font-bold">Contact</a>
-            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Book a session</a>
+            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">Book a consultation</a>
         </div>
     </header>
 
     <section class="hero-bg pt-16 pb-16 overflow-hidden">
         <div class="container mx-auto px-6 max-w-4xl text-center">
-            <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-brand-green mb-4">Get in touch</h1>
-            <p class="text-lg text-brand-green/80 leading-relaxed max-w-2xl mx-auto">Do you have questions about therapy? Need to discuss details before booking an appointment? Fill out the form below and I will reply as soon as possible.</p>
+            <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-brand-green mb-4">Contact Me</h1>
+            <p class="text-lg text-brand-green/80 leading-relaxed max-w-2xl mx-auto">Do you have questions about therapy? Want to discuss details before booking a visit? Fill out the form below, and I will reply as soon as possible.</p>
         </div>
     </section>
 
@@ -107,20 +114,17 @@
                 
                 <form 
                     id="mainContactForm"
-                    action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec" 
+                    action="" 
                     method="POST" 
                     target="hiddenConfirm"
                     onsubmit="return validateAndSubmit(event)"
                     class="space-y-6"
                 >
-                    <!-- HIDDEN DATA FIELDS -->
                     <input type="hidden" name="form_type" value="contact">
                     <input type="hidden" name="source_page" value="Contact Page (EN)">
                     
-                    <!-- ANTI-SPAM LAYER 1: The Time Trap -->
                     <input type="hidden" id="form_load_time" value="">
 
-                    <!-- ANTI-SPAM LAYER 2: The Ghost Field (Honeypot) -->
                     <div class="absolute -left-[9999px]" aria-hidden="true">
                         <label for="bot_website">Leave empty</label>
                         <input type="text" name="website" id="bot_website" tabindex="-1" autocomplete="off">
@@ -128,41 +132,47 @@
 
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Name and surname *</label>
+                            <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Full Name *</label>
                             <input type="text" name="name" required class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors">
                         </div>
                         <div>
-                            <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Email *</label>
+                            <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">E-mail *</label>
                             <input type="email" name="email" required class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors">
                         </div>
                     </div>
 
                     <div>
-                        <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Phone (optional)</label>
+                        <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Phone (Optional)</label>
                         <input type="tel" name="phone" class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors">
                     </div>
 
                     <div>
-                        <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Your message *</label>
+                        <label class="text-xs font-bold uppercase tracking-wider text-brand-green/70 mb-2 block">Your Message *</label>
                         <textarea name="message" required rows="5" class="w-full px-5 py-4 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white shadow-sm transition-colors"></textarea>
+                    </div>
+
+                    <div class="flex items-center gap-4 bg-brand-violet-light/50 p-5 rounded-2xl border border-brand-lavender shadow-sm">
+                        <input type="checkbox" id="humanCheck" class="w-6 h-6 accent-brand-plum cursor-pointer">
+                        <label for="humanCheck" class="text-sm font-bold text-brand-green cursor-pointer select-none">
+                            Check this box to prove you are not a robot.
+                        </label>
                     </div>
 
                     <div class="flex items-start gap-4 bg-white p-5 rounded-2xl border border-brand-lavender shadow-sm">
                         <input type="checkbox" id="contactConsent" name="consent" value="Yes" class="mt-1 accent-brand-plum w-5 h-5" required>
                         <label for="contactConsent" class="text-xs leading-relaxed text-brand-green/80">
-                            I consent to the processing of the provided personal data in order to receive a response to my message. 
-                            I know I can withdraw my consent at any time.
+                            I consent to the processing of my personal data in order to respond to my message. 
+                            I understand that I can withdraw my consent at any time.
                         </label>
                     </div>
 
-                    <button type="submit" class="w-full bg-brand-plum text-white font-bold py-5 rounded-2xl shadow-lg hover:opacity-90 transition-all uppercase tracking-widest hover-lift">
+                    <button type="submit" id="submitBtn" disabled class="w-full bg-brand-plum text-white font-bold py-5 rounded-2xl shadow-lg transition-all uppercase tracking-widest">
                         Send Message
                     </button>
 
-                    <!-- Success Message Alert -->
                     <div id="contactSuccess" class="hidden mt-4 bg-brand-violet-light border border-brand-lavender rounded-2xl p-5 text-center">
                         <p class="text-brand-plum font-bold text-lg mb-1">Thank you for your message!</p>
-                        <p class="text-sm text-brand-green/80">I have received your inquiry and will respond as soon as possible.</p>
+                        <p class="text-sm text-brand-green/80">I have received your inquiry and will reply as soon as possible.</p>
                     </div>
                 </form>
                 <iframe name="hiddenConfirm" style="display:none"></iframe>
@@ -174,8 +184,8 @@
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
             <div>
                 <div class="text-3xl font-light mb-2">Joanna <span class="font-bold">Filek</span></div>
-                <p class="text-sm opacity-75">Inspiro Psychotherapy Clinic</p>
-                <address class="text-sm opacity-75 mt-1 not-italic">ul. Skalica 15A, 30-376 Krakow</address>
+                <p class="text-sm opacity-75">Gabinet Psychoterapii Inspiro</p>
+                <address class="text-sm opacity-75 mt-1 not-italic">ul. Skalica 15A, 30-376 Kraków</address>
             </div>
             <div>
                 <h4 class="font-semibold mb-4 text-brand-lavender">Navigation</h4>
@@ -188,13 +198,15 @@
             </div>
             <div>
                 <h4 class="font-semibold mb-4 text-brand-lavender">Information</h4>
-                <p class="text-sm opacity-75 leading-relaxed">Session confidentiality is fully guaranteed.</p>
+                <p class="text-sm opacity-75 leading-relaxed">The confidentiality of sessions is fully guaranteed.</p>
                 <p class="text-sm opacity-60 mt-6">© 2026 Joanna Filek</p>
             </div>
         </div>
     </footer>
 
     <script>
+        const realEndpoint = "https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec";
+
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('form_load_time').value = new Date().getTime();
             
@@ -203,6 +215,22 @@
             if (menuBtn && mobileMenu) {
                 menuBtn.addEventListener('click', function () { mobileMenu.classList.toggle('active'); });
             }
+
+            const humanCheck = document.getElementById('humanCheck');
+            const submitBtn = document.getElementById('submitBtn');
+            const form = document.getElementById('mainContactForm');
+
+            humanCheck.addEventListener('change', function() {
+                if(this.checked) {
+                    form.action = realEndpoint;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.add('hover:opacity-90', 'hover-lift');
+                } else {
+                    form.action = "";
+                    submitBtn.disabled = true;
+                    submitBtn.classList.remove('hover:opacity-90', 'hover-lift');
+                }
+            });
         });
 
         function validateAndSubmit(event) {
@@ -221,7 +249,12 @@
             }
 
             document.getElementById('contactSuccess').classList.remove('hidden');
-            setTimeout(() => { document.getElementById('mainContactForm').reset(); }, 1000);
+            
+            setTimeout(() => { 
+                document.getElementById('mainContactForm').reset();
+                document.getElementById('submitBtn').disabled = true;
+                document.getElementById('mainContactForm').action = "";
+            }, 1000);
             return true;
         }
     </script>
