@@ -13,7 +13,7 @@
                     colors: {
                         'brand-plum': '#722D64',
                         'brand-lavender': '#E2E6F3', 
-                        'brand-green': '#1B3D2F',Bh                
+                        'brand-green': '#1B3D2F', /* Fixed the typo here */
                         'brand-green-light': '#FDF9FB',
                         'brand-white': '#FCFCFC',
                         'brand-violet-light': '#F4E6EF'
@@ -32,7 +32,6 @@
         .no-gap { margin-top: -1px; }
         
         .hero-bg-image {
-            /* Using a multi-layered gradient for depth and an atmospheric Unsplash image (temple/candles vibe) */
             background-image: 
                 radial-gradient(circle at center, rgba(114, 45, 100, 0.4) 0%, rgba(27, 61, 47, 0.85) 100%),
                 linear-gradient(to bottom, rgba(27, 61, 47, 0.5), rgba(114, 45, 100, 0.9)), 
@@ -40,10 +39,9 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Adds a premium parallax scrolling effect */
+            background-attachment: fixed;
         }
         
-        /* Nav and Modal Styles */
         .smooth-transition { transition: all 0.3s ease; }
         .hover-lift:hover { transform: translateY(-3px); }
         .mobile-menu { display: none; }
@@ -62,7 +60,6 @@
         }
         .modal.active { display: flex; }
 
-        /* Language Switcher Logic */
         body.lang-pl .text-en, body.lang-pl .text-no { display: none !important; }
         body.lang-en .text-pl, body.lang-en .text-no { display: none !important; }
         body.lang-no .text-pl, body.lang-no .text-en { display: none !important; }
@@ -262,7 +259,7 @@
                     <div class="absolute top-6 right-[-35px] bg-white text-brand-plum font-bold text-xs py-1 px-10 rotate-45">
                         BEST VALUE
                     </div>
-                    <h3 class="text-2xl font-bold mb-2">
+                    <h3 class="text-2xl font-bold mb-2 text-white">
                         <span class="text-pl">Obie Świątynie</span>
                         <span class="text-en">Both Events</span>
                         <span class="text-no">Begge Arrangementer</span>
@@ -272,7 +269,7 @@
                         <span class="text-en">Special Bundle</span>
                         <span class="text-no">Spesialpakke</span>
                     </p>
-                    <div class="text-5xl font-bold mb-6">400 PLN</div>
+                    <div class="text-5xl font-bold mb-6 text-white">400 PLN</div>
                     <button onclick="toggleModal('signupModal')" class="w-full bg-white text-brand-plum py-3 rounded-full font-bold hover:bg-brand-lavender transition-colors">
                         <span class="text-pl">Wybierz</span><span class="text-en">Select</span><span class="text-no">Velg</span>
                     </button>
@@ -403,15 +400,15 @@
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
                 <div>
-                    <div class="text-3xl font-light mb-2">
+                    <div class="text-3xl font-light mb-2 text-white">
                         Joanna <span class="font-bold">Filek</span>
                     </div>
 
-                    <p class="text-sm opacity-75">
+                    <p class="text-sm opacity-75 text-white">
                         Gabinet Psychoterapii Inspiro
                     </p>
 
-                    <address class="text-sm opacity-75 mt-1 not-italic">
+                    <address class="text-sm opacity-75 mt-1 not-italic text-white">
                         ul. Skalica 15A, 30-376 Kraków
                     </address>
                 </div>
@@ -419,36 +416,36 @@
                 <div>
                     <h4 class="font-semibold mb-4 text-brand-lavender">Nawigacja</h4>
 
-                    <ul class="space-y-3 text-sm opacity-90">
-                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Strona główna</a></li>
-                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">O mnie</a></li>
-                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Warsztaty</a></li>
+                    <ul class="space-y-3 text-sm opacity-90 text-white">
+                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition text-white">Strona główna</a></li>
+                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition text-white">O mnie</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition text-white">Warsztaty</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="font-semibold mb-4 text-brand-lavender">Zapisy</h4>
 
-                    <ul class="space-y-3 text-sm opacity-90">
-                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Sign-up (Zapisy)</button></li>
-                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li> 
-                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>                  
+                    <ul class="space-y-3 text-sm opacity-90 text-white">
+                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition text-white">Sign-up (Zapisy)</button></li>
+                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition text-white">Newsletter</button></li> 
+                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition text-white">Contact</a></li>                  
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="font-semibold mb-4 text-brand-lavender">Informacje</h4>
 
-                    <p class="text-sm opacity-75 leading-relaxed">
+                    <p class="text-sm opacity-75 leading-relaxed text-white">
                         Poufność sesji jest w pełni gwarantowana.
                         Konsultacje dostępne online oraz stacjonarnie.
                     </p>
 
-                    <p class="text-sm opacity-60 mt-6">
+                    <p class="text-sm opacity-60 mt-6 text-white">
                         © 2026 Joanna Filek
                     </p>
-                    <p class="text-[10px] opacity-40 mt-1">
-                        Designed & Developed by <a href="https://alansmorais.github.io/alans.morais/" target="_blank" rel="noopener" class="hover:text-brand-lavender underline transition-colors">ASM</a>
+                    <p class="text-[10px] opacity-40 mt-1 text-white">
+                        Designed & Developed by <a href="https://alansmorais.github.io/alans.morais/" target="_blank" rel="noopener" class="hover:text-brand-lavender underline transition-colors text-white">ASM</a>
                     </p>
                 </div>
             </div>
