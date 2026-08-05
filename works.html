@@ -96,6 +96,11 @@
         body.lang-pl .text-en, body.lang-pl .text-no { display: none !important; }
         body.lang-en .text-pl, body.lang-en .text-no { display: none !important; }
         body.lang-no .text-pl, body.lang-no .text-en { display: none !important; }
+        
+        /* Header Styles */
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: flex; }
+        .hover-lift:hover { transform: translateY(-3px); }
     </style>
 
     <!-- Structured data (JSON-LD) -->
@@ -147,6 +152,66 @@
             <button onclick="setLanguage('no')" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></button>
         </div>
     </div>
+
+    <!-- Header with Navigation -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo.png"
+                     alt="Logo Joanna Filek"
+                     class="w-12 h-12 object-contain">
+                <div>
+                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">
+                        Joanna <span class="font-bold">Filek</span>
+                    </div>
+                    <p class="text-xs text-brand-plum -mt-1">
+                        Psycholog | Seksuolog | Psychoterapeutka | Gabinet Inspiro
+                    </p>
+                </div>
+            </a>
+
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
+                <a href="index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition">Warsztaty</a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
+                <button onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Lista oczekujących</button>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Zapisy</button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="visits.html"
+                   class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
+                    Umów konsultację
+                </a>
+
+                <button id="menuBtn"
+                        class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">
+                    Menu
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu"
+             class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
+            <a href="index.html">Strona główna</a>
+            <a href="about.html">O mnie</a>
+            <a href="works.html">Warsztaty</a>
+            <a href="contact.html">Kontakt</a>
+            
+            <button onclick="toggleModal('waitingListModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum">Lista oczekujących</button>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">Zapisy (Sign-up)</button>            
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
+
+            <a href="work-with-us.html">Pracuj z nami</a>
+
+            <a href="visits.html"
+               class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">
+                Umów konsultację
+            </a>
+        </div>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero-bg-image pt-24 pb-32 no-gap">
@@ -563,6 +628,300 @@
         </div>
     </div>
 
+    <!-- Waiting List Modal -->
+    <div id="waitingListModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button type="button" onclick="closeModal('waitingListModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+
+            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">
+                Lista oczekujących
+            </div>
+
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">
+                Dołącz do listy oczekujących
+            </h2>
+
+            <p class="text-sm text-brand-green/75 mb-6 leading-relaxed">
+                Jeśli obecnie nie widzisz dogodnego terminu, możesz zostawić swoje dane.
+                Skontaktuję się, gdy pojawi się możliwość konsultacji lub regularnego procesu terapeutycznego.
+            </p>
+
+            <div class="bg-brand-green-light border border-brand-lavender/70 rounded-2xl p-4 mb-6">
+                <p class="text-[11px] leading-relaxed text-brand-green/75">
+                    Ten formularz nie służy do kontaktu kryzysowego. Jeśli znajdujesz się w sytuacji bezpośredniego zagrożenia zdrowia lub życia,
+                    skontaktuj się z numerem alarmowym 112 lub najbliższą placówką medyczną.
+                </p>
+            </div>
+
+            <form
+                id="waitingListForm"
+                action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
+                method="POST"
+                target="waitingListTarget"
+                class="space-y-5"
+                onsubmit="document.getElementById('waitingListSuccess').classList.remove('hidden'); setTimeout(() => this.reset(), 700);"
+            >
+                <input type="hidden" name="form_type" value="waitinglist">
+                <input type="hidden" name="source_page" value="Homepage waiting list modal">
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Imię i nazwisko *</label>
+                        <input type="text" name="name" required placeholder="Imię i nazwisko" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">E-mail *</label>
+                        <input type="email" name="email" required placeholder="Twój adres e-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Telefon opcjonalnie</label>
+                    <input type="tel" name="phone" placeholder="Numer telefonu" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                </div>
+
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3">Forma spotkania</p>
+                    <div class="grid sm:grid-cols-3 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="preferred_format" value="Online" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">Online</span>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="preferred_format" value="Stacjonarnie w Krakowie" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">Stacjonarnie</span>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="preferred_format" value="Bez preferencji" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">Bez preferencji</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Rodzaj wsparcia *</label>
+                        <select name="support_type" required class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
+                            <option value="">Wybierz...</option>
+                            <option value="Terapia indywidualna">Terapia indywidualna</option>
+                            <option value="Terapia par">Terapia par</option>
+                            <option value="Konsultacja seksuologiczna / terapia seksuologiczna">Konsultacja seksuologiczna / terapia seksuologiczna</option>
+                            <option value="Regularny proces terapeutyczny">Regularny proces terapeutyczny</option>
+                            <option value="Nie wiem jeszcze">Nie wiem jeszcze</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Preferowana pora *</label>
+                        <select name="preferred_time" required class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
+                            <option value="">Wybierz...</option>
+                            <option value="Rano">Rano</option>
+                            <option value="Popołudnie">Popołudnie</option>
+                            <option value="Wieczór">Wieczór</option>
+                            <option value="Elastycznie">Elastycznie</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Preferowane dni</label>
+                    <select name="preferred_days" class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
+                        <option value="">Wybierz opcjonalnie...</option>
+                        <option value="Poniedziałek - piątek">Poniedziałek - piątek</option>
+                        <option value="Weekend, jeśli dostępny">Weekend, jeśli dostępny</option>
+                        <option value="Elastycznie">Elastycznie</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Czy jest coś ważnego, co chcesz dodać?</label>
+                    <textarea name="message" rows="4" placeholder="Krótka wiadomość opcjonalnie" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"></textarea>
+                </div>
+
+                <!-- Honeypot anti-spam field: keep hidden -->
+                <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
+
+                <div class="flex items-start gap-3 bg-brand-green-light p-4 rounded-2xl border border-brand-lavender/60">
+                    <input type="checkbox" id="waitingConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
+                    <label for="waitingConsent" class="text-[11px] leading-relaxed text-brand-green/80">
+                        Wyrażam zgodę na kontakt w sprawie listy oczekujących oraz przetwarzanie podanych danych w celu obsługi zgłoszenia.
+                        Wiem, że mogę wycofać zgodę w każdej chwili.
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                    Dołącz do listy oczekujących
+                </button>
+
+                <p id="waitingListSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed">
+                    Dziękujemy. Zgłoszenie zostało zapisane. Skontaktujemy się, gdy pojawi się odpowiednia możliwość spotkania.
+                </p>
+            </form>
+
+            <iframe name="waitingListTarget" style="display:none"></iframe>
+        </div>
+    </div>
+
+    <!-- Newsletter Modal -->
+    <div id="newsletterModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+
+            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">
+                Newsletter psychoedukacyjny
+            </div>
+
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">
+                Dołącz do newslettera
+            </h2>
+
+            <p class="text-sm text-brand-green/75 mb-6 leading-relaxed">
+                Wybierz język newslettera. Pierwszy materiał zostanie wysłany od razu,
+                a kolejne automatycznie raz w tygodniu — w wybranej wersji językowej.
+            </p>
+
+            <form
+                id="newsletterForm"
+                action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
+                method="POST"
+                target="newsletterTarget"
+                class="space-y-4"
+                onsubmit="document.getElementById('newsletterSuccess').classList.remove('hidden'); setTimeout(() => this.reset(), 600);"
+            >
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Imię / Name (opcjonalnie)"
+                    class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"
+                >
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Twój adres e-mail / Your email"
+                    required
+                    class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"
+                >
+
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3">
+                        Język newslettera / Newsletter language
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="language" value="PL" class="peer sr-only" checked required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">
+                                Polski
+                                <small class="block font-normal text-[10px] mt-1 opacity-80">wersja PL</small>
+                            </span>
+                        </label>
+
+                        <label class="cursor-pointer">
+                            <input type="radio" name="language" value="EN" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">
+                                English
+                                <small class="block font-normal text-[10px] mt-1 opacity-80">EN version</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <input type="hidden" name="source_page" value="Homepage newsletter modal with language selector">
+
+                <!-- Honeypot anti-spam field: keep hidden -->
+                <input
+                    type="text"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                    style="display:none"
+                >
+
+                <div class="flex items-start gap-3 bg-brand-green-light p-4 rounded-2xl border border-brand-lavender/60">
+                    <input type="checkbox" id="newsConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent" class="text-[11px] leading-relaxed text-brand-green/80">
+                        Wyrażam zgodę na otrzymywanie newslettera psychoedukacyjnego od Joanny Filek
+                        na podany adres e-mail. Wiem, że mogę wycofać zgodę w każdej chwili.<br><br>
+                        I agree to receive Joanna Filek’s psychoeducational newsletter at the email address provided.
+                        I understand I can withdraw my consent at any time.
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                    Zapisz się / Subscribe
+                </button>
+
+                <p id="newsletterSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed">
+                    Dziękujemy. Jeśli adres jest poprawny, pierwszy newsletter zostanie wysłany w wybranym języku.<br>
+                    Thank you. If the email is correct, the first newsletter will be sent in the selected language.
+                </p>
+            </form>
+
+            <iframe name="newsletterTarget" style="display:none"></iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-green text-white pt-16 pb-10">
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <div class="text-3xl font-light mb-2">
+                        Joanna <span class="font-bold">Filek</span>
+                    </div>
+
+                    <p class="text-sm opacity-75">
+                        Gabinet Psychoterapii Inspiro
+                    </p>
+
+                    <address class="text-sm opacity-75 mt-1 not-italic">
+                        ul. Skalica 15A, 30-376 Kraków
+                    </address>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Nawigacja</h4>
+
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Strona główna</a></li>
+                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">O mnie</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Warsztaty</a></li>
+                        <li><button onclick="toggleModal('waitingListModal')" class="hover:text-brand-lavender smooth-transition">Lista oczekujących</button></li>
+                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li>
+                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Zapisy</h4>
+
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Sign-up (Zapisy)</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Informacje</h4>
+
+                    <p class="text-sm opacity-75 leading-relaxed">
+                        Poufność sesji jest w pełni gwarantowana.
+                        Konsultacje dostępne online oraz stacjonarnie.
+                    </p>
+
+                    <p class="text-sm opacity-60 mt-6">
+                        © 2026 Joanna Filek
+                    </p>
+                    <p class="text-[10px] opacity-40 mt-1">
+                        Designed & Developed by <a href="https://alansmorais.github.io/alans.morais/" target="_blank" rel="noopener" class="hover:text-brand-lavender underline transition-colors">ASM</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Original Scripts -->
     <script>
         function setLanguage(lang) {
@@ -611,6 +970,16 @@
                     submitBtn.innerHTML = "Wyślij zgłoszenie";
                 });
             });
+            
+            // Mobile menu toggle
+            var menuBtn = document.getElementById('menuBtn');
+            var mobileMenu = document.getElementById('mobileMenu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('active');
+                });
+            }
         });
 
         function toggleModal(id) {
@@ -625,6 +994,14 @@
                     eventSelect.value = window.lastOpenedTemple;
                     window.lastOpenedTemple = null;
                 }
+            }
+        }
+        
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if(modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         }
         
