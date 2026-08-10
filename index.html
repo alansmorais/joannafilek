@@ -66,6 +66,15 @@
             padding: 20px; 
         }
         .modal.active { display: flex; }
+
+        /* Custom styling for disabled button */
+        button:disabled {
+            background-color: #E8C1D9;
+            color: #1B3D2F;
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.7;
+        }
     </style>
 </head>
 
@@ -136,8 +145,9 @@
             </nav>
 
             <div class="flex items-center gap-3">
-                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
-                    <span class="text-pl">Umów konsultację</span>
+                <a href="visits.html"
+                   class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
+                    Umów konsultację
                 </a>
 
                 <button id="menuBtn"
@@ -508,6 +518,7 @@
         </div>
     </div>
 
+    <!-- Waiting List Modal with Anti-Spam Logic -->
     <div id="waitingListModal" class="modal">
         <div class="bg-white rounded-[32px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button type="button" onclick="closeModal('waitingListModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
@@ -534,14 +545,22 @@
 
             <form
                 id="waitingListForm"
-                action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
+                action=""
                 method="POST"
                 target="waitingListTarget"
                 class="space-y-5"
-                onsubmit="document.getElementById('waitingListSuccess').classList.remove('hidden'); setTimeout(() => this.reset(), 700);"
+                onsubmit="return validateWaitingList(event);"
             >
                 <input type="hidden" name="form_type" value="waitinglist">
                 <input type="hidden" name="source_page" value="Homepage waiting list modal">
+                
+                <input type="hidden" id="waiting_load_time" value="">
+
+                <!-- Honeypot anti-spam field: keep hidden -->
+                <div class="absolute -left-[9999px]" aria-hidden="true">
+                    <label for="waiting_bot_website">Zostaw puste</label>
+                    <input type="text" name="website" id="waiting_bot_website" tabindex="-1" autocomplete="off">
+                </div>
 
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
@@ -618,9 +637,6 @@
                     <textarea name="message" rows="4" placeholder="Krótka wiadomość opcjonalnie" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"></textarea>
                 </div>
 
-                <!-- Honeypot anti-spam field: keep hidden -->
-                <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
-
                 <div class="flex items-start gap-3 bg-brand-green-light p-4 rounded-2xl border border-brand-lavender/60">
                     <input type="checkbox" id="waitingConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
                     <label for="waitingConsent" class="text-[11px] leading-relaxed text-brand-green/80">
@@ -629,7 +645,15 @@
                     </label>
                 </div>
 
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                <!-- Anti-spam human verification -->
+                <div class="flex items-center gap-3 bg-brand-violet-light/50 p-4 rounded-xl border border-brand-lavender">
+                    <input type="checkbox" id="humanCheckWaiting" class="w-5 h-5 accent-brand-plum cursor-pointer">
+                    <label for="humanCheckWaiting" class="text-xs font-bold text-brand-green cursor-pointer select-none">
+                        Zaznacz, aby udowodnić, że jesteś człowiekiem / I am human
+                    </label>
+                </div>
+
+                <button type="submit" id="submitWaitingBtn" disabled class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg transition-all uppercase tracking-widest">
                     Dołącz do listy oczekujących
                 </button>
 
@@ -897,7 +921,13 @@
     </div>
 
     <script>
+        const realEndpoint = "https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec";
+
         document.addEventListener('DOMContentLoaded', function () {
+            // Setup time trap for all forms
+            const waitingLoadField = document.getElementById('waiting_load_time');
+            if(waitingLoadField) { waitingLoadField.value = new Date().getTime(); }
+            
             var menuBtn = document.getElementById('menuBtn');
             var mobileMenu = document.getElementById('mobileMenu');
             var bioModal = document.getElementById('bioModal');
@@ -933,6 +963,55 @@
                 } else {
                     window.openModal(id);
                 }
+            };
+
+            // Anti-spam checkbox logic for waiting list
+            const humanCheckWaiting = document.getElementById('humanCheckWaiting');
+            const submitWaitingBtn = document.getElementById('submitWaitingBtn');
+            const waitingForm = document.getElementById('waitingListForm');
+
+            if (humanCheckWaiting && submitWaitingBtn && waitingForm) {
+                humanCheckWaiting.addEventListener('change', function() {
+                    if(this.checked) {
+                        waitingForm.action = realEndpoint;
+                        submitWaitingBtn.disabled = false;
+                        submitWaitingBtn.classList.add('hover:opacity-90');
+                    } else {
+                        waitingForm.action = "";
+                        submitWaitingBtn.disabled = true;
+                        submitWaitingBtn.classList.remove('hover:opacity-90');
+                    }
+                });
+            }
+
+            // Validation function for waiting list
+            window.validateWaitingList = function(event) {
+                const botField = document.getElementById('waiting_bot_website').value;
+                const loadTime = document.getElementById('waiting_load_time').value;
+                const submitTime = new Date().getTime();
+                
+                if (botField !== "" || (submitTime - loadTime) < 3000) {
+                    event.preventDefault();
+                    return false;
+                }
+                
+                document.getElementById('waitingListSuccess').classList.remove('hidden');
+                setTimeout(() => { 
+                    if(waitingForm) {
+                        waitingForm.reset(); 
+                        waitingForm.action = "";
+                        if(humanCheckWaiting) humanCheckWaiting.checked = false;
+                        if(submitWaitingBtn) {
+                            submitWaitingBtn.disabled = true;
+                            submitWaitingBtn.classList.remove('hover:opacity-90');
+                        }
+                    }
+                    setTimeout(() => {
+                        document.getElementById('waitingListSuccess').classList.add('hidden');
+                        window.closeModal('waitingListModal');
+                    }, 3000);
+                }, 500);
+                return true;
             };
 
             // Close any modal when clicking outside its white card.
