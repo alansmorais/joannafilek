@@ -1,36 +1,10 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary SEO Title & Description -->
-    <title>Warsztaty Tantry Kraków | Świadoma Bliskość, Relacje i Intymność | Joanna Filek</title>
-    <meta name="description" content="Warsztaty tantry w Krakowie dla singli i par. Poznaj świadomą bliskość, komunikację i relacje w bezpiecznej, prowadzonej przestrzeni. Prowadzą Joanna Filek i Bodhi Michael.">
-    <meta name="keywords" content="warsztaty tantry Kraków, warsztaty bliskości, świadoma intymność, rozwój osobisty, relacje partnerskie, komunikacja w związku, Blisshouse">
-
-    <!-- Canonical + hreflang -->
-    <link rel="canonical" href="https://joannafilek.com/warsztaty-tantry-krakow">
-    <link rel="alternate" hreflang="pl" href="https://joannafilek.com/warsztaty-tantry-krakow">
-    <link rel="alternate" hreflang="en" href="https://joannafilek.com/tantra-workshop-krakow">
-
-    <!-- Open Graph / Social sharing -->
-    <meta property="og:site_name" content="Joanna Filek">
-    <meta property="og:title" content="Warsztaty Tantry Kraków — Świadoma Bliskość | Joanna Filek & Bodhi Michael">
-    <meta property="og:description" content="Transformujący tantra workshop w Krakowie: świadoma intymność, praca z ciałem i relacje. Dla singli i par. Blisshouse Kraków, Listopad 2026.">
-    <meta property="og:type" content="event">
-    <meta property="og:url" content="https://joannafilek.com/warsztaty-tantry-krakow">
-    <meta property="og:image" content="https://joannafilek.com/images/1.jpg">
-    <meta property="og:locale" content="pl_PL">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Warsztaty Tantry Kraków — Świadoma Bliskość">
-
-    <!-- Favicon -->
+    <title>Warsztaty i Wydarzenia | Joanna Filek</title>
     <link rel="icon" type="image/png" href="images/1.jpg">
-
-    <!-- Tailwind Config -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -52,1667 +26,378 @@
             }
         }
     </script>
-    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
         body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; scroll-behavior: smooth; }
         .no-gap { margin-top: -1px; }
         
         .hero-bg-image {
+            /* Using a multi-layered gradient for depth and an atmospheric Unsplash image (temple/candles vibe) */
             background-image: 
-                radial-gradient(circle at center, rgba(114, 45, 100, 0.6) 0%, rgba(27, 61, 47, 0.9) 100%),
-                url('images/Divine_Intimacy_Temple_Background.png');
+                radial-gradient(circle at center, rgba(114, 45, 100, 0.4) 0%, rgba(27, 61, 47, 0.85) 100%),
+                linear-gradient(to bottom, rgba(27, 61, 47, 0.5), rgba(114, 45, 100, 0.9)), 
+                url('https://images.unsplash.com/photo-1528319725582-ddc096101511?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-attachment: fixed; /* Adds a premium parallax scrolling effect */
         }
         
+        /* Nav and Modal Styles */
         .smooth-transition { transition: all 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-3px); }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: flex; }
         
-        /* Modal Styles */
         .modal { 
             display: none; 
             position: fixed; 
             inset: 0; 
             z-index: 100; 
-            background: rgba(0,0,0,0.6); 
-            backdrop-filter: blur(5px); 
+            background: rgba(0,0,0,0.5); 
+            backdrop-filter: blur(4px); 
             align-items: center; 
             justify-content: center; 
             padding: 20px; 
         }
         .modal.active { display: flex; }
 
-        button:disabled {
-            background-color: #E2E6F3;
-            color: #1B3D2F;
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        /* Language Logic */
+        /* Language Switcher Logic */
         body.lang-pl .text-en, body.lang-pl .text-no { display: none !important; }
         body.lang-en .text-pl, body.lang-en .text-no { display: none !important; }
         body.lang-no .text-pl, body.lang-no .text-en { display: none !important; }
-        
-        /* Header Styles */
-        .mobile-menu { display: none; }
-        .mobile-menu.active { display: flex; }
-        .hover-lift:hover { transform: translateY(-3px); }
     </style>
-
-    <!-- Structured data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Event",
-          "name": "Świątynie Tantry Kraków - Temple 1: Cacao & Cuddles",
-          "startDate": "2026-11-08T16:45:00+01:00",
-          "location": {
-            "@type": "Place",
-            "name": "Blisshouse Kraków"
-          },
-          "organizer": {
-            "@type": "Person",
-            "name": "Joanna Filek"
-          }
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Czy tantra oznacza seks?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Nie. Świątynia Tantry nie jest wydarzeniem seksualnym. To przestrzeń świadomej pracy z obecnością i ciałem."
-              }
-            }
-          ]
-        }
-      ]
-    }
-    </script>
 </head>
+<body class="overflow-x-hidden text-brand-green lang-pl">
 
-<body class="overflow-x-hidden text-brand-green lang-en">
-
-    <!-- Top Contact Bar -->
     <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
-        <span>
-            <span class="text-pl">Kontakt</span>
-            <span class="text-en">Contact</span>
-            <span class="text-no">Kontakt</span> 
-(+48) 733 777 542 • psycholog.joannafilek@gmail.com
+        <span class="hidden sm:inline">
+            <span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span> (+48) 733 777 542 • psycholog.joannafilek@gmail.com
         </span>
+        <span class="sm:hidden">
+            <span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span> (+48) 733 777 542
+        </span>
+        
         <div class="absolute right-6 flex items-center gap-3">
-            <button onclick="setLanguage('pl')" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></button>
-            <button onclick="setLanguage('en')" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></button>
-            <button onclick="setLanguage('no')" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></button>
+            <button onclick="setLanguage('pl')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></button>
+            <button onclick="setLanguage('en')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></button>
+            <button onclick="setLanguage('no')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></button>
         </div>
     </div>
 
-    <!-- Header with Navigation -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
-                <img src="images/logo.png"
-                     alt="Logo Joanna Filek"
-                     class="w-12 h-12 object-contain">
+                <img src="images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50" onerror="this.style.display='none'">
                 <div>
-                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">
-                        Joanna <span class="font-bold">Filek</span>
-                    </div>
+                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">Joanna <span class="font-bold">Filek</span></div>
                     <p class="text-xs text-brand-plum -mt-1">
-                        <span class="text-pl">Psycholożka | Seksuolożka | Psychoterapeutka | Gabinet Inspiro</span>
-                        <span class="text-en">Psychologist | Sexologist | Psychotherapist | Inspiro Clinic</span>
-                        <span class="text-no">Psykolog | Seksuolog | Psykoterapeut | Inspiro Klinikk</span>
+                        <span class="text-pl">Psychoterapeutka | Gabinet Inspiro</span>
+                        <span class="text-en">Psychotherapist | Inspiro Clinic</span>
+                        <span class="text-no">Psykoterapeut | Inspiro Klinikk</span>
                     </p>
                 </div>
             </a>
 
             <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
-                <a href="index.html" class="hover:text-brand-plum smooth-transition">
-                    <span class="text-pl">Strona główna</span>
-                    <span class="text-en">Home</span>
-                    <span class="text-no">Hjem</span>
-                </a>
-                <a href="about.html" class="hover:text-brand-plum smooth-transition">
-                    <span class="text-pl">O mnie</span>
-                    <span class="text-en">About</span>
-                    <span class="text-no">Om meg</span>
-                </a>
-                <a href="works.html" class="hover:text-brand-plum smooth-transition">
-                    <span class="text-pl">Warsztaty</span>
-                    <span class="text-en">Workshops</span>
-                    <span class="text-no">Workshoper</span>
-                </a>
-                <a href="contact.html" class="hover:text-brand-plum smooth-transition">
-                    <span class="text-pl">Kontakt</span>
-                    <span class="text-en">Contact</span>
-                    <span class="text-no">Kontakt</span>
-                </a>
-                <button onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">
-                    <span class="text-pl">Lista oczekujących</span>
-                    <span class="text-en">Waiting List</span>
-                    <span class="text-no">Venteliste</span>
-                </button>
-                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">
-                    <span class="text-pl">Newsletter</span>
-                    <span class="text-en">Newsletter</span>
-                    <span class="text-no">Nyhetsbrev</span>
-                </button>
-                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">
-                    <span class="text-pl">Zapisy</span>
-                    <span class="text-en">Sign Up</span>
-                    <span class="text-no">Registrering</span>
-                </button>
+                <a href="index.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">Strona główna</span><span class="text-en">Home</span><span class="text-no">Hjem</span></a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">O mnie</span><span class="text-en">About me</span><span class="text-no">Om meg</span></a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">Warsztaty</span><span class="text-en">Workshops</span><span class="text-no">Verksteder</span></a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span></a>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold"><span class="text-pl">Newsletter</span><span class="text-en">Newsletter</span><span class="text-no">Nyhetsbrev</span></button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider"><span class="text-pl">Zapisy (Sign-up)</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span></button>
             </nav>
 
             <div class="flex items-center gap-3">
-                <a href="visits.html"
-                   class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
-                    <span class="text-pl">Umów konsultację</span>
-                    <span class="text-en">Book Consultation</span>
-                    <span class="text-no">Bestill konsultasjon</span>
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
+                    <span class="text-pl">Umów konsultację</span><span class="text-en">Book consultation</span><span class="text-no">Bestill konsultasjon</span>
                 </a>
-
-                <button id="menuBtn"
-                        class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">
-                    <span class="text-pl">Menu</span>
-                    <span class="text-en">Menu</span>
-                    <span class="text-no">Meny</span>
-                </button>
+                <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition"><span class="text-pl">Menu</span><span class="text-en">Menu</span><span class="text-no">Meny</span></button>
             </div>
         </div>
 
-        <div id="mobileMenu"
-             class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
-            <a href="index.html">
-                <span class="text-pl">Strona główna</span>
-                <span class="text-en">Home</span>
-                <span class="text-no">Hjem</span>
-            </a>
-            <a href="about.html">
-                <span class="text-pl">O mnie</span>
-                <span class="text-en">About</span>
-                <span class="text-no">Om meg</span>
-            </a>
-            <a href="works.html">
-                <span class="text-pl">Warsztaty</span>
-                <span class="text-en">Workshops</span>
-                <span class="text-no">Workshoper</span>
-            </a>
-            <a href="contact.html">
-                <span class="text-pl">Kontakt</span>
-                <span class="text-en">Contact</span>
-                <span class="text-no">Kontakt</span>
-            </a>
-            
-            <button onclick="toggleModal('waitingListModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum">
-                <span class="text-pl">Lista oczekujących</span>
-                <span class="text-en">Waiting List</span>
-                <span class="text-no">Venteliste</span>
-            </button>
-            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2">
-                <span class="text-pl">Zapisy (Sign-up)</span>
-                <span class="text-en">Sign Up</span>
-                <span class="text-no">Registrering</span>
-            </button>            
-            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">
-                <span class="text-pl">Newsletter</span>
-                <span class="text-en">Newsletter</span>
-                <span class="text-no">Nyhetsbrev</span>
-            </button>
-
-            <a href="work-with-us.html">
-                <span class="text-pl">Pracuj z nami</span>
-                <span class="text-en">Work With Us</span>
-                <span class="text-no">Jobb med oss</span>
-            </a>
-
-            <a href="visits.html"
-               class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2">
-                <span class="text-pl">Umów konsultację</span>
-                <span class="text-en">Book Consultation</span>
-                <span class="text-no">Bestill konsultasjon</span>
-            </a>
+        <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
+            <a href="index.html"><span class="text-pl">Strona główna</span><span class="text-en">Home</span><span class="text-no">Hjem</span></a>
+            <a href="about.html"><span class="text-pl">O mnie</span><span class="text-en">About me</span><span class="text-no">Om meg</span></a>
+            <a href="works.html"><span class="text-pl">Warsztaty</span><span class="text-en">Workshops</span><span class="text-no">Verksteder</span></a>
+            <a href="contact.html"><span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span></a>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2"><span class="text-pl">Zapisy (Sign-up)</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span></button>            
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium"><span class="text-pl">Newsletter</span><span class="text-en">Newsletter</span><span class="text-no">Nyhetsbrev</span></button>
+            <a href="work-with-us.html"><span class="text-pl">Pracuj z nami</span><span class="text-en">Work with us</span><span class="text-no">Jobb med oss</span></a>
+            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2"><span class="text-pl">Umów konsultację</span><span class="text-en">Book consultation</span><span class="text-no">Bestill konsultasjon</span></a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-bg-image pt-24 pb-32 no-gap">
-        <div class="max-w-4xl mx-auto px-6 text-center text-white">
-            <span class="bg-white/20 backdrop-blur-md px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/30 italic mb-8 inline-block">
-                <span class="text-pl">📍 Blisshouse Kraków | 📅 Listopad 2026</span>
-                <span class="text-en">📍 Blisshouse Krakow | 📅 November 2026</span>
-                <span class="text-no">📍 Blisshouse Krakow | 📅 November 2026</span>
+    <section class="hero-bg-image pt-20 pb-24 no-gap">
+        <div class="max-w-5xl mx-auto px-6 text-center text-white">
+            <span class="bg-white/20 backdrop-blur-md text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/30 italic mb-8 inline-block">
+                <span class="text-pl">Wydarzenia w Krakowie</span>
+                <span class="text-en">Events in Krakow</span>
+                <span class="text-no">Arrangementer i Krakow</span>
             </span>
-            <h1 class="text-5xl md:text-7xl font-serif font-bold mt-4 mb-6 leading-tight">
-                <span class="text-pl">Świątynie Tantry Kraków</span>
-                <span class="text-en">Tantra Temples Krakow</span>
-                <span class="text-no">Tantra Templer Krakow</span>
+            <h1 class="text-5xl md:text-7xl font-bold mt-4 mb-8 leading-tight">
+                <span class="text-pl">Świątynie Tantry <br>w Blisshouse Kraków</span>
+                <span class="text-en">Tantra Temples <br>at Blisshouse Kraków</span>
+                <span class="text-no">Tantra Templer <br>på Blisshouse Kraków</span>
             </h1>
             
-            <p class="text-lg md:text-xl font-light text-brand-lavender/90 mb-10 leading-relaxed max-w-2xl mx-auto">
-                <span class="text-pl">Warsztaty świadomej bliskości, intymności i głębszego połączenia prowadzone przez Joannę Filek i Bodhi Michaela.</span>
-                <span class="text-en">Conscious intimacy, connection, and embodiment workshop hosted by Joanna Filek and Bodhi Michael.</span>
-                <span class="text-no">Bevisst intimitet, tilknytning og kroppslig workshop ledet av Joanna Filek og Bodhi Michael.</span>
-            </p>
-            
-            <button onclick="document.getElementById('signupModal').scrollIntoView(); toggleModal('signupModal')" class="bg-white text-brand-plum px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-xl uppercase tracking-widest">
-                <span class="text-pl">Zarezerwuj swoje miejsce</span>
-                <span class="text-en">Reserve your place</span>
-                <span class="text-no">Reserver din plass</span>
-            </button>
-        </div>
-    </section>
-
-    <!-- Clear Section: Is / Is Not -->
-    <section class="py-12 bg-white">
-      <div class="max-w-4xl mx-auto px-6">
-          <div class="grid md:grid-cols-2 gap-8 items-center border-y border-brand-lavender py-10">
-              <div class="text-center md:text-left">
-                  <h3 class="text-2xl font-serif font-bold text-brand-plum mb-2">
-                    <span class="text-pl">Czym jest Świątynia Tantry?</span>
-                    <span class="text-en">What is Tantra Temple?</span>
-                    <span class="text-no">Hva er en Tantra Tempel?</span>
-                  </h3>
-                  <p class="text-brand-green/80 italic">
-                    <span class="text-pl">Jasność i bezpieczeństwo od samego początku.</span>
-                    <span class="text-en">Clarity and safety from the very start.</span>
-                    <span class="text-no">Klarhet og sikkerhet fra starten av.</span>
-                  </p>
-              </div>
-              <div class="space-y-4">
-                  <div class="flex items-start gap-4 bg-red-50 p-4 rounded-2xl border border-red-100">
-                      <span class="text-2xl text-red-600">✕</span>
-                      <p class="text-sm font-bold text-red-900">
-                        <span class="text-pl">To NIE JEST impreza seksualna. Nie ma tu miejsca na przypadkowe zachowania.</span>
-                        <span class="text-en">It is NOT a sexual party. There is no room for casual or unguided behavior.</span>
-                        <span class="text-no">Det er IKKE et seksuelt parti. Det er ikke rom for tilfeldige eller uveiledede oppførsler.</span>
-                      </p>
-                  </div>
-                  <div class="flex items-start gap-4 bg-green-50 p-4 rounded-2xl border border-green-100">
-                      <span class="text-2xl text-green-600">✓</span>
-                      <p class="text-sm font-bold text-green-900">
-                        <span class="text-pl">To PROWADZONA przestrzeń doświadczenia, w której eksplorujemy obecność, granice i świadomą bliskość.</span>
-                        <span class="text-en">It IS a GUIDED, held space for exploring presence, connection, boundaries, and conscious intimacy.</span>
-                        <span class="text-no">Det ER en LEDET, holdt rom for å utforske nærvær, tilknytning, grenser og bevisst intimitet.</span>
-                      </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </section>
-
-    <!-- Safety & Trust Section -->
-    <section class="max-w-6xl mx-auto px-6 py-12">
-        <div class="grid md:grid-cols-3 gap-6 text-center">
-          <div class="p-8 bg-white rounded-3xl border border-brand-lavender shadow-sm">
-            <div class="text-4xl mb-4">🤝</div>
-            <h3 class="font-bold text-brand-green mb-2">
-                <span class="text-pl">Świadoma zgoda</span>
-                <span class="text-en">Conscious consent</span>
-                <span class="text-no">Bevisst samtykke</span>
-            </h3>
-            <p class="text-sm text-brand-green/70">
-                <span class="text-pl">Każde doświadczenie opiera się na komunikacji, Twoich granicach i wzajemnym szacunku.</span>
-                <span class="text-en">Every experience is based on communication, your boundaries, and mutual respect.</span>
-                <span class="text-no">Hver opplevelse er basert på kommunikasjon, dine grenser og gjensidig respekt.</span>
-            </p>
-          </div>
-          <div class="p-8 bg-white rounded-3xl border border-brand-lavender shadow-sm">
-            <div class="text-4xl mb-4">🧠</div>
-            <h3 class="font-bold text-brand-green mb-2">
-                <span class="text-pl">Psychologia relacji</span>
-                <span class="text-en">Relationship psychology</span>
-                <span class="text-no">Relasjon psykologi</span>
-            </h3>
-            <p class="text-sm text-brand-green/70">
-                <span class="text-pl">Łączymy wiedzę o emocjach z pracą z ciałem i autentycznym kontaktem.</span>
-                <span class="text-en">We combine knowledge about emotions with body work and authentic contact.</span>
-                <span class="text-no">Vi kombinerer kunnskap om følelser med kroppsarbeid og autentisk kontakt.</span>
-            </p>
-          </div>
-          <div class="p-8 bg-white rounded-3xl border border-brand-lavender shadow-sm">
-            <div class="text-4xl mb-4">🌱</div>
-            <h3 class="font-bold text-brand-green mb-2">
-                <span class="text-pl">Dla singli i par</span>
-                <span class="text-en">Singles & couples</span>
-                <span class="text-no">Enkeltstående og par</span>
-            </h3>
-            <p class="text-sm text-brand-green/70">
-                <span class="text-pl">Nie musisz mieć wcześniejszego doświadczenia. Wszystko tłumaczymy krok po kroku.</span>
-                <span class="text-en">No previous experience needed. We explain everything step by step.</span>
-                <span class="text-no">Ingen tidligere erfaring nødvendig. Vi forklarer alt trinn for trinn.</span>
-            </p>
-          </div>
-        </div>
-    </section>
-
-    <!-- The Two Journeys (Clean Preview) -->
-    <section id="journeys" class="pt-8 pb-20 bg-brand-green-light">
-        <div class="max-w-6xl mx-auto px-6">
-            
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-serif font-bold text-brand-plum mb-4">
-                    <span class="text-pl">Dwie Wyjątkowe Podróże</span>
-                    <span class="text-en">Two Unique Journeys</span>
-                    <span class="text-no">To Unike Reiser</span>
-                </h2>
-                <p class="text-brand-green/70">
-                    <span class="text-pl">Wybierz doświadczenie, które najbardziej rezonuje z Twoimi potrzebami.</span>
-                    <span class="text-en">Choose the experience that resonates most with your current needs.</span>
-                    <span class="text-no">Velg opplevelsen som resonnerer mest med dine nåværende behov.</span>
+            <div class="text-lg md:text-xl text-brand-lavender/90 font-light max-w-2xl mx-auto space-y-6 mb-12 leading-relaxed">
+                <p>
+                    <span class="text-pl">Dołącz do Bodhi i Joanny podczas naszych nadchodzących wydarzeń.</span>
+                    <span class="text-en">Join Bodhi and Joanna for our upcoming events.</span>
+                    <span class="text-no">Bli med Bodhi og Joanna på våre kommende arrangementer.</span>
+                </p>
+                <p class="font-bold text-white text-2xl pt-2">
+                    <span class="text-pl">Przestrzeń eksploracji i połączenia.</span>
+                    <span class="text-en">A space for exploration and connection.</span>
+                    <span class="text-no">Et rom for utforskning og forbindelse.</span>
                 </p>
             </div>
-
-            <!-- Temple Cards -->
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="bg-white rounded-3xl border border-brand-lavender shadow-sm p-8 text-center">
-                    <img src="https://joannafilek.com/images/Divine%20Intimacy%20Temple_Cacao.png" alt="Cacao & Cuddles" class="w-full rounded-2xl mb-6">
-                    <h3 class="text-2xl font-serif font-bold text-brand-green mb-2">Divine Intimacy Temple</h3>
-                    <p class="text-brand-plum font-bold italic mb-4">Cacao & Cuddles</p>
-                    <div class="bg-brand-violet-light text-brand-plum px-4 py-1 rounded-full text-sm font-bold mb-6 inline-block">
-                        <span class="text-pl">Nov 8 | Miękka i Skupiona na Sercu</span>
-                        <span class="text-en">Nov 8 | Soft & Heart-Centered</span>
-                        <span class="text-no">Nov 8 | Myk & Hjerte-Fokusert</span>
-                    </div>
-                    <button onclick="toggleModal('temple1Modal')" class="w-full bg-brand-plum text-white py-3 rounded-xl font-bold hover:bg-opacity-90 transition-all">
-                        <span class="text-pl">Dowiedz się więcej</span>
-                        <span class="text-en">Learn more</span>
-                        <span class="text-no">Lær mer</span>
-                    </button>
-                </div>
-                
-                <div class="bg-white rounded-3xl border border-brand-lavender shadow-sm p-8 text-center">
-                    <img src="https://joannafilek.com/images/Sacred_Power_and_Polarity_Play.png" alt="Sacred Power & Polarity" class="w-full rounded-2xl mb-6">
-                    <h3 class="text-2xl font-serif font-bold text-brand-green mb-2">Sacred Power & Polarity</h3>
-                    <p class="text-red-700 font-bold italic mb-4">Shadow & Edge Work</p>
-                    <div class="bg-red-50 text-red-800 px-4 py-1 rounded-full text-sm font-bold mb-6 inline-block">
-                        <span class="text-pl">Nov 22 | Głęboka i Transformacyjna</span>
-                        <span class="text-en">Nov 22 | Deep & Transformational</span>
-                        <span class="text-no">Nov 22 | Djup & Transformasjonal</span>
-                    </div>
-                    <button onclick="toggleModal('temple2Modal')" class="w-full bg-red-800 text-white py-3 rounded-xl font-bold hover:bg-opacity-90 transition-all">
-                        <span class="text-pl">Dowiedz się więcej</span>
-                        <span class="text-en">Learn more</span>
-                        <span class="text-no">Lær mer</span>
-                    </button>
-                </div>
+            
+            <div class="mt-4 max-w-xl mx-auto">
+                <button onclick="toggleModal('signupModal')" class="bg-white text-brand-plum px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-xl uppercase tracking-widest inline-block">
+                    <span class="text-pl">Zarejestruj się teraz</span>
+                    <span class="text-en">Register Now</span>
+                    <span class="text-no">Registrer deg nå</span>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-3xl font-serif font-bold text-center text-brand-plum mb-12">
-                <span class="text-pl">FAQ</span>
-                <span class="text-en">FAQ</span>
-                <span class="text-no">FAQ</span>
-            </h2>
-            <div class="space-y-6">
-                <div class="border-b border-brand-lavender pb-4">
-                    <h4 class="font-bold mb-2">
-                        <span class="text-pl">Czy tantra oznacza seks?</span>
-                        <span class="text-en">Does tantra mean sex?</span>
-                        <span class="text-no">Betyr tantra sex?</span>
-                    </h4>
-                    <p class="text-sm text-brand-green/80">
-                        <span class="text-pl">Nie. Świątynia Tantry nie jest wydarzeniem seksualnym. To przestrzeń świadomej pracy z obecnością, relacją i ciałem.</span>
-                        <span class="text-en">No. Tantra Temple is not a sexual event. It is a space for conscious work with presence, relationship and body.</span>
-                        <span class="text-no">Nei. Tantra Tempel er ikke en seksuell hendelse. Det er et rom for bevisst arbeid med nærvær, relasjon og kropp.</span>
-                    </p>
-                </div>
-                <div class="border-b border-brand-lavender pb-4">
-                    <h4 class="font-bold mb-2">
-                        <span class="text-pl">Czy mogę przyjść sam/a?</span>
-                        <span class="text-en">Can I come alone?</span>
-                        <span class="text-no">Kan jeg komme alene?</span>
-                    </h4>
-                    <p class="text-sm text-brand-green/80">
-                        <span class="text-pl">Tak. Zapraszamy zarówno osoby solo, jak i pary. Wspólnie tworzymy bezpieczną grupę.</span>
-                        <span class="text-en">Yes. We welcome both solo individuals and couples. Together we create a safe group.</span>
-                        <span class="text-no">Ja. Vi velkommer både enslige individer og par. Sammen skaper vi en trygg gruppe.</span>
-                    </p>
-                </div>
-                <div class="border-b border-brand-lavender pb-4">
-                    <h4 class="font-bold mb-2">
-                        <span class="text-pl">Czy obowiązuje nagość?</span>
-                        <span class="text-en">Is nudity required?</span>
-                        <span class="text-no">Er nakenhet påkrevd?</span>
-                    </h4>
-                    <p class="text-sm text-brand-green/80">
-                        <span class="text-pl">Nie. Uczestnictwo odbywa się według własnego komfortu. Nagość jest opcjonalna i nigdy wymuszona.</span>
-                        <span class="text-en">No. Participation is based on your comfort level. Nudity is optional and never enforced.</span>
-                        <span class="text-no">Nei. Deltagelsen er basert på komfortnivået ditt. Nakenhet er valgfritt og aldri tvunget.</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pt-12 pb-24 bg-brand-green-light">
+    <section id="dates" class="pt-16 pb-12 bg-brand-green-light relative z-10 -mt-12 rounded-t-[60px] border-b border-brand-lavender">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-serif font-bold text-brand-plum mb-4">
-                    <span class="text-pl">Zgłoszenie</span>
-                    <span class="text-en">Registration</span>
-                    <span class="text-no">Registrering</span>
+                <h2 class="text-4xl font-bold mb-4 text-brand-plum">
+                    <span class="text-pl">Nadchodzące Daty</span>
+                    <span class="text-en">Upcoming Dates</span>
+                    <span class="text-no">Kommende Datoer</span>
                 </h2>
-                <p class="text-brand-green/70">
-                    <span class="text-pl">Wybierz opcję dla siebie. Liczba miejsc ograniczona do 25 osób.</span>
-                    <span class="text-en">Choose an option for yourself. Number of places limited to 25 people.</span>
-                    <span class="text-no">Velg et alternativ for deg selv. Antall plasser begrenset til 25 personer.</span>
+                <p class="text-brand-green font-medium text-lg italic max-w-2xl mx-auto">
+                    <span class="text-pl">Wybierz jeden z terminów lub weź udział w obu, aby pogłębić swoje doświadczenie.</span>
+                    <span class="text-en">Choose one of the dates or attend both to deepen your experience.</span>
+                    <span class="text-no">Velg en av datoene eller delta på begge for å utdype opplevelsen din.</span>
                 </p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="bg-white border border-brand-lavender p-10 rounded-[40px] text-center shadow-sm">
-                    <h3 class="text-2xl font-bold text-brand-green mb-4">
-                        <span class="text-pl">Pojedyncze Wydarzenie</span>
-                        <span class="text-en">Single Event</span>
-                        <span class="text-no">Enkeltarrangement</span>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Temple 1 -->
+                <div class="bg-white p-6 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-lg transition-all text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-brand-plum"></div>
+                    <img src="https://joannafilek.com/images/Divine%20Intimacy%20Temple_Cacao.png" alt="Divine Intimacy Temple Cacao" class="w-full mx-auto h-auto object-contain rounded-[24px] mb-4 shadow-sm">
+                    <h3 class="font-bold text-3xl text-brand-green leading-tight mb-4 mt-2">
+                        <span class="text-pl">Świątynia 1</span>
+                        <span class="text-en">Temple 1</span>
+                        <span class="text-no">Tempel 1</span>
                     </h3>
-                    <div class="text-4xl font-bold text-brand-plum mb-6">250 - 350 PLN</div>
-                    <button onclick="toggleModal('signupModal')" class="w-full bg-brand-green text-white py-3 rounded-full font-bold hover:bg-brand-plum transition-colors">
-                        <span class="text-pl">Wybieram</span>
-                        <span class="text-en">Choose</span>
-                        <span class="text-no">Velg</span>
-                    </button>
-                </div>
-                <div class="bg-brand-plum p-10 rounded-[40px] text-center text-white shadow-xl relative overflow-hidden">
-                    <div class="absolute top-6 right-[-35px] bg-white text-brand-plum font-bold text-xs py-1 px-10 rotate-45">
-                        <span class="text-pl">NAJLEPSZA CENA</span>
-                        <span class="text-en">BEST VALUE</span>
-                        <span class="text-no">BESTE VERDI</span>
+                    <div class="text-brand-plum font-bold text-xl mb-2">
+                        <span class="text-pl">Niedziela, 8 Listopada</span>
+                        <span class="text-en">Sunday, November 8</span>
+                        <span class="text-no">Søndag, 8. November</span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">
-                        <span class="text-pl">Pakiet Dwóch Świątyń</span>
-                        <span class="text-en">Two Temples Package</span>
-                        <span class="text-no">To Templer Pakke</span>
-                    </h3>
-                    <div class="text-4xl font-bold mb-6">400 PLN</div>
-                    <button onclick="toggleModal('signupModal')" class="w-full bg-white text-brand-plum py-3 rounded-full font-bold hover:bg-brand-lavender transition-colors">
-                        <span class="text-pl">Wybieram Pakiet</span>
-                        <span class="text-en">Choose Package</span>
-                        <span class="text-no">Velg Pakke</span>
-                    </button>
+                    <div class="text-brand-green/70 text-lg font-medium bg-brand-lavender/30 inline-block px-6 py-2 rounded-full mt-2">
+                        5:00 PM – 11:30 PM
+                    </div>
                 </div>
+
+                <!-- Temple 2 -->
+                <div class="bg-white p-6 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-lg transition-all text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-brand-green"></div>
+                    <img src="https://joannafilek.com/images/Sacred_Power_and_Polarity_Play.png" alt="Sacred Power and Polarity Play" class="w-full mx-auto h-auto object-contain rounded-[24px] mb-4 shadow-sm">
+                    <h3 class="font-bold text-3xl text-brand-green leading-tight mb-4 mt-2">
+                        <span class="text-pl">Świątynia 2</span>
+                        <span class="text-en">Temple 2</span>
+                        <span class="text-no">Tempel 2</span>
+                    </h3>
+                    <div class="text-brand-plum font-bold text-xl mb-2">
+                        <span class="text-pl">Niedziela, 22 Listopada</span>
+                        <span class="text-en">Sunday, November 22</span>
+                        <span class="text-no">Søndag, 22. November</span>
+                    </div>
+                    <div class="text-brand-green/70 text-lg font-medium bg-brand-lavender/30 inline-block px-6 py-2 rounded-full mt-2">
+                        6:30 PM – 12:30 AM
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 text-sm text-brand-green/50 italic">
+                <span class="text-pl">* Uwaga organizacyjna: Zaplanowano 1 godzinę na przygotowanie i 30 minut na zamknięcie po każdym wydarzeniu.</span>
+                <span class="text-en">* Venue note: 1 hour setup and 30 minutes take-down time scheduled per event.</span>
+                <span class="text-no">* Lokalet notat: 1 time oppsett og 30 minutter nedrigg planlagt per arrangement.</span>
             </div>
         </div>
     </section>
 
- <!-- The Team Section -->
-<section class="py-20 bg-white border-t border-brand-lavender">
-    <div class="max-w-5xl mx-auto px-6">
-        <h2 class="text-3xl font-serif font-bold text-center text-brand-plum mb-12">
-            <span class="text-pl">Prowadzący</span>
-            <span class="text-en">Facilitators</span>
-            <span class="text-no">Arrangører</span>
-        </h2>
-        <div class="grid md:grid-cols-2 gap-12">
-            <div class="bg-brand-green-light p-8 rounded-3xl border border-brand-lavender flex flex-col items-center text-center">
-                <img src="images/joanna_filek.jpg" alt="Joanna Filek" class="w-32 h-32 rounded-full object-cover mb-6 border-4 border-brand-lavender shadow-lg">
-                <h3 class="text-xl font-bold text-brand-green mb-4">Joanna Filek</h3>
-                <p class="text-sm text-brand-green/80 mb-4">
-                    <span class="text-pl">Psycholożka i Seksuolożka. Wspiera osoby i pary w budowaniu autentycznych relacji i pokonywaniu wstydu.</span>
-                    <span class="text-en">Psychologist and Sexologist. Supports individuals and couples in building authentic relationships and overcoming shame.</span>
-                    <span class="text-no">Psykolog og seksuolog. Støtter individer og par i å bygge autentiske relasjoner og overvinne skam.</span>
-                </p>
-                <a href="https://instagram.com/joaboutsex" target="_blank" rel="noopener" class="text-brand-plum font-bold hover:underline flex items-center gap-2">
-                    <span class="text-pl">Śledź na Instagramie</span>
-                    <span class="text-en">Follow on Instagram</span>
-                    <span class="text-no">Følg på Instagram</span>
-                    <span>@joaboutsex</span>
-                </a>
-            </div>
-            <div class="bg-brand-green-light p-8 rounded-3xl border border-brand-lavender flex flex-col items-center text-center">
-                <img src="images/bodhi_michael.jpg" alt="Bodhi Michael" class="w-32 h-32 rounded-full object-cover mb-6 border-4 border-brand-lavender shadow-lg">
-                <h3 class="text-xl font-bold text-brand-green mb-4">Bodhi Michael</h3>
-                <p class="text-sm text-brand-green/80 mb-4">
-                    <span class="text-pl">Teacher embodimentu z 15-letnim stażem. Specjalista od pracy z cieniem i regulacji układu nerwowego.</span>
-                    <span class="text-en">Embodiment teacher with 15 years of experience. Specialist in shadow work and nervous system regulation.</span>
-                    <span class="text-no">Embodiment lærer med 15 års erfaring. Spesialist i skygger arbeid og nervesystem regulering.</span>
-                </p>
-                <a href="https://instagram.com/conscious.wolf" target="_blank" rel="noopener" class="text-brand-plum font-bold hover:underline flex items-center gap-2">
-                    <span class="text-pl">Śledź na Instagramie</span>
-                    <span class="text-en">Follow on Instagram</span>
-                    <span class="text-no">Følg på Instagram</span>
-                    <span>@conscious.wolf</span>
-                </a>
-            </div>
-        </div>
-        
-        <!-- New Temple Workshops Instagram -->
-        <div class="mt-12 text-center">
-            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4 mx-auto">
-                <span class="text-pl">Nowe warsztaty</span>
-                <span class="text-en">New Temple Workshops</span>
-                <span class="text-no">Nye Tempel Workshoper</span>
-            </div>
-            <h3 class="text-2xl font-serif font-bold text-brand-green mb-4">
-                <span class="text-pl">Śledź nasze nadchodzące wydarzenia.</span>
-                <span class="text-en">Follow our upcoming events</span>
-                <span class="text-no">Følg våre kommende arrangementer</span>
-            </h3>
-            <a href="https://instagram.com/workshopoftheheart" target="_blank" rel="noopener" class="inline-block text-brand-plum font-bold hover:underline text-lg">
-                <span class="text-pl">Więcej znajdziesz na Instagramie:</span>
-                <span class="text-en">See more on Instagram:</span>
-                <span class="text-no">Se mer på Instagram:</span>
-                <span>@workshopoftheheart</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-    <!-- Temple 1 Modal -->
-    <div id="temple1Modal" class="modal">
-        <div class="bg-white rounded-[40px] p-8 max-w-3xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="toggleModal('temple1Modal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <div class="mb-6">
-                <img src="https://joannafilek.com/images/Divine%20Intimacy%20Temple_Cacao.png" alt="Warsztaty tantry Kraków Divine Intimacy" class="w-full rounded-2xl mb-6">
-                <h2 class="text-2xl font-serif font-bold text-brand-green mb-2">Divine Intimacy Temple</h2>
-                <p class="text-brand-plum font-bold italic mb-4">Cacao & Cuddles</p>
-                <div class="bg-brand-violet-light text-brand-plum px-4 py-1 rounded-full text-sm font-bold mb-6 inline-block">
-                    <span class="text-pl">Niedziela, 8 listopada | 16:45 – 23:30</span>
-                    <span class="text-en">Sunday, Nov 8th | 16:45 – 23:30</span>
-                    <span class="text-no">Søndag, 8. nov | 16:45 – 23:30</span>
+    <section id="pricing" class="pt-12 pb-24 bg-white no-gap">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-brand-plum">
+                    <span class="text-pl">Specjalne Ceny Letnie</span>
+                    <span class="text-en">Special Summer Pricing</span>
+                    <span class="text-no">Spesielle Sommerpriser</span>
+                </h2>
+                <div class="inline-block bg-brand-green text-white px-6 py-2 rounded-full text-sm font-bold tracking-widest uppercase">
+                    <span class="text-pl">Dostępne tylko do 31 sierpnia</span>
+                    <span class="text-en">Available now until August 31st</span>
+                    <span class="text-no">Tilgjengelig frem til 31. august</span>
                 </div>
             </div>
             
-            <div class="space-y-4 text-brand-green/80 leading-relaxed mb-8">
-                <p>
-                    <span class="text-pl">Wejdź w święte miejsce, gdzie spotykają się obecność, połączenie i świadoma intymność. Razem tworzymy bezpieczny kontener zabawy i autentycznego wyrażania siebie — miejsce, aby ponownie połączyć się z radością w sobie, u innych i w społeczności.</span>
-                    <span class="text-en">Step into a sacred space where presence, connection, and conscious intimacy meet. Together, we co-create a container of safety, play, and raw authentic expression — a place to reconnect with the bliss within ourselves, others and community.</span>
-                    <span class="text-no">Ta et skritt inn i et hellig sted der nærvær, tilknytning og bevisst intimitet møtes. Sammen skaper vi en trygg beholder for lek og ekte uttrykk — et sted å koble til igjen glede i seg selv, hos andre og i fellesskapet.</span>
-                </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Single Ticket -->
+                <div class="bg-brand-green-light border border-brand-lavender p-10 rounded-[40px] text-center hover-lift smooth-transition">
+                    <h3 class="text-2xl font-bold text-brand-green mb-2">
+                        <span class="text-pl">Pojedyncze Wydarzenie</span>
+                        <span class="text-en">Single Event</span>
+                        <span class="text-no">Enkelt Arrangement</span>
+                    </h3>
+                    <p class="text-brand-plum font-semibold mb-6">Super Early Bird</p>
+                    <div class="text-5xl font-bold text-brand-plum mb-6">250 PLN</div>
+                    <button onclick="toggleModal('signupModal')" class="w-full bg-brand-green text-white py-3 rounded-full font-bold hover:bg-brand-plum transition-colors">
+                        <span class="text-pl">Wybierz</span><span class="text-en">Select</span><span class="text-no">Velg</span>
+                    </button>
+                </div>
                 
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">Czym jest Świątynia?</span>
-                    <span class="text-en">What is a Temple?</span>
-                    <span class="text-no">Hva er en Tempel?</span>
-                </h4>
-                <p>
-                    <span class="text-pl">Świątynia to świadoma, święta przestrzeń, która oddaje hołd boskim iskrom w każdym z nas. Tutaj łączymy świadomość siebie z jasną, pełną szacunku komunikacją o granicach, zgodzie i negocjacjach wraz z naszymi erotycznymi, zmysłowymi i pierwotnymi energiami i pragnieniami. Razem przyjmujemy, praktykujemy i świętujemy te niezbędne umiejętności wraz z subtelnością energii serca, umysłu i ducha.</span>
-                    <span class="text-en">A Temple is a conscious, sacred space that honors the divine spark in each of us. Here we merge conscious awareness of ourselves and others with clear, respectful communication about boundaries, consent, and negotiation together with our erotic, sensual, and primal energies and desires. Together we welcome, practice and celebrate these essential foundational skills along with the more subtle energies of the heart, mind, and spirit.</span>
-                    <span class="text-no">En Tempel er et bevisst, hellig sted som hedrer den guddommelige gnisten i hver av oss. Her fletter vi sammen bevissthet om oss selv og andre med klar, respektfull kommunikasjon om grenser, samtykke og forhandlinger sammen med våre erotiske, sanselige og instinktive energier og ønsker. Sammen velkommer vi, praktiserer og feirer disse essensielle grunnleggende ferdighetene sammen med de mer subtile energiene i hjertet, sinnet og ånden.</span>
-                </p>
-                <p>
-                    <span class="text-pl">Świątynia to miejsce postrzegania i wyrażania, spokoju i ruchu, łączenia i puszczenia, oddania i zabawy. To przestrzeń, w której obejmujem wszystkie części Siebie i pamiętamy kim naprawdę jesteśmy. W swoim rdzeniu Świątynia wspiera rozwój świadomego, bezpiecznego, pełnego czułości, intymnego i zmysłowego połączenia ze sobą.. Z tej zakotwiczonej przestrzeni możemy wybrać się w autentyczne połączenie z innymi.</span>
-                    <span class="text-en">The Temple is a place of noticing and of expression, stillness and movement, connecting and letting go, devotion and play. It is a space to embrace all parts of our Self and to remember who we truly are. At its core, the Temple is about developing a conscious, safe, loving, intimate, and sensual connection with yourself first. From this grounded place, we may then choose to experience authentic connection with others.</span>
-                    <span class="text-no">Tempel er et sted for observasjon og uttrykk, stillhet og bevegelse, tilknytning og overlating, hengivenhet og lek. Det er et rom for å omfavne alle deler av Oss selv og huske hvem vi egentlig er. I kjernen handler Tempel om å utvikle en bevisst, trygg, kjærlig, intym og sanselig tilknytning til deg selv først. Fra dette forankrede stedet kan vi så velge å oppleve autentisk tilknytning med andre.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">Dla kogo jest ta Świątynia?</span>
-                    <span class="text-en">Who is this Temple for?</span>
-                    <span class="text-no">Hvem er denne Tempel for?</span>
-                </h4>
-                <p>
-                    <span class="text-pl">Dla początkujących i doświadczonych praktyków — singli lub par, wszystkich tożsamości i orientacji. Niezależnie od tego, czy to Twoja pierwsza Świątynia, czy byłeś już na wielu wcześniej, zaproszenie jest takie samo: przyjdź z otwartością, ciekawością i szacunkiem. Nie potrzeba wcześniejszego doświadczenia, wystarczy chęć nauki, komunikacji i szacunku do siebie i innych. Świadomie pracujemy z oddechem, dźwiękiem, ruchem, intencją i energią — łącząc energię serca i seksualną. W Świątyni nie ma seksu.  To przestrzeń oparta na bliskości, świadomości ciała i energii - bez jakiejkolwiek formy fizycznej penetracji.. Nagość jest opcjonalna. Każda praktyka to zaproszenie, nigdy oczekiwanie.</span>
-                    <span class="text-en">For beginners and experienced practitioners alike — singles or couples, all identities and orientations. Whether this is your first Temple or you have attended many before, the invitation is the same: come with openness, curiosity, and respect. No prior experience is needed, only a willingness to learn, communicate, and honor yourself and others. We consciously work with breath, sound, movement, intention, and energy — including the merging of heart-centred and sexual energy. There is no sex in the Temple. No physical penetration of any kind. Nudity is optional. Every practice is an invitation, never an expectation.</span>
-                    <span class="text-no">For nybegynnere og erfarne praksisutøvere — enslige eller par, alle identiteter og orienteringer. Enten dette er din første Tempel eller du har vært på mange før, er invitasjonen den samme: kom med åpenhet, nysgjerrighet og respekt. Ingen tidligere erfaring er nødvendig, bare villighet til å lære, kommunisere og ære deg selv og andre. Vi arbeider bevisst med pust, lyd, bevegelse, intensjon og energi — inkludert sammensmelting av hjerte og seksuell energi. Det er ingen sex i Tempel. Ingen fysisk penetrering av noe slag. Nakenhet er valgfritt. Hver praksis er en invitasjon, aldri en forventning.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">Jak będzie wyglądać wydarzenie?</span>
-                    <span class="text-en">How will the event look?</span>
-                    <span class="text-no">Hvordan vil arrangementet se ut?</span>
-                </h4>
-                <p>
-                    <span class="text-pl">Po pierwsze, poprzez prowadzony ruch, taniec, prace oddechowe, asany, medytacje, rytuały i kręgi dzielenia się, łączymy się z naszymi emocjami, pragnieniami i życiową energią. Te przyjemne, proste i skuteczne praktyki pomagają nam:</span>
-                    <span class="text-en">First, through guided movement, dance, breathwork, asanas, meditation, rituals, and sharing circles, we connect to our emotions, desires, and life-force energy. These fun, simple, and effective practices help us:</span>
-                    <span class="text-no">Først, gjennom veiledet bevegelse, dans, pustearbeid, asanaer, meditasjon, rituale og delingskretser, kobler vi til våre følelser, ønsker og livskraft. Disse morsomme, enkle og effektive praksisene hjelper oss:</span>
-                </p>
-                <ul class="list-disc ml-6">
-                    <li>
-                        <span class="text-pl">Zwiększyć świadomość naszych ciał</span>
-                        <span class="text-en">Become more aware of our bodies</span>
-                        <span class="text-no">Bli mer bevisst på våre kropper</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Emocjonalnie uwolnić się i uregulować układ nerwowy</span>
-                        <span class="text-en">Emotionally release and regulate the nervous system</span>
-                        <span class="text-no">Frigjøre følelsesmessig og regulere nervesystemet</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Tworzyć świadome przestrzenie dla głębokiego połączenia</span>
-                        <span class="text-en">Create meaningful containers of connection</span>
-                        <span class="text-no">Skape meningsfulle beholdere for tilknytning</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Wyraźnie wyrażać granice i pragnienia</span>
-                        <span class="text-en">Express boundaries and desires clearly</span>
-                        <span class="text-no">Uttrykke grenser og ønsker tydelig</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Praktykować relacje na zasadzie zgody</span>
-                        <span class="text-en">Practice consensual relating</span>
-                        <span class="text-no">Praktisere samtykket relatert</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Doświadczać bliskości i rozdzielenia w sposób świadomy i pełen troski.</span>
-                        <span class="text-en">Connect and disconnect respectfully and consciously</span>
-                        <span class="text-no">Koble til og koble fra respektfullt og bevisst</span>
-                    </li>
-                </ul>
-                <p>
-                    <span class="text-pl">Podczas tej pierwszej prowadzonej części wszystkie interakcje są starannie zarządzane z naciskiem na połączenie z sobą najpierw, potem powoli uczymy się komunikować granice, pragnienia i zgodę z inną osobą. WSZYSTKIE wspólne doświadczenia w Świątyni oparte są na wzajemnej zgodzie. Każda osoba odpowiada za szacunek zarówno do własnych granic, jak i granic innych przez cały czas.</span>
-                    <span class="text-en">During this first guided portion, all interactions are carefully held with a focus on connecting to oneself first, then slowly learning how to communicate boundaries, desires, and consent with another person. ALL shared experiences in the Temple are based on mutual agreement. Each person is responsible for honoring BOTH their own boundaries and the boundaries of others throughout every interaction.</span>
-                    <span class="text-no">Under denne første veiledede delen håndteres alle interaksjoner nøye med fokus på å koble til seg selv først, så sakte lære hvordan man kommuniserer grenser, ønsker og samtykke med en annen person. ALLE delte opplevelser i Tempel er basert på gjensidig enighet. Hver person er ansvarlig for å ære BÅDE sine egne grenser og andres grenser gjennom hele interaksjonen.</span>
-                </p>
-                <p>
-                    <span class="text-pl">Na końcu przechodzimy do Przestrzeni Otwartej — niesterowanej, swobodnej części Świątyni — gdzie uczestnicy są zaproszeni do przeniesienia tego, czego się nauczyli, w świadome intymne interakcje i doświadczenia skupione na sercu z partnerem lub innymi w przestrzeni. Ta część wymaga jasnej, pełnej szacunku komunikacji o granicach i zgodzie oraz negocjacji wokół dotyku. To miejsce, aby zademonstrować troskę, bezpieczeństwo, emocjonalną dojrzałość i osobistą odpowiedzialność.</span>
-                    <span class="text-en">Finally, we move into the Open Space — the unguided free-flow portion of the Temple — where participants are invited to bring what they have learned into conscious intimate interactions and heart-centred experiences with their partner or others in the space. This part requires clear, respectful communication about boundaries and consent, along with negotiation around consensual agreement around touch. This is the space to demonstrate, care, safety, emotional maturity, and personal responsibility.</span>
-                    <span class="text-no">Til slutt går vi inn i Åpent Rom — den ikke-veiledede fri-strøm-delen av Tempel — hvor deltakerne blir invitert til å bringe det de har lært inn i bevisste intime interaksjoner og hjerte-fokuserte opplevelser med partneren eller andre i rommet. Denne delen krever klar, respektfull kommunikasjon om grenser og samtykke, sammen med forhandling rundt samtykkende avtale om berøring. Dette er rommet for å demonstrere omsorg, trygghet, emosjonell modenhet og personlig ansvar.</span>
-                </p>
-                <p>
-                    <span class="text-pl">Świątynia odbywa się w otwartej, współdzielonej przestrzeni. Nie ma prywatności. To miejsce, aby swobodnie wyrażać siebie i innych odpowiedzialnie z szacunkiem, troską i dojrzałością. Świątynia odbywa się w języku angielskim z polskim tłumaczeniem. Wsparciem są doświadczeni asystenci, którzy wspierają ciebie i przestrzeń.</span>
-                    <span class="text-en">The Temple is held in an open, shared space. There is no privacy. It is a place to freely, express yourself and others responsibly with respect, care, and maturity. The Temple is held in English with Polish translation. We are supported by experienced assistants to support you and the space.</span>
-                    <span class="text-no">Tempel holdes i et åpent, delt rom. Det er ingen privatliv. Det er et sted å fritt uttrykke seg selv og andre ansvarlig med respekt, omsorg og modenhet. Tempel holdes på engelsk med polsk oversettelse. Vi støttes av erfarne assistenter for å støtte deg og rommet.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">Harmonogram</span>
-                    <span class="text-en">Schedule</span>
-                    <span class="text-no">Tidsplan</span>
-                </h4>
-                <ul class="list-disc ml-6">
-                    <li><strong>16:45</strong> – 
-                        <span class="text-pl">Przyjazd</span>
-                        <span class="text-en">Arrival</span>
-                        <span class="text-no">Ankomst</span>
-                    </li>
-                    <li><strong>17:00</strong> – 
-                        <span class="text-pl">Zamknięcie drzwi</span>
-                        <span class="text-en">Doors close</span>
-                        <span class="text-no">Dørene stenger</span>
-                    </li>
-                    <li><strong>17:30</strong> – 
-                        <span class="text-pl">Prowadzona podróż</span>
-                        <span class="text-en">Guided Journey</span>
-                        <span class="text-no">Veiledet reise</span>
-                    </li>
-                    <li><strong>20:30</strong> – 
-                        <span class="text-pl">Przestrzeń otwarta (swobodny przepływ)</span>
-                        <span class="text-en">Open Space (free flow)</span>
-                        <span class="text-no">Åpent rom (fri strøm)</span>
-                    </li>
-                    <li><strong>23:00</strong> – 
-                        <span class="text-pl">Koło zamknięcia</span>
-                        <span class="text-en">Closing Circle</span>
-                        <span class="text-no">Avslutningskrets</span>
-                    </li>
-                    <li><strong>23:30</strong> – 
-                        <span class="text-pl">Koniec</span>
-                        <span class="text-en">End</span>
-                        <span class="text-no">Slutt</span>
-                    </li>
-                </ul>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">Wymiana finansowa</span>
-                    <span class="text-en">Financial Exchange</span>
-                    <span class="text-no">Finansiell Utveksling</span>
-                </h4>
-                <ul class="list-disc ml-6">
-                    <li>
-                        <span class="text-pl">Super Early Bird: 250 PLN do 31 sierpnia</span>
-                        <span class="text-en">Super Early Bird: 250 PLN until August 31</span>
-                        <span class="text-no">Super Early Bird: 250 PLN frem til 31. august</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Early Bird: 300 PLN do</span>
-                        <span class="text-en">Early Bird: 300 PLN until</span>
-                        <span class="text-no">Early Bird: 300 PLN frem til</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Cena regularna: 350 PLN</span>
-                        <span class="text-en">Regular Price: 350 PLN</span>
-                        <span class="text-no">Vanlig pris: 350 PLN</span>
-                    </li>
-                </ul>
-                
-                <p>
-                    <span class="text-pl">Prosimy o rejestrację przez Messengera Joanny Filek / WhatsApp +48 733777542. Pełna wpłata jest należna przy rejestracji. Twoje miejsce jest potwierdzone dopiero po otrzymaniu wpłaty. Liczba miejsc ograniczona.</span>
-                    <span class="text-en">Please register with Joanna Filek Messenger / WhatsApp +48 733777542. Full payment is due at registration. Your place is confirmed only once payment is received. Limited spaces available.</span>
-                    <span class="text-no">Vennligst registrer deg med Joanna Filek Messenger / WhatsApp +48 733777542. Full betaling er forfall ved registrering. Din plass er bekreftet kun når betaling er mottatt. Begrensede antall plasser tilgjengelig.</span>
-                </p>
-                <p>
-                    <span class="text-pl">Jeśli czujesz, że ta przestrzeń jest dla Ciebie, ale masz problemy finansowe, prosimy o pytanie Joanny o alternatywne opcje finansowe lub wymiany energetycznej.</span>
-                    <span class="text-en">If you feel called to attend but are financially challenged, please ask Joanna about alternative financial or energy exchange options.</span>
-                    <span class="text-no">Hvis du føler deg kalt til å delta, men har økonomiske utfordringer, vennligst spør Joanna om alternative økonomiske eller energiutvekslingsalternativer.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">Co należy przynieść do Świątyni</span>
-                    <span class="text-en">Please Bring to the Temple</span>
-                    <span class="text-no">Vennligst ta med til Tempel</span>
-                </h4>
-                <ul class="list-disc ml-6">
-                    <li>
-                        <span class="text-pl">Odzież, która sprawia, że czujesz się zmysłowo i promiennie</span>
-                        <span class="text-en">Clothing that makes you feel sensual and radiant</span>
-                        <span class="text-no">Klær som får deg til å føle deg sanselig og strålende</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Prosimy nie nosić perfum ani silnych zapachów</span>
-                        <span class="text-en">Please do not wear perfume or strong scents</span>
-                        <span class="text-no">Vennligst ikke bruk parfyme eller sterke dufter</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Ręcznik lub lungi do masażu i do siedzenia/leżenia</span>
-                        <span class="text-en">A towel or lunghi for massages and for sitting/lying down</span>
-                        <span class="text-no">Et håndkle eller lungi for massasjer og for å sitte/ligge ned</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Butelka z wodą (bez otwartych pojemników)</span>
-                        <span class="text-en">Water bottle (no open containers)</span>
-                        <span class="text-no">Vannflaske (ingen åpne beholdere)</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Przekąski dla siebie lub do dzielenia się</span>
-                        <span class="text-en">Snacks for yourself or to share</span>
-                        <span class="text-no">Mat for deg selv eller å dele</span>
-                    </li>
-                </ul>
-                <p>
-                    <span class="text-pl">Żadnych telefonów i Żadnego nagrywania wideo podczas Świątyni. Filmy promocyjne są robione TYLKO PRZED rozpoczęciem Świątyni i tylko za zgodą.</span>
-                    <span class="text-en">No telephones and no video recording during the Temple. Promotional videos are only taken BEFORE the Temple begins and only with permission.</span>
-                    <span class="text-no">Ingen telefoner og ingen videoopptak under Tempel. Promosjonsvideoer tas kun FØR Tempel begynner og kun med tillatelse.</span>
-                </p>
-                <p>
-                    <span class="text-pl">Zalecane do przyniesienia:</span>
-                    <span class="text-en">Recommended to Bring:</span>
-                    <span class="text-no">Anbefalt å ta med:</span>
-                </p>
-                <ul class="list-disc ml-6">
-                    <li>
-                        <span class="text-pl">Olejek do masażu</span>
-                        <span class="text-en">Massage oil</span>
-                        <span class="text-no">Massasjeolje</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Opaska na oczy</span>
-                        <span class="text-en">Blindfold</span>
-                        <span class="text-no">Bind for øynene</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Zabawki zmysłowe (⁠bez pejczy i flogerów)</span>
-                        <span class="text-en">Sensual toys (no whips or floggers)</span>
-                        <span class="text-no">Sanselige leker (ingen pisker eller flåttere)</span>
-                    </li>
-                </ul>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">Polityka anulowania</span>
-                    <span class="text-en">Cancellation Policy</span>
-                    <span class="text-no">Avbestillingspolicy</span>
-                </h4>
-                <p>
-                    <span class="text-pl">100% zwrotu pieniędzy za anulowania do 3 tygodni przed wydarzeniem. Mniej niż 3 tygodnie przed wydarzeniem nie podlega zwrotowi, choć bilety mogą zostać przeniesione na inną osobę. Szczególne okoliczności są rozpatrywane indywidualnie.</span>
-                    <span class="text-en">100% refund for cancellations up to 3 weeks before the event. Less than 3 weeks before the event is non-refundable, though tickets may be transferred to another person. Special circumstances considered.</span>
-                    <span class="text-no">100% refusjon for avbestillinger opp til 3 uker før arrangementet. Mindre enn 3 uker før arrangementet er ikke refunderbart, selv om billetter kan overføres til en annen person. Spesielle omstendigheter vurderes.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">Ważna uwaga</span>
-                    <span class="text-en">Important Note</span>
-                    <span class="text-no">Viktig merknad</span>
-                </h4>
-                <p>
-                    <span class="text-pl">Każdy uczestnik musi w pełni zrozumieć i zaakceptować porozumienia Świątyni, w tym zgodę, granice, brak penetracji, otwartą przestrzeń współdzieloną i godne zachowanie. Jeśli te warunki nie są zgodne, z przyjemnością zwrócimy bilet przed uczestnictwem.</span>
-                    <span class="text-en">Anyone attending must fully understand and agree to the Temple agreements, including consent, boundaries, no penetration, open shared space, and respectful conduct. If these conditions are not aligned, we are fully happy to refund the ticket before attendance.</span>
-                    <span class="text-no">Alle som deltar må fullt ut forstå og godta Tempel-avtalene, inkludert samtykke, grenser, ingen penetrering, åpent delt rom og respektfull oppførsel. Hvis disse betingelsene ikke er i tråd, gir vi gjerne tilbake pengene før deltakelse.</span>
-                </p>
-                
-                <p class="text-center font-bold italic">
-                    <span class="text-pl">Przyjdź taki, jaki jesteś. Odejdź bardziej świadomy, połączony i żywy!</span>
-                    <span class="text-en">Come as You Are. Leave More Conscious, Connected, and Alive!</span>
-                    <span class="text-no">Kom som du er. Dra mer bevisst, forbundet og levende!</span>
-                </p>
-            </div>
-            
-            <button onclick="toggleModal('signupModal')" class="w-full bg-brand-plum text-white py-4 rounded-xl font-bold hover:opacity-90 transition-all">
-                <span class="text-pl">Zarejestruj się na Świątynię 1</span>
-                <span class="text-en">Register for Temple 1</span>
-                <span class="text-no">Registrer for Tempel 1</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- Temple 2 Modal -->
-    <div id="temple2Modal" class="modal">
-        <div class="bg-white rounded-[40px] p-8 max-w-3xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="toggleModal('temple2Modal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <div class="mb-6">
-                <img src="https://joannafilek.com/images/Sacred_Power_and_Polarity_Play.png" alt="Warsztaty tantry Kraków Sacred Power" class="w-full rounded-2xl mb-6">
-                <h2 class="text-2xl font-serif font-bold text-brand-green mb-2">Sacred Power & Polarity</h2>
-                <p class="text-red-700 font-bold italic mb-4">Shadow & Edge Work</p>
-                <div class="bg-red-50 text-red-800 px-4 py-1 rounded-full text-sm font-bold mb-6 inline-block">
-                    <span class="text-pl">Niedziela, 22 listopada | 18:15 – 24:00</span>
-                    <span class="text-en">Sunday, Nov 22nd | 18:15 – 24:00</span>
-                    <span class="text-no">Søndag, 22. nov | 18:15 – 24:00</span>
+                <!-- Bundle Ticket -->
+                <div class="bg-brand-plum border border-brand-plum p-10 rounded-[40px] text-center text-white hover-lift smooth-transition shadow-xl relative overflow-hidden">
+                    <div class="absolute top-6 right-[-35px] bg-white text-brand-plum font-bold text-xs py-1 px-10 rotate-45">
+                        BEST VALUE
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">
+                        <span class="text-pl">Obie Świątynie</span>
+                        <span class="text-en">Both Events</span>
+                        <span class="text-no">Begge Arrangementer</span>
+                    </h3>
+                    <p class="text-brand-lavender font-semibold mb-6">
+                        <span class="text-pl">Pakiet Specjalny</span>
+                        <span class="text-en">Special Bundle</span>
+                        <span class="text-no">Spesialpakke</span>
+                    </p>
+                    <div class="text-5xl font-bold mb-6">400 PLN</div>
+                    <button onclick="toggleModal('signupModal')" class="w-full bg-white text-brand-plum py-3 rounded-full font-bold hover:bg-brand-lavender transition-colors">
+                        <span class="text-pl">Wybierz</span><span class="text-en">Select</span><span class="text-no">Velg</span>
+                    </button>
                 </div>
             </div>
-            
-            <div class="space-y-4 text-brand-green/80 leading-relaxed mb-8">
-                <p>
-                    <span class="text-pl">"Akt przekraczania granic przełamuje bariery lęku i wstydu, a chwila wyzwolenia, która się wtedy pojawia, tworzy przypływ energii, na którym możemy wznieść się ku głębszym poziomom przyjemności i doświadczeniom ekstatycznym. Jednocześnie wzmacnia poczucie własnego "ja" - niezależnego od społecznych norm i oczekiwań, poczucie własnej indywidualności."
-- John Hawken</span>
-                    <span class="text-en">"The act of transgression breaks through the barriers of fear and shame, and that moment of liberation creates a charge of energy on which we can ride to heights of pleasure and ecstatic experience. It also asserts a sense of self as independent of social norms, a sense of individuality." — John Hawken</span>
-                    <span class="text-no">"Handlingen med å bryte lover bryter gjennom barrierene av frykt og skam, og det øyeblikket av frigjøring skaper en ladning av energi som vi kan ri til høyder av nytelse og ekstatisk opplevelse. Det fastslår også en følelse av selv som uavhengig av sosiale normer, en følelse av individualitet." — John Hawken</span>
-                </p>
-                <p>
-                    <span class="text-pl">Są części nas, które pozostają uśpione pod wstydem, strachem, kontrolą i uwarunkowaniem. Są też części nas, które budza się poprzez prawdę, pragnienie, poddanie się, oddanie i wcieloną odwagę. Ta Świątynia to głęboki warsztat transformacyjny wykorzystujący świętą moc, polaryzację i świadomą grę jako ścieżkę do wolności, intymności i autentycznej mocy.</span>
-                    <span class="text-en">There are parts of us that remain asleep beneath shame, fear, control, and conditioning. There are also parts of us that awaken through truth, desire, surrender, devotion, and embodied courage. This Temple is a deep transformational workshop using sacred power, polarity, and conscious play as a pathway into freedom, intimacy, and authentic power.</span>
-                    <span class="text-no">Det finnes deler av oss som forblir sovende under skam, frykt, kontroll og betingelser. Det finnes også deler av oss som våkner gjennom sannhet, ønske, overgivelse, hengivenhet og inkarnert mot. Denne Tempel er et dypt transformasjonelt workshop som bruker hellig makt, polaritet og bevisst spill som en vei til frihet, intimitet og autentisk makt.</span>
-                </p>
-                <p>
-                    <span class="text-pl">To nie jest seks party. To nie jest występ. To nie jest terapia. To starannie prowadzona przestrzeń transformacyjna, gdzie eros staje się lekarstwem, prawda zostaje ucieleśniona, a spotkanie z drugim człowiekiem staje się świętym doświadczeniem</span>
-                    <span class="text-en">This is not a sex party. It is not a performance. It is not therapy. It is a carefully facilitated transformational space where eros becomes medicine, truth becomes embodied, and connection becomes sacred.</span>
-                    <span class="text-no">Dette er ikke et sexparti. Det er ikke en forestilling. Det er ikke terapi. Det er et nøye facilitert transformasjonelt rom hvor eros blir medisin, sannhet blir inkarnert og tilknytning blir hellig.</span>
-                </p>
-                <p>
-                    <span class="text-pl">Poprzez prowadzone praktyki, ruch, prace oddechowe, praktykę zgody, regulację układu nerwowego, narzędzia uwolnienia emocjonalnego, rytuały, integrację cienia i świadome dynamiki relacji, uczestnicy są zaproszeni do obudzenia głębszych warstw siebie i kroku w stronę większej wolności, miłości i suwerenności.</span>
-                    <span class="text-en">Through guided practices, movement, breathwork, consent work, nervous system regulation, emotional release tools, ritual, shadow integration, and conscious relational dynamics, participants are invited to awaken deeper layers of self and step into greater freedom, love, and sovereignty.</span>
-                    <span class="text-no">Gjennom veiledede praksiser, bevegelse, pustearbeid, samtykkearbeid, nervesystem regulering, følelsesmessige frigjøringsverktøy, ritualer, skyggeintegrasjon og bevisst relasjonelle dynamikker, blir deltakerne invitert til å vekke dypere lag av selv og ta et skritt mot større frihet, kjærlighet og suverenitet.</span>
-                </p>
-                <p>
-                    <span class="text-pl">To, co tradycyjnie kojarzyliśmy z BDSM - strach, ból, winę, osąd, wstyd lub zniekształcenie - może zacząć przekształcać się w akceptację, podekscytowanie, przyjemność, odżywienie, uwolnienie i satysfakcję.</span>
-                    <span class="text-en">What we may have traditionally associated with BDSM—fear, pain, guilt, judgment, shame, or distortion—can begin to transform into acceptance, excitement, pleasure, nourishment, release, and satisfaction.</span>
-                    <span class="text-no">Det vi tradisjonelt har assosiert med BDSM - frykt, smerte, skyld, dom, skam eller forvrengning - kan begynne å forvandles til aksept, spenning, nytelse, næring, frigjøring og tilfredshet.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">DLA KOGO JEST TA ŚWIĄTYNIA?</span>
-                    <span class="text-en">WHO IS THIS FOR?</span>
-                    <span class="text-no">HVEM ER DENNE FOR?</span>
-                </h4>
-                <p>
-                    <span class="text-pl">Ta Świątynia jest dla emocjonalnie dojrzałych jednostek i par, które czują powołanie do eksploracji głębi, prawdy, intymności i transformacji w sobie i z innymi. Jest szczególnie dopasowana dla tych, którzy:</span>
-                    <span class="text-en">This Temple is for emotionally mature individuals and couples who feel called to explore depth, truth, intimacy, and transformation within themselves and with others. It is especially aligned for those who:</span>
-                    <span class="text-no">Denne Tempel er for følelsesmessig modne individer og par som føler seg kalt til å utforske dybde, sannhet, intimitet og transformasjon innenfor seg selv og med andre. Det er spesielt i tråd for de som:</span>
-                </p>
-                <ul class="list-disc ml-6">
-                    <li>
-                        <span class="text-pl">Pragną uzdrowić wstyd lub stare uwarunkowania związane z seksualnością, władzą i podatnością</span>
-                        <span class="text-en">Desire to heal shame or old conditioning around sexuality, power, and vulnerability</span>
-                        <span class="text-no">Ønsker å helbrede skam eller gammel betingelse rundt seksualitet, makt og sårbarhet</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Chcą wcielić wyraźniejsze granice i bardziej autentyczne pragnienie</span>
-                        <span class="text-en">Want to embody clearer boundaries and more authentic desire</span>
-                        <span class="text-no">Ønsker å inkarnere tydeligere grenser og mer autentisk ønske</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Są gotowi eksplorować poddanie się i przywództwo w świadomy sposób</span>
-                        <span class="text-en">Are ready to explore surrender and leadership in conscious ways</span>
-                        <span class="text-no">Er klare til å utforske overgivelse og lederskap på bevisste måter</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Cenią zgodę, komunikację i emocjonalną odpowiedzialność</span>
-                        <span class="text-en">Value consent, communication, and emotional responsibility</span>
-                        <span class="text-no">Verdisetter samtykke, kommunikasjon og følelsesmessig ansvar</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Są ciekawi pracy wewnętrznej, wzrostu i samorefleksji</span>
-                        <span class="text-en">Are curious about inner work, growth, and self-reflection</span>
-                        <span class="text-no">Er nysgjerrige på indre arbeid, vekst og selvspeiling</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Czują wewnętrzne połączenie ze świętym erosem jako drogą do przebudzenia.</span>
-                        <span class="text-en">Feel aligned with sacred eros as a path of awakening</span>
-                        <span class="text-no">Føler seg i tråd med hellig eros som en vei til våkning</span>
-                    </li>
-                </ul>
-                <p>
-                    <span class="text-pl">Witamy osoby indywidualne, pary oraz osoby ze społeczności LGBTQIA+ — wszystkich płci, orientacji i różnych form relacji. Uczestnictwo wymaga umiejętności jasnej komunikacji, świadomego i pełnego szacunku negocjowania oraz poszanowania zarówno własnych granic, jak i granic innych osób. Ważne jest, abyś miał(a) już doświadczenie w pracy wewnętrznej lub pracy z cieniem — szczególnie wokół tematów takich jak ograniczenia, poddanie się, przyjmowanie i wyrażanie intensywności, dyscyplina, kontrola oraz wrażliwość.</span>
-                    <span class="text-en">We welcome individuals, couples, and LGBTQIA+ participants of all genders, orientations, and relationship styles. You must have the capacity to communicate clearly, negotiate respectfully, and honor both your own boundaries and the boundaries of others. It is necessary that you have already begun your own inner or shadow work around restriction, surrender, receiving and giving intensity, discipline, control, and vulnerability.</span>
-                    <span class="text-no">Vi velkommer individer, par og LGBTQIA+-deltakere av alle kjønn, orienteringer og relasjonsstiler. Du må ha kapasitet til å kommunisere tydelig, forhandle respektfullt og ære både dine egne grenser og andres grenser. Det er nødvendig at du allerede har begynt ditt eget indre eller skyggearbeid rundt restriksjon, overgivelse, mottak og givende intensitet, disiplin, kontroll og sårbarhet.</span>
-                </p>
-                <p>
-                    <span class="text-pl">Ostatecznie najważniejsze jest, abyś był(a) osobą kierującą się sercem oraz autentycznie troszczył(a) się o siebie i innych. Ważna jest otwartość na pracę z osobami wszystkich płci oraz gotowość do eksplorowania różnych dynamik w ramach praktyk. Wcześniejsze doświadczenie z BDSM nie jest wymagane. Niezbędne są natomiast dojrzałość emocjonalna, samoświadomość oraz głęboki szacunek dla własnych i cudzych granic. Wszystko opiera się na zaproszeniu, nigdy na przymusie. Zawsze masz wolność wyboru — możesz uczestniczyć, zrobić przerwę, pozostać obserwatorem/obserwatorką lub całkowicie zrezygnować. Nagość jest opcjonalna.</span>
-                    <span class="text-en">Ultimately, it is vital that you are heart-centered and genuinely care for yourself and others. You must be open to working with all genders and engaging with different dynamics within the exercises. No previous BDSM experience is required. Emotional maturity, self-awareness, and respect for boundaries are essential. Everything is invitation-based. You are always free to participate, pause, witness, or opt out. Nudity is optional.</span>
-                    <span class="text-no">Til slutt er det avgjørende at du er hjerteorientert og genuint bryr deg om deg selv og andre. Du må være åpen for å arbeide med alle kjønn og engasjere deg i forskjellige dynamikker innenfor øvelsene. Ingen tidligere BDSM-erfaring kreves. Følelsesmessig modenhet, selvbevissthet og respekt for grenser er avgjørende. Alt er basert på invitasjon. Du er alltid fri til å delta, ta pause, være vitne eller velge bort. Nakenhet er valgfritt.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">DLA KOGO NIE JEST TO?</span>
-                    <span class="text-en">WHO THIS IS NOT FOR</span>
-                    <span class="text-no">HVEM ER DENNE IKKE FOR</span>
-                </h4>
-                <p>
-                    <span class="text-pl">Ta Świątynia może nie być odpowiednia, jeśli jesteś:</span>
-                    <span class="text-en">This Temple may not be suitable if you are:</span>
-                    <span class="text-no">Denne Tempel kan være uegnet hvis du er:</span>
-                </p>
-                <ul class="list-disc ml-6">
-                    <li>
-                        <span class="text-pl">W poszukiwaniu przypadkowego dostępu seksualnego lub rozrywki</span>
-                        <span class="text-en">Seeking casual sexual access or entertainment</span>
-                        <span class="text-no">På jakt etter tilfeldig seksuell tilgang eller underholdning</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Niezdolny do komunikacji wyraźnych granic lub szacunku do granic innych</span>
-                        <span class="text-en">Unable to communicate clear boundaries or respect the boundaries of others</span>
-                        <span class="text-no">Ute av stand til å kommunisere klare grenser eller respektere andres grenser</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Obecnie emocjonalnie niestabilny lub w ostrym kryzysie</span>
-                        <span class="text-en">Currently emotionally unstable or in acute crisis</span>
-                        <span class="text-no">For øyeblikket følelsesmessig ustabil eller i akutt krise</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Spodziewający się, że inni cię uleczą lub uratują</span>
-                        <span class="text-en">Expecting others to heal or rescue you</span>
-                        <span class="text-no">Forventer at andre skal helbrede eller redde deg</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Niechętny do przejęcia odpowiedzialności za własne doświadczenie</span>
-                        <span class="text-en">Unwilling to take responsibility for your own experience</span>
-                        <span class="text-no">Uvillig til å ta ansvar for din egen opplevelse</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Jeśli odczuwasz dyskomfort wobec energii erotycznej, intymności lub świadomej ekspresji ciała — własnej lub innych osób</span>
-                        <span class="text-en">Uncomfortable being around erotic energy, intimacy, or embodied expression with yourself or others</span>
-                        <span class="text-no">Ubehagelig med å være rundt erotisk energi, intimitet eller inkarnert uttrykk med deg selv eller andre</span>
-                    </li>
-                </ul>
-                <p>
-                    <span class="text-pl">Cenimy suwerenność, dojrzałość, troskę, życzliwość, szacunek, osobistą i relacyjną odpowiedzialność i odpowiedzialność.</span>
-                    <span class="text-en">We value sovereignty, maturity, care, kindness, respect, personal and relational accountability and responsibility.</span>
-                    <span class="text-no">Vi verdsetter suverenitet, modenhet, omsorg, kjærlighet, respekt, personlig og relasjonell ansvarlighet og ansvar.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">JAK ROZWIJA SIĘ DOŚWIADCZENIE?</span>
-                    <span class="text-en">HOW THE EXPERIENCE UNFOLDS</span>
-                    <span class="text-no">HVORDAN OPPLEVELSEN UTFOLDER SEG</span>
-                </h4>
-                <p>
-                    <span class="text-pl">Zaczynamy od stworzenia zakotwiczonej i bezpiecznej przestrzeni Świątyni poprzez zgodne, indywidualne i zbiorowe porozumienia. Następnie poprzez praktyczne narzędzia i prowadzone ćwiczenia, ustanawiamy obecność, zaufanie, kulturę zgody, bezpieczeństwo emocjonalne i wcieloną świadomość. Będziesz wspierany w regulacji układu nerwowego, połączeniu z ciałem, wyrażeniu prawdy, wyjaśnieniu granic i otwarciu autentycznych ścieżek połączenia.</span>
-                    <span class="text-en">We begin by creating a grounded and safe Temple container through consensual, individual and collective agreements. Then through practical tools and guided exercises, we establish presence, trust, consent culture, emotional safety, and embodied awareness. You will be supported to regulate your nervous system, connect to your body, express truth, clarify boundaries, and open authentic pathways of connection.</span>
-                    <span class="text-no">Vi begynner med å skape en forankret og trygg Tempel-beholder gjennom samtykkende, individuelle og kollektive avtaler. Deretter gjennom praktiske verktøy og veiledede øvelser, etablerer vi nærvær, tillit, samtykke-kultur, følelsesmessig trygghet og inkarnert bevissthet. Du vil bli støttet til å regulere ditt nervesystem, koble til din kropp, uttrykke sannhet, avklare grenser og åpne autentiske veier til tilknytning.</span>
-                </p>
-                <p>
-                    <span class="text-pl">Stamtąd wyruszamy w transformacyjną podróż Świątyni eksplorując dynamikę świętej mocy, polaryzację, pragnienie, poddanie się, oddanie, wyrażenie i świadomy eros. Te praktyki są starannie prowadzone i oparte na wyborze, pozwalając każdemu uczestnikowi zaangażować się na poziomie, który wydaje się dopasowany. W miarę upływu wieczoru bardziej strukturyzowana część spotkania przechodzi w swobodniejszą przestrzeń Świątyni — świadomie stworzone miejsce dla dalszego połączenia, ekspresji, integracji, celebracji, wyciszenia lub radosnej zabawy. Wszystko odbywa się w ramach jasno określonych granic, wzajemnej zgody, świadomych ustaleń, szacunku, troski, bezpieczeństwa i odpowiedzialności.
 
-Wieczór kończy się ugruntowaniem, refleksją oraz integracją doświadczeń., refleksją i końcowym kręgiem dzielenia się.</span>
-                    <span class="text-en">From there, we journey into transformational Temple practices exploring sacred power dynamics, polarity, desire, surrender, devotion, expression, and conscious eros. These practices are carefully guided and choice-based, allowing each participant to engage at the level that feels aligned. As the evening unfolds, the structured container softens into a freer Temple flow —an intentional space for continued connection, expression, integration, celebration, stillness, or play in boundaried, mutually-consensual, negotiated, agreed upon, respectful, caring, safe, and responsible interactions. The night closes with grounding, reflection and a final sharing circle.</span>
-                    <span class="text-no">Derfra reiser vi inn i transformasjonelle Tempel-praksiser som utforsker hellige maktdynamikker, polaritet, ønske, overgivelse, hengivenhet, uttrykk og bevisst eros. Disse praksisene er nøye veiledet og valgbasert, noe som lar hver deltaker engasjere seg på nivået som føles i tråd. Etter hvert som kvelden utfolder seg, mykner den strukturerte beholderen opp til en friere Tempel-strøm — et intenst rom for fortsatt tilknytning, uttrykk, integrasjon, feiring, stillhet eller lek i begrensede, gjensidig-samtykkende, forhandlede, avtalte, respektfulle, omsorgsfulle, trygge og ansvarlige interaksjoner. Natten avsluttes med forankring, refleksjon og en endelig delingskrets.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl"> CO MOŻESZ ZABRAĆ ZE SOBĄ?</span>
-                    <span class="text-en">WHAT YOU MAY LEAVE WITH</span>
-                    <span class="text-no">HVA DU KAN TA MED DEG</span>
+            <!-- Women's Promotion Box -->
+            <div class="bg-brand-violet-light/50 border-l-4 border-brand-plum p-8 rounded-r-[30px] max-w-3xl mx-auto shadow-sm">
+                <h4 class="text-xl font-bold text-brand-plum mb-3 flex items-center gap-2">
+                    ✨ 
+                    <span class="text-pl">Specjalna Promocja dla Kobiet</span>
+                    <span class="text-en">Special Women's Promotion</span>
+                    <span class="text-no">Spesiell Kampanje for Kvinner</span>
                 </h4>
-                <p>
-                    <span class="text-pl">Wielu uczestników kończy tę podróż z:</span>
-                    <span class="text-en">Many participants leave with:</span>
-                    <span class="text-no">Mange deltakere drar med seg:</span>
-                </p>
-                <ul class="list-disc ml-6">
-                    <li>
-                        <span class="text-pl">Głębszym zaufaniem do siebie</span>
-                        <span class="text-en">Deeper self-trust</span>
-                        <span class="text-no">Dypere selv-tiltro</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Większą pewnością w wyrażaniu swoich granic i pragnień</span>
-                        <span class="text-en">More confidence expressing boundaries and desires</span>
-                        <span class="text-no">Mer selvtillit i å uttrykke grenser og ønsker</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Uwolnieniem od wstydu i wewnętrznych blokad</span>
-                        <span class="text-en">Healing around shame or inhibition</span>
-                        <span class="text-no">Helbredelse rundt skam eller hemming</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Większą energią, pasją i radością życia</span>
-                        <span class="text-en">Increased energy, passion, and joy</span>
-                        <span class="text-no">Økt energi, lidenskap og glede</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Większą wolnością emocjonalną</span>
-                        <span class="text-en">Greater emotional freedom</span>
-                        <span class="text-no">Større følelsesmessig frihet</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Głębszym, ucieleśnionym rozumieniem własnej mocy i intymności</span>
-                        <span class="text-en">Embodied clarity around power and intimacy</span>
-                        <span class="text-no">Inkarnert klarhet rundt makt og intimitet</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Większą otwartością na miłość, bliskość i połączenie</span>
-                        <span class="text-en">More openness to love and connection</span>
-                        <span class="text-no">Mer åpenhet for kjærlighet og tilknytning</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Poczuciem osobistej transformacji.</span>
-                        <span class="text-en">A felt sense of personal transformation</span>
-                        <span class="text-no">En følt sansning av personlig transformasjon</span>
-                    </li>
-                </ul>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">PROGRAM</span>
-                    <span class="text-en">PROGRAM</span>
-                    <span class="text-no">PROGRAM</span>
-                </h4>
-                <ul class="list-disc ml-6">
-                    <li><strong>18:15</strong> – 
-                        <span class="text-pl">Przyjazd</span>
-                        <span class="text-en">Arrival</span>
-                        <span class="text-no">Ankomst</span>
-                    </li>
-                    <li><strong>18:30</strong> – 
-                        <span class="text-pl">Zamknięcie drzwi – Otwarcie</span>
-                        <span class="text-en">Doors Close – Opening</span>
-                        <span class="text-no">Dørene stenger – Åpning</span>
-                    </li>
-                    <li><strong>18:45</strong> – 
-                        <span class="text-pl">Prowadzone Połączenie i Ćwiczenia Zgody</span>
-                        <span class="text-en">Guided Connection & Consent Exercises</span>
-                        <span class="text-no">Veiledet tilknytning og samtykkeøvelser</span>
-                    </li>
-                    <li><strong>19:30</strong> – 
-                        <span class="text-pl">Prowadzona Podróż Świętej Mocy i Polaryzacji</span>
-                        <span class="text-en">Guided Sacred Power & Polarity Journey</span>
-                        <span class="text-no">Veiledet hellig makt og polaritet reise</span>
-                    </li>
-                    <li><strong>21:30–23:30</strong> – 
-                        <span class="text-pl">Otwarta Przestrzeń Świątyni – Swobodny Przepływ</span>
-                        <span class="text-en">Open Temple Space – Free Flow</span>
-                        <span class="text-no">Åpent tempelrom – Fri strøm</span>
-                    </li>
-                    <li><strong>23:30</strong> – 
-                        <span class="text-pl">Koło Zamknięcia Dzielenia Się</span>
-                        <span class="text-en">Closing Sharing Circle</span>
-                        <span class="text-no">Avsluttende delingskrets</span>
-                    </li>
-                    <li><strong>24:00</strong> – 
-                        <span class="text-pl">Koniec</span>
-                        <span class="text-en">End</span>
-                        <span class="text-no">Slutt</span>
-                    </li>
-                </ul>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">WYMIANA FINANSOWA</span>
-                    <span class="text-en">FINANCIAL EXCHANGE</span>
-                    <span class="text-no">ØKONOMISK UTVEKSLING</span>
-                </h4>
-                <ul class="list-disc ml-6">
-                    <li>
-                        <span class="text-pl">250 PLN / osoba Super Early Bird cena do 31 sierpnia</span>
-                        <span class="text-en">250 PLN / person Super Early Bird Price until August 31</span>
-                        <span class="text-no">250 PLN / person Super Early Bird pris frem til 31. august</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">300 PLN / osoba Early Bird cena 1 września - 31 października</span>
-                        <span class="text-en">300 PLN / person Early Bird Price Sept. 1-October 31</span>
-                        <span class="text-no">300 PLN / person Early Bird pris 1. sept - 31. okt</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">350 PLN / osoba Cena Regularna 1 listopada - 22 listopada</span>
-                        <span class="text-en">350 PLN / person Regular Price Nov.1 -November 22</span>
-                        <span class="text-no">350 PLN / person Vanlig pris 1. nov - 22. nov</span>
-                    </li>
-                </ul>
-                <p>
-                    <span class="text-pl">Skontaktuj się z Joanną, aby zarejestrować się przez Messengera / WhatsApp / Blik: +48  733 777 542. Pełna wpłata jest należna w momencie rejestracji. Twoje miejsce jest zarezerwowane tylko po otrzymaniu pełnej wpłaty. Liczba miejsc ograniczona. Jeśli czujesz powołanie do przyjścia do Świątyni, ale masz trudności finansowe, skontaktuj się z nami, aby omówić alternatywne opcje.</span>
-                    <span class="text-en">Contact Joanna to register via Messenger / WhatsApp / Blik: +48 733 777 542. Full payment is due at the time of registration. Your place is reserved only upon full payment. Limited spaces available. If you feel called to come to the Temple but are experiencing financial difficulty, please contact us to discuss alternative options.</span>
-                    <span class="text-no">Kontakt Joanna for å registrere via Messenger / WhatsApp / Blik: +48 733 777 542. Full betaling er forfall ved registrering. Din plass er reservert kun ved full betaling. Begrenset antall plasser tilgjengelig. Hvis du føler deg kalt til å komme til Tempel men opplever økonomiske vanskeligheter, vennligst kontakt oss for å diskutere alternative alternativer.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">PRZEDMIOTY DO PRZYNIESIENIA</span>
-                    <span class="text-en">ITEMS TO BRING</span>
-                    <span class="text-no">TING Å TA MED</span>
-                </h4>
-                <ul class="list-disc ml-6">
-                    <li>
-                        <span class="text-pl">Odzież, która łączy Cię z Twoją osobistą świętą mocą i polaryzacją</span>
-                        <span class="text-en">Clothing that connects you to your personal sacred power and polarity</span>
-                        <span class="text-no">Klær som kobler deg til din personlige hellige makt og polaritet</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Ręcznik lub lungi dla komfortu, masażu lub stworzenia Twojej świętej przestrzeni</span>
-                        <span class="text-en">A towel or lungi for comfort, massage, or creating your sacred space</span>
-                        <span class="text-no">Et håndkle eller lungi for komfort, massasje eller å skape ditt hellige rom</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Butelka z wodą, aby zachować nawodnienie (bez otwartych pojemników w Świątyni)</span>
-                        <span class="text-en">A water bottle to stay hydrated (no open containers in the Temple)</span>
-                        <span class="text-no">En vannflaske for å holde deg hydrert (ingen åpne beholdere i Tempel)</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Przekąski, aby odżywić ciało i ducha</span>
-                        <span class="text-en">Snacks to nourish your body and spirit</span>
-                        <span class="text-no">Mat for å nære din kropp og ånd</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Olejek do masażu</span>
-                        <span class="text-en">Massage oil</span>
-                        <span class="text-no">Massasjeolje</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Opaska na oczy</span>
-                        <span class="text-en">Blindfold</span>
-                        <span class="text-no">Bind for øynene</span>
-                    </li>
-                    <li>
-                        <span class="text-pl">Opcjonalne zmysłowe przedmioty: piórka, futro, satyna, jedwab, lina, bicz, obroża, smycz</span>
-                        <span class="text-en">Optional sensual items: feathers, fur, satin, silk, rope, whip, collar, leash</span>
-                        <span class="text-no">Valgfrie sanselige gjenstander: fjær, pels, sateng, silke, tau, pisk, krave, rumpe</span>
-                    </li>
-                </ul>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">WYTYCZNE ŚWIĄTYNI</span>
-                    <span class="text-en">TEMPLE GUIDELINES</span>
-                    <span class="text-no">TEMPEL RETNINGSLINJER</span>
-                </h4>
-                <p>
-                    <span class="text-pl">Świątynia to święte miejsce, więc prosimy ubrać się odpowiednio. Brak perfum. Olejki eteryczne są mile widziane. To wydarzenie bez alkoholu i bez narkotyków rekreacyjnych.</span>
-                    <span class="text-en">The Temple is a sacred space, so please dress appropriately. No perfume. Essential oils are welcome. This is a no alcohol and no recreational drugs event.</span>
-                    <span class="text-no">Tempel er et hellig sted, så vennligst kle deg passende. Ingen parfyme. Essensielle oljer er velkomne. Dette er et arrangement uten alkohol og uten rekreasjonsmidler.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">CZYM JEST ŚWIĄTYNIA?</span>
-                    <span class="text-en">WHAT IS A TEMPLE?</span>
-                    <span class="text-no">HVA ER EN TEMPEL?</span>
-                </h4>
-                <p>
-                    <span class="text-pl">Świątynia to świadoma, święta przestrzeń, która oddaje hołd boskim iskrom w każdym z nas. To miejsce, gdzie nasze pierwotne, erotyczne i twórcze energie spotykają się z subtelniejszymi prądami serca, głosu, intuicji i ducha. Tutaj jesteśmy zaproszeni do odpoczynku, bycia w pełni obecnym, świętowania naszej istoty i wyrażania życia w oddaniu.</span>
-                    <span class="text-en">A Temple is a conscious, sacred space that honors the divine spark within each of us. It is where our primal, erotic, and creative energies meet the subtle currents of the heart, voice, intuition, and spirit. Here, we are invited to rest, be fully present, celebrate our essence, and express life-force energy in devotion.</span>
-                    <span class="text-no">En Tempel er et bevisst, hellig sted som hedrer den guddommelige gnisten inni hver av oss. Det er der våre primitive, erotiske og kreative energier møter de subtile strømmene i hjertet, stemmen, intuisjonen og ånden. Her blir vi invitert til å hvile, være helt til stede, feire vår essens og uttrykke livskraft i hengivenhet.</span>
-                </p>
-                <p>
-                    <span class="text-pl">To sanktuarium, gdzie możemy eksplorować intymność, dotyk i pragnienie z jasnością, granicami i czcią. W Świątyni wstyd, strach i lęk mogą rozpuścić się w akceptacji, radości, ekstazie i miłości. To miejsce transformacji, gdzie pamiętamy kim naprawdę jesteśmy.</span>
-                    <span class="text-en">It is a sanctuary where we can explore intimacy, touch, and desire with clarity, boundaries, and reverence. In the Temple, guilt, shame, and fear can dissolve into acceptance, joy, ecstasy, and love. It is a place of transformation, where we remember who we truly are.</span>
-                    <span class="text-no">Det er et helligdom hvor vi kan utforske intimitet, berøring og ønske med klarhet, grenser og ærbødighet. I Tempel kan skyld, skam og frykt oppløses i aksept, glede, ekstase og kjærlighet. Det er et sted for transformasjon, hvor vi husker hvem vi egentlig er.</span>
-                </p>
-                <p>
-                    <span class="text-pl">Świątynia niesie czasową mądrość. Zaprasza nas do bycia widzianym i słuchanym, do podzielenia się wrażliwie, do czci naszych pragnień i do szacunku granicom innych. Razem uczymy się odzyskiwać niewinność, obecność i błogość prostego bycia.</span>
-                    <span class="text-en">The Temple carries timeless wisdom. It invites us to be seen and heard, to share vulnerably, to honor our desires, and to respect one another’s boundaries. Together, we learn to reclaim innocence, presence, and the bliss of simply being.</span>
-                    <span class="text-no">Tempel bærer tidløs visdom. Den inviterer oss til å bli sett og hørt, å dele sårbart, å ære våre ønsker og å respektere hverandres grenser. Sammen lærer vi å gjenvinne uskyld, nærvær og glede av å bare være.</span>
-                </p>
-                
-                <h4 class="font-bold text-brand-green mt-6">
-                    <span class="text-pl">POLITYKA ANULOWANIA</span>
-                    <span class="text-en">CANCELLATION POLICY</span>
-                    <span class="text-no">AVBESTILLINGSPOLICY</span>
-                </h4>
-                <p>
-                    <span class="text-pl">100% zwrotu pieniędzy za anulowania do 3 tygodni przed wydarzeniem. Anulowania dokonane mniej niż 2 tygodnie przed wydarzeniem nie podlegają zwrotowi, choć możesz przenieść swój bilet na inną osobę. Szczególne okoliczności będą rozpatrywane indywidualnie.</span>
-                    <span class="text-en">100% refund for cancellations up to 3 weeks before the event. Cancellations made less than 2 weeks before the event are non-refundable, though you may transfer your ticket to another person. Special circumstances will be considered individually.</span>
-                    <span class="text-no">100% refusjon for avbestillinger opp til 3 uker før arrangementet. Avbestillinger gjort mindre enn 2 uker før arrangementet er ikke refunderbare, selv om du kan overføre billetten din til en annen person. Spesielle omstendigheter vil bli vurdert individuelt.</span>
-                </p>
-                
-                <p class="text-center font-bold italic">
-                    <span class="text-pl">2. Niektóre doświadczenia są po prostu rozrywką. Inne mają moc przebudzenia. Ta Świątynia została stworzona, aby wspierać przebudzenie, obecność i głęboką integrację doświadczeń. Jeśli jakaś część Ciebie tęskni za głębszą prawdą, większą swobodą w miłości, świadomym przeżywaniem własnej mocy i głęboką transformacją, ta przestrzeń jest dla Ciebie.</span>
-                    <span class="text-en">Some experiences entertain. Some experiences awaken. This Temple is designed to awaken and embody. If something inside you longs for deeper truth, freer love, embodied power, and profound transformation—this is for you.</span>
-                    <span class="text-no">Noen opplevelser underholder. Noen opplevelser vekker. Denne Tempel er designet for å vekke og inkarnere. Hvis noe inni deg lengter etter dypere sannhet, friere kjærlighet, inkarnert makt og dypgående transformasjon — dette er for deg.</span>
+                <p class="text-brand-green/80 text-base leading-relaxed">
+                    <span class="text-pl">Przyprowadź 1 lub więcej przyjaciółek i otrzymaj dodatkowe <strong>50 PLN zniżki</strong> na własny bilet! Twoja przyjaciółka zagwarantuje sobie również cenę Super Early Bird (do 31 sierpnia) lub Early Bird (od 1 września).</span>
+                    <span class="text-en">Bring 1 or more girlfriends and receive an additional <strong>50 PLN off</strong> your own ticket! Your girlfriend(s) will also lock in the Super Early Bird price (until Aug 31) or the Early Bird price anytime starting Sept 1.</span>
+                    <span class="text-no">Ta med 1 eller flere venninner og få ytterligere <strong>50 PLN i rabatt</strong> på din egen billett! Din venninne vil også sikre seg Super Early Bird-prisen (frem til 31. aug) eller Early Bird-prisen når som helst fra 1. sept.</span>
                 </p>
             </div>
-            
-            <button onclick="toggleModal('signupModal')" class="w-full bg-red-800 text-white py-4 rounded-xl font-bold hover:opacity-90 transition-all">
-                <span class="text-pl">Zarejestruj się na Świątynię 2</span>
-                <span class="text-en">Register for Temple 2</span>
-                <span class="text-no">Registrer for Tempel 2</span>
-            </button>
         </div>
-    </div>
+    </section>
 
-    <!-- Main Signup Modal -->
-    <div id="signupModal" class="modal">
-        <div class="bg-white rounded-[40px] p-8 max-w-md w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <h2 class="text-2xl font-bold text-brand-plum mb-6 text-center">
-                <span class="text-pl">Zarezerwuj miejsce</span>
-                <span class="text-en">Reserve your place</span>
-                <span class="text-no">Reserver din plass</span>
-            </h2>
-            
-            <form id="templeSignupForm" action="" method="POST" target="hiddenConfirm" class="space-y-4">
-                <input type="hidden" name="form_type" value="temple_registration">
-                <input type="hidden" id="form_load_time" value="">
-                
-                <!-- Anti-Spam Honeypot -->
-                <div class="absolute -left-[9999px]" aria-hidden="true">
-                    <input type="text" name="website" id="bot_website" tabindex="-1">
-                </div>
-
-                <input type="text" name="name" placeholder="Imię i Nazwisko *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
-                <input type="email" name="email" placeholder="E-mail *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
-                <input type="tel" name="phone" placeholder="Telefon *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
-                
-                <select name="event" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white" required>
-                    <option value="" disabled selected>
-                        <span class="text-pl">Wybierz wydarzenie...</span>
-                        <span class="text-en">Select event...</span>
-                        <span class="text-no">Velg arrangement...</span>
-                    </option>
-                    <option value="temple1">
-                        <span class="text-pl">Świątynia 1 (8 listopada) - Cacao & Cuddles</span>
-                        <span class="text-en">Temple 1 (Nov 8) - Cacao & Cuddles</span>
-                        <span class="text-no">Tempel 1 (8. nov) - Cacao & Cuddles</span>
-                    </option>
-                    <option value="temple2">
-                        <span class="text-pl">Świątynia 2 (22 listopada) - Sacred Power</span>
-                        <span class="text-en">Temple 2 (Nov 22) - Sacred Power</span>
-                        <span class="text-no">Tempel 2 (22. nov) - Sacred Power</span>
-                    </option>
-                    <option value="both">
-                        <span class="text-pl">Pakiet obu Świątyń - 400 PLN</span>
-                        <span class="text-en">Both Temples Package - 400 PLN</span>
-                        <span class="text-no">Begge Templer Pakke - 400 PLN</span>
-                    </option>
-                </select>
-
-                <div class="flex items-center gap-3 bg-brand-violet-light/50 p-4 rounded-xl border border-brand-lavender">
-                    <input type="checkbox" id="humanCheck" class="w-5 h-5 accent-brand-plum cursor-pointer">
-                    <label for="humanCheck" class="text-xs font-bold text-brand-green cursor-pointer">
-                        <span class="text-pl">Potwierdzam, że nie jestem robotem.</span>
-                        <span class="text-en">I confirm I am not a robot.</span>
-                        <span class="text-no">Jeg bekrefter at jeg ikke er en robot.</span>
+    <div id="newsletterModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
+            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">Newsletter</h2>
+            <p class="text-sm text-brand-green/70 mb-6">
+                <span class="text-pl">Bądź na bieżąco z nadchodzącymi warsztatami, świątyniami tantry i wydarzeniami.</span>
+                <span class="text-en">Stay up to date with upcoming workshops, tantra temples, and events.</span>
+                <span class="text-no">Hold deg oppdatert med kommende workshops, tantratempler og arrangementer.</span>
+            </p>
+            <form class="space-y-4">
+                <input type="email" data-lang-pl="Twój E-mail" data-lang-en="Your E-mail" data-lang-no="Din E-post" placeholder="Twój E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                <div class="flex items-start gap-3 text-left">
+                    <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">
+                        <span class="text-pl">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach, świątyniach i specjalnych wydarzeniach od Conscious Wolf.</span>
+                        <span class="text-en">I agree to receive marketing information about upcoming workshops, temples, and special events from Conscious Wolf.</span>
+                        <span class="text-no">Jeg samtykker til å motta markedsinformasjon om kommende workshops, templer og spesielle arrangementer fra Conscious Wolf.</span>
                     </label>
                 </div>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                    <span class="text-pl">Zapisz się</span><span class="text-en">Subscribe</span><span class="text-no">Abonner</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="bg-white rounded-[40px] p-8 max-w-md w-full shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-plum mb-2">
+                <span class="text-pl">Zapisz się</span>
+                <span class="text-en">Sign up</span>
+                <span class="text-no">Meld deg på</span>
+            </h2>
+            <p class="text-sm text-brand-green/70 mb-6">
+                <span class="text-pl">Wypełnij formularz, aby zarejestrować się na nadchodzące wydarzenia.</span>
+                <span class="text-en">Fill out the form to register for the upcoming events.</span>
+                <span class="text-no">Fyll ut skjemaet for å registrere deg for de kommende arrangementene.</span>
+            </p>
+            
+            <form id="templeSignupForm" class="space-y-4 text-left">
+                <div>
+                    <input type="text" name="name" data-lang-pl="Imię i nazwisko *" data-lang-en="Full Name *" data-lang-no="Fullt Navn *" placeholder="Imię i nazwisko *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                </div>
+                <div>
+                    <input type="email" name="email" data-lang-pl="Twój E-mail *" data-lang-en="Your E-mail *" data-lang-no="Din E-post *" placeholder="Twój E-mail *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                </div>
+                <div>
+                    <input type="tel" name="phone" data-lang-pl="Numer Telefonu *" data-lang-en="Phone Number *" data-lang-no="Telefonnummer *" placeholder="Numer Telefonu *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                </div>
+                <div>
+                    <select name="event" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white text-brand-green" required>
+                        <option value="" disabled selected class="lang-option" data-lang-pl="Wybierz wydarzenie..." data-lang-en="Select event..." data-lang-no="Velg arrangement...">Wybierz wydarzenie...</option>
+                        <option value="temple1" class="lang-option" data-lang-pl="Świątynia 1 (8 Listopada) - 250 PLN" data-lang-en="Temple 1 (Nov 8) - 250 PLN" data-lang-no="Tempel 1 (8. Nov) - 250 PLN">Świątynia 1 (8 Listopada) - 250 PLN</option>
+                        <option value="temple2" class="lang-option" data-lang-pl="Świątynia 2 (22 Listopada) - 250 PLN" data-lang-en="Temple 2 (Nov 22) - 250 PLN" data-lang-no="Tempel 2 (22. Nov) - 250 PLN">Świątynia 2 (22 Listopada) - 250 PLN</option>
+                        <option value="both" class="lang-option" data-lang-pl="Obie Świątynie (Pakiet) - 400 PLN" data-lang-en="Both Temples (Bundle) - 400 PLN" data-lang-no="Begge Templer (Pakke) - 400 PLN">Obie Świątynie (Pakiet) - 400 PLN</option>
+                    </select>
+                </div>
                 
-                <button type="submit" id="submitSignupBtn" disabled class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg transition-all mt-4">
-                    <span class="text-pl">Wyślij zgłoszenie</span>
-                    <span class="text-en">Submit application</span>
-                    <span class="text-no">Send inn søknad</span>
+                <div class="flex items-start gap-3 mt-4">
+                    <input type="checkbox" id="marketingConsent" name="consent" value="true" class="mt-1 accent-brand-plum">
+                    <label for="marketingConsent" class="text-[11px] leading-tight text-brand-green/80">
+                        <span class="text-pl">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach i wydarzeniach.</span>
+                        <span class="text-en">I agree to receive marketing information about upcoming workshops and events.</span>
+                        <span class="text-no">Jeg samtykker til å motta markedsinformasjon om kommende workshops og arrangementer.</span>
+                    </label>
+                </div>
+
+                <button type="submit" id="submitSignupBtn" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all mt-4 flex justify-center items-center gap-2">
+                    <span class="text-pl">Wyślij Zgłoszenie</span>
+                    <span class="text-en">Submit Registration</span>
+                    <span class="text-no">Send Registrering</span>
                 </button>
                 <div id="signupFormMessage" class="text-center mt-3 text-sm font-semibold hidden"></div>
             </form>
-            <iframe name="hiddenConfirm" style="display:none"></iframe>
         </div>
     </div>
 
-    <!-- Waiting List Modal -->
-    <div id="waitingListModal" class="modal">
-        <div class="bg-white rounded-[32px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button type="button" onclick="closeModal('waitingListModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-
-            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">
-                <span class="text-pl">Lista oczekujących</span>
-                <span class="text-en">Waiting List</span>
-                <span class="text-no">Venteliste</span>
-            </div>
-
-            <h2 class="text-3xl font-bold text-brand-plum mb-4">
-                <span class="text-pl">Dołącz do listy oczekujących</span>
-                <span class="text-en">Join the waiting list</span>
-                <span class="text-no">Bli med på ventelisten</span>
+    <!-- Custom Confirmation Modal -->
+    <div id="confirmModal" class="modal" style="z-index: 110;">
+        <div class="bg-white rounded-[32px] p-8 max-w-sm w-full shadow-2xl relative text-center">
+            <h2 class="text-2xl font-bold text-brand-plum mb-4">
+                <span class="text-pl">Ważna Informacja</span>
+                <span class="text-en">Important Note</span>
+                <span class="text-no">Viktig Merknad</span>
             </h2>
-
-            <p class="text-sm text-brand-green/75 mb-6 leading-relaxed">
-                <span class="text-pl">Jeśli obecnie nie widzisz dogodnego terminu, możesz zostawić swoje dane. Skontaktuję się, gdy pojawi się możliwość konsultacji lub regularnego procesu terapeutycznego.</span>
-                <span class="text-en">If you don't currently see a convenient time, you can leave your details. I will contact you when consultation or regular therapeutic process opportunities arise.</span>
-                <span class="text-no">Hvis du ikke ser en passende tid nå, kan du legge igjen dine detaljer. Jeg vil kontakte deg når det oppstår muligheter for konsultasjon eller regelmessig terapeutisk prosess.</span>
+            <p class="text-sm text-brand-green/80 mb-8 leading-relaxed">
+                <span class="text-pl">Każde zgłoszenie będzie rozpatrywane indywidualnie przez zespół. Potwierdzenie uczestnictwa oraz szczegóły płatności zostaną wysłane po weryfikacji.</span>
+                <span class="text-en">Each registration will be evaluated individually by our team. Confirmation of participation and payment details will be sent after verification.</span>
+                <span class="text-no">Hver registrering vil bli vurdert individuelt av teamet vårt. Bekreftelse på deltakelse og betalingsdetaljer vil bli sendt etter verifisering.</span>
             </p>
-
-            <div class="bg-brand-green-light border border-brand-lavender/70 rounded-2xl p-4 mb-6">
-                <p class="text-[11px] leading-relaxed text-brand-green/75">
-                    <span class="text-pl">Ten formularz nie służy do kontaktu kryzysowego. Jeśli znajdujesz się w sytuacji bezpośredniego zagrożenia zdrowia lub życia, skontaktuj się z numerem alarmowym 112 lub najbliższą placówką medyczną.</span>
-                    <span class="text-en">This form is not for crisis contact. If you are in a situation of immediate threat to health or life, contact emergency number 112 or the nearest medical facility.</span>
-                    <span class="text-no">Dette skjemaet er ikke for krisekontakt. Hvis du er i en situasjon med umiddelbar trussel mot helse eller liv, kontakt nødnummer 112 eller nærmeste medisinske fasilitet.</span>
-                </p>
-            </div>
-
-            <form
-                id="waitingListForm"
-                action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
-                method="POST"
-                target="waitingListTarget"
-                class="space-y-5"
-                onsubmit="document.getElementById('waitingListSuccess').classList.remove('hidden'); setTimeout(() => this.reset(), 700);"
-            >
-                <input type="hidden" name="form_type" value="waitinglist">
-                <input type="hidden" name="source_page" value="Homepage waiting list modal">
-
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">
-                            <span class="text-pl">Imię i nazwisko *</span>
-                            <span class="text-en">Name and surname *</span>
-                            <span class="text-no">Navn og etternavn *</span>
-                        </label>
-                        <input type="text" name="name" required placeholder="Imię i nazwisko" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
-                    </div>
-
-                    <div>
-                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">
-                            <span class="text-pl">E-mail *</span>
-                            <span class="text-en">Email *</span>
-                            <span class="text-no">E-post *</span>
-                        </label>
-                        <input type="email" name="email" required placeholder="Twój adres e-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">
-                        <span class="text-pl">Telefon opcjonalnie</span>
-                        <span class="text-en">Phone optional</span>
-                        <span class="text-no">Telefon valgfritt</span>
-                    </label>
-                    <input type="tel" name="phone" placeholder="Numer telefonu" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
-                </div>
-
-                <div>
-                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3">
-                        <span class="text-pl">Forma spotkania</span>
-                        <span class="text-en">Meeting format</span>
-                        <span class="text-no">Møteformat</span>
-                    </p>
-                    <div class="grid sm:grid-cols-3 gap-3">
-                        <label class="cursor-pointer">
-                            <input type="radio" name="preferred_format" value="Online" class="peer sr-only" required>
-                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">
-                                <span class="text-pl">Online</span>
-                                <span class="text-en">Online</span>
-                                <span class="text-no">Online</span>
-                            </span>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="preferred_format" value="Stacjonarnie w Krakowie" class="peer sr-only" required>
-                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">
-                                <span class="text-pl">Stacjonarnie</span>
-                                <span class="text-en">In-person</span>
-                                <span class="text-no">På stedet</span>
-                            </span>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="preferred_format" value="Bez preferencji" class="peer sr-only" required>
-                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">
-                                <span class="text-pl">Bez preferencji</span>
-                                <span class="text-en">No preference</span>
-                                <span class="text-no">Ingen preferanse</span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">
-                            <span class="text-pl">Rodzaj wsparcia *</span>
-                            <span class="text-en">Type of support *</span>
-                            <span class="text-no">Type støtte *</span>
-                        </label>
-                        <select name="support_type" required class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
-                            <option value="">
-                                <span class="text-pl">Wybierz...</span>
-                                <span class="text-en">Select...</span>
-                                <span class="text-no">Velg...</span>
-                            </option>
-                            <option value="Terapia indywidualna">
-                                <span class="text-pl">Terapia indywidualna</span>
-                                <span class="text-en">Individual therapy</span>
-                                <span class="text-no">Individuell terapi</span>
-                            </option>
-                            <option value="Terapia par">
-                                <span class="text-pl">Terapia par</span>
-                                <span class="text-en">Couples therapy</span>
-                                <span class="text-no">Par terapi</span>
-                            </option>
-                            <option value="Konsultacja seksuologiczna / terapia seksuologiczna">
-                                <span class="text-pl">Konsultacja seksuologiczna / terapia seksuologiczna</span>
-                                <span class="text-en">Sexological consultation / sexological therapy</span>
-                                <span class="text-no">Seksuologisk konsultasjon / seksuologisk terapi</span>
-                            </option>
-                            <option value="Regularny proces terapeutyczny">
-                                <span class="text-pl">Regularny proces terapeutyczny</span>
-                                <span class="text-en">Regular therapeutic process</span>
-                                <span class="text-no">Regelmessig terapeutisk prosess</span>
-                            </option>
-                            <option value="Nie wiem jeszcze">
-                                <span class="text-pl">Nie wiem jeszcze</span>
-                                <span class="text-en">I don't know yet</span>
-                                <span class="text-no">Jeg vet ikke ennå</span>
-                            </option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">
-                            <span class="text-pl">Preferowana pora *</span>
-                            <span class="text-en">Preferred time *</span>
-                            <span class="text-no">Foretrukket tid *</span>
-                        </label>
-                        <select name="preferred_time" required class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
-                            <option value="">
-                                <span class="text-pl">Wybierz...</span>
-                                <span class="text-en">Select...</span>
-                                <span class="text-no">Velg...</span>
-                            </option>
-                            <option value="Rano">
-                                <span class="text-pl">Rano</span>
-                                <span class="text-en">Morning</span>
-                                <span class="text-no">Morgen</span>
-                            </option>
-                            <option value="Popołudnie">
-                                <span class="text-pl">Popołudnie</span>
-                                <span class="text-en">Afternoon</span>
-                                <span class="text-no">Ettermiddag</span>
-                            </option>
-                            <option value="Wieczór">
-                                <span class="text-pl">Wieczór</span>
-                                <span class="text-en">Evening</span>
-                                <span class="text-no">Kveld</span>
-                            </option>
-                            <option value="Elastycznie">
-                                <span class="text-pl">Elastycznie</span>
-                                <span class="text-en">Flexibly</span>
-                                <span class="text-no">Fleksibelt</span>
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">
-                        <span class="text-pl">Preferowane dni</span>
-                        <span class="text-en">Preferred days</span>
-                        <span class="text-no">Foretrukne dager</span>
-                    </label>
-                    <select name="preferred_days" class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
-                        <option value="">
-                            <span class="text-pl">Wybierz opcjonalnie...</span>
-                            <span class="text-en">Select optionally...</span>
-                            <span class="text-no">Velg valgfritt...</span>
-                        </option>
-                        <option value="Poniedziałek - piątek">
-                            <span class="text-pl">Poniedziałek - piątek</span>
-                            <span class="text-en">Monday - Friday</span>
-                            <span class="text-no">Mandag - fredag</span>
-                        </option>
-                        <option value="Weekend, jeśli dostępny">
-                            <span class="text-pl">Weekend, jeśli dostępny</span>
-                            <span class="text-en">Weekend, if available</span>
-                            <span class="text-no">Helg, hvis tilgjengelig</span>
-                        </option>
-                        <option value="Elastycznie">
-                            <span class="text-pl">Elastycznie</span>
-                            <span class="text-en">Flexibly</span>
-                            <span class="text-no">Fleksibelt</span>
-                        </option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">
-                        <span class="text-pl">Czy jest coś ważnego, co chcesz dodać?</span>
-                        <span class="text-en">Is there anything important you want to add?</span>
-                        <span class="text-no">Er det noe viktig du ønsker å legge til?</span>
-                    </label>
-                    <textarea name="message" rows="4" placeholder="Krótka wiadomość opcjonalnie" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"></textarea>
-                </div>
-
-                <!-- Honeypot anti-spam field: keep hidden -->
-                <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
-
-                <div class="flex items-start gap-3 bg-brand-green-light p-4 rounded-2xl border border-brand-lavender/60">
-                    <input type="checkbox" id="waitingConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
-                    <label for="waitingConsent" class="text-[11px] leading-relaxed text-brand-green/80">
-                        <span class="text-pl">Wyrażam zgodę na kontakt w sprawie listy oczekujących oraz przetwarzanie podanych danych w celu obsługi zgłoszenia. Wiem, że mogę wycofać zgodę w każdej chwili.</span>
-                        <span class="text-en">I consent to contact regarding the waiting list and processing of provided data for handling the application. I know that I can withdraw my consent at any time.</span>
-                        <span class="text-no">Jeg samtykker til kontakt angående ventelisten og behandling av oppgitte data for håndtering av søknaden. Jeg vet at jeg kan trekke tilbake samtykket mitt når som helst.</span>
-                    </label>
-                </div>
-
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
-                    <span class="text-pl">Dołącz do listy oczekujących</span>
-                    <span class="text-en">Join the waiting list</span>
-                    <span class="text-no">Bli med på ventelisten</span>
+            <div class="flex gap-4 justify-center">
+                <button onclick="toggleModal('confirmModal')" class="w-full px-4 py-3 rounded-xl border border-brand-lavender text-brand-green font-bold hover:bg-brand-lavender smooth-transition text-sm">
+                    <span class="text-pl">Anuluj</span><span class="text-en">Cancel</span><span class="text-no">Avbryt</span>
                 </button>
-
-                <p id="waitingListSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed">
-                    <span class="text-pl">Dziękujemy. Zgłoszenie zostało zapisane. Skontaktujemy się, gdy pojawi się odpowiednia możliwość spotkania.</span>
-                    <span class="text-en">Thank you. The application has been saved. We will contact you when an appropriate meeting opportunity arises.</span>
-                    <span class="text-no">Takk. Søknaden har blitt lagret. Vi vil kontakte deg når en passende møtemulighet oppstår.</span>
-                </p>
-            </form>
-
-            <iframe name="waitingListTarget" style="display:none"></iframe>
+                <button id="confirmSubmitBtn" class="w-full px-4 py-3 rounded-xl bg-brand-plum text-white font-bold hover:opacity-90 smooth-transition text-sm">
+                    <span class="text-pl">Rozumiem</span><span class="text-en">I understand</span><span class="text-no">Jeg forstår</span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- Newsletter Modal -->
-    <div id="newsletterModal" class="modal">
-        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-
-            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">
-                <span class="text-pl">Newsletter psychoedukacyjny</span>
-                <span class="text-en">Psychoeducational newsletter</span>
-                <span class="text-no">Psykoedukativt nyhetsbrev</span>
-            </div>
-
-            <h2 class="text-3xl font-bold text-brand-plum mb-4">
-                <span class="text-pl">Dołącz do newslettera</span>
-                <span class="text-en">Subscribe to the newsletter</span>
-                <span class="text-no">Abonner på nyhetsbrevet</span>
-            </h2>
-
-            <p class="text-sm text-brand-green/75 mb-6 leading-relaxed">
-                <span class="text-pl">Wybierz język newslettera. Pierwszy materiał zostanie wysłany od razu, a kolejne automatycznie raz w tygodniu — w wybranej wersji językowej.</span>
-                <span class="text-en">Choose the newsletter language. The first material will be sent immediately, and subsequent ones automatically once a week — in the selected language version.</span>
-                <span class="text-no">Velg språk for nyhetsbrevet. Det første materialet vil bli sendt umiddelbart, og påfølgende automatisk en gang i uken — i den valgte språkversjonen.</span>
-            </p>
-
-            <form
-                id="newsletterForm"
-                action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
-                method="POST"
-                target="newsletterTarget"
-                class="space-y-4"
-                onsubmit="document.getElementById('newsletterSuccess').classList.remove('hidden'); setTimeout(() => this.reset(), 600);"
-            >
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Imię / Name (opcjonalnie)"
-                    class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"
-                >
-
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Twój adres e-mail / Your email"
-                    required
-                    class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"
-                >
-
-                <div>
-                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3">
-                        <span class="text-pl">Język newslettera / Newsletter language</span>
-                        <span class="text-en">Newsletter language</span>
-                        <span class="text-no">Språk for nyhetsbrev</span>
-                    </p>
-
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="cursor-pointer">
-                            <input type="radio" name="language" value="PL" class="peer sr-only" checked required>
-                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">
-                                <span class="text-pl">Polski</span>
-                                <span class="text-en">Polish</span>
-                                <span class="text-no">Polsk</span>
-                                <small class="block font-normal text-[10px] mt-1 opacity-80">
-                                    <span class="text-pl">wersja PL</span>
-                                    <span class="text-en">PL version</span>
-                                    <span class="text-no">PL versjon</span>
-                                </small>
-                            </span>
-                        </label>
-
-                        <label class="cursor-pointer">
-                            <input type="radio" name="language" value="EN" class="peer sr-only" required>
-                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">
-                                <span class="text-pl">Angielski</span>
-                                <span class="text-en">English</span>
-                                <span class="text-no">Engelsk</span>
-                                <small class="block font-normal text-[10px] mt-1 opacity-80">
-                                    <span class="text-pl">wersja EN</span>
-                                    <span class="text-en">EN version</span>
-                                    <span class="text-no">EN versjon</span>
-                                </small>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-
-                <input type="hidden" name="source_page" value="Homepage newsletter modal with language selector">
-
-                <!-- Honeypot anti-spam field: keep hidden -->
-                <input
-                    type="text"
-                    name="website"
-                    tabindex="-1"
-                    autocomplete="off"
-                    style="display:none"
-                >
-
-                <div class="flex items-start gap-3 bg-brand-green-light p-4 rounded-2xl border border-brand-lavender/60">
-                    <input type="checkbox" id="newsConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
-                    <label for="newsConsent" class="text-[11px] leading-relaxed text-brand-green/80">
-                        <span class="text-pl">Wyrażam zgodę na otrzymywanie newslettera psychoedukacyjnego od Joanny Filek na podany adres e-mail. Wiem, że mogę wycofać zgodę w każdej chwili.<br><br>I agree to receive Joanna Filek's psychoeducational newsletter at the email address provided. I understand I can withdraw my consent at any time.</span>
-                        <span class="text-en">I agree to receive Joanna Filek's psychoeducational newsletter at the email address provided. I understand I can withdraw my consent at any time.</span>
-                        <span class="text-no">Jeg godtar å motta Joanna Fileks psykoedukative nyhetsbrev på den oppgitte e-postadressen. Jeg forstår at jeg kan trekke tilbake samtykket mitt når som helst.</span>
-                    </label>
-                </div>
-
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
-                    <span class="text-pl">Zapisz się / Subscribe</span>
-                    <span class="text-en">Subscribe</span>
-                    <span class="text-no">Abonner</span>
-                </button>
-
-                <p id="newsletterSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed">
-                    <span class="text-pl">Dziękujemy. Jeśli adres jest poprawny, pierwszy newsletter zostanie wysłany w wybranym języku.<br>Dziękujemy. Jeśli adres jest poprawny, pierwszy newsletter zostanie wysłany w wybranym języku.</span>
-                    <span class="text-en">Thank you. If the email is correct, the first newsletter will be sent in the selected language.<br>Thank you. If the email is correct, the first newsletter will be sent in the selected language.</span>
-                    <span class="text-no">Takk. Hvis e-posten er korrekt, vil det første nyhetsbrevet bli sendt på det valgte språket.<br>Takk. Hvis e-posten er korrekt, vil det første nyhetsbrevet bli sendt på det valgte språket.</span>
-                </p>
-            </form>
-
-            <iframe name="newsletterTarget" style="display:none"></iframe>
-        </div>
-    </div>
-
-    <!-- Footer -->
     <footer class="bg-brand-green text-white pt-16 pb-10">
         <div class="container mx-auto px-6">
 
@@ -1723,9 +408,7 @@ Wieczór kończy się ugruntowaniem, refleksją oraz integracją doświadczeń.,
                     </div>
 
                     <p class="text-sm opacity-75">
-                        <span class="text-pl">Gabinet Psychoterapii Inspiro</span>
-                        <span class="text-en">Inspiro Psychotherapy Clinic</span>
-                        <span class="text-no">Inspiro Psykoterapiklinikk</span>
+                        Gabinet Psychoterapii Inspiro
                     </p>
 
                     <address class="text-sm opacity-75 mt-1 not-italic">
@@ -1734,73 +417,31 @@ Wieczór kończy się ugruntowaniem, refleksją oraz integracją doświadczeń.,
                 </div>
 
                 <div>
-                    <h4 class="font-semibold mb-4 text-brand-lavender">
-                        <span class="text-pl">Nawigacja</span>
-                        <span class="text-en">Navigation</span>
-                        <span class="text-no">Navigasjon</span>
-                    </h4>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Nawigacja</h4>
 
                     <ul class="space-y-3 text-sm opacity-90">
-                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">
-                            <span class="text-pl">Strona główna</span>
-                            <span class="text-en">Home</span>
-                            <span class="text-no">Hjem</span>
-                        </a></li>
-                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">
-                            <span class="text-pl">O mnie</span>
-                            <span class="text-en">About</span>
-                            <span class="text-no">Om meg</span>
-                        </a></li>
-                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">
-                            <span class="text-pl">Warsztaty</span>
-                            <span class="text-en">Workshops</span>
-                            <span class="text-no">Workshoper</span>
-                        </a></li>
-                        <li><button onclick="toggleModal('waitingListModal')" class="hover:text-brand-lavender smooth-transition">
-                            <span class="text-pl">Lista oczekujących</span>
-                            <span class="text-en">Waiting List</span>
-                            <span class="text-no">Venteliste</span>
-                        </button></li>
-                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">
-                            <span class="text-pl">Newsletter</span>
-                            <span class="text-en">Newsletter</span>
-                            <span class="text-no">Nyhetsbrev</span>
-                        </button></li>
-                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">
-                            <span class="text-pl">Contact</span>
-                            <span class="text-en">Contact</span>
-                            <span class="text-no">Kontakt</span>
-                        </a></li>
+                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Strona główna</a></li>
+                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">O mnie</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Warsztaty</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold mb-4 text-brand-lavender">
-                        <span class="text-pl">Zapisy</span>
-                        <span class="text-en">Sign Up</span>
-                        <span class="text-no">Registrering</span>
-                    </h4>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Zapisy</h4>
 
                     <ul class="space-y-3 text-sm opacity-90">
-                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">
-                            <span class="text-pl">Sign-up (Zapisy)</span>
-                            <span class="text-en">Sign Up</span>
-                            <span class="text-no">Registrering</span>
-                        </button></li>
+                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Sign-up (Zapisy)</button></li>
+                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li> 
+                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>                  
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold mb-4 text-brand-lavender">
-                        <span class="text-pl">Informacje</span>
-                        <span class="text-en">Information</span>
-                        <span class="text-no">Informasjon</span>
-                    </h4>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Informacje</h4>
 
                     <p class="text-sm opacity-75 leading-relaxed">
-                        <span class="text-pl">Poufność sesji jest w pełni gwarantowana. Konsultacje dostępne online oraz stacjonarnie.</span>
-                        <span class="text-en">Session confidentiality is fully guaranteed. Consultations available online and in-person.</span>
-                        <span class="text-no">Øktskonfidensialitet er fullt garantert. Konsultasjoner tilgjengelig online og på stedet.</span>
+                        Poufność sesji jest w pełni gwarantowana.
+                        Konsultacje dostępne online oraz stacjonarnie.
                     </p>
 
                     <p class="text-sm opacity-60 mt-6">
@@ -1814,107 +455,119 @@ Wieczór kończy się ugruntowaniem, refleksją oraz integracją doświadczeń.,
         </div>
     </footer>
 
-    <!-- Original Scripts -->
     <script>
+        // Language Switcher Logic
         function setLanguage(lang) {
             document.body.classList.remove('lang-pl', 'lang-en', 'lang-no');
             document.body.classList.add('lang-' + lang);
             localStorage.setItem('preferredLanguage', lang);
+
+            // Update placeholders
+            document.querySelectorAll('.lang-placeholder').forEach(el => {
+                const translation = el.getAttribute('data-lang-' + lang);
+                if(translation) el.placeholder = translation;
+            });
+
+            // Update select options
+            document.querySelectorAll('.lang-option').forEach(el => {
+                const translation = el.getAttribute('data-lang-' + lang);
+                if(translation) el.textContent = translation;
+            });
         }
 
-        const realEndpoint = "https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec";
-
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('form_load_time').value = new Date().getTime();
-            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'pl';
             setLanguage(savedLang);
-
-            const humanCheck = document.getElementById('humanCheck');
-            const submitBtn = document.getElementById('submitSignupBtn');
-            const form = document.getElementById('templeSignupForm');
-
-            humanCheck.addEventListener('change', function() {
-                if(this.checked) {
-                    form.action = realEndpoint;
-                    submitBtn.disabled = false;
-                } else {
-                    form.action = "";
-                    submitBtn.disabled = true;
-                }
-            });
-
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const botField = document.getElementById('bot_website').value;
-                const loadTime = document.getElementById('form_load_time').value;
-                if (botField !== "" || (new Date().getTime() - loadTime) < 3000) return;
-
-                const formData = new FormData(form);
-                const messageDiv = document.getElementById('signupFormMessage');
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = "Sending...";
-
-                fetch(realEndpoint, { method: 'POST', mode: 'no-cors', body: formData })
-                .then(() => {
-                    messageDiv.innerHTML = '<span class="text-pl">Dziękujemy! Zgłoszenie zostało wysłane.</span><span class="text-en">Thank you! The application has been sent.</span><span class="text-no">Takk! Søknaden har blitt sendt.</span>';
-                    messageDiv.classList.remove('hidden');
-                    form.reset();
-                    submitBtn.innerHTML = '<span class="text-pl">Wyślij zgłoszenie</span><span class="text-en">Submit application</span><span class="text-no">Send inn søknad</span>';
-                });
-            });
-            
-            // Mobile menu toggle
-            var menuBtn = document.getElementById('menuBtn');
-            var mobileMenu = document.getElementById('mobileMenu');
-            
-            if (menuBtn && mobileMenu) {
-                menuBtn.addEventListener('click', function () {
-                    mobileMenu.classList.toggle('active');
-                });
-            }
         });
 
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Function to toggle popups
         function toggleModal(id) {
             const modal = document.getElementById(id);
             if(modal) {
                 modal.classList.toggle('active');
-                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
                 
-                // Pre-select event in signup form if coming from temple modal
-                if(id === 'signupModal' && window.lastOpenedTemple) {
-                    const eventSelect = document.querySelector('#signupModal select[name="event"]');
-                    eventSelect.value = window.lastOpenedTemple;
-                    window.lastOpenedTemple = null;
-                }
+                // Only hide overflow if at least one modal is active
+                const anyActive = document.querySelectorAll('.modal.active').length > 0;
+                document.body.style.overflow = anyActive ? 'hidden' : 'auto';
             }
         }
         
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            if(modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
-        
-        // Handle clicks outside modal content
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', e => {
-                if(e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
+        let pendingForm = null;
+
+        // 1. Intercept the submit and show the custom confirmation modal
+        document.getElementById('templeSignupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            pendingForm = this;
+            toggleModal('confirmModal');
         });
-        
-        // Track which temple modal opened signup
-        document.querySelectorAll('[onclick*="toggleModal(\'signupModal\')"]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const parentModal = btn.closest('.modal');
-                if(parentModal && parentModal.id) {
-                    window.lastOpenedTemple = parentModal.id.includes('1') ? 'temple1' : 
-                                            parentModal.id.includes('2') ? 'temple2' : '';
+
+        // 2. Handle the actual submission once the user clicks "I understand"
+        document.getElementById('confirmSubmitBtn').addEventListener('click', function() {
+            toggleModal('confirmModal');
+            
+            if(!pendingForm) return;
+
+            const form = pendingForm;
+            const submitBtn = document.getElementById('submitSignupBtn');
+            const messageDiv = document.getElementById('signupFormMessage');
+            
+            // Collect data
+            const formData = new FormData(form);
+            formData.append('form_type', 'templesignup');
+            
+            // Add a parameter for language context if the backend needs it to reply
+            const currentLang = document.body.classList.contains('lang-en') ? 'EN' : (document.body.classList.contains('lang-no') ? 'NO' : 'PL');
+            formData.append('language', currentLang);
+            formData.append('source_page', 'Blisshouse Temples Landing Page');
+
+            // UI Loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> WYSYŁANIE...`;
+            messageDiv.classList.add('hidden');
+            messageDiv.className = 'text-center mt-3 text-sm font-semibold'; // reset classes
+
+            // POST to Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec', {
+                method: 'POST',
+                mode: 'no-cors', // Added to bypass CORS restriction
+                body: formData
+            })
+            .then(() => {
+                // With no-cors, we cannot read the response, so we display a hardcoded success message.
+                if (currentLang === 'EN') {
+                    messageDiv.innerHTML = 'Thank you! Your registration has been sent.';
+                } else if (currentLang === 'NO') {
+                    messageDiv.innerHTML = 'Takk! Din registrering er sendt.';
+                } else {
+                    messageDiv.innerHTML = 'Dziękujemy! Twoje zgłoszenie zostało wysłane.';
                 }
+                
+                messageDiv.classList.add('text-green-600');
+                messageDiv.classList.remove('hidden');
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                messageDiv.textContent = 'Wystąpił błąd podczas wysyłania. Spróbuj ponownie później.';
+                messageDiv.classList.add('text-red-500');
+                messageDiv.classList.remove('hidden');
+            })
+            .finally(() => {
+                // Reset Button
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                submitBtn.innerHTML = originalBtnHtml;
+                pendingForm = null;
             });
         });
     </script>
