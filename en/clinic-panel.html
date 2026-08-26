@@ -65,12 +65,12 @@
       <div class="top">
         <div class="title"><h1 id="pageTitle">Bookings Calendar</h1><p id="pageSubtitle">Weekly calendar in clinic time: Europe/Warsaw.</p></div>
         <div class="actions">
+          <span id="syncTimerBadge" style="font-size:0.75rem;font-weight:800;color:var(--muted);background:var(--soft);padding:6px 10px;border-radius:10px;border:1px solid var(--line);">Auto-sync in: 60s</span>
           <input id="searchInput" class="search" placeholder="Search data..." oninput="renderAll()">
-          <button class="btn btn-primary" onclick="loadAll()">Refresh Data</button>
+          <button class="btn btn-primary" onclick="manualRefresh()">Refresh Data</button>
         </div>
       </div>
 
-      <!-- 1. Bookings Calendar -->
       <div id="calendarView" class="view active">
         <section class="stats"><div class="stat"><span>This week</span><strong id="statWeek">0</strong></div><div class="stat"><span>Pending</span><strong id="statPending">0</strong></div><div class="stat"><span>Patients</span><strong id="statPatients">0</strong></div><div class="stat"><span>Next</span><strong id="statNext">—</strong></div></section>
         <div class="grid2">
@@ -79,20 +79,18 @@
         </div>
       </div>
 
-      <!-- 2. Temple SignUps -->
       <div id="templeView" class="view">
         <div class="card">
           <div class="card-head"><div><h2>Temple Signups</h2><p>Tantra temple event registrations.</p></div></div>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Date</th><th>Patient Info</th><th>Event Details</th><th>Price</th><th>Payment Status</th></tr></thead>
+              <thead><tr><th>Date</th><th>Patient Info</th><th>Phone</th><th>Event Details</th><th>Price</th><th>Payment Status</th></tr></thead>
               <tbody id="templesTable"></tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <!-- 3. Waiting List -->
       <div id="waitingView" class="view">
         <div class="card">
           <div class="card-head"><div><h2>Waiting List</h2><p>Patients waiting for a regular slot.</p></div></div>
@@ -105,7 +103,6 @@
         </div>
       </div>
 
-      <!-- 4. Subscribers (Newsletter) -->
       <div id="subscribersView" class="view">
         <div class="card">
           <div class="card-head"><div><h2>Newsletter Subscribers</h2><p>Active and completed email sequences.</p></div></div>
@@ -118,25 +115,22 @@
         </div>
       </div>
 
-      <!-- 5. Messages -->
       <div id="messagesView" class="view">
         <div class="card"><div class="card-head"><div><h2>Messages</h2><p>Contact forms and inquiries.</p></div></div><div id="messagesList" class="list"></div></div>
       </div>
 
-      <!-- 6. Patients Directory -->
       <div id="patientsView" class="view">
         <div class="card"><div class="card-head"><div><h2>Patients Directory</h2><p>Auto-generated from booking history.</p></div></div><div class="table-wrap"><table><thead><tr><th>Patient</th><th>Last service</th><th>Phone</th><th>Email</th><th>Appointments</th></tr></thead><tbody id="patientsTable"></tbody></table></div></div>
       </div>
 
-      <!-- 7. Account / Settings -->
       <div id="accountView" class="view">
         <div class="card">
           <div class="card-head"><div><h2>Settings</h2><p>System configuration.</p></div></div>
           <div style="padding:18px">
             <div class="detail"><small>API URL</small><strong id="apiText" style="font-size:0.8rem"></strong></div>
             <div class="detail"><small>Timezone</small><strong>Europe/Warsaw</strong></div>
-            <div class="detail"><small>Status</small><strong>Connected Cuccessfully</strong></div>
-            <button class="btn btn-primary" onclick="loadAll()">Test connection</button>
+            <div class="detail"><small>Status</small><strong>Connected Successfully</strong></div>
+            <button class="btn btn-primary" onclick="manualRefresh()">Test connection</button>
           </div>
         </div>
       </div>
@@ -151,7 +145,6 @@
     </nav>
   </section>
 
-  <!-- Appointment Detail Modal -->
   <div id="modal" class="modal" onclick="if(event.target.id==='modal') closeModal()">
     <div class="modal-card">
       <div class="modal-head"><div><h2 id="detailName">Patient</h2><p id="detailService">Service</p></div><button class="btn" onclick="closeModal()">Close</button></div>
@@ -172,7 +165,6 @@
     </div>
   </div>
 
-  <!-- Message Detail Modal -->
   <div id="messageModal" class="modal" onclick="if(event.target.id==='messageModal') closeMessageModal()">
     <div class="modal-card">
       <div class="modal-head"><div><h2 id="messagePatient">Patient message</h2><p id="messageMeta">Message details</p></div><button class="btn" onclick="closeMessageModal()">Close</button></div>
@@ -193,7 +185,6 @@
   <div id="toast" class="toast">Copied</div>
 
   <script>
-    // REPLACE THIS WITH YOUR DEPLOYED WEB APP URL
     const API_URL = "https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec";
     
     const USERNAME = "admin";
@@ -201,7 +192,8 @@
     const state = {
       active:"Calendar", weekStart:getMonday(new Date()), 
       agenda:[], messages:[], temples:[], waitinglist:[], subscribers:[],
-      selected:null, selectedMessage:null, loading:false
+      selected:null, selectedMessage:null, loading:false,
+      countdown:60
     };
     
     const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -223,7 +215,6 @@
         Patients:["Patients Directory","Generated from booking history."],
         Account:["Settings","Connection and account configuration."]
       };
-      // Toggle side nav
       Object.keys(cfg).forEach(k=>{
         const el = document.getElementById("nav"+k); if(el) el.classList.toggle("active",k===v);
         const bel = document.getElementById("bottom"+k); if(bel) bel.classList.toggle("active",k===v);
@@ -237,7 +228,31 @@
     async function boot(){
       document.getElementById("apiText").textContent=API_URL;
       await loadAll();
-      setInterval(loadAll, 60000); // refresh every minute
+      
+      // Auto-refresh countdown & 60s trigger
+      setInterval(async () => {
+        // Only run countdown if no modals are currently open
+        const modalOpen = document.getElementById("modal").classList.contains("active") || 
+                          document.getElementById("messageModal").classList.contains("active");
+        
+        if (!modalOpen) {
+          state.countdown--;
+          const badge = document.getElementById("syncTimerBadge");
+          if(badge) badge.textContent = `Auto-sync in: ${state.countdown}s`;
+          
+          if (state.countdown <= 0) {
+            state.countdown = 60;
+            await loadAll();
+          }
+        }
+      }, 1000);
+    }
+
+    async function manualRefresh(){
+      state.countdown = 60;
+      const badge = document.getElementById("syncTimerBadge");
+      if(badge) badge.textContent = "Syncing now...";
+      await loadAll();
     }
 
     async function loadAll(){
@@ -249,7 +264,6 @@
       try {
         const s = iso(state.weekStart), e = iso(addDays(state.weekStart,6));
         
-        // Fetch everything concurrently!
         const [rAg, rMsg, rTpl, rWtl, rSub] = await Promise.all([
           fetch(`${API_URL}?action=agenda&start=${s}&end=${e}&t=${Date.now()}`).then(r=>r.json()).catch(()=>({ok:false})),
           fetch(`${API_URL}?action=messages&t=${Date.now()}`).then(r=>r.json()).catch(()=>({ok:false})),
@@ -327,25 +341,44 @@
       root.innerHTML=list.map(x=>`<div class="row" onclick="openDetail('${attr(x.id)}')"><div class="time">${esc(x.startTime)}</div><div><strong>${esc(x.patientName)}</strong><br><span style="color:var(--muted);font-size:.84rem">${dateShort(x.dateISO)} • ${esc(x.service)}</span></div><span class="badge pending">Pending</span></div>`).join("");
     }
 
-    // 2. Templates View
+    // 2. Temple View
     function renderTemples() {
       const t = document.getElementById("templesTable"); if(!t)return;
       const data = filtered(state.temples, ['Name','Email','Mobile Number','Selected Event']);
-      t.innerHTML = data.length ? data.map(x => `<tr><td><small style="color:var(--muted)">${esc(x.Timestamp)}</small></td><td><strong>${esc(x.Name)}</strong><br><small>${esc(x.Email)}</small></td><td>${esc(x['Selected Event'])}</td><td><strong>${esc(x.Price)}</strong></td><td><span class="badge ${x['Payment Status']==='UNPAID'?'pending':''}">${esc(x['Payment Status'])}</span></td></tr>`).join("") : '<tr><td colspan="5">No registrations found</td></tr>';
+      t.innerHTML = data.length ? data.map(x => `<tr>
+        <td><small style="color:var(--muted)">${esc(x.Timestamp)}</small></td>
+        <td><strong>${esc(x.Name)}</strong><br><small>${esc(x.Email)}</small></td>
+        <td><small>${esc(x['Mobile Number'] || '—')}</small></td>
+        <td>${esc(x['Selected Event'])}</td>
+        <td><strong>${esc(x.Price)}</strong></td>
+        <td><span class="badge ${x['Payment Status']==='UNPAID'?'pending':''}">${esc(x['Payment Status'])}</span></td>
+      </tr>`).join("") : '<tr><td colspan="6">No registrations found</td></tr>';
     }
 
     // 3. Waiting List View
     function renderWaiting() {
       const t = document.getElementById("waitingTable"); if(!t)return;
       const data = filtered(state.waitinglist, ['Name','Email','Phone','Support Type']);
-      t.innerHTML = data.length ? data.map(x => `<tr><td><small style="color:var(--muted)">${esc(x.Timestamp)}</small></td><td><strong>${esc(x.Name)}</strong><br><small>${esc(x.Email)}</small></td><td>${esc(x['Support Type'])}</td><td>${esc(x['Preferred Format'])}</td><td>${esc(x['Preferred Time'])}<br><small>${esc(x['Preferred Days'])}</small></td></tr>`).join("") : '<tr><td colspan="5">No waitlist entries found</td></tr>';
+      t.innerHTML = data.length ? data.map(x => `<tr>
+        <td><small style="color:var(--muted)">${esc(x.Timestamp)}</small></td>
+        <td><strong>${esc(x.Name)}</strong><br><small>${esc(x.Email)} • ${esc(x.Phone || '')}</small></td>
+        <td>${esc(x['Support Type'])}</td>
+        <td>${esc(x['Preferred Format'])}</td>
+        <td>${esc(x['Preferred Time'])}<br><small>${esc(x['Preferred Days'])}</small></td>
+      </tr>`).join("") : '<tr><td colspan="5">No waitlist entries found</td></tr>';
     }
 
     // 4. Subscribers View
     function renderSubscribers() {
       const t = document.getElementById("subscribersTable"); if(!t)return;
       const data = filtered(state.subscribers, ['Email','Language','Status']);
-      t.innerHTML = data.length ? data.map(x => `<tr><td><small style="color:var(--muted)">${esc(x.Timestamp)}</small></td><td><strong>${esc(x.Email)}</strong></td><td>${esc(x.Language)}</td><td><span class="badge ${x.Status==='ACTIVE'?'':'pending'}">${esc(x.Status)}</span></td><td>${esc(x['Next Issue'])}</td></tr>`).join("") : '<tr><td colspan="5">No subscribers found</td></tr>';
+      t.innerHTML = data.length ? data.map(x => `<tr>
+        <td><small style="color:var(--muted)">${esc(x.Timestamp)}</small></td>
+        <td><strong>${esc(x.Email)}</strong></td>
+        <td>${esc(x.Language)}</td>
+        <td><span class="badge ${x.Status==='ACTIVE'?'':'pending'}">${esc(x.Status)}</span></td>
+        <td>${esc(x['Next Issue'])}</td>
+      </tr>`).join("") : '<tr><td colspan="5">No subscribers found</td></tr>';
     }
 
     // 5. Messages View
