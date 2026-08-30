@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warsztaty i Wydarzenia | Joanna Filek</title>
     <link rel="icon" type="image/png" href="images/1.jpg">
@@ -27,15 +27,15 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
         body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; scroll-behavior: smooth; }
         .no-gap { margin-top: -1px; }
         
         .hero-bg-image {
             background-image: 
-                radial-gradient(circle at center, rgba(114, 45, 100, 0.6) 0%, rgba(27, 61, 47, 0.9) 100%),
-                url('images/Divine_Intimacy_Temple_Background.png');
+                radial-gradient(circle at center, rgba(114, 45, 100, 0.4) 0%, rgba(27, 61, 47, 0.85) 100%),
+                linear-gradient(to bottom, rgba(27, 61, 47, 0.5), rgba(114, 45, 100, 0.9)), 
+                url('https://images.unsplash.com/photo-1528319725582-ddc096101511?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -44,445 +44,881 @@
         
         .smooth-transition { transition: all 0.3s ease; }
         .hover-lift:hover { transform: translateY(-3px); }
-        
-        /* Tab System Styles */
-        .tab-content { display: none; opacity: 0; transition: opacity 0.4s ease; }
-        .tab-content.active { display: block; opacity: 1; }
-        .tab-btn.active { background-color: #722D64; color: white; border-color: #722D64; }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: flex; }
         
         .modal { 
             display: none; 
             position: fixed; 
             inset: 0; 
             z-index: 100; 
-            background: rgba(0,0,0,0.6); 
-            backdrop-filter: blur(5px); 
+            background: rgba(0,0,0,0.5); 
+            backdrop-filter: blur(4px); 
             align-items: center; 
             justify-content: center; 
             padding: 20px; 
         }
         .modal.active { display: flex; }
 
-        button:disabled {
-            background-color: #E2E6F3;
-            color: #1B3D2F;
-            cursor: not-allowed;
-            transform: none;
-            opacity: 0.7;
-        }
-
-        /* Language Logic */
         body.lang-pl .text-en, body.lang-pl .text-no { display: none !important; }
         body.lang-en .text-pl, body.lang-en .text-no { display: none !important; }
         body.lang-no .text-pl, body.lang-no .text-en { display: none !important; }
     </style>
 </head>
-<body class="overflow-x-hidden text-brand-green lang-en">
+<body class="overflow-x-hidden text-brand-green lang-pl">
 
-    <!-- Top Contact Bar -->
     <div class="relative z-[60] flex items-center justify-center px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
-        <span>
+        <span class="hidden sm:inline">
+            <span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span> (+48) 733 777 542 • psycholog.joannafilek@gmail.com
+        </span>
+        <span class="sm:hidden">
             <span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span> (+48) 733 777 542
         </span>
+        
         <div class="absolute right-6 flex items-center gap-3">
-            <button onclick="setLanguage('pl')" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></button>
-            <button onclick="setLanguage('en')" class="hover:scale-110 smooth-transition"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></button>
+            <button onclick="setLanguage('pl')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></button>
+            <button onclick="setLanguage('en')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></button>
+            <button onclick="setLanguage('no')" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></button>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero-bg-image pt-24 pb-32 no-gap">
-        <div class="max-w-4xl mx-auto px-6 text-center text-white">
-            <span class="bg-white/20 backdrop-blur-md px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/30 italic mb-8 inline-block">
-                <span class="text-pl">Wydarzenia w Blisshouse Kraków</span>
-                <span class="text-en">Events at Blisshouse Kraków</span>
-                <span class="text-no">Arrangementer i Blisshouse Kraków</span>
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain grayscale brightness-50" onerror="this.style.display='none'">
+                <div>
+                    <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">Joanna <span class="font-bold">Filek</span></div>
+                    <p class="text-xs text-brand-plum -mt-1">
+                        <span class="text-pl">Psychoterapeutka | Gabinet Inspiro</span>
+                        <span class="text-en">Psychotherapist | Inspiro Clinic</span>
+                        <span class="text-no">Psykoterapeut | Inspiro Klinikk</span>
+                    </p>
+                </div>
+            </a>
+
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
+                <a href="index.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">Strona główna</span><span class="text-en">Home</span><span class="text-no">Hjem</span></a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">O mnie</span><span class="text-en">About me</span><span class="text-no">Om meg</span></a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">Warsztaty</span><span class="text-en">Workshops</span><span class="text-no">Verksteder</span></a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition"><span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span></a>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold"><span class="text-pl">Newsletter</span><span class="text-en">Newsletter</span><span class="text-no">Nyhetsbrev</span></button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider"><span class="text-pl">Zapisy (Sign-up)</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span></button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
+                    <span class="text-pl">Umów konsultację</span><span class="text-en">Book consultation</span><span class="text-no">Bestill konsultasjon</span>
+                </a>
+                <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition"><span class="text-pl">Menu</span><span class="text-en">Menu</span><span class="text-no">Meny</span></button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 bg-white text-brand-green font-medium shadow-md xl:hidden">
+            <a href="index.html"><span class="text-pl">Strona główna</span><span class="text-en">Home</span><span class="text-no">Hjem</span></a>
+            <a href="about.html"><span class="text-pl">O mnie</span><span class="text-en">About me</span><span class="text-no">Om meg</span></a>
+            <a href="works.html"><span class="text-pl">Warsztaty</span><span class="text-en">Workshops</span><span class="text-no">Verksteder</span></a>
+            <a href="contact.html"><span class="text-pl">Kontakt</span><span class="text-en">Contact</span><span class="text-no">Kontakt</span></a>
+            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline decoration-2"><span class="text-pl">Zapisy (Sign-up)</span><span class="text-en">Sign-up</span><span class="text-no">Påmelding</span></button>            
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium"><span class="text-pl">Newsletter</span><span class="text-en">Newsletter</span><span class="text-no">Nyhetsbrev</span></button>
+            <a href="work-with-us.html"><span class="text-pl">Pracuj z nami</span><span class="text-en">Work with us</span><span class="text-no">Jobb med oss</span></a>
+            <a href="visits.html" class="bg-brand-green text-white px-5 py-3 rounded-xl text-center mt-2"><span class="text-pl">Umów konsultację</span><span class="text-en">Book consultation</span><span class="text-no">Bestill konsultasjon</span></a>
+        </div>
+    </header>
+
+    <section class="hero-bg-image pt-20 pb-24 no-gap">
+        <div class="max-w-5xl mx-auto px-6 text-center text-white">
+            <span class="bg-white/20 backdrop-blur-md text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/30 italic mb-8 inline-block">
+                <span class="text-pl">Wydarzenia w Krakowie</span>
+                <span class="text-en">Events in Krakow</span>
+                <span class="text-no">Arrangementer i Krakow</span>
             </span>
-            <h1 class="text-5xl md:text-7xl font-serif font-bold mt-4 mb-6 leading-tight">
-                <span class="text-pl">Świątynie Tantry</span>
-                <span class="text-en">Tantra Temples</span>
-                <span class="text-no">Tantra Templer</span>
+            <h1 class="text-5xl md:text-7xl font-bold mt-4 mb-8 leading-tight">
+                <span class="text-pl">Świątynie Tantry <br>w Blisshouse Kraków</span>
+                <span class="text-en">Tantra Temples <br>at Blisshouse Kraków</span>
+                <span class="text-no">Tantra Templer <br>på Blisshouse Kraków</span>
             </h1>
             
-            <p class="text-lg md:text-xl font-light text-brand-lavender/90 mb-10 leading-relaxed max-w-2xl mx-auto">
-                <span class="text-pl">Dołącz do Bodhi i Joanny podczas dwóch wyjątkowych, transformujących wydarzeń. Przestrzeń eksploracji, bliskości i świadomego połączenia.</span>
-                <span class="text-en">Join Bodhi and Joanna for two distinct, transformational journeys. A space for exploration, intimacy, and conscious connection.</span>
-                <span class="text-no">Bli med Bodhi og Joanna på to distinkte, transformerende reiser. Et rom for utforskning, intimitet og bevisst tilkobling.</span>
-            </p>
-            
-            <button onclick="document.getElementById('journeys').scrollIntoView({behavior: 'smooth'})" class="bg-white text-brand-plum px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-xl uppercase tracking-widest">
-                <span class="text-pl">Odkryj Wydarzenia</span>
-                <span class="text-en">Explore the Journeys</span>
-                <span class="text-no">Utforsk Reisene</span>
-            </button>
-        </div>
-    </section>
-
-    <!-- The Two Journeys (Tabbed Interface) -->
-    <section id="journeys" class="pt-16 pb-20 bg-brand-green-light relative z-10 -mt-12 rounded-t-[60px]">
-        <div class="max-w-6xl mx-auto px-6">
-            
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-serif font-bold text-brand-plum mb-4">
-                    <span class="text-pl">Wybierz Swoją Podróż</span>
-                    <span class="text-en">Choose Your Journey</span>
-                    <span class="text-no">Velg Din Reise</span>
-                </h2>
-                <p class="text-brand-green/70">
-                    <span class="text-pl">Dwie różne energie. Jedna bezpieczna przestrzeń.</span>
-                    <span class="text-en">Two distinct energies. One safe container.</span>
-                    <span class="text-no">To distinkte energier. Ett trygt rom.</span>
+            <div class="text-lg md:text-xl text-brand-lavender/90 font-light max-w-2xl mx-auto space-y-6 mb-12 leading-relaxed">
+                <p>
+                    <span class="text-pl">Dołącz do Bodhi i Joanny podczas naszych nadchodzących wydarzeń.</span>
+                    <span class="text-en">Join Bodhi and Joanna for our upcoming events.</span>
+                    <span class="text-no">Bli med Bodhi og Joanna på våre kommende arrangementer.</span>
+                </p>
+                <p class="font-bold text-white text-2xl pt-2">
+                    <span class="text-pl">Przestrzeń eksploracji i połączenia.</span>
+                    <span class="text-en">A space for exploration and connection.</span>
+                    <span class="text-no">Et rom for utforskning og forbindelse.</span>
                 </p>
             </div>
-
-            <!-- Tab Buttons -->
-            <div class="flex flex-col md:flex-row justify-center gap-4 mb-12">
-                <button onclick="switchTab('temple1')" id="btn-temple1" class="tab-btn active px-8 py-4 rounded-full border-2 border-brand-plum text-brand-plum font-bold text-lg smooth-transition hover:bg-brand-violet-light flex-1 max-w-sm mx-auto">
-                    🌹 Temple 1: Cacao & Cuddles<br><span class="text-sm font-normal">Nov 8th (Heart-Centered & Gentle)</span>
-                </button>
-                <button onclick="switchTab('temple2')" id="btn-temple2" class="tab-btn px-8 py-4 rounded-full border-2 border-brand-plum text-brand-plum font-bold text-lg smooth-transition hover:bg-brand-violet-light flex-1 max-w-sm mx-auto">
-                    🔥 Temple 2: Sacred Power & Polarity<br><span class="text-sm font-normal">Nov 22nd (Primal, Shadow & Edge Play)</span>
+            
+            <div class="mt-4 max-w-xl mx-auto">
+                <button onclick="toggleModal('signupModal')" class="bg-white text-brand-plum px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-xl uppercase tracking-widest inline-block">
+                    <span class="text-pl">Zarejestruj się teraz</span>
+                    <span class="text-en">Register Now</span>
+                    <span class="text-no">Registrer deg nå</span>
                 </button>
             </div>
-
-            <!-- TAB 1 CONTENT: Cacao & Cuddles -->
-            <div id="temple1" class="tab-content active bg-white p-8 md:p-12 rounded-[40px] shadow-sm border border-brand-lavender">
-                <div class="mb-10 text-center">
-                    <img src="https://joannafilek.com/images/Divine%20Intimacy%20Temple_Cacao.png" alt="Divine Intimacy Temple Cacao" class="w-full max-w-2xl mx-auto h-auto object-contain rounded-[24px] shadow-md border border-brand-lavender/50" onerror="this.style.display='none'">
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div>
-                        <h3 class="text-3xl font-serif font-bold text-brand-green mb-4">Divine Intimacy Temple <br><span class="text-brand-plum italic">Cacao and Cuddles</span></h3>
-                        <div class="inline-block bg-brand-violet-light text-brand-plum px-4 py-1 rounded-full text-sm font-bold mb-6">Sunday, Nov 8th | 16:45 – 23:30</div>
-                        
-                        <div class="space-y-4 text-brand-green/80 leading-relaxed text-sm md:text-base">
-                            <p>Step into a sacred space where presence, connection, and conscious intimacy meet. Together, we co-create a container of safety, play, and raw authentic expression — a place to reconnect with the bliss within ourselves, others, and our community.</p>
-                            
-                            <h4 class="font-bold text-brand-green mt-6">✨ What is a Temple?</h4>
-                            <p>A Temple is a conscious, sacred space that honors the divine spark in each of us. Here we merge conscious awareness of ourselves and others with clear, respectful communication about boundaries, consent, and negotiation together with our erotic, sensual, and primal energies.</p>
-                            <p>At its core, the Temple is about developing a conscious, safe, loving, intimate, and sensual connection with yourself first. From this grounded place, we may then choose to experience authentic connection with others.</p>
-
-                            <h4 class="font-bold text-brand-green mt-6">🌍 Who is this Temple for?</h4>
-                            <p>For beginners and experienced practitioners alike — singles or couples, all identities and orientations. Whether this is your first Temple or you have attended many before, the invitation is the same: come with openness, curiosity, and respect.</p>
-                            <p class="p-3 bg-brand-violet-light/60 rounded-xl font-medium text-brand-plum">
-                                ⚠️ <strong>Important Safety Agreement:</strong> There is no sex in the Temple. No physical penetration of any kind. Nudity is optional. Every practice is an invitation, never an expectation.
-                            </p>
-
-                            <h4 class="font-bold text-brand-green mt-6">✨ How will the event look?</h4>
-                            <p>First, through guided movement, dance, breathwork, asanas, meditation, rituals, and sharing circles, we connect to our emotions, desires, and life-force energy. These practices help us:</p>
-                            <ul class="list-disc pl-5 space-y-1">
-                                <li>Become more aware of our bodies</li>
-                                <li>Emotionally release and regulate the nervous system</li>
-                                <li>Create meaningful containers of connection</li>
-                                <li>Express boundaries and desires clearly</li>
-                                <li>Practice consensual relating and clean communication</li>
-                            </ul>
-                            <p>Finally, we move into the <strong>Open Space</strong> — the unguided free-flow portion of the Temple — where participants are invited to bring what they have learned into conscious intimate interactions and heart-centred experiences with their partner or others in the room.</p>
-                            <p class="text-xs text-brand-green/60 italic mt-2">Held in an open, shared space. Conducted in English with Polish translation.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-brand-green-light p-8 rounded-3xl border border-brand-lavender/50 h-fit space-y-6">
-                        <div>
-                            <h4 class="font-bold text-brand-plum text-xl mb-3">🕓 Schedule</h4>
-                            <ul class="space-y-2 text-sm text-brand-green/80">
-                                <li><strong>16:45</strong> – Arrival</li>
-                                <li><strong>17:00</strong> – Doors close, Opening Circle</li>
-                                <li><strong>17:30</strong> – Guided Journey</li>
-                                <li><strong>20:30</strong> – Open Space (free flow)</li>
-                                <li><strong>23:00</strong> – Closing Circle</li>
-                                <li><strong>23:30</strong> – End</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 class="font-bold text-brand-plum text-xl mb-3">🌿 Please Bring</h4>
-                            <ul class="list-disc pl-5 space-y-1 text-sm text-brand-green/80">
-                                <li>Clothing that makes you feel sensual and radiant</li>
-                                <li><strong>Please do not wear perfume or strong scents</strong></li>
-                                <li>A towel or lunghi for sitting or massage</li>
-                                <li>Water bottle (no open containers) & snacks</li>
-                                <li><em>Recommended:</em> Massage oil, blindfold, sensual toys (no whips or floggers for Temple 1)</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 class="font-bold text-brand-plum text-xl mb-3">💎 Financial Exchange</h4>
-                            <p class="text-sm text-brand-green/85">Super Early Bird: <strong>250 PLN</strong> (until Aug 31)<br>Early Bird: <strong>300 PLN</strong> | Regular: <strong>350 PLN</strong></p>
-                        </div>
-                        
-                        <div class="pt-4">
-                            <button onclick="toggleModal('signupModal')" class="w-full bg-brand-plum text-white py-4 rounded-xl font-bold hover:opacity-90 transition-all shadow-md">
-                                Register for Temple 1
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 2 CONTENT: Sacred Power & Polarity -->
-            <div id="temple2" class="tab-content bg-white p-8 md:p-12 rounded-[40px] shadow-sm border border-brand-lavender">
-                <div class="mb-10 text-center">
-                    <img src="https://joannafilek.com/images/Sacred_Power_and_Polarity_Play.png" alt="Sacred Power and Polarity Play" class="w-full max-w-2xl mx-auto h-auto object-contain rounded-[24px] shadow-md border border-red-100" onerror="this.style.display='none'">
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div>
-                        <h3 class="text-3xl font-serif font-bold text-brand-green mb-4">Sacred Power & Polarity Play <br><span class="text-red-700 italic">Shadow & Edge Work</span></h3>
-                        <div class="inline-block bg-red-50 text-red-800 px-4 py-1 rounded-full text-sm font-bold mb-6">Sunday, Nov 22nd | 18:15 – 24:00</div>
-                        
-                        <div class="space-y-4 text-brand-green/80 leading-relaxed text-sm md:text-base">
-                            <p class="italic border-l-4 border-red-700 pl-4 text-brand-green/90">
-                                "The act of transgression breaks through the barriers of fear and shame, and that moment of liberation creates a charge of energy on which we can ride to heights of pleasure and ecstatic experience." — John Hawken
-                            </p>
-                            
-                            <p>This Temple is a deep transformational workshop using sacred power, polarity, and conscious play as a pathway into freedom, intimacy, and authentic power. <strong>This is not a sex party, performance, or therapy.</strong> It is a facilitated container where eros becomes medicine.</p>
-                            
-                            <h4 class="font-bold text-brand-green mt-6">Who is this for?</h4>
-                            <p>For emotionally mature individuals and couples called to explore depth, truth, and shadow integration. Especially aligned for those desiring to heal old conditioning around sexuality, power, surrender, and vulnerability. <em>No previous BDSM experience is required.</em></p>
-
-                            <h4 class="font-bold text-brand-green mt-6">How the experience unfolds:</h4>
-                            <p>We begin by creating a grounded, consensual container. Through exercises in nervous system regulation and boundary negotiation, we journey into sacred power dynamics, polarity, and conscious eros, transitioning into a respectful open free-flow space.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-red-50/30 p-8 rounded-3xl border border-red-100 h-fit space-y-6">
-                        <div>
-                            <h4 class="font-bold text-red-800 text-xl mb-3">🕓 Schedule</h4>
-                            <ul class="space-y-2 text-sm text-brand-green/80">
-                                <li><strong>18:15</strong> – Arrival</li>
-                                <li><strong>18:30</strong> – Doors close, Opening</li>
-                                <li><strong>18:45</strong> – Guided Connection & Consent</li>
-                                <li><strong>19:30</strong> – Sacred Power & Polarity Journey</li>
-                                <li><strong>21:30</strong> – Open Temple Space (free flow)</li>
-                                <li><strong>23:30</strong> – Closing Sharing Circle & Grounding</li>
-                                <li><strong>24:00</strong> – End</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 class="font-bold text-red-800 text-xl mb-3">Items to Bring</h4>
-                            <ul class="list-disc pl-5 space-y-1 text-sm text-brand-green/80">
-                                <li>Clothing that connects you to your personal power</li>
-                                <li>Towel or lungi</li>
-                                <li>Water bottle & nourishing snacks</li>
-                                <li><em>Optional sensual items:</em> feathers, fur, satin, silk, rope, whip, collar, leash</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="pt-4">
-                            <button onclick="toggleModal('signupModal')" class="w-full bg-red-800 text-white py-4 rounded-xl font-bold hover:opacity-90 transition-all shadow-md">
-                                Register for Temple 2
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pt-12 pb-24 bg-white">
+    <section id="dates" class="pt-16 pb-12 bg-brand-green-light relative z-10 -mt-12 rounded-t-[60px] border-b border-brand-lavender">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-serif font-bold text-brand-plum mb-4">Investment & Registration</h2>
-                <p class="text-brand-green/70">Full payment is due at registration to confirm your place.</p>
+                <h2 class="text-4xl font-bold mb-4 text-brand-plum">
+                    <span class="text-pl">Nadchodzące Daty</span>
+                    <span class="text-en">Upcoming Dates</span>
+                    <span class="text-no">Kommende Datoer</span>
+                </h2>
+                <p class="text-brand-green font-medium text-lg italic max-w-2xl mx-auto">
+                    <span class="text-pl">Wybierz jeden z terminów lub weź udział w obu, aby pogłębić swoje doświadczenie.</span>
+                    <span class="text-en">Choose one of the dates or attend both to deepen your experience.</span>
+                    <span class="text-no">Velg en av datoene eller delta på begge for å utdype opplevelsen din.</span>
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Temple 1 (Interactive Clickable Image) -->
+                <div class="bg-white p-6 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-lg transition-all text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-brand-plum"></div>
+                    
+                    <div class="relative group cursor-pointer mb-4 overflow-hidden rounded-[24px]" onclick="toggleModal('temple1InfoModal')">
+                        <img src="https://joannafilek.com/images/Divine%20Intimacy%20Temple_Cacao.png" alt="Divine Intimacy Temple Cacao" class="w-full mx-auto h-auto object-contain transition-transform duration-500 group-hover:scale-105 shadow-sm">
+                        <div class="absolute inset-0 bg-brand-plum/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-white/95 text-brand-plum font-bold text-xs uppercase px-4 py-2 rounded-full shadow-md tracking-wider">
+                                <span class="text-pl">Zobacz opis 🔍</span>
+                                <span class="text-en">View Details 🔍</span>
+                                <span class="text-no">Vis Detaljer 🔍</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-3xl text-brand-green leading-tight mb-4 mt-2">
+                        <span class="text-pl">Świątynia 1</span>
+                        <span class="text-en">Temple 1</span>
+                        <span class="text-no">Tempel 1</span>
+                    </h3>
+                    <div class="text-brand-plum font-bold text-xl mb-2">
+                        <span class="text-pl">Niedziela, 8 Listopada</span>
+                        <span class="text-en">Sunday, November 8</span>
+                        <span class="text-no">Søndag, 8. November</span>
+                    </div>
+                    <div class="text-brand-green/70 text-lg font-medium bg-brand-lavender/30 inline-block px-6 py-2 rounded-full mt-2">
+                        5:00 PM – 11:30 PM
+                    </div>
+                </div>
+
+                <!-- Temple 2 (Interactive Clickable Image) -->
+                <div class="bg-white p-6 rounded-[40px] shadow-sm border border-brand-lavender hover:shadow-lg transition-all text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-brand-green"></div>
+                    
+                    <div class="relative group cursor-pointer mb-4 overflow-hidden rounded-[24px]" onclick="toggleModal('temple2InfoModal')">
+                        <img src="https://joannafilek.com/images/Sacred_Power_and_Polarity_Play.png" alt="Sacred Power and Polarity Play" class="w-full mx-auto h-auto object-contain transition-transform duration-500 group-hover:scale-105 shadow-sm">
+                        <div class="absolute inset-0 bg-brand-green/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-white/95 text-brand-green font-bold text-xs uppercase px-4 py-2 rounded-full shadow-md tracking-wider">
+                                <span class="text-pl">Zobacz opis 🔍</span>
+                                <span class="text-en">View Details 🔍</span>
+                                <span class="text-no">Vis Detaljer 🔍</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-3xl text-brand-green leading-tight mb-4 mt-2">
+                        <span class="text-pl">Świątynia 2</span>
+                        <span class="text-en">Temple 2</span>
+                        <span class="text-no">Tempel 2</span>
+                    </h3>
+                    <div class="text-brand-plum font-bold text-xl mb-2">
+                        <span class="text-pl">Niedziela, 22 Listopada</span>
+                        <span class="text-en">Sunday, November 22</span>
+                        <span class="text-no">Søndag, 22. November</span>
+                    </div>
+                    <div class="text-brand-green/70 text-lg font-medium bg-brand-lavender/30 inline-block px-6 py-2 rounded-full mt-2">
+                        6:30 PM – 12:30 AM
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 text-sm text-brand-green/50 italic">
+                <span class="text-pl">* Uwaga organizacyjna: Zaplanowano 1 godzinę na przygotowanie i 30 minut na zamknięcie po każdym wydarzeniu.</span>
+                <span class="text-en">* Venue note: 1 hour setup and 30 minutes take-down time scheduled per event.</span>
+                <span class="text-no">* Lokalet notat: 1 time oppsett og 30 minutter nedrigg planlagt per arrangement.</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pt-12 pb-24 bg-white no-gap">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-brand-plum">
+                    <span class="text-pl">Specjalne Ceny Letnie</span>
+                    <span class="text-en">Special Summer Pricing</span>
+                    <span class="text-no">Spesielle Sommerpriser</span>
+                </h2>
+                <div class="inline-block bg-brand-green text-white px-6 py-2 rounded-full text-sm font-bold tracking-widest uppercase">
+                    <span class="text-pl">Dostępne tylko do 31 sierpnia</span>
+                    <span class="text-en">Available now until August 31st</span>
+                    <span class="text-no">Tilgjengelig frem til 31. august</span>
+                </div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <!-- Single Ticket -->
-                <div class="bg-brand-green-light border border-brand-lavender p-10 rounded-[40px] text-center">
-                    <h3 class="text-2xl font-bold text-brand-green mb-2">Single Event</h3>
-                    <p class="text-brand-plum font-semibold mb-6">Temple 1 OR Temple 2</p>
-                    
-                    <div class="space-y-2 mb-8 text-sm">
-                        <div class="flex justify-between border-b pb-2"><span class="font-bold">Super Early Bird (Until Aug 31)</span><span>250 PLN</span></div>
-                        <div class="flex justify-between border-b pb-2"><span>Early Bird</span><span>300 PLN</span></div>
-                        <div class="flex justify-between"><span>Regular Price</span><span>350 PLN</span></div>
-                    </div>
-
-                    <button onclick="toggleModal('signupModal')" class="w-full bg-brand-green text-white py-3 rounded-full font-bold hover:bg-brand-plum transition-colors">Select</button>
+                <div class="bg-brand-green-light border border-brand-lavender p-10 rounded-[40px] text-center hover-lift smooth-transition">
+                    <h3 class="text-2xl font-bold text-brand-green mb-2">
+                        <span class="text-pl">Pojedyncze Wydarzenie</span>
+                        <span class="text-en">Single Event</span>
+                        <span class="text-no">Enkelt Arrangement</span>
+                    </h3>
+                    <p class="text-brand-plum font-semibold mb-6">Super Early Bird</p>
+                    <div class="text-5xl font-bold text-brand-plum mb-6">250 PLN</div>
+                    <button onclick="toggleModal('signupModal')" class="w-full bg-brand-green text-white py-3 rounded-full font-bold hover:bg-brand-plum transition-colors">
+                        <span class="text-pl">Wybierz</span><span class="text-en">Select</span><span class="text-no">Velg</span>
+                    </button>
                 </div>
                 
                 <!-- Bundle Ticket -->
-                <div class="bg-brand-plum border border-brand-plum p-10 rounded-[40px] text-center text-white shadow-xl relative overflow-hidden">
-                    <div class="absolute top-6 right-[-35px] bg-white text-brand-plum font-bold text-xs py-1 px-10 rotate-45">BEST VALUE</div>
-                    <h3 class="text-2xl font-bold mb-2 text-white">Both Temples</h3>
-                    <p class="text-brand-lavender font-semibold mb-6">Special Bundle Access</p>
-                    
-                    <div class="text-5xl font-bold mb-8 text-white mt-10">400 PLN</div>
-                    
-                    <button onclick="toggleModal('signupModal')" class="w-full bg-white text-brand-plum py-3 rounded-full font-bold hover:bg-brand-lavender transition-colors mt-6">Select Bundle</button>
+                <div class="bg-brand-plum border border-brand-plum p-10 rounded-[40px] text-center text-white hover-lift smooth-transition shadow-xl relative overflow-hidden">
+                    <div class="absolute top-6 right-[-35px] bg-white text-brand-plum font-bold text-xs py-1 px-10 rotate-45">
+                        BEST VALUE
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">
+                        <span class="text-pl">Obie Świątynie</span>
+                        <span class="text-en">Both Events</span>
+                        <span class="text-no">Begge Arrangementer</span>
+                    </h3>
+                    <p class="text-brand-lavender font-semibold mb-6">
+                        <span class="text-pl">Pakiet Specjalny</span>
+                        <span class="text-en">Special Bundle</span>
+                        <span class="text-no">Spesialpakke</span>
+                    </p>
+                    <div class="text-5xl font-bold mb-6">400 PLN</div>
+                    <button onclick="toggleModal('signupModal')" class="w-full bg-white text-brand-plum py-3 rounded-full font-bold hover:bg-brand-lavender transition-colors">
+                        <span class="text-pl">Wybierz</span><span class="text-en">Select</span><span class="text-no">Velg</span>
+                    </button>
                 </div>
             </div>
 
-            <div class="bg-brand-violet-light/50 border-l-4 border-brand-plum p-6 rounded-r-2xl max-w-3xl mx-auto shadow-sm text-center">
-                <h4 class="font-bold text-brand-plum mb-2">✨ Women's Promotion ✨</h4>
-                <p class="text-sm text-brand-green/80">Bring 1 or more girlfriends and receive an additional <strong>50 PLN off</strong> your own ticket! Your friends will also lock in Early Bird pricing.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- The Team Section -->
-    <section class="py-20 bg-brand-green-light border-t border-brand-lavender">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-serif font-bold text-center text-brand-plum mb-12">The Temple Team</h2>
-            
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Bodhi -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-lavender">
-                    <h3 class="text-xl font-bold text-brand-green mb-2">🔥 Bodhi Michael</h3>
-                    <p class="text-sm text-brand-green/70 mb-4">Teacher, coach, and guide</p>
-                    <p class="text-sm text-brand-green/80 leading-relaxed">Devoted to supporting personal transformation through embodiment, empowerment, and holistic healing. His approach blends archetypal work, shadow exploration, Jungian psychology, somatic release, and nervous system regulation — grounded in safety, clarity, and compassion.</p>
-                    <div class="mt-4 text-xs font-bold text-brand-plum">IG: @conscious.wolf</div>
-                </div>
-
-                <!-- Joanna -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-lavender">
-                    <h3 class="text-xl font-bold text-brand-green mb-2">🌊 Joanna Filek</h3>
-                    <p class="text-sm text-brand-green/70 mb-4">Psychologist & Sexologist</p>
-                    <p class="text-sm text-brand-green/80 leading-relaxed">Joanna supports individuals and couples in mental health, relationships, and sexuality. At the core of her approach is a holistic view of the human being — integrating body, emotions, and relational context. She is passionate about helping people overcome shame and build authentic connections.</p>
-                    <div class="mt-4 text-xs font-bold text-brand-plum">IG: @joaboutsex</div>
-                </div>
+            <!-- Women's Promotion Box -->
+            <div class="bg-brand-violet-light/50 border-l-4 border-brand-plum p-8 rounded-r-[30px] max-w-3xl mx-auto shadow-sm">
+                <h4 class="text-xl font-bold text-brand-plum mb-3 flex items-center gap-2">
+                    ✨ 
+                    <span class="text-pl">Specjalna Promocja dla Kobiet</span>
+                    <span class="text-en">Special Women's Promotion</span>
+                    <span class="text-no">Spesiell Kampanje for Kvinner</span>
+                </h4>
+                <p class="text-brand-green/80 text-base leading-relaxed">
+                    <span class="text-pl">Przyprowadź 1 lub więcej przyjaciółek i otrzymaj dodatkowe <strong>50 PLN zniżki</strong> na własny bilet! Twoja przyjaciółka zagwarantuje sobie również cenę Super Early Bird (do 31 sierpnia) lub Early Bird (od 1 września).</span>
+                    <span class="text-en">Bring 1 or more girlfriends and receive an additional <strong>50 PLN off</strong> your own ticket! Your girlfriend(s) will also lock in the Super Early Bird price (until Aug 31) or the Early Bird price anytime starting Sept 1.</span>
+                    <span class="text-no">Ta med 1 eller flere venninner og få ytterligere <strong>50 PLN i rabatt</strong> på din egen billett! Din venninne vil også sikre seg Super Early Bird-prisen (frem til 31. aug) eller Early Bird-prisen når som helst fra 1. sept.</span>
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Signup Modal with Anti-Spam Protection -->
-    <div id="signupModal" class="modal">
-        <div class="bg-white rounded-[40px] p-8 max-w-md w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <h2 class="text-2xl font-bold text-brand-plum mb-6 text-center">Registration</h2>
+    <!-- Temple 1 Full Description Modal with Language Overlay -->
+    <div id="temple1InfoModal" class="modal" style="z-index: 105;">
+        <div class="bg-white rounded-[36px] p-8 md:p-12 max-w-2xl w-full shadow-2xl relative max-h-[88vh] overflow-y-auto border border-brand-lavender text-left">
             
-            <form id="templeSignupForm" action="" method="POST" target="hiddenConfirm" class="space-y-4">
-                <input type="hidden" name="form_type" value="temple_registration">
-                <input type="hidden" id="form_load_time" value="">
-
-                <!-- Honeypot -->
-                <div class="absolute -left-[9999px]" aria-hidden="true">
-                    <label for="bot_website">Leave empty</label>
-                    <input type="text" name="website" id="bot_website" tabindex="-1" autocomplete="off">
+            <!-- Clean Language Selection Overlay -->
+            <div id="t1-lang-overlay" class="absolute inset-0 z-30 bg-white flex flex-col items-center justify-center p-6 text-center rounded-[36px]">
+                <p class="text-xs font-bold uppercase tracking-widest text-brand-plum mb-3">Choose your language</p>
+                <div class="flex gap-3">
+                    <button type="button" onclick="selectModalLang('temple1InfoModal', 't1-lang-overlay', 'pl')" class="px-6 py-2.5 bg-brand-green text-white rounded-xl text-sm font-semibold hover:bg-brand-plum transition-colors shadow-sm">Polski</button>
+                    <button type="button" onclick="selectModalLang('temple1InfoModal', 't1-lang-overlay', 'en')" class="px-6 py-2.5 bg-brand-green text-white rounded-xl text-sm font-semibold hover:bg-brand-plum transition-colors shadow-sm">English</button>
                 </div>
+            </div>
 
-                <input type="text" name="name" placeholder="Full Name *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
-                <input type="email" name="email" placeholder="Your E-mail *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
-                <input type="tel" name="phone" placeholder="Phone Number *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
+            <!-- Polish Version -->
+            <div id="t1-content-pl" class="hidden space-y-6 text-brand-green/90 leading-relaxed text-sm md:text-base">
+                <button onclick="toggleModal('temple1InfoModal')" class="absolute top-6 right-6 text-brand-green opacity-50 hover:opacity-100 text-3xl font-bold">&times;</button>
+                <h2 class="text-3xl font-bold text-brand-plum font-serif">🌹 Divine Intimacy Temple 🌹</h2>
+                <p class="font-semibold text-brand-plum italic">Przyjdźcie świętować z nami naszą ostatnią Świątynię 2025 roku z Cacao i Cuddles</p>
                 
-                <select name="event" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white" required>
-                    <option value="" disabled selected>Select event...</option>
-                    <option value="temple1">Temple 1 (Nov 8) - Cacao & Cuddles</option>
-                    <option value="temple2">Temple 2 (Nov 22) - Sacred Power</option>
-                    <option value="both">Both Temples (Bundle) - 400 PLN</option>
-                </select>
+                <p>Wejdź do świętej przestrzeni, w której spotykają się przyjemność, obecność i świadoma intymność. Wspólnie tworzymy bezpieczny, zabawny i autentyczny kontener — miejsce, w którym możemy ponownie połączyć się z błogością w sobie i w relacji ze wspólnotą.</p>
+                
+                <hr class="border-brand-lavender">
+                
+                <h3 class="font-bold text-xl text-brand-green">✨ Czym jest Świątynia?</h3>
+                <p>Świątynia to świadoma, święta przestrzeń, która honoruje boską iskrę w każdym z nas. Tutaj nasze energie erotyczne, zmysłowe i pierwotne są mile widziane i celebrowane — obok subtelnych energii serca, umysłu i ducha. To miejsce uważności i ekspresji, bezruchu i ruchu, nauki i odpuszczania, oddania i zabawy. To przestrzeń, w której możemy objąć wszystkie części siebie i przypomnieć sobie, kim naprawdę jesteśmy.</p>
+                
+                <h3 class="font-bold text-xl text-brand-green">🌍 Dla kogo jest ta Świątynia?</h3>
+                <p>Dla początkujących i doświadczonych praktyków — dla singli i par, dla wszystkich tożsamości i orientacji.<br>
+                <strong class="text-brand-plum">Nie ma seksu. Nie ma penetracji fizycznej. Nagość jest opcjonalna.</strong><br>
+                Każda praktyka jest zaproszeniem, nigdy obowiązkiem.</p>
+                
+                <h3 class="font-bold text-xl text-brand-green">✨ Jak wygląda wydarzenie?</h3>
+                <p>Na początku, poprzez prowadzone ruchy, taniec, oddech, asany, medytacje, rytuały i kręgi dzielenia się, połączymy się z naszymi emocjami, pragnieniami i energią życiową.</p>
+                <p>Te proste, skuteczne ćwiczenia pomagają nam lepiej czuć ciało, emocjonalnie się uwolnić, wyregulować układ nerwowy, tworzyć relacje oparte na szacunku oraz wyrażać granice i pragnienia. Z tego miejsca przechodzimy do otwartej przestrzeni (Open Space), w której wykorzystujemy nabyte umiejętności do tworzenia świadomych, intymnych i zorientowanych na serce interakcji.</p>
+                <p class="text-xs text-brand-green/70">Świątynia jest prowadzona w języku angielskim z tłumaczeniem na język polski.</p>
 
-                <!-- Human Verification Checkbox -->
-                <div class="flex items-center gap-3 bg-brand-violet-light/50 p-4 rounded-xl border border-brand-lavender">
-                    <input type="checkbox" id="humanCheck" class="w-5 h-5 accent-brand-plum cursor-pointer">
-                    <label for="humanCheck" class="text-xs font-bold text-brand-green cursor-pointer select-none">
-                        Check to prove you are human.
-                    </label>
+                <h3 class="font-bold text-xl text-brand-green">🕓 Harmonogram</h3>
+                <ul class="space-y-1 font-medium">
+                    <li>16:45 – Przybycie</li>
+                    <li>17:00 – Zamknięcie drzwi, Otwarcie Kręgu</li>
+                    <li>17:30 – Prowadzona Podróż</li>
+                    <li>20:00 – Otwarta Przestrzeń (free flow)</li>
+                    <li>23:00 – Krąg Zamknięcia</li>
+                    <li>23:30 – Zakończenie</li>
+                </ul>
+
+                <h3 class="font-bold text-xl text-brand-green">🧺 Prosimy, zabierz ze sobą:</h3>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Ubrania, które dodadzą Ci zmysłowości i blasku (bez perfum).</li>
+                    <li>Ręcznik lub lunghi (chusta, pareo).</li>
+                    <li>Zamkniętą butelkę z wodą oraz przekąski.</li>
+                    <li><em>Zalecane:</em> Olejek do masażu, opaska na oczy, delikatne zmysłowe rekwizyty (bez batów/pejczów).</li>
+                </ul>
+                <p class="text-xs text-brand-green/70">***Zakaz używania telefonów i nagrywania wideo podczas wydarzenia***</p>
+
+                <h3 class="font-bold text-xl text-brand-green">🌸 Zespół Świątyni</h3>
+                <p><strong>Bodhi Michael</strong> – nauczyciel, coach i przewodnik w transformacji osobistej (IG: @conscious.wolf).<br>
+                <strong>Joanna Filek</strong> – psycholożka, seksuolożka, psychoterapeutka (IG: @joaboutsex).</p>
+                
+                <p class="text-xs text-brand-green/70 pt-2 border-t border-brand-lavender"><strong>Zasady rezygnacji:</strong> 100% zwrotu przy anulowaniu do 2 tygodni przed wydarzeniem.</p>
+
+                <div class="mt-8 text-center">
+                    <button onclick="toggleModal('temple1InfoModal'); toggleModal('signupModal');" class="w-full bg-brand-plum text-white font-bold py-4 rounded-2xl shadow-lg hover:opacity-90 transition-all uppercase tracking-widest">
+                        Przejdź do Zapisów
+                    </button>
                 </div>
-                
-                <button type="submit" id="submitSignupBtn" disabled class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg transition-all mt-4">
-                    Send Registration Request
-                </button>
+            </div>
 
-                <div id="signupFormMessage" class="text-center mt-3 text-sm font-semibold hidden"></div>
-            </form>
-            <iframe name="hiddenConfirm" style="display:none"></iframe>
+            <!-- English Version -->
+            <div id="t1-content-en" class="hidden space-y-6 text-brand-green/90 leading-relaxed text-sm md:text-base">
+                <button onclick="toggleModal('temple1InfoModal')" class="absolute top-6 right-6 text-brand-green opacity-50 hover:opacity-100 text-3xl font-bold">&times;</button>
+                <h2 class="text-3xl font-bold text-brand-plum font-serif">🌹 Divine Intimacy Temple 🌹</h2>
+                
+                <p>Step into a sacred space where pleasure, presence, and conscious intimacy meet. Together, we co-create a container of safety, play, and raw authentic expression — a place to reconnect with the bliss within ourselves and to connect with community.</p>
+                
+                <hr class="border-brand-lavender">
+                
+                <h3 class="font-bold text-xl text-brand-green">✨ What is a Temple?</h3>
+                <p>A Temple is a conscious, sacred space that honors the divine spark in each of us. Here, our erotic, sensual, and primal energies are welcomed and celebrated alongside the more subtle energies of the heart, mind, and spirit. It is a place of noticing and expression, stillness and movement, learning and letting go, devotion and play. It is a space to embrace all parts of our Self and to remember who we truly are.</p>
+                
+                <h3 class="font-bold text-xl text-brand-green">🌍 Who is this Temple for?</h3>
+                <p>For beginners and experienced practitioners alike — singles or couples, all identities and orientations.<br>
+                <strong class="text-brand-plum">There is No Sex. No physical penetration in the Temple. Nudity is optional.</strong><br>
+                Every practice is an invitation, never an expectation.</p>
+                
+                <h3 class="font-bold text-xl text-brand-green">How will the event look like?</h3>
+                <p>First, through guided movement, dance, breath work, asanas, meditation, rituals and sharing circles we will connect to our emotions, desires and life force energy.</p>
+                <p>These exercises help us become more aware of our body, emotionally release, regulate our nervous system, express boundaries and desires, and connect consensually. Finally, we move into the open space where we create conscious intimate interactions and heart-centred experiences.</p>
+                <p class="text-xs text-brand-green/70">Held in English with Polish translation.</p>
+
+                <h3 class="font-bold text-xl text-brand-green">🕓 Schedule</h3>
+                <ul class="space-y-1 font-medium">
+                    <li>16:45 – Arrival</li>
+                    <li>17:00 – Doors close, Opening</li>
+                    <li>17:30 – Guided Journey</li>
+                    <li>20:30 – Open Space (free flow)</li>
+                    <li>23:00 – Closing Circle</li>
+                    <li>23:30 – End</li>
+                </ul>
+
+                <h3 class="font-bold text-xl text-brand-green">Please Bring to the Temple:</h3>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Clothing that makes you feel sensual and radiant (no strong scents).</li>
+                    <li>A towel or lunghi for sitting/lying down.</li>
+                    <li>Water bottle (no open containers) and snacks.</li>
+                    <li><em>Recommended:</em> Massage oil, blindfold, sensual toys (no whips/floggers).</li>
+                </ul>
+                <p class="text-xs text-brand-green/70">***No telephones and No video recording during the Temple***</p>
+
+                <h3 class="font-bold text-xl text-brand-green">Temple Team</h3>
+                <p><strong>Bodhi Michael</strong> – Teacher, coach, and guide (IG: @conscious.wolf).<br>
+                <strong>Joanna Filek</strong> – Psychologist, sexologist, psychotherapist (IG: @joaboutsex).</p>
+                
+                <p class="text-xs text-brand-green/70 pt-2 border-t border-brand-lavender"><strong>Cancellation Policy:</strong> 100% refund for cancellations up to 2 weeks before the event.</p>
+
+                <div class="mt-8 text-center">
+                    <button onclick="toggleModal('temple1InfoModal'); toggleModal('signupModal');" class="w-full bg-brand-plum text-white font-bold py-4 rounded-2xl shadow-lg hover:opacity-90 transition-all uppercase tracking-widest">
+                        Proceed to Registration
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Temple 2 Full Description Modal with Language Overlay -->
+    <div id="temple2InfoModal" class="modal" style="z-index: 105;">
+        <div class="bg-white rounded-[36px] p-8 md:p-12 max-w-2xl w-full shadow-2xl relative max-h-[88vh] overflow-y-auto border border-brand-lavender text-left">
+            
+            <!-- Clean Language Selection Overlay -->
+            <div id="t2-lang-overlay" class="absolute inset-0 z-30 bg-white flex flex-col items-center justify-center p-6 text-center rounded-[36px]">
+                <p class="text-xs font-bold uppercase tracking-widest text-brand-plum mb-3">Choose your language</p>
+                <div class="flex gap-3">
+                    <button type="button" onclick="selectModalLang('temple2InfoModal', 't2-lang-overlay', 'pl')" class="px-6 py-2.5 bg-brand-green text-white rounded-xl text-sm font-semibold hover:bg-brand-plum transition-colors shadow-sm">Polski</button>
+                    <button type="button" onclick="selectModalLang('temple2InfoModal', 't2-lang-overlay', 'en')" class="px-6 py-2.5 bg-brand-green text-white rounded-xl text-sm font-semibold hover:bg-brand-plum transition-colors shadow-sm">English</button>
+                </div>
+            </div>
+
+            <!-- Polish Version -->
+            <div id="t2-content-pl" class="hidden space-y-6 text-brand-green/90 leading-relaxed text-sm md:text-base">
+                <button onclick="toggleModal('temple2InfoModal')" class="absolute top-6 right-6 text-brand-green opacity-50 hover:opacity-100 text-3xl font-bold">&times;</button>
+                <h2 class="text-3xl font-bold text-brand-green font-serif">🔥 Sacred Power & Polarity Temple 🔥</h2>
+                
+                <blockquote class="italic border-l-4 border-brand-plum pl-4 text-brand-green/80">
+                    „Akt przekroczenia przełamuje bariery lęku i wstydu, a ten moment wyzwolenia tworzy ładunek energii, na którym możemy płynąć ku wyżynom przyjemności i ekstatycznego doświadczenia. Potwierdza również poczucie siebie jako niezależnego od norm społecznych, poczucie indywidualności.” — John Hawken
+                </blockquote>
+
+                <p>Są w nas części, które pozostają uśpione pod wstydem, lękiem, kontrolą i uwarunkowaniami. Są też części, które budzą się poprzez prawdę, pragnienie, poddanie, oddanie i ucieleśnioną odwagę. Ta Świątynia to głęboki warsztat transformacyjny, wykorzystujący świętą moc, polaryzację i świadomą zabawę jako ścieżkę do wolności, intymności i autentycznej siły.</p>
+                
+                <p class="font-semibold text-brand-plum">To nie jest sex party. To nie jest występ. To nie jest terapia. To starannie prowadzona przestrzeń transformacji, w której eros staje się lekarstwem, prawda staje się ucieleśniona, a połączenie staje się święte.</p>
+                
+                <hr class="border-brand-lavender">
+
+                <h3 class="font-bold text-xl text-brand-green">🌍 DLA KOGO JEST TA ŚWIĄTYNIA?</h3>
+                <p>Dla dojrzałych emocjonalnie osób indywidualnych i par, które czują wezwanie do eksploracji głębi, prawdy, intymności i transformacji w sobie oraz z innymi. Szczególnie dla tych, którzy:</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Pragną uzdrowić wstyd lub stare uwarunkowania wokół seksualności, władzy i bezbronności</li>
+                    <li>Chcą ucieleśniać wyraźniejsze granice i bardziej autentyczne pragnienia</li>
+                    <li>Są gotowi eksplorować poddanie i przewodnictwo w świadomy sposób</li>
+                    <li>Cenią zgodę, komunikację i odpowiedzialność emocjonalną</li>
+                    <li>Są ciekawi pracy wewnętrznej, rozwoju i autorefleksji</li>
+                </ul>
+                <p class="text-xs text-brand-green/80">Nie jest wymagane wcześniejsze doświadczenie w BDSM. Dojrzałość emocjonalna, samoświadomość i szacunek dla granic są kluczowe. Wszystko opiera się na zaproszeniu. Nagość jest opcjonalna.</p>
+
+                <h3 class="font-bold text-xl text-brand-green">⛔ DLA KOGO TO NIE JEST</h3>
+                <p>Ta Świątynia może nie być odpowiednia, jeśli:</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Szukasz przypadkowego dostępu seksualnego lub rozrywki</li>
+                    <li>Nie potrafisz komunikować jasnych granic lub szanować granic innych</li>
+                    <li>Jesteś obecnie niestabilny/a emocjonalnie lub w ostrym kryzysie</li>
+                    <li>Oczekujesz, że inni Cię uleczą lub uratują</li>
+                    <li>Czujesz dyskomfort w obecności energii erotycznej, intymności lub ucieleśnionej ekspresji</li>
+                </ul>
+
+                <h3 class="font-bold text-xl text-brand-green">✨ JAK WYGLĄDA DOŚWIADCZENIE</h3>
+                <p>Zaczynamy od stworzenia ugruntowanego i bezpiecznego kontenera poprzez indywidualne i grupowe porozumienia dotyczące zgody. Następnie za pomocą praktycznych narzędzi budujemy obecność, zaufanie i ucieleśnioną świadomość.</p>
+                <p>Stamtąd przechodzimy do transformacyjnych praktyk eksplorujących świętą dynamikę mocy, polaryzację, pragnienie, poddanie i świadomy eros. W miarę upływu wieczoru ustrukturyzowana przestrzeń łagodnieje w swobodny przepływ Świątyni (Open Space) z zachowaniem granic, troski i bezpieczeństwa.</p>
+
+                <h3 class="font-bold text-xl text-brand-green">🕓 PROGRAM</h3>
+                <ul class="space-y-1 font-medium">
+                    <li>18:15 – Przybycie</li>
+                    <li>18:30 – Zamknięcie drzwi – Otwarcie</li>
+                    <li>18:45 – Prowadzone ćwiczenia połączenia i zgody</li>
+                    <li>19:30 – Prowadzona podróż Świętej Mocy i Polaryzacji</li>
+                    <li>21:30–23:30 – Otwarta Przestrzeń Świątyni (Free Flow)</li>
+                    <li>23:30 – Krąg zamykający i dzielenie się</li>
+                    <li>24:00 – Zakończenie</li>
+                </ul>
+
+                <h3 class="font-bold text-xl text-brand-green">🧺 RZECZY DO ZABRANIA</h3>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Ubrania łączące Cię z Twoją świętą mocą i polaryzacją (bez perfum)</li>
+                    <li>Ręcznik lub lungi dla wygody lub masażu</li>
+                    <li>Zamknięta butelka na wodę oraz przekąski</li>
+                    <li>Olejek do masażu, opaska na oczy</li>
+                    <li><em>Opcjonalne rekwizyty zmysłowe:</em> pióra, futro, satyna, jedwab, lina, pejcz, obroża, smycz</li>
+                </ul>
+
+                <h3 class="font-bold text-xl text-brand-green">🌸 ZESPÓŁ ŚWIĄTYNI</h3>
+                <p><strong>Bodhi Michael</strong> – nauczyciel, coach i przewodnik z ponad 15-letnim doświadczeniem w ucieleśnieniu i pracy z polaryzacją (IG: @conscious.wolf).<br>
+                <strong>Joanna Filek</strong> – psycholożka, seksuolożka, psychoterapeutka i religioznawczyni (IG: @joaboutsex).</p>
+
+                <p class="text-xs text-brand-green/70 pt-2 border-t border-brand-lavender"><strong>Zasady rezygnacji:</strong> 100% zwrotu przy anulowaniu do 2 tygodni przed wydarzeniem.</p>
+
+                <div class="mt-8 text-center">
+                    <button onclick="toggleModal('temple2InfoModal'); toggleModal('signupModal');" class="w-full bg-brand-green text-white font-bold py-4 rounded-2xl shadow-lg hover:bg-brand-plum transition-all uppercase tracking-widest">
+                        Przejdź do Zapisów
+                    </button>
+                </div>
+            </div>
+
+            <!-- English Version -->
+            <div id="t2-content-en" class="hidden space-y-6 text-brand-green/90 leading-relaxed text-sm md:text-base">
+                <button onclick="toggleModal('temple2InfoModal')" class="absolute top-6 right-6 text-brand-green opacity-50 hover:opacity-100 text-3xl font-bold">&times;</button>
+                <h2 class="text-3xl font-bold text-brand-green font-serif">🔥 Sacred Power & Polarity Temple 🔥</h2>
+                
+                <blockquote class="italic border-l-4 border-brand-plum pl-4 text-brand-green/80">
+                    “The act of transgression breaks through the barriers of fear and shame, and that moment of liberation creates a charge of energy on which we can ride to heights of pleasure and ecstatic experience. It also asserts a sense of self as independent of social norms, a sense of individuality.” — John Hawken
+                </blockquote>
+
+                <p>There are parts of us that remain asleep beneath shame, fear, control, and conditioning. There are also parts of us that awaken through truth, desire, surrender, devotion, and embodied courage. This Temple is a deep transformational workshop using sacred power, polarity, and conscious play as a pathway into freedom, intimacy, and authentic power.</p>
+                
+                <p class="font-semibold text-brand-plum">This is not a sex party. It is not a performance. It is not therapy. It is a carefully facilitated transformational space where eros becomes medicine, truth becomes embodied, and connection becomes sacred.</p>
+                
+                <hr class="border-brand-lavender">
+
+                <h3 class="font-bold text-xl text-brand-green">🌍 WHO IS THIS FOR?</h3>
+                <p>This Temple is for emotionally mature individuals and couples who feel called to explore depth, truth, intimacy, and transformation within themselves and with others. It is especially aligned for those who:</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Desire to heal shame or old conditioning around sexuality, power, and vulnerability</li>
+                    <li>Want to embody clearer boundaries and more authentic desire</li>
+                    <li>Are ready to explore surrender and leadership in conscious ways</li>
+                    <li>Value consent, communication, and emotional responsibility</li>
+                    <li>Are curious about inner work, growth, and self-reflection</li>
+                </ul>
+                <p class="text-xs text-brand-green/80">No previous BDSM experience is required. Emotional maturity, self-awareness, and respect for boundaries are essential. Everything is invitation-based. Nudity is optional.</p>
+
+                <h3 class="font-bold text-xl text-brand-green">⛔ WHO THIS IS NOT FOR</h3>
+                <p>This Temple may not be suitable if you are:</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Seeking casual sexual access or entertainment</li>
+                    <li>Unable to communicate clear boundaries or respect the boundaries of others</li>
+                    <li>Currently emotionally unstable or in acute crisis</li>
+                    <li>Expecting others to heal or rescue you</li>
+                    <li>Uncomfortable being around erotic energy, intimacy, or embodied expression</li>
+                </ul>
+
+                <h3 class="font-bold text-xl text-brand-green">✨ HOW THE EXPERIENCE UNFOLDS</h3>
+                <p>We begin by creating a grounded and safe Temple container through consensual, individual and collective agreements. Then through practical tools and guided exercises, we establish presence, trust, consent culture, and embodied awareness.</p>
+                <p>From there, we journey into transformational Temple practices exploring sacred power dynamics, polarity, desire, surrender, and conscious eros. As the evening unfolds, the structured container softens into a freer Temple flow (Open Space) for intentional, consensual play.</p>
+
+                <h3 class="font-bold text-xl text-brand-green">🕓 PROGRAM</h3>
+                <ul class="space-y-1 font-medium">
+                    <li>18:15 – Arrival</li>
+                    <li>18:30 – Doors Close – Opening</li>
+                    <li>18:45 – Guided Connection & Consent Exercises</li>
+                    <li>19:30 – Guided Sacred Power & Polarity Journey</li>
+                    <li>21:30–23:30 – Open Temple Space – Free Flow</li>
+                    <li>23:30 – Closing Sharing Circle</li>
+                    <li>24:00 – End</li>
+                </ul>
+
+                <h3 class="font-bold text-xl text-brand-green">🧺 ITEMS TO BRING</h3>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Clothing that connects you to your personal sacred power and polarity (no perfume)</li>
+                    <li>A towel or lungi for comfort or massage</li>
+                    <li>Water bottle (no open containers) and snacks</li>
+                    <li>Massage oil, blindfold</li>
+                    <li><em>Optional sensual items:</em> feathers, fur, satin, silk, rope, whip, collar, leash</li>
+                </ul>
+
+                <h3 class="font-bold text-xl text-brand-green">🌸 TEMPLE TEAM</h3>
+                <p><strong>Bodhi Michael</strong> – Teacher, coach, and guide with over 15 years experience devoted to personal transformation (IG: @conscious.wolf).<br>
+                <strong>Joanna Filek</strong> – Psychologist, sexologist, psychotherapist, and scholar of religious studies (IG: @joaboutsex).</p>
+
+                <p class="text-xs text-brand-green/70 pt-2 border-t border-brand-lavender"><strong>Cancellation Policy:</strong> 100% refund for cancellations up to 2 weeks before the event.</p>
+
+                <div class="mt-8 text-center">
+                    <button onclick="toggleModal('temple2InfoModal'); toggleModal('signupModal');" class="w-full bg-brand-green text-white font-bold py-4 rounded-2xl shadow-lg hover:bg-brand-plum transition-all uppercase tracking-widest">
+                        Proceed to Registration
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="newsletterModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative">
+            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">Newsletter</h2>
+            <p class="text-sm text-brand-green/70 mb-6">
+                <span class="text-pl">Bądź na bieżąco z nadchodzącymi warsztatami, świątyniami tantry i wydarzeniami.</span>
+                <span class="text-en">Stay up to date with upcoming workshops, tantra temples, and events.</span>
+                <span class="text-no">Hold deg oppdatert med kommende workshops, tantratempler og arrangementer.</span>
+            </p>
+            <form class="space-y-4">
+                <input type="email" data-lang-pl="Twój E-mail" data-lang-en="Your E-mail" data-lang-no="Din E-post" placeholder="Twój E-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                <div class="flex items-start gap-3 text-left">
+                    <input type="checkbox" id="newsConsent" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent" class="text-[11px] leading-tight text-brand-green/80">
+                        <span class="text-pl">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach, świątyniach i specjalnych wydarzeniach od Conscious Wolf.</span>
+                        <span class="text-en">I agree to receive marketing information about upcoming workshops, temples, and special events from Conscious Wolf.</span>
+                        <span class="text-no">Jeg samtykker til å motta markedsinformasjon om kommende workshops, templer og spesielle arrangementer fra Conscious Wolf.</span>
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                    <span class="text-pl">Zapisz się</span><span class="text-en">Subscribe</span><span class="text-no">Abonner</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="bg-white rounded-[40px] p-8 max-w-md w-full shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-plum mb-2">
+                <span class="text-pl">Zapisz się</span>
+                <span class="text-en">Sign up</span>
+                <span class="text-no">Meld deg på</span>
+            </h2>
+            <p class="text-sm text-brand-green/70 mb-6">
+                <span class="text-pl">Wypełnij formularz, aby zarejestrować się na nadchodzące wydarzenia.</span>
+                <span class="text-en">Fill out the form to register for the upcoming events.</span>
+                <span class="text-no">Fyll ut skjemaet for å registrere deg for de kommende arrangementene.</span>
+            </p>
+            
+            <form id="templeSignupForm" class="space-y-4 text-left">
+                <div>
+                    <input type="text" name="name" data-lang-pl="Imię i nazwisko *" data-lang-en="Full Name *" data-lang-no="Fullt Navn *" placeholder="Imię i nazwisko *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                </div>
+                <div>
+                    <input type="email" name="email" data-lang-pl="Twój E-mail *" data-lang-en="Your E-mail *" data-lang-no="Din E-post *" placeholder="Twój E-mail *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                </div>
+                <div>
+                    <input type="tel" name="phone" data-lang-pl="Numer Telefonu *" data-lang-en="Phone Number *" data-lang-no="Telefonnummer *" placeholder="Numer Telefonu *" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum lang-placeholder" required>
+                </div>
+                <div>
+                    <select name="event" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum bg-white text-brand-green" required>
+                        <option value="" disabled selected class="lang-option" data-lang-pl="Wybierz wydarzenie..." data-lang-en="Select event..." data-lang-no="Velg arrangement...">Wybierz wydarzenie...</option>
+                        <option value="temple1" class="lang-option" data-lang-pl="Świątynia 1 (8 Listopada) - 250 PLN" data-lang-en="Temple 1 (Nov 8) - 250 PLN" data-lang-no="Tempel 1 (8. Nov) - 250 PLN">Świątynia 1 (8 Listopada) - 250 PLN</option>
+                        <option value="temple2" class="lang-option" data-lang-pl="Świątynia 2 (22 Listopada) - 250 PLN" data-lang-en="Temple 2 (Nov 22) - 250 PLN" data-lang-no="Tempel 2 (22. Nov) - 250 PLN">Świątynia 2 (22 Listopada) - 250 PLN</option>
+                        <option value="both" class="lang-option" data-lang-pl="Obie Świątynie (Pakiet) - 400 PLN" data-lang-en="Both Temples (Bundle) - 400 PLN" data-lang-no="Begge Templer (Pakke) - 400 PLN">Obie Świątynie (Pakiet) - 400 PLN</option>
+                    </select>
+                </div>
+                
+                <div class="flex items-start gap-3 mt-4">
+                    <input type="checkbox" id="marketingConsent" name="consent" value="true" class="mt-1 accent-brand-plum">
+                    <label for="marketingConsent" class="text-[11px] leading-tight text-brand-green/80">
+                        <span class="text-pl">Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach i wydarzeniach.</span>
+                        <span class="text-en">I agree to receive marketing information about upcoming workshops and events.</span>
+                        <span class="text-no">Jeg samtykker til å motta markedsinformasjon om kommende workshops og arrangementer.</span>
+                    </label>
+                </div>
+
+                <button type="submit" id="submitSignupBtn" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all mt-4 flex justify-center items-center gap-2">
+                    <span class="text-pl">Wyślij Zgłoszenie</span>
+                    <span class="text-en">Submit Registration</span>
+                    <span class="text-no">Send Registrering</span>
+                </button>
+                <div id="signupFormMessage" class="text-center mt-3 text-sm font-semibold hidden"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Confirmation Modal -->
+    <div id="confirmModal" class="modal" style="z-index: 110;">
+        <div class="bg-white rounded-[32px] p-8 max-w-sm w-full shadow-2xl relative text-center">
+            <h2 class="text-2xl font-bold text-brand-plum mb-4">
+                <span class="text-pl">Ważna Informacja</span>
+                <span class="text-en">Important Note</span>
+                <span class="text-no">Viktig Merknad</span>
+            </h2>
+            <p class="text-sm text-brand-green/80 mb-8 leading-relaxed">
+                <span class="text-pl">Każde zgłoszenie będzie rozpatrywane indywidualnie przez zespół. Potwierdzenie uczestnictwa oraz szczegóły płatności zostaną wysłane po weryfikacji.</span>
+                <span class="text-en">Each registration will be evaluated individually by our team. Confirmation of participation and payment details will be sent after verification.</span>
+                <span class="text-no">Hver registrering vil bli vurdert individuelt av teamet vårt. Bekreftelse på deltakelse og betalingsdetaljer vil bli sendt etter verifisering.</span>
+            </p>
+            <div class="flex gap-4 justify-center">
+                <button onclick="toggleModal('confirmModal')" class="w-full px-4 py-3 rounded-xl border border-brand-lavender text-brand-green font-bold hover:bg-brand-lavender smooth-transition text-sm">
+                    <span class="text-pl">Anuluj</span><span class="text-en">Cancel</span><span class="text-no">Avbryt</span>
+                </button>
+                <button id="confirmSubmitBtn" class="w-full px-4 py-3 rounded-xl bg-brand-plum text-white font-bold hover:opacity-90 smooth-transition text-sm">
+                    <span class="text-pl">Rozumiem</span><span class="text-en">I understand</span><span class="text-no">Jeg forstår</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-brand-green text-white pt-16 pb-10">
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <div class="text-3xl font-light mb-2">
+                        Joanna <span class="font-bold">Filek</span>
+                    </div>
+
+                    <p class="text-sm opacity-75">
+                        Gabinet Psychoterapii Inspiro
+                    </p>
+
+                    <address class="text-sm opacity-75 mt-1 not-italic">
+                        ul. Skalica 15A, 30-376 Kraków
+                    </address>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Nawigacja</h4>
+
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><a href="index.html" class="hover:text-brand-lavender smooth-transition">Strona główna</a></li>
+                        <li><a href="about.html" class="hover:text-brand-lavender smooth-transition">O mnie</a></li>
+                        <li><a href="works.html" class="hover:text-brand-lavender smooth-transition">Warsztaty</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Zapisy</h4>
+
+                    <ul class="space-y-3 text-sm opacity-90">
+                        <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-lavender smooth-transition">Sign-up (Zapisy)</button></li>
+                        <li><button onclick="toggleModal('newsletterModal')" class="hover:text-brand-lavender smooth-transition">Newsletter</button></li> 
+                        <li><a href="contact.html" class="hover:text-brand-lavender smooth-transition">Contact</a></li>                  
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4 text-brand-lavender">Informacje</h4>
+
+                    <p class="text-sm opacity-75 leading-relaxed">
+                        Poufność sesji jest w pełni gwarantowana.
+                        Konsultacje dostępne online oraz stacjonarnie.
+                    </p>
+
+                    <p class="text-sm opacity-60 mt-6">
+                        © 2026 Joanna Filek
+                    </p>
+                    <p class="text-[10px] opacity-40 mt-1">
+                        Designed & Developed by <a href="https://alansmorais.github.io/alans.morais/" target="_blank" rel="noopener" class="hover:text-brand-lavender underline transition-colors">ASM</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
         function setLanguage(lang) {
             document.body.classList.remove('lang-pl', 'lang-en', 'lang-no');
             document.body.classList.add('lang-' + lang);
             localStorage.setItem('preferredLanguage', lang);
-        }
 
-        const realEndpoint = "https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec";
-
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('form_load_time').value = new Date().getTime();
-            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-            setLanguage(savedLang);
-
-            const humanCheck = document.getElementById('humanCheck');
-            const submitBtn = document.getElementById('submitSignupBtn');
-            const form = document.getElementById('templeSignupForm');
-
-            humanCheck.addEventListener('change', function() {
-                if(this.checked) {
-                    form.action = realEndpoint;
-                    submitBtn.disabled = false;
-                    submitBtn.classList.add('hover:opacity-90');
-                } else {
-                    form.action = "";
-                    submitBtn.disabled = true;
-                    submitBtn.classList.remove('hover:opacity-90');
-                }
+            document.querySelectorAll('.lang-placeholder').forEach(el => {
+                const translation = el.getAttribute('data-lang-' + lang);
+                if(translation) el.placeholder = translation;
             });
 
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
+            document.querySelectorAll('.lang-option').forEach(el => {
+                const translation = el.getAttribute('data-lang-' + lang);
+                if(translation) el.textContent = translation;
+            });
+        }
 
-                const botField = document.getElementById('bot_website').value;
-                const loadTime = document.getElementById('form_load_time').value;
-                const submitTime = new Date().getTime();
-                
-                if (botField !== "" || (submitTime - loadTime) < 3000) {
-                    return false;
-                }
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'pl';
+            setLanguage(savedLang);
 
-                const formData = new FormData(form);
-                const messageDiv = document.getElementById('signupFormMessage');
-                
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = "Sending...";
-                messageDiv.classList.add('hidden');
-
-                fetch(realEndpoint, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
-                })
-                .then(() => {
-                    messageDiv.innerHTML = 'Thank you! Your registration has been sent.';
-                    messageDiv.classList.add('text-green-600');
-                    messageDiv.classList.remove('hidden', 'text-red-500');
-                    form.reset();
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = "Send Registration Request";
-                    form.action = "";
-                    humanCheck.checked = false;
-                })
-                .catch(error => {
-                    messageDiv.textContent = 'Error sending. Please try again.';
-                    messageDiv.classList.add('text-red-500');
-                    messageDiv.classList.remove('hidden', 'text-green-600');
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = "Send Registration Request";
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        toggleModal(modal.id);
+                    }
                 });
             });
         });
 
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            
-            document.getElementById(tabId).classList.add('active');
-            document.getElementById('btn-' + tabId).classList.add('active');
-        }
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
 
         function toggleModal(id) {
             const modal = document.getElementById(id);
             if(modal) {
                 modal.classList.toggle('active');
-                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+                
+                if(id === 'temple1InfoModal') {
+                    const card = modal.querySelector('div');
+                    if (modal.classList.contains('active')) {
+                        document.getElementById('t1-lang-overlay').style.display = 'flex';
+                        document.getElementById('t1-content-pl').classList.add('hidden');
+                        document.getElementById('t1-content-en').classList.add('hidden');
+                        if (card) {
+                            card.scrollTop = 0;
+                            card.style.overflowY = 'hidden';
+                        }
+                    } else {
+                        if (card) card.style.overflowY = 'auto';
+                    }
+                }
+
+                if(id === 'temple2InfoModal') {
+                    const card = modal.querySelector('div');
+                    if (modal.classList.contains('active')) {
+                        document.getElementById('t2-lang-overlay').style.display = 'flex';
+                        document.getElementById('t2-content-pl').classList.add('hidden');
+                        document.getElementById('t2-content-en').classList.add('hidden');
+                        if (card) {
+                            card.scrollTop = 0;
+                            card.style.overflowY = 'hidden';
+                        }
+                    } else {
+                        if (card) card.style.overflowY = 'auto';
+                    }
+                }
+                
+                const anyActive = document.querySelectorAll('.modal.active').length > 0;
+                document.body.style.overflow = anyActive ? 'hidden' : 'auto';
             }
         }
+
+        function selectModalLang(modalId, overlayId, lang) {
+            const modal = document.getElementById(modalId);
+            const card = modal ? modal.querySelector('div') : null;
+            if (card) card.style.overflowY = 'auto';
+            
+            document.getElementById(overlayId).style.display = 'none';
+            if(modalId === 'temple1InfoModal') {
+                if(lang === 'pl') {
+                    document.getElementById('t1-content-pl').classList.remove('hidden');
+                } else {
+                    document.getElementById('t1-content-en').classList.remove('hidden');
+                }
+            } else if(modalId === 'temple2InfoModal') {
+                if(lang === 'pl') {
+                    document.getElementById('t2-content-pl').classList.remove('hidden');
+                } else {
+                    document.getElementById('t2-content-en').classList.remove('hidden');
+                }
+            }
+        }
+        
+        let pendingForm = null;
+
+        document.getElementById('templeSignupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            pendingForm = this;
+            toggleModal('confirmModal');
+        });
+
+        document.getElementById('confirmSubmitBtn').addEventListener('click', function() {
+            toggleModal('confirmModal');
+            
+            if(!pendingForm) return;
+
+            const form = pendingForm;
+            const submitBtn = document.getElementById('submitSignupBtn');
+            const messageDiv = document.getElementById('signupFormMessage');
+            
+            const formData = new FormData(form);
+            formData.append('form_type', 'templesignup');
+            
+            const currentLang = document.body.classList.contains('lang-en') ? 'EN' : (document.body.classList.contains('lang-no') ? 'NO' : 'PL');
+            formData.append('language', currentLang);
+            formData.append('source_page', 'Blisshouse Temples Landing Page');
+
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> WYSYŁANIE...`;
+            messageDiv.classList.add('hidden');
+            messageDiv.className = 'text-center mt-3 text-sm font-semibold';
+
+            fetch('https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            })
+            .then(() => {
+                if (currentLang === 'EN') {
+                    messageDiv.innerHTML = 'Thank you! Your registration has been sent.';
+                } else if (currentLang === 'NO') {
+                    messageDiv.innerHTML = 'Takk! Din registrering er sendt.';
+                } else {
+                    messageDiv.innerHTML = 'Dziękujemy! Twoje zgłoszenie zostało wysłane.';
+                }
+                
+                messageDiv.classList.add('text-green-600');
+                messageDiv.classList.remove('hidden');
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                messageDiv.textContent = 'Wystąpił błąd podczas wysyłania. Spróbuj ponownie później.';
+                messageDiv.classList.add('text-red-500');
+                messageDiv.classList.remove('hidden');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                submitBtn.innerHTML = originalBtnHtml;
+                pendingForm = null;
+            });
+        });
     </script>
 </body>
 </html>
