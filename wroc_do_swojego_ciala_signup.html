@@ -121,10 +121,14 @@
                 </div>
             </a>
 
-            <nav class="hidden lg:flex items-center gap-10 text-[13px] font-medium text-brand-green/80">
-                <a href="#about-workshop" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="O warsztacie" data-text-en="The Workshop" data-text-no="Verkstedet">O warsztacie</a>
-                <a href="#safety" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="Zasady pracy" data-text-en="Framework" data-text-no="Rammeverk">Zasady pracy</a>
-                <a href="#about-me" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="O prowadzącej" data-text-en="Facilitator" data-text-no="Tilrettelegger">O prowadzącej</a>
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
+                <a href="index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
+                <a href="works.html" class="hover:text-brand-plum smooth-transition">Warsztaty</a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
+                <button onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Lista oczekujących</button>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
+                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Zapisy</button>
             </nav>
 
             <div class="flex items-center gap-4">
