@@ -160,18 +160,28 @@
         }
     
         /* Final CTA treatment */
-        header button[onclick*="signupModal"] {
-            min-width:132px !important;
-            min-height:48px !important;
-            padding:0 22px !important;
-            border-radius:999px !important;
-            display:inline-flex !important;
-            align-items:center;
-            justify-content:center;
-            gap:7px;
-            line-height:1.1;
-            white-space:nowrap;
-        }
+        
+       /* Keep the global header compact and consistent with index.html */
+@media (min-width: 1280px) {
+    header nav {
+        gap: 1.25rem !important;
+        white-space: nowrap;
+    }
+
+    header nav a,
+    header nav button {
+        white-space: nowrap;
+    }
+
+    header > div:first-child > a {
+        flex-shrink: 0;
+    }
+
+    header a[href="visits.html"] {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+}
         .event-card > div:last-child {
             padding:0 28px 28px !important;
             display:grid !important;
