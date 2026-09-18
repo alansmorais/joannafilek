@@ -19,7 +19,8 @@
                         'brand-cream': '#F8F1EA',
                         'brand-sand': '#EBDDD4',
                         'brand-lavender': '#E7E1E8',
-                        'brand-white': '#FFFCF9'
+                        'brand-white': '#FFFCF9',
+                        'brand-violet-light': '#F4E6EF'
                     },
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
@@ -30,7 +31,7 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background-color: #FFFCF9; color: #243D35; overflow-x: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; text-wrap: balance; }
@@ -54,25 +55,19 @@
         }
         .modal.active { display: flex; opacity: 1; }
         .modal > div { max-height: min(92vh, 900px); overflow-y: auto; overscroll-behavior: contain; }
-        /* Subtle focus states */
-        button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+        button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
             outline: 2px solid rgba(154, 91, 82, 0.4); outline-offset: 2px;
         }
-        input, textarea { transition: border-color 0.2s ease; }
-        input:focus, textarea:focus { border-color: #243D35 !important; outline: none; }
-        /* Scroll Reveal Animation */
+        input, textarea, select { transition: border-color 0.2s ease; }
+        input:focus, textarea:focus, select:focus { border-color: #243D35 !important; outline: none; }
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        /* Slow Image Pan Animation */
         .img-pan { animation: panImage 20s infinite alternate linear; transform-origin: center; }
         @keyframes panImage { 0% { transform: scale(1); } 100% { transform: scale(1.04); } }
         @media (prefers-reduced-motion: reduce) {
             .reveal { opacity: 1; transform: none; transition: none; }
             .img-pan { animation: none; }
         }
-        /* =========================================================
-           CRITICAL CSS: Foolproof Language System
-        ========================================================= */
         body:not(.lang-en):not(.lang-no) .text-en,
         body:not(.lang-en):not(.lang-no) .text-no { display: none !important; }
         body.lang-en .text-pl, body.lang-en .text-no { display: none !important; }
@@ -85,17 +80,18 @@
     </style>
 </head>
 <body class="overflow-x-hidden">
+
+    <!-- Top Bar -->
     <div class="relative z-[60] flex items-center justify-between px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
         <div class="flex items-center">
-            <span class="hidden sm:inline">
+            <span class="hidden sm:inline i18n-text" data-text-pl="Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com" data-text-en="Contact (+48) 733 777 542 • psycholog.joannafilek@gmail.com" data-text-no="Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com">
                 Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com
             </span>
-            <span class="sm:hidden">
+            <span class="sm:hidden i18n-text" data-text-pl="Kontakt (+48) 733 777 542" data-text-en="Contact (+48) 733 777 542" data-text-no="Kontakt (+48) 733 777 542">
                 Kontakt (+48) 733 777 542
             </span>
         </div>
         <div class="flex items-center gap-4">
-            <!-- Social Media Icons -->
             <div class="hidden md:flex items-center gap-3 border-r border-brand-white/30 pr-4 mr-1">
                 <a href="https://www.facebook.com/share/1AkWWz6UA6/" target="_blank" rel="noopener" aria-label="Facebook" class="hover:text-brand-lavender smooth-transition hover-lift">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -112,70 +108,83 @@
             </div>
             <!-- Language Flags -->
             <div class="flex items-center gap-3">
-                <a href="index.html" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></a>
-                <a href="en/index.html" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></a>
-                <a href="no/index.html" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></a>
+                <button type="button" onclick="setLanguage('pl')" aria-label="Język polski" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></button>
+                <button type="button" onclick="setLanguage('en')" aria-label="English language" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></button>
+                <button type="button" onclick="setLanguage('no')" aria-label="Norsk språk" class="hover:scale-110 smooth-transition focus:outline-none"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></button>
             </div>
         </div>
     </div>
+
+    <!-- Header -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg shadow-sm">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
-                <img src="images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain">
+                <img src="https://joannafilek.com/images/logo.png" alt="Logo Joanna Filek" class="w-12 h-12 object-contain" onerror="this.src='https://joannafilek.com/images/logo.png'">
                 <div>
                     <div class="text-2xl md:text-3xl font-light text-brand-green leading-tight">
                         Joanna <span class="font-bold">Filek</span>
                     </div>
-                    <p class="text-xs text-brand-plum -mt-1">
+                    <p class="text-xs text-brand-plum -mt-1 font-medium i18n-text" data-text-pl="Psycholożka | Seksuolożka | Psychoterapeutka | Gabinet Inspiro" data-text-en="Psychologist | Sexologist | Psychotherapist | Inspiro Practice" data-text-no="Psykolog | Sexolog | Psykoterapeut | Inspiro Praksis">
                         Psycholożka | Seksuolożka | Psychoterapeutka | Gabinet Inspiro
                     </p>
                 </div>
             </a>
-            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
-                <a href="index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
-                <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
+
+            <!-- Pill Navigation -->
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider border border-brand-sand/30">
+                <a href="index.html" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="Strona główna" data-text-en="Home" data-text-no="Hjem">Strona główna</a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="O mnie" data-text-en="About me" data-text-no="Om meg">O mnie</a>
                 <div class="relative group">
-                    <button class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">
-                        Warsztaty
+                    <button type="button" class="hover:text-brand-plum text-brand-plum smooth-transition uppercase tracking-wider font-bold inline-flex items-center gap-1">
+                        <span class="i18n-text" data-text-pl="Warsztaty" data-text-en="Workshops" data-text-no="Verksteder">Warsztaty</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block z-50">
-                        <div class="bg-white rounded-2xl shadow-xl border border-brand-lavender/40 p-2 w-64">
-                            <a href="works.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-brand-green hover:bg-brand-violet-light hover:text-brand-plum smooth-transition">
+                        <div class="bg-white rounded-2xl shadow-xl border border-brand-lavender/40 p-2 w-64 text-left">
+                            <a href="works.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-brand-green hover:bg-brand-violet-light hover:text-brand-plum smooth-transition i18n-text" data-text-pl="Wszystkie warsztaty" data-text-en="All workshops" data-text-no="Alle verksteder">
                                 Wszystkie warsztaty
                             </a>
-                            <a href="wroc_do_swojego_ciala_signup.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-brand-green hover:bg-brand-violet-light hover:text-brand-plum smooth-transition">
+                            <a href="wroc_do_swojego_ciala_signup.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-brand-plum bg-brand-cream/60 hover:bg-brand-violet-light hover:text-brand-plum smooth-transition i18n-text" data-text-pl="Warsztat dla kobiet" data-text-en="Women's workshop" data-text-no="Workshop for kvinner">
                                 Warsztat dla kobiet
                             </a>
                         </div>
                     </div>
                 </div>
-                <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
-                <button onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Lista oczekujących</button>
-                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
-                <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Zapisy</button>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="Kontakt" data-text-en="Contact" data-text-no="Kontakt">Kontakt</a>
+                <button type="button" onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold i18n-text" data-text-pl="Lista oczekujących" data-text-en="Waiting list" data-text-no="Venteliste">Lista oczekujących</button>
+                <button type="button" onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
+                <button type="button" onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider i18n-text" data-text-pl="Zapisy" data-text-en="Sign Up" data-text-no="Påmelding">Zapisy</button>
             </nav>
+
             <div class="flex items-center gap-3">
-                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift">
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-2xl hover:bg-brand-plum smooth-transition shadow-md hover-lift i18n-text" data-text-pl="Umów konsultację" data-text-en="Book Consultation" data-text-no="Bestill Konsultasjon">
                     Umów konsultację
                 </a>
-                <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition">
+                <button type="button" id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl smooth-transition text-xs font-bold i18n-text" data-text-pl="Menu" data-text-en="Menu" data-text-no="Meny">
                     Menu
                 </button>
             </div>
         </div>
-        <div id="mobileMenu" class="mobile-menu flex-col gap-5 px-6 pt-2 pb-8 bg-brand-white text-brand-green font-medium shadow-md lg:hidden text-sm border-t border-brand-sand/50">
-            <a href="#about-workshop" onclick="document.getElementById('mobileMenu').classList.remove('active');" class="i18n-text text-brand-green/80 hover:text-brand-plum" data-text-pl="O warsztacie" data-text-en="The Workshop" data-text-no="Verkstedet">O warsztacie</a>
+
+        <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pt-2 pb-6 bg-brand-white text-brand-green font-medium shadow-md xl:hidden text-sm border-t border-brand-sand/50">
+            <a href="index.html" class="mt-2 i18n-text" data-text-pl="Strona główna" data-text-en="Home" data-text-no="Hjem">Strona główna</a>
+            <a href="about.html" class="i18n-text" data-text-pl="O mnie" data-text-en="About me" data-text-no="Om meg">O mnie</a>
+            <a href="works.html" class="i18n-text" data-text-pl="Wszystkie warsztaty" data-text-en="All workshops" data-text-no="Alle verksteder">Wszystkie warsztaty</a>
+            <a href="#about-workshop" onclick="document.getElementById('mobileMenu').classList.remove('active');" class="text-brand-plum font-semibold i18n-text" data-text-pl="Warsztat: Wróć do swojego ciała" data-text-en="Workshop: Return to your body" data-text-no="Verksted: Tilbake til kroppen din">Warsztat: Wróć do swojego ciała</a>
             <a href="#safety" onclick="document.getElementById('mobileMenu').classList.remove('active');" class="i18n-text text-brand-green/80 hover:text-brand-plum" data-text-pl="Zasady pracy" data-text-en="Framework" data-text-no="Rammeverk">Zasady pracy</a>
             <a href="#about-me" onclick="document.getElementById('mobileMenu').classList.remove('active');" class="i18n-text text-brand-green/80 hover:text-brand-plum" data-text-pl="O prowadzącej" data-text-en="Facilitator" data-text-no="Tilrettelegger">O prowadzącej</a>
-            <button onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-semibold text-brand-plum i18n-text mt-2" data-text-pl="Zarezerwuj miejsce" data-text-en="Reserve your spot" data-text-no="Reserver plass">Zarezerwuj miejsce</button>
+            <a href="contact.html" class="i18n-text" data-text-pl="Kontakt" data-text-en="Contact" data-text-no="Kontakt">Kontakt</a>
+            <button type="button" onclick="toggleModal('waitingListModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum i18n-text" data-text-pl="Lista oczekujących" data-text-en="Waiting list" data-text-no="Venteliste">Lista oczekujących</button>
+            <button type="button" onclick="toggleModal('signupModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-semibold text-brand-plum i18n-text" data-text-pl="Zarezerwuj miejsce" data-text-en="Reserve your spot" data-text-no="Reserver plass">Zarezerwuj miejsce</button>
         </div>
     </header>
+
     <!-- Split Editorial Hero Section -->
     <section class="bg-brand-cream relative overflow-hidden">
-        <!-- Organic subtle background blob -->
         <svg class="absolute top-0 right-0 w-[800px] h-[800px] text-brand-sand/30 transform translate-x-1/3 -translate-y-1/4 pointer-events-none" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path fill="currentColor" d="M45.7,-76.4C58.9,-69.3,69,-56.3,76.5,-42.2C84,-28.1,88.9,-13,87.6,1.5C86.3,16,78.8,29.9,69.5,41.5C60.2,53.1,49.1,62.4,36.5,69.2C23.9,76,9.8,80.3,-4.2,87.5C-18.2,94.7,-32.1,84.8,-43.3,74.5C-54.5,64.2,-63,53.5,-70.6,41.3C-78.2,29.1,-84.9,15.4,-86.1,1.1C-87.3,-13.2,-83,-28,-74.6,-40.1C-66.2,-52.2,-53.7,-61.6,-40.4,-68.5C-27.1,-75.4,-13.5,-79.8,1.4,-81.9C16.3,-84,32.5,-83.5,45.7,-76.4Z" transform="translate(100 100)" />
         </svg>
+
         <div class="container mx-auto px-6 max-w-6xl">
             <div class="flex flex-col-reverse md:flex-row items-center py-12 md:py-20 gap-12 lg:gap-24 relative z-10">
                 <!-- LEFT: Typography & Conversion -->
@@ -207,7 +216,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                        <button onclick="toggleModal('signupModal')" class="w-full sm:w-auto px-10 py-4 rounded-lg font-medium text-[14px] bg-brand-plum hover:bg-brand-plum-dark text-white smooth-transition shadow-sm i18n-text" data-text-pl="Zarezerwuj miejsce" data-text-en="Reserve spot" data-text-no="Reserver plass">
+                        <button type="button" onclick="toggleModal('signupModal')" class="w-full sm:w-auto px-10 py-4 rounded-lg font-medium text-[14px] bg-brand-plum hover:bg-brand-plum-dark text-white smooth-transition shadow-sm i18n-text" data-text-pl="Zarezerwuj miejsce" data-text-en="Reserve spot" data-text-no="Reserver plass">
                             Zarezerwuj miejsce
                         </button>
                     </div>
@@ -221,6 +230,7 @@
             </div>
         </div>
     </section>
+
     <!-- Emotional Question Section -->
     <section class="py-20 md:py-32 bg-brand-white">
         <div class="container mx-auto px-6 text-center reveal">
@@ -232,6 +242,7 @@
             <div class="w-16 h-[1px] bg-brand-plum mx-auto mt-12 opacity-50"></div>
         </div>
     </section>
+
     <!-- "Czy to dla mnie?" Section -->
     <section id="about-workshop" class="py-16 md:py-24 bg-brand-cream border-y border-brand-sand/40">
         <div class="container mx-auto px-6 max-w-5xl">
@@ -255,7 +266,7 @@
                 <div class="flex gap-6 reveal">
                     <div class="text-2xl font-serif text-brand-plum/40 italic">02</div>
                     <div>
-                        <p class="text-[16px] text-brand-green leading-relaxed font-light i18n-text" data-text-pl="Jeśli zauważasz u siebie większe skupienie na oczekiwaniach innych niż na własnym ciele." data-text-en="If you notice yourself focusing more on others' expectations than on your own body." data-text-no="Hvis du fokuserer mer på andres forventninger enn på din egen kropp.">
+                        <p class="text-[16px] text-brand-green leading-relaxed font-light i18n-text" data-text-pl="Jeśli zauważasz u siebie większe skupienie na oczekiwaniach innych niż na własnym ciele." data-text-en="If you notice yourself focusing more on others' expectations than on your own body." data-text-no="Hvis du opplever å fokusere mer på andres forventninger enn på din egen kropp.">
                             Jeśli zauważasz u siebie większe skupienie na oczekiwaniach innych niż na własnym ciele.
                         </p>
                     </div>
@@ -263,7 +274,7 @@
                 <div class="flex gap-6 reveal">
                     <div class="text-2xl font-serif text-brand-plum/40 italic">03</div>
                     <div>
-                        <p class="text-[16px] text-brand-green leading-relaxed font-light i18n-text" data-text-pl="Jeśli czujesz potrzebę lepszego i pełniejszego rozpoznawania sygnałów z ciała." data-text-en="If you feel a need to better and more fully recognize signals from your body." data-text-no="Hvis du føler behov for å bedre gjenkjenne signaler fra kroppen din.">
+                        <p class="text-[16px] text-brand-green leading-relaxed font-light i18n-text" data-text-pl="Jeśli czujesz potrzebę lepszego i pełniejszego rozpoznawania sygnałów z ciała." data-text-en="If you feel a need to better and more fully recognize signals from your body." data-text-no="Hvis du kjenner et behov for å bedre og mer helhetlig gjenkjenne signaler fra kroppen.">
                             Jeśli czujesz potrzebę lepszego i pełniejszego rozpoznawania sygnałów z ciała.
                         </p>
                     </div>
@@ -271,24 +282,24 @@
                 <div class="flex gap-6 reveal">
                     <div class="text-2xl font-serif text-brand-plum/40 italic">04</div>
                     <div>
-                        <p class="text-[16px] text-brand-green leading-relaxed font-light i18n-text" data-text-pl="Jeśli szukasz sposobu na spokojniejsze, pozbawione lęku komunikowanie swoich granic." data-text-en="If you are looking for a calmer, fear-free way to communicate your boundaries." data-text-no="Hvis du leter etter en roligere måte å kommunisere grensene dine på uten frykt.">
+                        <p class="text-[16px] text-brand-green leading-relaxed font-light i18n-text" data-text-pl="Jeśli szukasz sposobu na spokojniejsze, pozbawione lęku komunikowanie swoich granic." data-text-en="If you are looking for a calmer, fear-free way to communicate your boundaries." data-text-no="Hvis du søker en roligere og tryggere måte å formidle dine grenser på.">
                             Jeśli szukasz sposobu na spokojniejsze, pozbawione lęku komunikowanie swoich granic.
                         </p>
                     </div>
                 </div>
             </div>
             <div class="mt-20 text-center max-w-2xl mx-auto reveal">
-                <p class="text-[15px] text-brand-green/80 font-light leading-relaxed i18n-text" data-text-pl="To nie jest warsztat o tym, jak powinnaś czuć. Wiele z nas nauczyło się spełniać oczekiwania, zamiast słuchać siebie. Sama rozmowa bywa niewystarczająca – potrzebujemy doświadczenia. To bezpieczna, profesjonalnie prowadzona przestrzeń, w której możesz zacząć odkrywać, jak Ty czujesz swoje ciało." data-text-en="This is not a workshop about how you should feel. Conversation alone is sometimes insufficient—we need experience. This is a professionally facilitated space where you can begin to discover how you feel your body." data-text-no="Dette er ikke en workshop om hvordan du bør føle. Samtale alene er noen ganger utilstrekkelig—vi trenger erfaring.">
-                    To nie jest warsztat o tym, jak powinnaś czuć. Wiele z nas nauczyło się spełniać oczekiwania, zamiast słuchać siebie. Sama rozmowa bywa niewystarczająca – potrzebujemy odzyskać zaufanie poprzez doświadczenie. To bezpieczna, profesjonalnie prowadzona przestrzeń, w której możesz zacząć odkrywać, jak Ty czujesz swoje ciało w tej chwili.
+                <p class="text-[15px] text-brand-green/80 font-light leading-relaxed i18n-text" data-text-pl="To nie jest warsztat o tym, jak powinnaś czuć. Wiele z nas nauczyło się spełniać oczekiwania, zamiast słuchać siebie. Sama rozmowa bywa niewystarczająca – potrzebujemy doświadczenia. To bezpieczna, profesjonalnie prowadzona przestrzeń, w której możesz zacząć odkrywać, jak Ty czujesz swoje ciało." data-text-en="This is not a workshop about how you should feel. Many of us learned to meet expectations rather than listen to ourselves. Conversation alone is sometimes insufficient—we need experience. This is a safe, professionally held space to begin discovering how you experience your body." data-text-no="Dette er ikke et verksted om hvordan du burde føle. Mange av oss lærte å tilfredsstille forventninger i stedet for å lytte til oss selv. Samtale alene kan være utilstrekkelig – vi trenger erfaring. Dette er et trygt, profesjonelt ledet rom for å begynne å kjenne din egen kropp.">
+                    To nie jest warsztat o tym, jak powinnaś czuć. Wiele z nas nauczyło się spełniać oczekiwania, zamiast słuchać siebie. Sama rozmowa bywa niewystarczająca – potrzebujemy doświadczenia. To bezpieczna, profesjonalnie prowadzona przestrzeń, w której możesz zacząć odkrywać, jak Ty czujesz swoje ciało.
                 </p>
             </div>
         </div>
     </section>
+
     <!-- Safety / Framework Section -->
     <section id="safety" class="py-20 md:py-28 bg-brand-white">
         <div class="container mx-auto px-6 max-w-6xl">
             <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
-                <!-- Left: Sticky Heading -->
                 <div class="lg:col-span-4 lg:sticky lg:top-32 self-start reveal">
                     <div class="text-[11px] font-medium uppercase tracking-widest text-brand-plum mb-3 i18n-text" data-text-pl="Zasady Pracy" data-text-en="Framework" data-text-no="Rammeverk">
                         Zasady Pracy
@@ -296,32 +307,32 @@
                     <h2 class="text-3xl md:text-4xl font-serif text-brand-green leading-tight mb-6 i18n-text" data-text-pl="Bezpieczne i dobrowolne uczestnictwo" data-text-en="Safe and voluntary participation" data-text-no="Trygg og frivillig deltakelse">
                         Bezpieczne i dobrowolne uczestnictwo
                     </h2>
-                    <p class="text-[15px] text-brand-green/70 font-light leading-relaxed i18n-text" data-text-pl="Warsztat ma charakter psychoedukacyjny i doświadczeniowy. Został zaprojektowany z najwyższą troską o Twoje granice." data-text-en="The workshop is psychoeducational and experiential, designed with the utmost care for your boundaries." data-text-no="Workshopen er psykoedukativ og erfaringsbasert, designet med stor omsorg for dine grenser.">
+                    <p class="text-[15px] text-brand-green/70 font-light leading-relaxed i18n-text" data-text-pl="Warsztat ma charakter psychoedukacyjny i doświadczeniowy. Został zaprojektowany z najwyższą troską o Twoje granice." data-text-en="The workshop is psychoeducational and experiential. It is designed with the utmost care for your boundaries." data-text-no="Verkstedet er psykoedukativt og erfaringsbasert. Det er utformet med største respekt for dine personlige grenser.">
                         Warsztat ma charakter psychoedukacyjny i doświadczeniowy. Został zaprojektowany z najwyższą troską o Twoje granice.
                     </p>
                 </div>
-                <!-- Right: Elegant List -->
                 <div class="lg:col-span-8 flex flex-col gap-10 lg:gap-14 pt-2">
                     <div class="border-t border-brand-sand/50 pt-8 reveal">
-                        <h4 class="text-lg font-medium text-brand-green mb-3 i18n-text" data-text-pl="Brak wymagań wstępnych" data-text-en="No prerequisites" data-text-no="Ingen forkunnskaper">Brak wymagań wstępnych</h4>
-                        <p class="text-[15px] text-brand-green/80 font-light leading-relaxed i18n-text" data-text-pl="Nie musisz posiadać żadnego wcześniejszego doświadczenia w pracy z ciałem czy udziału w podobnych warsztatach." data-text-en="You do not need any prior somatic experience to participate in this space." data-text-no="Du trenger ingen tidligere erfaring for å delta.">Nie musisz posiadać żadnego wcześniejszego doświadczenia w pracy z ciałem czy udziału w podobnych warsztatach.</p>
+                        <h4 class="text-lg font-medium text-brand-green mb-3 i18n-text" data-text-pl="Brak wymagań wstępnych" data-text-en="No prerequisites" data-text-no="Ingen forkunnskaper nødvendig">Brak wymagań wstępnych</h4>
+                        <p class="text-[15px] text-brand-green/80 font-light leading-relaxed i18n-text" data-text-pl="Nie musisz posiadać żadnego wcześniejszego doświadczenia w pracy z ciałem czy udziału w podobnych warsztatach." data-text-en="You do not need any previous somatic experience or background in similar workshops." data-text-no="Du trenger ingen forkunnskaper innen kroppsarbeid eller deltakelse på lignende verksteder.">Nie musisz posiadać żadnego wcześniejszego doświadczenia w pracy z ciałem czy udziału w podobnych warsztatach.</p>
                     </div>
                     <div class="border-t border-brand-sand/50 pt-8 reveal">
-                        <h4 class="text-lg font-medium text-brand-green mb-3 i18n-text" data-text-pl="Zaproszenie, nie obowiązek" data-text-en="An invitation, not an obligation" data-text-no="En invitasjon, ikke en plikt">Zaproszenie, nie obowiązek</h4>
-                        <p class="text-[15px] text-brand-green/80 font-light leading-relaxed i18n-text" data-text-pl="Nie ma przymusu dotyku. Każde proponowane ćwiczenie jest wyłącznie zaproszeniem. Możesz w dowolnym momencie zrezygnować z udziału w praktyce." data-text-en="There is no forced touch. Every exercise is an invitation, and you can pause or step back at any time." data-text-no="Det er ingen tvungen berøring. Hver øvelse er en invitasjon.">Nie ma przymusu dotyku. Każde proponowane ćwiczenie jest wyłącznie zaproszeniem. Możesz w dowolnym momencie zrezygnować z udziału w praktyce.</p>
+                        <h4 class="text-lg font-medium text-brand-green mb-3 i18n-text" data-text-pl="Zaproszenie, nie obowiązek" data-text-en="An invitation, not an obligation" data-text-no="En invitasjon, ingen forpliktelse">Zaproszenie, nie obowiązek</h4>
+                        <p class="text-[15px] text-brand-green/80 font-light leading-relaxed i18n-text" data-text-pl="Nie ma przymusu dotyku. Każde proponowane ćwiczenie jest wyłącznie zaproszeniem. Możesz w dowolnym momencie zrezygnować z udziału w praktyce." data-text-en="There is no forced touch. Every exercise is an invitation. You can pause or step back at any time." data-text-no="Det er ingen tvunget berøring. Hver øvelse er utelukkende en invitasjon. Du kan når som helst avstå fra en øvelse.">Nie ma przymusu dotyku. Każde proponowane ćwiczenie jest wyłącznie zaproszeniem. Możesz w dowolnym momencie zrezygnować z udziału w praktyce.</p>
                     </div>
                     <div class="border-t border-brand-sand/50 pt-8 reveal">
-                        <h4 class="text-lg font-medium text-brand-green mb-3 i18n-text" data-text-pl="Własne tempo" data-text-en="Your own pace" data-text-no="Ditt eget tempo">Własne tempo</h4>
-                        <p class="text-[15px] text-brand-green/80 font-light leading-relaxed i18n-text" data-text-pl="Brak presji i oceniania. To Ty decydujesz, jak głęboko chcesz wejść w dane doświadczenie. Szanujemy Twoje tempo oraz moment, w którym obecnie się znajdujesz." data-text-en="No pressure or judgment. You decide how deeply you want to engage. We respect your pace completely." data-text-no="Ingen press. Du bestemmer hvor dypt du vil engasjere deg.">Brak presji i oceniania. To Ty decydujesz, jak głęboko chcesz wejść w dane doświadczenie. Szanujemy Twoje tempo oraz moment, w którym obecnie się znajdujesz.</p>
+                        <h4 class="text-lg font-medium text-brand-green mb-3 i18n-text" data-text-pl="Własne tempo" data-text-en="Your own pace" data-text-no="Eget tempo">Własne tempo</h4>
+                        <p class="text-[15px] text-brand-green/80 font-light leading-relaxed i18n-text" data-text-pl="Brak presji i oceniania. To Ty decydujesz, jak głęboko chcesz wejść w dane doświadczenie. Szanujemy Twoje tempo oraz moment, w którym obecnie się znajdujesz." data-text-en="No pressure or judgment. You decide how deeply you wish to engage. We respect your pace and wherever you are in your journey." data-text-no="Intet press eller dømming. Du bestemmer selv hvor dypt du vil gå inn i opplevelsen. Vi respekterer ditt tempo fullt ut.">Brak presji i oceniania. To Ty decydujesz, jak głęboko chcesz wejść w dane doświadczenie. Szanujemy Twoje tempo oraz moment, w którym obecnie się znajdujesz.</p>
                     </div>
                     <div class="border-t border-brand-sand/50 pt-8 reveal">
-                        <h4 class="text-lg font-medium text-brand-green mb-3 i18n-text" data-text-pl="Prywatność procesu" data-text-en="Privacy of your process" data-text-no="Personvern i prosessen">Prywatność procesu</h4>
-                        <p class="text-[15px] text-brand-green/80 font-light leading-relaxed i18n-text" data-text-pl="Nie ma obowiązku dzielenia się swoimi przemyśleniami czy emocjami z grupą, jeśli tego nie czujesz. Twój proces może pozostać całkowicie wewnętrzny." data-text-en="There is no obligation to share your thoughts or emotions with the group. Your process can remain entirely internal." data-text-no="Det er ingen plikt til å dele tankene dine med gruppen.">Nie ma obowiązku dzielenia się swoimi przemyśleniami czy emocjami z grupą, jeśli tego nie czujesz. Twój proces może pozostać całkowicie wewnętrzny.</p>
+                        <h4 class="text-lg font-medium text-brand-green mb-3 i18n-text" data-text-pl="Prywatność procesu" data-text-en="Privacy of your process" data-text-no="Privat prosess">Prywatność procesu</h4>
+                        <p class="text-[15px] text-brand-green/80 font-light leading-relaxed i18n-text" data-text-pl="Nie ma obowiązku dzielenia się swoimi przemyśleniami czy emocjami z grupą, jeśli tego nie czujesz. Twój proces może pozostać całkowicie wewnętrzny." data-text-en="There is no obligation to share your thoughts or emotions with the group. Your process can remain completely private and internal." data-text-no="Det er ingen plikt til å dele tanker eller følelser med gruppen. Prosessen din kan forbli helt personlig og indre.">Nie ma obowiązku dzielenia się swoimi przemyśleniami czy emocjami z grupą, jeśli tego nie czujesz. Twój proces może pozostać całkowicie wewnętrzny.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- About Joanna Section -->
     <section id="about-me" class="py-20 bg-brand-cream/60">
         <div class="container mx-auto px-6 max-w-5xl">
@@ -331,41 +342,41 @@
                     <img src="https://joannafilek.com/images/1.jpg" alt="Joanna Filek" class="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover grayscale opacity-90">
                 </div>
                 <div class="text-center md:text-left">
-                    <div class="text-[11px] font-medium uppercase tracking-widest text-brand-plum mb-3 i18n-text" data-text-pl="O Prowadzącej" data-text-en="About the Facilitator" data-text-no="Om Tilretteleggeren">O Prowadzącej</div>
+                    <div class="text-[11px] font-medium uppercase tracking-widest text-brand-plum mb-3 i18n-text" data-text-pl="O Prowadzącej" data-text-en="About the Facilitator" data-text-no="Om tilretteleggeren">O Prowadzącej</div>
                     <h3 class="text-3xl font-serif text-brand-green mb-2">Joanna Filek</h3>
                     <p class="text-[14px] text-brand-plum-dark font-medium mb-6 i18n-text" data-text-pl="Psychoterapeutka, seksuolożka, psycholożka" data-text-en="Psychotherapist, sexologist, psychologist" data-text-no="Psykoterapeut, sexolog, psykolog">Psychoterapeutka, seksuolożka, psycholożka</p>
-                    <p class="text-[15px] text-brand-green/80 font-light leading-relaxed max-w-2xl i18n-text" data-text-pl="Warsztat prowadzę opierając się na moim zapleczu klinicznym – łącząc rzetelną wiedzę psychologiczną, seksuologiczną oraz ugruntowane doświadczenie terapeutyczne w pracy z kobietami. Jako specjalistka dbam przede wszystkim o to, by każda uczestniczka mogła eksplorować temat we własnym tempie, mając oparcie w poczuciu stabilności i profesjonalnych ramach spotkania." data-text-en="I facilitate this workshop based on my clinical background—combining psychological and sexological knowledge with grounded therapeutic experience working with women. My priority is providing a stable, professional framework." data-text-no="Jeg leder denne workshopen basert på min kliniske bakgrunn—og kombinerer psykologisk og sexologisk kunnskap.">
+                    <p class="text-[15px] text-brand-green/80 font-light leading-relaxed max-w-2xl i18n-text" data-text-pl="Warsztat prowadzę opierając się na moim zapleczu klinicznym – łącząc rzetelną wiedzę psychologiczną, seksuologiczną oraz ugruntowane doświadczenie terapeutyczne w pracy z kobietami. Jako specjalistka dbam przede wszystkim o to, by każda uczestniczka mogła eksplorować temat we własnym tempie, mając oparcie w poczuciu stabilności i profesjonalnych ramach spotkania." data-text-en="I facilitate this workshop from my clinical foundation—combining sound psychological, sexological knowledge with grounded therapeutic experience working with women. As a professional, my priority is ensuring every participant explores at her own pace within a stable, trustworthy framework." data-text-no="Jeg leder dette verkstedet med utgangspunkt i min kliniske bakgrunn – og forener solid psykologisk og sexologisk kunnskap med erfaring fra arbeid med kvinner. Min viktigste oppgave er å sikre at hver deltaker kan utforske i sitt eget tempo med støtte i en trygg og profesjonell ramme.">
                         Warsztat prowadzę opierając się na moim zapleczu klinicznym – łącząc rzetelną wiedzę psychologiczną, seksuologiczną oraz ugruntowane doświadczenie terapeutyczne w pracy z kobietami. Jako specjalistka dbam przede wszystkim o to, by każda uczestniczka mogła eksplorować temat we własnym tempie, mając oparcie w poczuciu stabilności i profesjonalnych ramach spotkania.
                     </p>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Pricing / Registration Section -->
     <section id="pricing" class="py-20 md:py-28 bg-brand-white border-t border-brand-sand/50">
         <div class="container mx-auto px-6">
             <div class="max-w-xl mx-auto reveal">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-serif text-brand-green mb-4 i18n-text" data-text-pl="Rezerwacja miejsca" data-text-en="Reserve your spot" data-text-no="Reserver din plass">
+                    <h2 class="text-3xl md:text-4xl font-serif text-brand-green mb-4 i18n-text" data-text-pl="Rezerwacja miejsca" data-text-en="Reserve your spot" data-text-no="Plassreservasjon">
                         Rezerwacja miejsca
                     </h2>
-                    <p class="text-[15px] font-light text-brand-green/70 i18n-text" data-text-pl="Grupa warsztatowa ma charakter kameralny, co pozwala nam zapewnić odpowiednią uważność i przestrzeń dla każdego procesu." data-text-en="The workshop group is kept small to provide adequate space and attention for each process." data-text-no="Workshopgruppen holdes liten for å gi god plass.">
+                    <p class="text-[15px] font-light text-brand-green/70 i18n-text" data-text-pl="Grupa warsztatowa ma charakter kameralny, co pozwala nam zapewnić odpowiednią uważność i przestrzeń dla każdego procesu." data-text-en="The workshop group is kept intimate to ensure adequate attention and safe space for every process." data-text-no="Verkstedgruppen holdes intim for å sikre tilstrekkelig oppmerksomhet og rom for alles opplevelse.">
                         Grupa warsztatowa ma charakter kameralny, co pozwala nam zapewnić odpowiednią uważność i przestrzeń dla każdego procesu.
                     </p>
                 </div>
                 <div class="bg-brand-cream/30 border border-brand-sand/70 p-8 md:p-12 rounded-[24px] shadow-sm">
                     <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-brand-green font-serif mb-2 i18n-text" data-text-pl="Wróć do swojego ciała" data-text-en="Return to Your Body" data-text-no="Tilbake til Kroppen Din">
+                        <h3 class="text-2xl font-bold text-brand-green font-serif mb-2 i18n-text" data-text-pl="Wróć do swojego ciała" data-text-en="Return to Your Body" data-text-no="Tilbake til kroppen din">
                             Wróć do swojego ciała
                         </h3>
-                        <p class="text-[13px] text-brand-green/70 font-medium tracking-wide i18n-text" data-text-pl="25 PAŹDZIERNIKA 2026 • 17:00–20:00 • KRAKÓW" data-text-en="OCTOBER 25, 2026 • 17:00–20:00 • CRACOW" data-text-no="25 OKTOBER 2026 • 17:00–20:00 • KRAKÓW">
+                        <p class="text-[13px] text-brand-green/70 font-medium tracking-wide i18n-text" data-text-pl="25 PAŹDZIERNIKA 2026 • 17:00–20:00 • KRAKÓW" data-text-en="OCTOBER 25, 2026 • 17:00–20:00 • CRACOW" data-text-no="25. OKTOBER 2026 • 17:00–20:00 • KRAKÓW">
                             25 PAŹDZIERNIKA 2026 • 17:00–20:00 • KRAKÓW
                         </p>
                     </div>
                     <div class="w-16 h-[1px] bg-brand-sand mx-auto mb-8"></div>
                     <!-- Dynamic Pricing Display -->
                     <div class="flex flex-col items-center mb-10">
-                        <!-- Early Bird (Switches dynamically Oct 10, 2026) -->
                         <div id="tier-early-box" class="text-center mb-6 w-full">
                             <span class="text-[11px] font-medium text-brand-plum uppercase tracking-widest block mb-2">Early Bird</span>
                             <span id="tier-early-price" class="text-5xl md:text-6xl font-serif text-brand-plum block mb-3">249 PLN</span>
@@ -373,25 +384,25 @@
                                 dostępne do 10 października
                             </span>
                         </div>
-                        <!-- Regular Price -->
                         <div id="tier-reg-box" class="text-center opacity-60 w-full mt-2">
-                            <span class="text-[11px] font-medium text-brand-green/80 uppercase tracking-widest block mb-1 i18n-text" data-text-pl="Cena regularna" data-text-en="Regular Price" data-text-no="Vanlig Pris">Cena regularna</span>
+                            <span class="text-[11px] font-medium text-brand-green/80 uppercase tracking-widest block mb-1 i18n-text" data-text-pl="Cena regularna" data-text-en="Regular Price" data-text-no="Ordinær pris">Cena regularna</span>
                             <span id="tier-reg-price" class="text-xl font-serif text-brand-green/80 block mb-1">299 PLN</span>
                             <span class="text-[11px] text-brand-green/60 font-light block i18n-text" id="tier-reg-sub" data-text-pl="od 11 października" data-text-en="from Oct 11" data-text-no="fra 11. okt">
                                 od 11 października
                             </span>
                         </div>
                     </div>
-                    <button onclick="toggleModal('signupModal')" class="w-full py-4 rounded-lg bg-brand-plum hover:bg-brand-plum-dark text-white font-medium text-[15px] smooth-transition shadow-sm i18n-text" data-text-pl="Zarezerwuj miejsce" data-text-en="Reserve your spot" data-text-no="Reserver plass">
+                    <button type="button" onclick="toggleModal('signupModal')" class="w-full py-4 rounded-lg bg-brand-plum hover:bg-brand-plum-dark text-white font-medium text-[15px] smooth-transition shadow-sm i18n-text" data-text-pl="Zarezerwuj miejsce" data-text-en="Reserve your spot" data-text-no="Reserver plass">
                         Zarezerwuj miejsce
                     </button>
-                    <p class="text-[11px] text-center mt-5 text-brand-green/50 i18n-text" data-text-pl="Bez natychmiastowej płatności · zgłoszenie zostanie zweryfikowane" data-text-en="No immediate payment · registration will be verified" data-text-no="Ingen umiddelbar betaling · registrering verifiseres">
+                    <p class="text-[11px] text-center mt-5 text-brand-green/50 i18n-text" data-text-pl="Bez natychmiastowej płatności · zgłoszenie zostanie zweryfikowane" data-text-en="No immediate payment · your registration will be reviewed" data-text-no="Ingen umiddelbar betaling · påmeldingen blir gjennomgått">
                         Bez natychmiastowej płatności · zgłoszenie zostanie zweryfikowane
                     </p>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Footer -->
     <footer class="bg-brand-white border-t border-brand-sand pt-16 pb-8 text-[13px] font-light text-brand-green/80">
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
@@ -400,7 +411,7 @@
                     <img src="https://joannafilek.com/images/logo.png" alt="Logo Joanna Filek" class="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 smooth-transition">
                     <div class="text-xl font-serif text-brand-green">Joanna Filek</div>
                 </a>
-                <p class="i18n-text font-medium text-brand-green mb-1" data-text-pl="Gabinet Psychoterapii & Seksuologii Inspiro" data-text-en="Inspiro Psychotherapy Clinic" data-text-no="Inspiro Psykoterapi Klinikk">
+                <p class="i18n-text font-medium text-brand-green mb-1" data-text-pl="Gabinet Psychoterapii & Seksuologii Inspiro" data-text-en="Inspiro Psychotherapy & Sexology Practice" data-text-no="Inspiro Psykoterapi & Sexologi Praksis">
                     Gabinet Psychoterapii & Seksuologii Inspiro
                 </p>
                 <p>ul. Skalica 15A, 30-376 Kraków</p>
@@ -408,16 +419,16 @@
             <div>
                 <h4 class="font-medium text-brand-plum mb-4 uppercase tracking-widest text-[11px] i18n-text" data-text-pl="Nawigacja" data-text-en="Navigation" data-text-no="Navigasjon">Nawigacja</h4>
                 <ul class="space-y-3">
-                    <li><a href="#about-workshop" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="O Warsztacie" data-text-en="The Workshop" data-text-no="Verkstedet">O Warsztacie</a></li>
-                    <li><a href="#safety" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="Zasady uczestnictwa" data-text-en="Safety & Framework" data-text-no="Rammeverk">Zasady uczestnictwa</a></li>
+                    <li><a href="#about-workshop" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="O Warsztacie" data-text-en="The Workshop" data-text-no="Om verkstedet">O Warsztacie</a></li>
+                    <li><a href="#safety" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="Zasady uczestnictwa" data-text-en="Framework" data-text-no="Rammeverk">Zasady uczestnictwa</a></li>
                     <li><a href="#about-me" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="O Mnie" data-text-en="About Me" data-text-no="Om meg">O Mnie</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-medium text-brand-plum mb-4 uppercase tracking-widest text-[11px] i18n-text" data-text-pl="Kontakt" data-text-en="Contact" data-text-no="Kontakt">Kontakt</h4>
                 <ul class="space-y-3">
-                    <li><button onclick="toggleModal('signupModal')" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="Formularz zgłoszeniowy" data-text-en="Registration form" data-text-no="Påmeldingsskjema">Formularz zgłoszeniowy</button></li>
-                    <li><a href="contact.html" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="Wiadomość do gabinetu" data-text-en="Message the clinic" data-text-no="Melding">Wiadomość do gabinetu</a></li>
+                    <li><button type="button" onclick="toggleModal('signupModal')" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="Formularz zgłoszeniowy" data-text-en="Registration form" data-text-no="Påmeldingsskjema">Formularz zgłoszeniowy</button></li>
+                    <li><a href="contact.html" class="hover:text-brand-plum smooth-transition i18n-text" data-text-pl="Wiadomość do gabinetu" data-text-en="Message the clinic" data-text-no="Melding til praksisen">Wiadomość do gabinetu</a></li>
                 </ul>
             </div>
         </div>
@@ -430,6 +441,7 @@
             </div>
         </div>
     </footer>
+
     <!-- STICKY MOBILE CTA BAR -->
     <div class="fixed md:hidden bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-brand-sand/60 px-5 py-3 flex items-center justify-between shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
         <div>
@@ -438,43 +450,45 @@
                 Wróć do swojego ciała
             </span>
         </div>
-        <button onclick="toggleModal('signupModal')" class="px-5 py-2.5 rounded-lg bg-brand-plum text-white text-[12px] font-medium shadow-sm i18n-text" data-text-pl="Zapisz się" data-text-en="Register" data-text-no="Påmelding">
+        <button type="button" onclick="toggleModal('signupModal')" class="px-5 py-2.5 rounded-lg bg-brand-plum text-white text-[12px] font-medium shadow-sm i18n-text" data-text-pl="Zapisz się" data-text-en="Register" data-text-no="Meld deg på">
             Zapisz się
         </button>
     </div>
-    <!-- CLINICAL REGISTRATION MODAL (CLEANER, CALMER) -->
+
+    <!-- CLINICAL REGISTRATION MODAL -->
     <div id="signupModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="signupModalTitle">
         <div class="bg-white rounded-2xl p-6 sm:p-10 max-w-lg w-full shadow-2xl relative max-h-[92vh] overflow-y-auto">
             <div class="flex justify-between items-start mb-8 border-b border-brand-sand/50 pb-6">
                 <div>
-                    <h2 id="signupModalTitle" class="text-2xl font-serif text-brand-green mb-1 i18n-text" data-text-pl="Formularz zgłoszeniowy" data-text-en="Registration Form" data-text-no="Registreringsskjema">Formularz zgłoszeniowy</h2>
-                    <p class="text-[12px] text-brand-green/60 font-light i18n-text" data-text-pl="Wypełnienie formularza nie wymaga natychmiastowej płatności." data-text-en="No immediate payment required upon submission." data-text-no="Ingen umiddelbar betaling.">
+                    <h2 id="signupModalTitle" class="text-2xl font-serif text-brand-green mb-1 i18n-text" data-text-pl="Formularz zgłoszeniowy" data-text-en="Registration Form" data-text-no="Påmeldingsskjema">Formularz zgłoszeniowy</h2>
+                    <p class="text-[12px] text-brand-green/60 font-light i18n-text" data-text-pl="Wypełnienie formularza nie wymaga natychmiastowej płatności." data-text-en="No immediate payment required upon submission." data-text-no="Ingen umiddelbar betaling kreves ved innsending.">
                         Wypełnienie formularza nie wymaga natychmiastowej płatności.
                     </p>
                 </div>
-                <button onclick="toggleModal('signupModal')" class="text-3xl leading-none font-light text-brand-green/40 hover:text-brand-plum smooth-transition" aria-label="Zamknij">&times;</button>
+                <button type="button" onclick="toggleModal('signupModal')" class="text-3xl leading-none font-light text-brand-green/40 hover:text-brand-plum smooth-transition" aria-label="Zamknij">&times;</button>
             </div>
+
             <form id="workshopSignupForm" class="space-y-6">
-                <!-- Hidden dynamic value field -->
                 <input type="hidden" name="event" id="radio-w1" value="wroc_do_swojego_ciala_early">
                 <!-- Selected Event Display -->
                 <div class="bg-brand-cream/50 p-4 rounded-xl border border-brand-sand/40">
                     <div class="text-[10px] font-medium text-brand-plum uppercase tracking-widest mb-1 i18n-text" data-text-pl="Wydarzenie" data-text-en="Event" data-text-no="Arrangement">Wydarzenie</div>
                     <div class="flex justify-between items-end">
                         <div>
-                            <div class="text-[14px] font-medium text-brand-green i18n-text" data-text-pl="Wróć do swojego ciała (25 OCT)" data-text-en="Return to Your Body (25 OCT)" data-text-no="Tilbake til Kroppen Din (25 OCT)">Wróć do swojego ciała (25 OCT)</div>
+                            <div class="text-[14px] font-medium text-brand-green i18n-text" data-text-pl="Wróć do swojego ciała (25 OCT)" data-text-en="Return to Your Body (25 OCT)" data-text-no="Tilbake til kroppen din (25 OKT)">Wróć do swojego ciała (25 OCT)</div>
                             <div id="form-w1-sub" class="text-[11px] text-brand-green/60 mt-0.5 i18n-text" data-text-pl="Kraków • 17:00 – 20:00" data-text-en="Cracow • 17:00 – 20:00" data-text-no="Kraków • 17:00 – 20:00">Kraków • 17:00 – 20:00</div>
                         </div>
                         <div id="form-w1-price" class="text-lg font-serif font-medium text-brand-plum">249 PLN</div>
                     </div>
                 </div>
+
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-[12px] text-brand-green/80 mb-1.5 i18n-text" data-text-pl="Imię i nazwisko" data-text-en="Full Name" data-text-no="Fullt Navn">Imię i nazwisko</label>
+                        <label class="block text-[12px] text-brand-green/80 mb-1.5 i18n-text" data-text-pl="Imię i nazwisko" data-text-en="Full Name" data-text-no="Fullt navn">Imię i nazwisko</label>
                         <input type="text" name="name" class="w-full px-4 py-3 text-[14px] rounded-lg border border-brand-sand/80 bg-white text-brand-green" required>
                     </div>
                     <div>
-                        <label class="block text-[12px] text-brand-green/80 mb-1.5 i18n-text" data-text-pl="Adres e-mail" data-text-en="Email Address" data-text-no="E-post">Adres e-mail</label>
+                        <label class="block text-[12px] text-brand-green/80 mb-1.5 i18n-text" data-text-pl="Adres e-mail" data-text-en="Email Address" data-text-no="E-postadresse">Adres e-mail</label>
                         <input type="email" name="email" class="w-full px-4 py-3 text-[14px] rounded-lg border border-brand-sand/80 bg-white text-brand-green" required>
                     </div>
                     <div>
@@ -482,36 +496,39 @@
                         <input type="tel" name="phone" class="w-full px-4 py-3 text-[14px] rounded-lg border border-brand-sand/80 bg-white text-brand-green" required>
                     </div>
                     <div>
-                        <label class="block text-[12px] text-brand-green/80 mb-1.5 i18n-text" data-text-pl="Czy chcesz dodać coś od siebie? (Opcjonalnie)" data-text-en="Anything you'd like to add? (Optional)" data-text-no="Vil du legge til noe? (Valgfritt)">
+                        <label class="block text-[12px] text-brand-green/80 mb-1.5 i18n-text" data-text-pl="Czy chcesz dodać coś od siebie? (Opcjonalnie)" data-text-en="Anything you'd like to add? (Optional)" data-text-no="Ønsker du å legge til noe? (Valgfritt)">
                             Czy chcesz dodać coś od siebie? (Opcjonalnie)
                         </label>
                         <textarea name="experience" rows="2" class="w-full px-4 py-3 text-[14px] rounded-lg border border-brand-sand/80 bg-white text-brand-green"></textarea>
                     </div>
                 </div>
+
                 <!-- Professional Privacy Note -->
                 <div class="flex items-start gap-3 p-4 bg-brand-cream/30 rounded-xl border border-brand-sand/30">
                     <svg class="w-4 h-4 text-brand-plum mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    <p class="text-[11px] text-brand-green/70 leading-relaxed i18n-text" data-text-pl="Twoje dane są wykorzystywane wyłącznie w celu obsługi zgłoszenia. Zapewniam pełną poufność przekazanych informacji." data-text-en="Your data is used exclusively for registration purposes. Full confidentiality is guaranteed." data-text-no="Dine data brukes utelukkende for registrering. Full konfidensialitet er garantert.">
+                    <p class="text-[11px] text-brand-green/70 leading-relaxed i18n-text" data-text-pl="Twoje dane są wykorzystywane wyłącznie w celu obsługi zgłoszenia. Zapewniam pełną poufność przekazanych informacji." data-text-en="Your details are used exclusively to process your registration. Full confidentiality of your data is guaranteed." data-text-no="Opplysningene dine brukes utelukkende til å behandle påmeldingen din. Full konfidensialitet er garantert.">
                         Twoje dane są wykorzystywane wyłącznie w celu obsługi zgłoszenia. Zapewniam pełną poufność przekazanych informacji.
                     </p>
                 </div>
-                <button type="submit" id="submitSignupBtn" class="w-full bg-brand-plum hover:bg-brand-plum-dark text-white font-medium py-3.5 rounded-lg smooth-transition text-[14px] flex justify-center items-center gap-2 i18n-text" data-text-pl="Wyślij zgłoszenie" data-text-en="Submit Registration" data-text-no="Send Registrering">
+
+                <button type="submit" id="submitSignupBtn" class="w-full bg-brand-plum hover:bg-brand-plum-dark text-white font-medium py-3.5 rounded-lg smooth-transition text-[14px] flex justify-center items-center gap-2 i18n-text" data-text-pl="Wyślij zgłoszenie" data-text-en="Submit Registration" data-text-no="Send påmelding">
                     Wyślij zgłoszenie
                 </button>
                 <div id="signupFormMessage" class="text-center mt-3 text-[13px] font-medium hidden"></div>
             </form>
         </div>
     </div>
+
     <!-- Confirmation Modal -->
     <div id="confirmModal" class="modal" style="z-index: 110;">
         <div class="bg-white rounded-2xl p-8 max-w-sm w-full shadow-xl relative text-center">
             <h2 class="text-2xl font-serif text-brand-green mb-3 i18n-text" data-text-pl="Potwierdzenie" data-text-en="Confirmation" data-text-no="Bekreftelse">Potwierdzenie</h2>
-            <p class="text-[14px] text-brand-green/80 mb-8 leading-relaxed i18n-text" data-text-pl="Dziękuję za zgłoszenie. Skontaktuję się z Tobą mailowo, aby przekazać szczegóły i potwierdzić rezerwację miejsca." data-text-en="Thank you for registering. I will contact you via email with details to confirm your reservation." data-text-no="Takk for registreringen. Jeg vil kontakte deg med detaljer.">
+            <p class="text-[14px] text-brand-green/80 mb-8 leading-relaxed i18n-text" data-text-pl="Dziękuję za zgłoszenie. Skontaktuję się z Tobą mailowo, aby przekazać szczegóły i potwierdzić rezerwację miejsca." data-text-en="Thank you for registering. I will contact you via email with payment details to confirm your reservation." data-text-no="Takk for påmeldingen. Jeg kontakter deg på e-post med detaljer for å bekrefte plassen din.">
                 Dziękuję za zgłoszenie. Skontaktuję się z Tobą mailowo, aby przekazać szczegóły i potwierdzić rezerwację miejsca.
             </p>
             <div class="flex gap-3 justify-center">
-                <button onclick="toggleModal('confirmModal')" class="w-full px-4 py-2.5 rounded-lg border border-brand-sand text-brand-green font-medium hover:bg-brand-cream smooth-transition text-[13px] i18n-text" data-text-pl="Anuluj" data-text-en="Cancel" data-text-no="Avbryt">Anuluj</button>
-                <button id="confirmSubmitBtn" class="w-full px-4 py-2.5 rounded-lg bg-brand-plum hover:bg-brand-plum-dark text-white font-medium smooth-transition text-[13px] i18n-text" data-text-pl="Wyślij" data-text-en="Send" data-text-no="Send">Wyślij</button>
+                <button type="button" onclick="toggleModal('confirmModal')" class="w-full px-4 py-2.5 rounded-lg border border-brand-sand text-brand-green font-medium hover:bg-brand-cream smooth-transition text-[13px] i18n-text" data-text-pl="Anuluj" data-text-en="Cancel" data-text-no="Avbryt">Anuluj</button>
+                <button type="button" id="confirmSubmitBtn" class="w-full px-4 py-2.5 rounded-lg bg-brand-plum hover:bg-brand-plum-dark text-white font-medium smooth-transition text-[13px] i18n-text" data-text-pl="Wyślij" data-text-en="Send" data-text-no="Send">Wyślij</button>
             </div>
         </div>
     </div>
@@ -521,21 +538,21 @@
         <div class="bg-white rounded-[32px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button type="button" onclick="toggleModal('waitingListModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
 
-            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">
+            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4 i18n-text" data-text-pl="Lista oczekujących" data-text-en="Waiting list" data-text-no="Venteliste">
                 Lista oczekujących
             </div>
 
-            <h2 class="text-3xl font-bold text-brand-plum mb-4">
+            <h2 class="text-3xl font-bold text-brand-plum mb-4 i18n-text" data-text-pl="Dołącz do listy oczekujących" data-text-en="Join the waiting list" data-text-no="Bli med på ventelisten">
                 Dołącz do listy oczekujących
             </h2>
 
-            <p class="text-sm text-brand-green/75 mb-6 leading-relaxed">
+            <p class="text-sm text-brand-green/75 mb-6 leading-relaxed i18n-text" data-text-pl="Jeśli obecnie nie widzisz dogodnego terminu, możesz zostawić swoje dane. Skontaktuję się, gdy pojawi się możliwość konsultacji lub regularnego procesu terapeutycznego." data-text-en="If you don't find a convenient time slot right now, leave your details. I will reach out as soon as a consultation or therapy opening becomes available." data-text-no="Dersom du ikke finner et passende tidspunkt nå, kan du legge igjen opplysningene dine. Jeg tar kontakt så snart en ledig time blir tilgjengelig.">
                 Jeśli obecnie nie widzisz dogodnego terminu, możesz zostawić swoje dane.
                 Skontaktuję się, gdy pojawi się możliwość konsultacji lub regularnego procesu terapeutycznego.
             </p>
 
             <div class="bg-brand-green-light border border-brand-lavender/70 rounded-2xl p-4 mb-6">
-                <p class="text-[11px] leading-relaxed text-brand-green/75">
+                <p class="text-[11px] leading-relaxed text-brand-green/75 i18n-text" data-text-pl="Ten formularz nie służy do kontaktu kryzysowego. Jeśli znajdujesz się w sytuacji bezpośredniego zagrożenia zdrowia lub życia, skontaktuj się z numerem alarmowym 112 lub najbliższą placówką medyczną." data-text-en="This form is not for emergency crisis support. If you are in immediate danger, contact your local emergency services (112) or the nearest medical center." data-text-no="Dette skjemaet er ikke ment for akutte krisesituasjoner. Ved akutt fare, vennligst ring nødetatene (112) eller oppsøk nærmeste legevakt.">
                     Ten formularz nie służy do kontaktu kryzysowego. Jeśli znajdujesz się w sytuacji bezpośredniego zagrożenia zdrowia lub życia,
                     skontaktuj się z numerem alarmowym 112 lub najbliższą placówką medyczną.
                 </p>
@@ -547,13 +564,11 @@
                 method="POST"
                 target="waitingListTarget"
                 class="space-y-5"
-                onsubmit="return validateWaitingList(event);"
             >
                 <input type="hidden" name="form_type" value="waitinglist">
                 <input type="hidden" name="source_page" value="Workshop page waiting list modal">
                 <input type="hidden" id="waiting_load_time" value="">
 
-                <!-- Honeypot anti-spam field: keep hidden -->
                 <div class="absolute -left-[9999px]" aria-hidden="true">
                     <label for="waiting_bot_website">Zostaw puste</label>
                     <input type="text" name="website" id="waiting_bot_website" tabindex="-1" autocomplete="off">
@@ -561,23 +576,23 @@
 
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Imię i nazwisko *</label>
-                        <input type="text" name="name" required placeholder="Imię i nazwisko" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block i18n-text" data-text-pl="Imię i nazwisko *" data-text-en="Full Name *" data-text-no="Fullt navn *">Imię i nazwisko *</label>
+                        <input type="text" name="name" required placeholder="Imię i nazwisko" data-lang-pl="Imię i nazwisko" data-lang-en="Full name" data-lang-no="Fullt navn" class="lang-placeholder w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
                     </div>
 
                     <div>
-                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">E-mail *</label>
-                        <input type="email" name="email" required placeholder="Twój adres e-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block i18n-text" data-text-pl="E-mail *" data-text-en="Email *" data-text-no="E-post *">E-mail *</label>
+                        <input type="email" name="email" required placeholder="Twój adres e-mail" data-lang-pl="Twój adres e-mail" data-lang-en="Your email address" data-lang-no="Din e-postadresse" class="lang-placeholder w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
                     </div>
                 </div>
 
                 <div>
-                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Telefon opcjonalnie</label>
-                    <input type="tel" name="phone" placeholder="Numer telefonu" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block i18n-text" data-text-pl="Telefon opcjonalnie" data-text-en="Phone (optional)" data-text-no="Telefon (valgfritt)">Telefon opcjonalnie</label>
+                    <input type="tel" name="phone" placeholder="Numer telefonu" data-lang-pl="Numer telefonu" data-lang-en="Phone number" data-lang-no="Telefonnummer" class="lang-placeholder w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
                 </div>
 
                 <div>
-                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3">Forma spotkania</p>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3 i18n-text" data-text-pl="Forma spotkania" data-text-en="Format preference" data-text-no="Møteform">Forma spotkania</p>
                     <div class="grid sm:grid-cols-3 gap-3">
                         <label class="cursor-pointer">
                             <input type="radio" name="preferred_format" value="Online" class="peer sr-only" required>
@@ -585,76 +600,75 @@
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="preferred_format" value="Stacjonarnie w Krakowie" class="peer sr-only" required>
-                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">Stacjonarnie</span>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition i18n-text" data-text-pl="Stacjonarnie" data-text-en="In Cracow" data-text-no="I Kraków">Stacjonarnie</span>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="preferred_format" value="Bez preferencji" class="peer sr-only" required>
-                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">Bez preferencji</span>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition i18n-text" data-text-pl="Bez preferencji" data-text-en="Flexible" data-text-no="Fleksibel">Bez preferencji</span>
                         </label>
                     </div>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Rodzaj wsparcia *</label>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block i18n-text" data-text-pl="Rodzaj wsparcia *" data-text-en="Support type *" data-text-no="Type støtte *">Rodzaj wsparcia *</label>
                         <select name="support_type" required class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
-                            <option value="">Wybierz...</option>
-                            <option value="Terapia indywidualna">Terapia indywidualna</option>
-                            <option value="Terapia par">Terapia par</option>
-                            <option value="Konsultacja seksuologiczna / terapia seksuologiczna">Konsultacja seksuologiczna / terapia seksuologiczna</option>
-                            <option value="Regularny proces terapeutyczny">Regularny proces terapeutyczny</option>
-                            <option value="Nie wiem jeszcze">Nie wiem jeszcze</option>
+                            <option value="" class="i18n-text" data-text-pl="Wybierz..." data-text-en="Select..." data-text-no="Velg...">Wybierz...</option>
+                            <option value="Terapia indywidualna" class="i18n-text" data-text-pl="Terapia indywidualna" data-text-en="Individual therapy" data-text-no="Individuell terapi">Terapia indywidualna</option>
+                            <option value="Terapia par" class="i18n-text" data-text-pl="Terapia par" data-text-en="Couples therapy" data-text-no="Parterapi">Terapia par</option>
+                            <option value="Konsultacja seksuologiczna / terapia seksuologiczna" class="i18n-text" data-text-pl="Konsultacja seksuologiczna" data-text-en="Sexology consultation" data-text-no="Sexologisk konsultasjon">Konsultacja seksuologiczna</option>
+                            <option value="Regularny proces terapeutyczny" class="i18n-text" data-text-pl="Regularny proces terapeutyczny" data-text-en="Ongoing therapy process" data-text-no="Regelmessig terapiprosess">Regularny proces terapeutyczny</option>
+                            <option value="Nie wiem jeszcze" class="i18n-text" data-text-pl="Nie wiem jeszcze" data-text-en="Not sure yet" data-text-no="Ikke sikker ennå">Nie wiem jeszcze</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Preferowana pora *</label>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block i18n-text" data-text-pl="Preferowana pora *" data-text-en="Preferred time *" data-text-no="Foretrukket tidspunkt *">Preferowana pora *</label>
                         <select name="preferred_time" required class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
-                            <option value="">Wybierz...</option>
-                            <option value="Rano">Rano</option>
-                            <option value="Popołudnie">Popołudnie</option>
-                            <option value="Wieczór">Wieczór</option>
-                            <option value="Elastycznie">Elastycznie</option>
+                            <option value="" class="i18n-text" data-text-pl="Wybierz..." data-text-en="Select..." data-text-no="Velg...">Wybierz...</option>
+                            <option value="Rano" class="i18n-text" data-text-pl="Rano" data-text-en="Morning" data-text-no="Morgen">Rano</option>
+                            <option value="Popołudnie" class="i18n-text" data-text-pl="Popołudnie" data-text-en="Afternoon" data-text-no="Ettermiddag">Popołudnie</option>
+                            <option value="Wieczór" class="i18n-text" data-text-pl="Wieczór" data-text-en="Evening" data-text-no="Kveld">Wieczór</option>
+                            <option value="Elastycznie" class="i18n-text" data-text-pl="Elastycznie" data-text-en="Flexible" data-text-no="Fleksibelt">Elastycznie</option>
                         </select>
                     </div>
                 </div>
 
                 <div>
-                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Preferowane dni</label>
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block i18n-text" data-text-pl="Preferowane dni" data-text-en="Preferred days" data-text-no="Foretrukne dager">Preferowane dni</label>
                     <select name="preferred_days" class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
-                        <option value="">Wybierz opcjonalnie...</option>
-                        <option value="Poniedziałek - piątek">Poniedziałek - piątek</option>
-                        <option value="Weekend, jeśli dostępny">Weekend, jeśli dostępny</option>
-                        <option value="Elastycznie">Elastycznie</option>
+                        <option value="" class="i18n-text" data-text-pl="Wybierz opcjonalnie..." data-text-en="Optional selection..." data-text-no="Valgfritt valg...">Wybierz opcjonalnie...</option>
+                        <option value="Poniedziałek - piątek" class="i18n-text" data-text-pl="Poniedziałek - piątek" data-text-en="Monday - Friday" data-text-no="Mandag - fredag">Poniedziałek - piątek</option>
+                        <option value="Weekend, jeśli dostępny" class="i18n-text" data-text-pl="Weekend, jeśli dostępny" data-text-en="Weekend if available" data-text-no="Helg om tilgjengelig">Weekend, jeśli dostępny</option>
+                        <option value="Elastycznie" class="i18n-text" data-text-pl="Elastycznie" data-text-en="Flexible" data-text-no="Fleksibelt">Elastycznie</option>
                     </select>
                 </div>
 
                 <div>
-                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Czy jest coś ważnego, co chcesz dodać?</label>
-                    <textarea name="message" rows="4" placeholder="Krótka wiadomość opcjonalnie" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"></textarea>
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block i18n-text" data-text-pl="Czy jest coś ważnego, co chcesz dodać?" data-text-en="Anything else you'd like to share?" data-text-no="Er det noe viktig du vil legge til?">Czy jest coś ważnego, co chcesz dodać?</label>
+                    <textarea name="message" rows="4" placeholder="Krótka wiadomość opcjonalnie" data-lang-pl="Krótka wiadomość opcjonalnie" data-lang-en="Brief message (optional)" data-lang-no="Kort notat (valgfritt)" class="lang-placeholder w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"></textarea>
                 </div>
 
                 <div class="flex items-start gap-3 bg-brand-green-light p-4 rounded-2xl border border-brand-lavender/60">
                     <input type="checkbox" id="waitingConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
-                    <label for="waitingConsent" class="text-[11px] leading-relaxed text-brand-green/80">
-                        Wyrażam zgodę na kontakt w sprawie listy oczekujących oraz przetwarzanie podanych danych w celu obsługi zgłoszenia.
-                        Wiem, że mogę wycofać zgodę w każdej chwili.
+                    <label for="waitingConsent" class="text-[11px] leading-relaxed text-brand-green/80 i18n-text" data-text-pl="Wyrażam zgodę na kontakt w sprawie listy oczekujących oraz przetwarzanie podanych danych w celu obsługi zgłoszenia. Wiem, że mogę wycofać zgodę w każdej chwili." data-text-en="I consent to being contacted regarding the waiting list and to the processing of my details to manage my request. I can withdraw consent at any time." data-text-no="Jeg samtykker til å bli kontaktet angående ventelisten og til behandling av mine data. Samtykket kan trekkes tilbake når som helst.">
+                        Wyrażam zgodę na kontakt w sprawie listy oczekujących oraz przetwarzanie podanych danych w celu obsługi zgłoszenia. Wiem, że mogę wycofać zgodę w każdej chwili.
                     </label>
                 </div>
 
                 <!-- Anti-spam human verification -->
                 <div class="flex items-center gap-3 bg-brand-violet-light/50 p-4 rounded-xl border border-brand-lavender">
                     <input type="checkbox" id="humanCheckWaiting" class="w-5 h-5 accent-brand-plum cursor-pointer">
-                    <label for="humanCheckWaiting" class="text-xs font-bold text-brand-green cursor-pointer select-none">
+                    <label for="humanCheckWaiting" class="text-xs font-bold text-brand-green cursor-pointer select-none i18n-text" data-text-pl="Zaznacz, aby udowodnić, że jesteś człowiekiem / I am human" data-text-en="Please confirm you are human / I am human" data-text-no="Bekreft at du er et menneske / I am human">
                         Zaznacz, aby udowodnić, że jesteś człowiekiem / I am human
                     </label>
                 </div>
 
-                <button type="submit" id="submitWaitingBtn" disabled class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg transition-all uppercase tracking-widest">
+                <button type="submit" id="submitWaitingBtn" disabled class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg transition-all uppercase tracking-widest i18n-text" data-text-pl="Dołącz do listy oczekujących" data-text-en="Join the waiting list" data-text-no="Meld deg på ventelisten">
                     Dołącz do listy oczekujących
                 </button>
 
-                <p id="waitingListSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed">
+                <p id="waitingListSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed i18n-text" data-text-pl="Dziękujemy. Zgłoszenie zostało zapisane. Skontaktujemy się, gdy pojawi się odpowiednia możliwość spotkania." data-text-en="Thank you. Your request has been saved. I will contact you when a suitable opening arises." data-text-no="Takk. Påmeldingen er lagret. Vi tar kontakt når en time blir ledig.">
                     Dziękujemy. Zgłoszenie zostało zapisane. Skontaktujemy się, gdy pojawi się odpowiednia możliwość spotkania.
                 </p>
             </form>
@@ -666,13 +680,16 @@
     <!-- Newsletter Modal -->
     <div id="newsletterModal" class="modal">
         <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
-            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">Newsletter psychoedukacyjny</div>
-            <h2 class="text-3xl font-bold text-brand-plum mb-4">Dołącz do newslettera</h2>
-            <form id="newsletterForm" action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec" method="POST" target="newsletterTarget" class="space-y-4" onsubmit="document.getElementById('newsletterSuccess').classList.remove('hidden'); setTimeout(() => { this.reset(); toggleModal('newsletterModal'); document.getElementById('newsletterSuccess').classList.add('hidden'); }, 3000);">
-                <input type="email" name="email" placeholder="Twój adres e-mail / Your email" required class="w-full px-5 py-3 rounded-xl border border-brand-sand focus:outline-brand-plum">
+            <button type="button" onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4 i18n-text" data-text-pl="Newsletter psychoedukacyjny" data-text-en="Psychoeducational newsletter" data-text-no="Psykoedukativt nyhetsbrev">Newsletter psychoedukacyjny</div>
+            <h2 class="text-3xl font-bold text-brand-plum mb-4 i18n-text" data-text-pl="Dołącz do newslettera" data-text-en="Join the newsletter" data-text-no="Meld deg på nyhetsbrevet">Dołącz do newslettera</h2>
+            <p class="text-xs text-brand-green/70 mb-6 leading-relaxed i18n-text" data-text-pl="Bądź na bieżąco z nadchodzącymi warsztatami, świątyniami tantry i wydarzeniami." data-text-en="Stay up to date with upcoming workshops, tantra temples, and events." data-text-no="Hold deg oppdatert på kommende verksteder og arrangementer.">
+                Bądź na bieżąco z nadchodzącymi warsztatami, świątyniami tantry i wydarzeniami.
+            </p>
+            <form id="newsletterForm" action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec" method="POST" target="newsletterTarget" class="space-y-4">
+                <input type="email" name="email" placeholder="Twój adres e-mail / Your email" data-lang-pl="Twój adres e-mail / Your email" data-lang-en="Your email address" data-lang-no="Din e-postadresse" required class="lang-placeholder w-full px-5 py-3 rounded-xl border border-brand-sand focus:outline-brand-plum">
                 <div>
-                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3">Język / Language</p>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3 i18n-text" data-text-pl="Język / Language" data-text-en="Language" data-text-no="Språk">Język / Language</p>
                     <div class="grid grid-cols-2 gap-3">
                         <label class="cursor-pointer">
                             <input type="radio" name="language" value="PL" class="peer sr-only" checked required>
@@ -688,17 +705,22 @@
                 <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
                 <div class="flex items-start gap-2 bg-brand-cream/30 p-3 rounded-xl border border-brand-sand">
                     <input type="checkbox" id="newsConsent" name="consent" value="true" class="mt-0.5 accent-brand-plum" required>
-                    <label for="newsConsent" class="text-[11px] leading-relaxed text-brand-green/80">Wyrażam zgodę na otrzymywanie newslettera. Wiem, że mogę wycofać zgodę w każdej chwili.</label>
+                    <label for="newsConsent" class="text-[11px] leading-relaxed text-brand-green/80 i18n-text" data-text-pl="Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach i wydarzeniach. Wiem, że mogę wycofać zgodę w każdej chwili." data-text-en="I consent to receive newsletter updates about upcoming workshops. I understand I can unsubscribe anytime." data-text-no="Jeg samtykker til å motta nyhetsbrev om kommende verksteder. Samtykket kan trekkes tilbake når som helst.">
+                        Wyrażam zgodę na otrzymywanie informacji marketingowych o nadchodzących warsztatach i wydarzeniach. Wiem, że mogę wycofać zgodę w każdej chwili.
+                    </label>
                 </div>
-                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-3.5 rounded-xl shadow-lg hover:opacity-90 transition-all">Zapisz się / Subscribe</button>
-                <p id="newsletterSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-sand rounded-xl p-3 leading-relaxed">Dziękujemy! / Thank you!</p>
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-3.5 rounded-xl shadow-lg hover:opacity-90 transition-all i18n-text" data-text-pl="Zapisz się / Subscribe" data-text-en="Subscribe" data-text-no="Abonner">
+                    Zapisz się / Subscribe
+                </button>
+                <p id="newsletterSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-sand rounded-xl p-3 leading-relaxed i18n-text" data-text-pl="Dziękujemy! Twój adres został pomyślnie zapisany." data-text-en="Thank you! You have been subscribed successfully." data-text-no="Takk! Du er nå påmeldt nyhetsbrevet.">
+                    Dziękujemy! Twój adres został pomyślnie zapisany.
+                </p>
             </form>
             <iframe name="newsletterTarget" style="display:none"></iframe>
         </div>
     </div>
 
     <script>
-        // Setup Simple Scroll Reveal Observer
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -709,50 +731,36 @@
         }, { threshold: 0.1 });
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // Automatic Pricing Engine logic
         function applyDynamicPricing() {
             const cutoffDate = new Date("2026-10-10T00:00:00");
             const isRegular = new Date() >= cutoffDate;
 
-            // Hero Elements
             const heroPrice = document.getElementById("hero-price");
             const heroPriceSub = document.getElementById("hero-price-sub");
 
-            // Card Elements
             const earlyBox = document.getElementById("tier-early-box");
             const earlySub = document.getElementById("tier-early-sub");
             const earlyPrice = document.getElementById("tier-early-price");
             const regBox = document.getElementById("tier-reg-box");
             const regSub = document.getElementById("tier-reg-sub");
             const regPrice = document.getElementById("tier-reg-price");
-            const glancePrice = document.getElementById("at-glance-price");
-            
-            // Modal Element
+
             const radioW1 = document.getElementById("radio-w1");
             const formPrice = document.getElementById("form-w1-price");
 
             if (isRegular) {
-                // Update Hero
                 if (heroPrice) heroPrice.textContent = "299 PLN";
                 if (heroPriceSub) {
                     heroPriceSub.setAttribute('data-text-pl', 'Cena regularna • dostępne od 11 października');
-                    heroPriceSub.setAttribute('data-text-en', 'Regular Price • from Oct 11');
-                    heroPriceSub.setAttribute('data-text-no', 'Vanlig Pris • fra 11. okt');
+                    heroPriceSub.setAttribute('data-text-en', 'Regular price • from October 11');
+                    heroPriceSub.setAttribute('data-text-no', 'Ordinær pris • fra 11. oktober');
                 }
 
-                // Update Glance
-                if (glancePrice) {
-                    glancePrice.setAttribute('data-text-pl', 'Od 299 PLN');
-                    glancePrice.setAttribute('data-text-en', 'From 299 PLN');
-                    glancePrice.setAttribute('data-text-no', 'Fra 299 PLN');
-                }
-                
-                // Update Card
                 if (earlyBox) earlyBox.className = "text-center mb-6 w-full opacity-40";
                 if (earlyPrice) earlyPrice.className = "text-2xl font-serif text-brand-plum block mb-2 line-through";
                 if (earlySub) {
                     earlySub.setAttribute('data-text-pl', 'Pula wyczerpana (10 października)');
-                    earlySub.setAttribute('data-text-en', 'Tier ended (Oct 10)');
+                    earlySub.setAttribute('data-text-en', 'Tier closed (Oct 10)');
                     earlySub.setAttribute('data-text-no', 'Avsluttet (10. okt)');
                 }
                 if (regBox) regBox.className = "text-center w-full mt-2";
@@ -760,19 +768,20 @@
                 if (regSub) {
                     regSub.setAttribute('data-text-pl', 'Aktualnie dostępna');
                     regSub.setAttribute('data-text-en', 'Currently available');
-                    regSub.setAttribute('data-text-no', 'Aktivt nå');
+                    regSub.setAttribute('data-text-no', 'Nå tilgjengelig');
                 }
-                
-                // Update hidden form input & form text
+
                 if (radioW1) radioW1.value = "wroc_do_swojego_ciala_regular_299";
                 if (formPrice) formPrice.textContent = "299 PLN";
             }
         }
 
-        // Bulletproof Language Engine
         function setLanguage(lang) {
             if (!['pl', 'en', 'no'].includes(lang)) lang = 'pl';
             try { localStorage.setItem('preferredLanguage', lang); } catch(e) { }
+
+            document.body.classList.remove('lang-pl', 'lang-en', 'lang-no');
+            document.body.classList.add('lang-' + lang);
 
             document.querySelectorAll('.i18n-text').forEach(el => {
                 const translation = el.getAttribute('data-text-' + lang);
@@ -785,17 +794,31 @@
             });
         }
 
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            const isOpen = modal.classList.contains('active');
+            if (isOpen) {
+                modal.classList.remove('active');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                modal.style.display = 'flex';
+                modal.offsetHeight; // trigger reflow
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
-            applyDynamicPricing(); 
+            applyDynamicPricing();
             let savedLang = 'pl';
             try { savedLang = localStorage.getItem('preferredLanguage') || 'pl'; } catch(e) {}
-            setLanguage(savedLang); 
+            setLanguage(savedLang);
 
-            // Setup time trap for waiting list form
             const waitingLoadField = document.getElementById('waiting_load_time');
             if(waitingLoadField) { waitingLoadField.value = new Date().getTime(); }
 
-            // Anti-spam checkbox logic for waiting list
             const humanCheckWaiting = document.getElementById('humanCheckWaiting');
             const submitWaitingBtn = document.getElementById('submitWaitingBtn');
             const waitingForm = document.getElementById('waitingListForm');
@@ -815,6 +838,44 @@
                         submitWaitingBtn.classList.remove('hover:opacity-90');
                     }
                 });
+
+                waitingForm.addEventListener('submit', function(event) {
+                    const botField = document.getElementById('waiting_bot_website').value;
+                    const loadTime = document.getElementById('waiting_load_time').value;
+                    const submitTime = new Date().getTime();
+
+                    if (botField !== "" || (submitTime - loadTime) < 3000) {
+                        event.preventDefault();
+                        return false;
+                    }
+
+                    document.getElementById('waitingListSuccess').classList.remove('hidden');
+                    setTimeout(() => {
+                        waitingForm.reset();
+                        waitingForm.action = "";
+                        humanCheckWaiting.checked = false;
+                        submitWaitingBtn.disabled = true;
+                        submitWaitingBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                        submitWaitingBtn.classList.remove('hover:opacity-90');
+                        setTimeout(() => {
+                            document.getElementById('waitingListSuccess').classList.add('hidden');
+                            toggleModal('waitingListModal');
+                        }, 2000);
+                    }, 500);
+                });
+            }
+
+            const newsletterForm = document.getElementById('newsletterForm');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function() {
+                    const successP = document.getElementById('newsletterSuccess');
+                    if (successP) successP.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.reset();
+                        toggleModal('newsletterModal');
+                        if (successP) successP.classList.add('hidden');
+                    }, 2500);
+                });
             }
 
             const menuBtn = document.getElementById('menuBtn');
@@ -832,47 +893,6 @@
             });
         });
 
-        // Validation function for waiting list
-        window.validateWaitingList = function(event) {
-            const botField = document.getElementById('waiting_bot_website').value;
-            const loadTime = document.getElementById('waiting_load_time').value;
-            const submitTime = new Date().getTime();
-            
-            if (botField !== "" || (submitTime - loadTime) < 3000) {
-                event.preventDefault();
-                return false;
-            }
-            
-            document.getElementById('waitingListSuccess').classList.remove('hidden');
-            setTimeout(() => { 
-                const waitingForm = document.getElementById('waitingListForm');
-                const humanCheckWaiting = document.getElementById('humanCheckWaiting');
-                const submitWaitingBtn = document.getElementById('submitWaitingBtn');
-                if(waitingForm) {
-                    waitingForm.reset(); 
-                    waitingForm.action = "";
-                    if(humanCheckWaiting) humanCheckWaiting.checked = false;
-                    if(submitWaitingBtn) {
-                        submitWaitingBtn.disabled = true;
-                        submitWaitingBtn.classList.remove('hover:opacity-90');
-                    }
-                }
-                setTimeout(() => {
-                    document.getElementById('waitingListSuccess').classList.add('hidden');
-                    toggleModal('waitingListModal');
-                }, 3000);
-            }, 500);
-            return true;
-        };
-
-        function toggleModal(id) {
-            const modal = document.getElementById(id);
-            if (modal) {
-                modal.classList.toggle('active');
-                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
-            }
-        }
-
         let pendingForm = null;
         document.getElementById('workshopSignupForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -887,10 +907,10 @@
             const form = pendingForm;
             const submitBtn = document.getElementById('submitSignupBtn');
             const messageDiv = document.getElementById('signupFormMessage');
-            
+
             const formData = new FormData(form);
             formData.append('form_type', 'wroc_do_swojego_ciala_signup');
-            
+
             const currentLang = localStorage.getItem('preferredLanguage') || 'pl';
             formData.append('language', currentLang.toUpperCase());
             formData.append('source_page', 'Wróć do swojego ciała - Clinic Editorial Landing');
@@ -898,7 +918,7 @@
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
             const originalBtnHtml = submitBtn.innerHTML;
-            
+
             if (currentLang === 'en') submitBtn.innerHTML = `SENDING...`;
             else if (currentLang === 'no') submitBtn.innerHTML = `SENDER...`;
             else submitBtn.innerHTML = `WYSYŁANIE...`;
@@ -912,9 +932,9 @@
             })
             .then(() => {
                 if (currentLang === 'en') messageDiv.innerHTML = 'Thank you! Your registration has been sent.';
-                else if (currentLang === 'no') messageDiv.innerHTML = 'Takk! Din registrering er sendt.';
+                else if (currentLang === 'no') messageDiv.innerHTML = 'Takk! Din påmelding er sendt.';
                 else messageDiv.innerHTML = 'Dziękujemy! Twoje zgłoszenie zostało pomyślnie wysłane.';
-                
+
                 messageDiv.className = 'text-center mt-4 text-[14px] font-medium text-brand-green';
                 messageDiv.classList.remove('hidden');
                 form.reset();
@@ -924,7 +944,7 @@
                 if (currentLang === 'en') messageDiv.innerHTML = 'An error occurred. Please try again later.';
                 else if (currentLang === 'no') messageDiv.innerHTML = 'En feil oppstod. Prøv igjen senere.';
                 else messageDiv.textContent = 'Wystąpił błąd podczas wysyłania. Spróbuj ponownie później.';
-                
+
                 messageDiv.className = 'text-center mt-4 text-[14px] font-medium text-brand-plum';
                 messageDiv.classList.remove('hidden');
             })
@@ -936,23 +956,12 @@
             });
         });
 
-        /* Escape key modal close handler */
-        (function () {
-          function syncModalLock() {
-            document.body.style.overflow = document.querySelector('.modal.active') ? 'hidden' : '';
-          }
-          document.addEventListener('keydown', function (e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
-              const active = document.querySelector('.modal.active');
-              if (active) {
-                active.classList.remove('active');
-                syncModalLock();
-              }
+                const active = document.querySelector('.modal.active');
+                if (active) toggleModal(active.id);
             }
-          });
-          const observer = new MutationObserver(syncModalLock);
-          observer.observe(document.body, {subtree:true, attributes:true, attributeFilter:['class']});
-        })();
+        });
     </script>
 </body>
 </html>
