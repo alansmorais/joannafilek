@@ -129,7 +129,24 @@
             <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
                 <a href="index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
                 <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
-                <a href="works.html" class="hover:text-brand-plum smooth-transition">Warsztaty</a>
+                 <button class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">
+        Warsztaty
+    </button>
+
+    <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block z-50">
+        <div class="bg-white rounded-2xl shadow-xl border border-brand-lavender/40 p-2 w-64">
+
+            <a href="works.html"
+               class="block px-4 py-3 rounded-xl text-sm font-semibold text-brand-green hover:bg-brand-violet-light hover:text-brand-plum smooth-transition">
+                Wszystkie warsztaty
+            </a>
+
+            <a href="wroc_do_swojego_ciala_signup.html"
+               class="block px-4 py-3 rounded-xl text-sm font-semibold text-brand-green hover:bg-brand-violet-light hover:text-brand-plum smooth-transition">
+                Warsztat dla kobiet
+            </a>
+
+        </div>
                 <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
                 <button onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Lista oczekujących</button>
                 <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
