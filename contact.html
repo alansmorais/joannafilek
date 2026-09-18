@@ -41,6 +41,20 @@
         .mobile-menu { display: none; }
         .mobile-menu.active { display: flex; }
         
+        /* Modal Styles */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            z-index: 100; 
+            background: rgba(0,0,0,0.5); 
+            backdrop-filter: blur(4px); 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .modal.active { display: flex; }
+
         /* Custom styling for disabled button */
         button:disabled {
             background-color: #E8C1D9;
@@ -107,33 +121,33 @@
                 </div>
             </a>
 
-                       <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-3 rounded-full shadow-sm text-xs font-bold text-brand-green uppercase tracking-wider">
                 <a href="index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
                 <a href="about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
                 <div class="relative group">
-    <button class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">
-        Warsztaty
-    </button>
+                    <button class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">
+                        Warsztaty
+                    </button>
 
-    <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block z-50">
-        <div class="bg-white rounded-2xl shadow-xl border border-brand-lavender/40 p-2 w-64">
+                    <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block z-50">
+                        <div class="bg-white rounded-2xl shadow-xl border border-brand-lavender/40 p-2 w-64">
 
-            <a href="works.html"
-               class="block px-4 py-3 rounded-xl text-sm font-semibold text-brand-green hover:bg-brand-violet-light hover:text-brand-plum smooth-transition">
-                Wszystkie warsztaty
-            </a>
+                            <a href="works.html"
+                               class="block px-4 py-3 rounded-xl text-sm font-semibold text-brand-green hover:bg-brand-violet-light hover:text-brand-plum smooth-transition">
+                                Wszystkie warsztaty
+                            </a>
 
-            <a href="wroc_do_swojego_ciala_signup.html"
-               class="block px-4 py-3 rounded-xl text-sm font-semibold text-brand-green hover:bg-brand-violet-light hover:text-brand-plum smooth-transition">
-                Warsztat dla kobiet
-            </a>
+                            <a href="wroc_do_swojego_ciala_signup.html"
+                               class="block px-4 py-3 rounded-xl text-sm font-semibold text-brand-green hover:bg-brand-violet-light hover:text-brand-plum smooth-transition">
+                                Warsztat dla kobiet
+                            </a>
 
-        </div>
-    </div>
-</div>
+                        </div>
+                    </div>
+                </div>
                 <a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
                 <button onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Lista oczekujących</button>
-            
+                
                 <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition uppercase tracking-wider font-bold">Newsletter</button>
                 <button onclick="toggleModal('signupModal')" class="text-brand-plum hover:opacity-70 smooth-transition font-extrabold underline decoration-2 uppercase tracking-wider">Zapisy</button>
             </nav>
@@ -254,6 +268,327 @@
         </div>
     </section>
 
+    <!-- Waiting List Modal -->
+    <div id="waitingListModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button type="button" onclick="toggleModal('waitingListModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+
+            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">
+                Lista oczekujących
+            </div>
+
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">
+                Dołącz do listy oczekujących
+            </h2>
+
+            <p class="text-sm text-brand-green/75 mb-6 leading-relaxed">
+                Jeśli obecnie nie widzisz dogodnego terminu, możesz zostawić swoje dane.
+                Skontaktuję się, gdy pojawi się możliwość konsultacji lub regularnego procesu terapeutycznego.
+            </p>
+
+            <div class="bg-brand-green-light border border-brand-lavender/70 rounded-2xl p-4 mb-6">
+                <p class="text-[11px] leading-relaxed text-brand-green/75">
+                    Ten formularz nie służy do kontaktu kryzysowego. Jeśli znajdujesz się w sytuacji bezpośredniego zagrożenia zdrowia lub życia,
+                    skontaktuj się z numerem alarmowym 112 lub najbliższą placówką medyczną.
+                </p>
+            </div>
+
+            <form
+                id="waitingListForm"
+                action=""
+                method="POST"
+                target="waitingListTarget"
+                class="space-y-5"
+                onsubmit="return validateWaitingList(event);"
+            >
+                <input type="hidden" name="form_type" value="waitinglist">
+                <input type="hidden" name="source_page" value="Contact page waiting list modal">
+                <input type="hidden" id="waiting_load_time" value="">
+
+                <!-- Honeypot anti-spam field: keep hidden -->
+                <div class="absolute -left-[9999px]" aria-hidden="true">
+                    <label for="waiting_bot_website">Zostaw puste</label>
+                    <input type="text" name="website" id="waiting_bot_website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Imię i nazwisko *</label>
+                        <input type="text" name="name" required placeholder="Imię i nazwisko" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">E-mail *</label>
+                        <input type="email" name="email" required placeholder="Twój adres e-mail" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Telefon opcjonalnie</label>
+                    <input type="tel" name="phone" placeholder="Numer telefonu" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum">
+                </div>
+
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3">Forma spotkania</p>
+                    <div class="grid sm:grid-cols-3 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="preferred_format" value="Online" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">Online</span>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="preferred_format" value="Stacjonarnie w Krakowie" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">Stacjonarnie</span>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="preferred_format" value="Bez preferencji" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">Bez preferencji</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Rodzaj wsparcia *</label>
+                        <select name="support_type" required class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
+                            <option value="">Wybierz...</option>
+                            <option value="Terapia indywidualna">Terapia indywidualna</option>
+                            <option value="Terapia par">Terapia par</option>
+                            <option value="Konsultacja seksuologiczna / terapia seksuologiczna">Konsultacja seksuologiczna / terapia seksuologiczna</option>
+                            <option value="Regularny proces terapeutyczny">Regularny proces terapeutyczny</option>
+                            <option value="Nie wiem jeszcze">Nie wiem jeszcze</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Preferowana pora *</label>
+                        <select name="preferred_time" required class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
+                            <option value="">Wybierz...</option>
+                            <option value="Rano">Rano</option>
+                            <option value="Popołudnie">Popołudnie</option>
+                            <option value="Wieczór">Wieczór</option>
+                            <option value="Elastycznie">Elastycznie</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Preferowane dni</label>
+                    <select name="preferred_days" class="w-full px-5 py-3 rounded-xl border border-brand-lavender bg-white focus:outline-brand-plum">
+                        <option value="">Wybierz opcjonalnie...</option>
+                        <option value="Poniedziałek - piątek">Poniedziałek - piątek</option>
+                        <option value="Weekend, jeśli dostępny">Weekend, jeśli dostępny</option>
+                        <option value="Elastycznie">Elastycznie</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold uppercase text-brand-green/60 mb-2 block">Czy jest coś ważnego, co chcesz dodać?</label>
+                    <textarea name="message" rows="4" placeholder="Krótka wiadomość opcjonalnie" class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"></textarea>
+                </div>
+
+                <div class="flex items-start gap-3 bg-brand-green-light p-4 rounded-2xl border border-brand-lavender/60">
+                    <input type="checkbox" id="waitingConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
+                    <label for="waitingConsent" class="text-[11px] leading-relaxed text-brand-green/80">
+                        Wyrażam zgodę na kontakt w sprawie listy oczekujących oraz przetwarzanie podanych danych w celu obsługi zgłoszenia.
+                        Wiem, że mogę wycofać zgodę w każdej chwili.
+                    </label>
+                </div>
+
+                <!-- Anti-spam human verification -->
+                <div class="flex items-center gap-3 bg-brand-violet-light/50 p-4 rounded-xl border border-brand-lavender">
+                    <input type="checkbox" id="humanCheckWaiting" class="w-5 h-5 accent-brand-plum cursor-pointer">
+                    <label for="humanCheckWaiting" class="text-xs font-bold text-brand-green cursor-pointer select-none">
+                        Zaznacz, aby udowodnić, że jesteś człowiekiem / I am human
+                    </label>
+                </div>
+
+                <button type="submit" id="submitWaitingBtn" disabled class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg transition-all uppercase tracking-widest">
+                    Dołącz do listy oczekujących
+                </button>
+
+                <p id="waitingListSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed">
+                    Dziękujemy. Zgłoszenie zostało zapisane. Skontaktujemy się, gdy pojawi się odpowiednia możliwość spotkania.
+                </p>
+            </form>
+
+            <iframe name="waitingListTarget" style="display:none"></iframe>
+        </div>
+    </div>
+
+    <!-- Newsletter Modal -->
+    <div id="newsletterModal" class="modal">
+        <div class="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleModal('newsletterModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+
+            <div class="inline-flex items-center gap-2 bg-brand-violet-light text-brand-plum text-xs font-bold px-4 py-2 rounded-full mb-4">
+                Newsletter psychoedukacyjny
+            </div>
+
+            <h2 class="text-3xl font-bold text-brand-plum mb-4">
+                Dołącz do newslettera
+            </h2>
+
+            <p class="text-sm text-brand-green/75 mb-6 leading-relaxed">
+                Wybierz język newslettera. Pierwszy materiał zostanie wysłany od razu,
+                a kolejne automatycznie raz w tygodniu — w wybranej wersji językowej.
+            </p>
+
+            <form
+                id="newsletterForm"
+                action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
+                method="POST"
+                target="newsletterTarget"
+                class="space-y-4"
+                onsubmit="document.getElementById('newsletterSuccess').classList.remove('hidden'); setTimeout(() => this.reset(), 600);"
+            >
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Imię / Name (opcjonalnie)"
+                    class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"
+                >
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Twój adres e-mail / Your email"
+                    required
+                    class="w-full px-5 py-3 rounded-xl border border-brand-lavender focus:outline-brand-plum"
+                >
+
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-green/60 mb-3">
+                        Język newslettera / Newsletter language
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="language" value="PL" class="peer sr-only" checked required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">
+                                Polski
+                                <small class="block font-normal text-[10px] mt-1 opacity-80">wersja PL</small>
+                            </span>
+                        </label>
+
+                        <label class="cursor-pointer">
+                            <input type="radio" name="language" value="EN" class="peer sr-only" required>
+                            <span class="block text-center px-4 py-4 rounded-2xl border border-brand-lavender bg-brand-green-light text-brand-green font-bold peer-checked:bg-brand-plum peer-checked:text-white peer-checked:border-brand-plum smooth-transition">
+                                English
+                                <small class="block font-normal text-[10px] mt-1 opacity-80">EN version</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <input type="hidden" name="source_page" value="Contact page newsletter modal">
+
+                <!-- Honeypot anti-spam field: keep hidden -->
+                <input
+                    type="text"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                    style="display:none"
+                >
+
+                <div class="flex items-start gap-3 bg-brand-green-light p-4 rounded-2xl border border-brand-lavender/60">
+                    <input type="checkbox" id="newsConsent" name="consent" value="true" class="mt-1 accent-brand-plum" required>
+                    <label for="newsConsent" class="text-[11px] leading-relaxed text-brand-green/80">
+                        Wyrażam zgodę na otrzymywanie newslettera psychoedukacyjnego od Joanny Filek
+                        na podany adres e-mail. Wiem, że mogę wycofać zgodę w każdej chwili.<br><br>
+                        I agree to receive Joanna Filek’s psychoeducational newsletter at the email address provided.
+                        I understand I can withdraw my consent at any time.
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-plum text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition-all">
+                    Zapisz się / Subscribe
+                </button>
+
+                <p id="newsletterSuccess" class="hidden text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed">
+                    Dziękujemy. Jeśli adres jest poprawny, pierwszy newsletter zostanie wysłany w wybranym języku.<br>
+                    Thank you. If the email is correct, the first newsletter will be sent in the selected language.
+                </p>
+            </form>
+
+            <iframe name="newsletterTarget" style="display:none"></iframe>
+        </div>
+    </div>
+
+    <!-- Sign-up Modal -->
+    <div id="signupModal" class="modal">
+        <div class="bg-white rounded-[40px] p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleModal('signupModal')" class="absolute top-6 right-6 text-brand-green opacity-50 text-2xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-brand-green mb-2">Rejestracja na Wydarzenie</h2>
+            <p class="text-brand-plum font-semibold text-sm mb-8">Warsztaty / Świątynie / Festiwale</p>
+            
+            <form 
+                id="signupForm"
+                action="https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec"
+                method="POST"
+                target="signupTarget"
+                class="space-y-6"
+                onsubmit="document.getElementById('signupSuccess').classList.remove('hidden'); setTimeout(() => { this.reset(); toggleModal('signupModal'); document.getElementById('signupSuccess').classList.add('hidden'); }, 3000);"
+            >
+                <input type="hidden" name="form_type" value="SignUp">
+                <input type="hidden" name="source_page" value="Contact page Sign Up Modal">
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold uppercase text-brand-green/50">Imię i Nazwisko *</label>
+                        <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold uppercase text-brand-green/50">Numer Telefonu *</label>
+                        <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-bold uppercase text-brand-green/50">Metoda Płatności *</label>
+                    <select name="payment_method" required class="w-full px-4 py-3 rounded-xl border border-brand-lavender bg-white">
+                        <option value="">Wybierz metodę płatności...</option>
+                        <option value="transfer">Tradycyjny Przelew Bankowy</option>
+                        <option value="blik">BLIK</option>
+                        <option value="card">Płatność Kartą / Online</option>
+                    </select>
+                </div>
+
+                <div class="bg-brand-green-light p-6 rounded-3xl border border-brand-lavender space-y-4">
+                    <h3 class="font-bold text-brand-green text-sm">Zgoda na Wizerunek (Zdjęcia i Wideo)</h3>
+                    <p class="text-[10px] text-brand-green/70">Materiały do wykorzystania w mediach społecznościowych, na stronie WWW i w materiałach promocyjnych.</p>
+                    
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="yes" class="accent-brand-plum" required>
+                            <span class="text-xs font-medium"><strong>TAK</strong> — Wyrażam zgodę na wykorzystanie mojego wizerunku w celach promocyjnych.</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="limited" class="accent-brand-plum">
+                            <span class="text-xs font-medium"><strong>OGRANICZONA ZGODA</strong> — Tylko zdjęcia grupowe/szerokie kadry. Bez identyfikowalnych zbliżeń.</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 bg-white rounded-xl border cursor-pointer hover:border-brand-plum transition-all">
+                            <input type="radio" name="mediaConsent" value="no" class="accent-brand-plum">
+                            <span class="text-xs font-medium"><strong>NIE</strong> — Nie wyrażam zgody. Proszę mnie nie fotografować ani nie filmować.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="h-32 overflow-y-scroll bg-brand-violet-light/30 p-4 rounded-xl text-[9px] leading-normal text-brand-green/60 border border-brand-lavender">
+                    <p class="font-bold mb-2">Informacja o Ochronie Danych Osobowych (RODO)</p>
+                    The controller of personal data, including participants’ image and likeness, is Conscious Wolf. Photos and video recordings will be processed solely on the basis of voluntary consent for promoting Conscious Wolf events, social media publication (Instagram, Facebook), website content, and newsletters. Materials may be stored indefinitely or until consent is withdrawn. You have the right to access, request deletion, restrict processing, and withdraw consent at any time. Withdrawal does not affect the lawfulness of processing carried out prior to withdrawal. Due to publication on social media, data may be transferred outside the EEA in accordance with platform policies.
+                </div>
+
+                <button type="submit" class="w-full bg-brand-green text-white font-bold py-5 rounded-2xl shadow-xl hover:bg-brand-plum transition-all uppercase tracking-widest">Wyślij Zgłoszenie i Opłać</button>
+                
+                <p id="signupSuccess" class="hidden mt-4 text-sm text-brand-green font-semibold bg-brand-green-light border border-brand-lavender rounded-2xl p-4 leading-relaxed text-center">
+                    Dziękujemy! Twoje zgłoszenie zostało wysłane.
+                </p>
+            </form>
+            <iframe name="signupTarget" style="display:none"></iframe>
+        </div>
+    </div>
+
     <footer class="bg-brand-green text-white pt-16 pb-10">
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
             <div>
@@ -285,29 +620,102 @@
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('form_load_time').value = new Date().getTime();
             
+            const waitingLoadField = document.getElementById('waiting_load_time');
+            if (waitingLoadField) { waitingLoadField.value = new Date().getTime(); }
+            
             var menuBtn = document.getElementById('menuBtn');
             var mobileMenu = document.getElementById('mobileMenu');
             if (menuBtn && mobileMenu) {
                 menuBtn.addEventListener('click', function () { mobileMenu.classList.toggle('active'); });
             }
 
-            // Human verification logic
+            // Human verification logic for contact form
             const humanCheck = document.getElementById('humanCheck');
             const submitBtn = document.getElementById('submitBtn');
             const form = document.getElementById('mainContactForm');
 
-            humanCheck.addEventListener('change', function() {
-                if(this.checked) {
-                    form.action = realEndpoint; // Inject URL only when checked
-                    submitBtn.disabled = false;
-                    submitBtn.classList.add('hover:opacity-90', 'hover-lift');
-                } else {
-                    form.action = ""; // Remove URL if unchecked
-                    submitBtn.disabled = true;
-                    submitBtn.classList.remove('hover:opacity-90', 'hover-lift');
-                }
+            if (humanCheck && submitBtn && form) {
+                humanCheck.addEventListener('change', function() {
+                    if(this.checked) {
+                        form.action = realEndpoint; // Inject URL only when checked
+                        submitBtn.disabled = false;
+                        submitBtn.classList.add('hover:opacity-90', 'hover-lift');
+                    } else {
+                        form.action = ""; // Remove URL if unchecked
+                        submitBtn.disabled = true;
+                        submitBtn.classList.remove('hover:opacity-90', 'hover-lift');
+                    }
+                });
+            }
+
+            // Human verification logic for waiting list form
+            const humanCheckWaiting = document.getElementById('humanCheckWaiting');
+            const submitWaitingBtn = document.getElementById('submitWaitingBtn');
+            const waitingForm = document.getElementById('waitingListForm');
+
+            if (humanCheckWaiting && submitWaitingBtn && waitingForm) {
+                humanCheckWaiting.addEventListener('change', function() {
+                    if(this.checked) {
+                        waitingForm.action = realEndpoint;
+                        submitWaitingBtn.disabled = false;
+                        submitWaitingBtn.classList.add('hover:opacity-90');
+                    } else {
+                        waitingForm.action = "";
+                        submitWaitingBtn.disabled = true;
+                        submitWaitingBtn.classList.remove('hover:opacity-90');
+                    }
+                });
+            }
+
+            // Close modals on background click
+            document.querySelectorAll('.modal').forEach(function(modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        toggleModal(modal.id);
+                    }
+                });
             });
         });
+
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if(modal) {
+                modal.classList.toggle('active');
+                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+            }
+        }
+
+        function validateWaitingList(event) {
+            const botField = document.getElementById('waiting_bot_website').value;
+            const loadTime = document.getElementById('waiting_load_time').value;
+            const submitTime = new Date().getTime();
+            
+            if (botField !== "" || (submitTime - loadTime) < 3000) {
+                event.preventDefault();
+                return false;
+            }
+            
+            document.getElementById('waitingListSuccess').classList.remove('hidden');
+            setTimeout(() => { 
+                const waitingForm = document.getElementById('waitingListForm');
+                const humanCheckWaiting = document.getElementById('humanCheckWaiting');
+                const submitWaitingBtn = document.getElementById('submitWaitingBtn');
+                if(waitingForm) {
+                    waitingForm.reset(); 
+                    waitingForm.action = "";
+                    if(humanCheckWaiting) humanCheckWaiting.checked = false;
+                    if(submitWaitingBtn) {
+                        submitWaitingBtn.disabled = true;
+                        submitWaitingBtn.classList.remove('hover:opacity-90');
+                    }
+                }
+                setTimeout(() => {
+                    document.getElementById('waitingListSuccess').classList.add('hidden');
+                    toggleModal('waitingListModal');
+                }, 3000);
+            }, 500);
+            return true;
+        }
 
         function validateAndSubmit(event) {
             const botField = document.getElementById('bot_website').value;
@@ -331,6 +739,8 @@
                 document.getElementById('mainContactForm').reset();
                 document.getElementById('submitBtn').disabled = true;
                 document.getElementById('mainContactForm').action = "";
+                const humanCheck = document.getElementById('humanCheck');
+                if(humanCheck) humanCheck.checked = false;
             }, 1000);
             return true;
         }
