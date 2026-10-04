@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>KOCHAM SIĘ KOCHAĆ ❤️‍🔥 | W głąb własnej przyjemności | Joanna Filek</title>
+    <meta name="description" content="5-etapowa somatyczna podróż online ku sobie i anatomii pobudzenia. Odkryj własną mapę przyjemności od 6 listopada 2026.">
+    <link rel="icon" type="image/png" href="https://joannafilek.com/images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-plum': '#9A5B52',
+                        'brand-plum-dark': '#744039',
+                        'brand-green': '#243D35',
+                        'brand-cream': '#F8F1EA',
+                        'brand-sand': '#EBDDD4',
+                        'brand-lavender': '#E7E1E8',
+                        'brand-white': '#FFFCF9',
+                        'brand-violet-light': '#F4E6EF'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: #FFFCF9; color: #243D35; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; text-wrap: balance; }
+        p { text-wrap: pretty; }
+        .smooth-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hover-lift:hover { transform: translateY(-2px); }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: flex; }
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(36, 61, 53, 0.7);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.active { display: flex; opacity: 1; }
+        .modal > div { max-height: min(92vh, 900px); overflow-y: auto; overscroll-behavior: contain; }
+        button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+            outline: 2px solid rgba(154, 91, 82, 0.4); outline-offset: 2px;
+        }
+        input, textarea, select { transition: border-color 0.2s ease; }
+        input:focus, textarea:focus, select:focus { border-color: #243D35 !important; outline: none; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+        }
+        @media (max-width: 767px) {
+            .modal { align-items: flex-end !important; padding: 0 !important; }
+            .modal > div { width: 100% !important; max-height: 94vh !important; border-radius: 20px 20px 0 0 !important; }
+            body { padding-bottom: 76px; }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Top Bar -->
+    <div class="relative z-[60] flex items-center justify-between px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
+        <div>
+            <span class="hidden sm:inline">Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</span>
+            <span class="sm:hidden">Kontakt (+48) 733 777 542</span>
+        </div>
+        
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
+                <a href="works.html" class="hover:scale-110 smooth-transition ring-1 ring-white/60 rounded-sm" title="Polski"><img src="https://flagcdn.com/w20/pl.png" width="20" alt="PL"></a>
+                <a href="en/works.html" class="hover:scale-110 smooth-transition" title="English"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"></a>
+                <a href="no/works.html" class="hover:scale-110 smooth-transition" title="Norsk"><img src="https://flagcdn.com/w20/no.png" width="20" alt="NO"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-lavender/60">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo.png" alt="Logo Joanna Filek" class="w-11 h-11 object-contain" onerror="this.src='https://joannafilek.com/images/logo.png'">
+                <div>
+                    <div class="text-2xl font-light text-brand-green leading-tight">
+                        Joanna <span class="font-bold">Filek</span>
+                    </div>
+                    <p class="text-[11px] text-brand-plum -mt-0.5">
+                        Psycholożka | Seksuolożka | Psychoterapeutka
+                    </p>
+                </div>
+            </a>
+
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-2.5 rounded-full shadow-sm text-xs font-bold uppercase tracking-wider border border-brand-lavender/40">
+                <a href="https://joannafilek.com/index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
+                <a href="https://joannafilek.com/about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
+                <a href="https://joannafilek.com/works.html" class="text-brand-plum">Warsztaty</a>
+                <a href="https://joannafilek.com/contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
+                <button onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition font-bold uppercase">Lista oczekujących</button>
+                <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition font-bold uppercase">Newsletter</button>
+                <button onclick="openSignupModal()" class="text-brand-plum hover:opacity-80 smooth-transition font-extrabold underline decoration-2 uppercase">Zapisy</button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-medium text-xs px-5 py-2.5 rounded-xl hover:bg-brand-plum smooth-transition shadow-sm">
+                    Umów konsultację
+                </a>
+                <button id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl text-xs font-bold">
+                    Menu
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu flex-col gap-3 px-6 pb-5 bg-white text-brand-green font-medium shadow-md xl:hidden text-sm">
+            <a href="index.html">Strona główna</a>
+            <a href="about.html">O mnie</a>
+            <a href="works.html" class="text-brand-plum font-bold">Warsztaty</a>
+            <a href="contact.html">Kontakt</a>
+            <button onclick="toggleModal('waitingListModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum">Lista oczekujących</button>
+            <button onclick="openSignupModal(); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline">Zapisy</button>
+            <button onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
+            <a href="visits.html" class="bg-brand-green text-white px-4 py-2.5 rounded-xl text-center text-xs mt-1">Umów konsultację</a>
+        </div>
+    </header>
+
+    <!-- Split Editorial Hero Section -->
+    <section class="bg-brand-cream relative overflow-hidden">
+        <svg class="absolute top-0 right-0 w-[800px] h-[800px] text-brand-sand/30 transform translate-x-1/3 -translate-y-1/4 pointer-events-none" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M45.7,-76.4C58.9,-69.3,69,-56.3,76.5,-42.2C84,-28.1,88.9,-13,87.6,1.5C86.3,16,78.8,29.9,69.5,41.5C60.2,53.1,49.1,62.4,36.5,69.2C23.9,76,9.8,80.3,-4.2,87.5C-18.2,94.7,-32.1,84.8,-43.3,74.5C-54.5,64.2,-63,53.5,-70.6,41.3C-78.2,29.1,-84.9,15.4,-86.1,1.1C-87.3,-13.2,-83,-28,-74.6,-40.1C-66.2,-52.2,-53.7,-61.6,-40.4,-68.5C-27.1,-75.4,-13.5,-79.8,1.4,-81.9C16.3,-84,32.5,-83.5,45.7,-76.4Z" transform="translate(100 100)" />
+        </svg>
+
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="flex flex-col-reverse md:flex-row items-center py-12 md:py-20 gap-12 lg:gap-20 relative z-10">
+                
+                <!-- LEFT: Typography & Details -->
+                <div class="w-full md:w-7/12 flex flex-col justify-center items-center md:items-start text-center md:text-left reveal">
+                    <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-brand-plum mb-4 inline-block bg-brand-violet-light/70 px-4 py-1.5 rounded-full border border-brand-plum/20">
+                        Program somatyczny dla osób z wulwą
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl lg:text-[54px] font-serif leading-[1.15] mb-4 text-brand-green">
+                        KOCHAM SIĘ KOCHAĆ <span class="text-brand-plum">❤️‍🔥</span><br>
+                        <span class="text-2xl sm:text-3xl lg:text-4xl italic font-normal text-brand-plum">w głąb własnej przyjemności</span>
+                    </h1>
+                    <p class="text-[15px] sm:text-[16px] text-brand-green/85 font-light leading-relaxed mb-6 max-w-xl">
+                        Zapraszam Cię do intymnej, prowadzonej na żywo podróży online ku sobie, w której będę wspierać Cię w otwarciu na dar przyjemności, odkrywaniu anatomii pobudzenia i rozwijaniu erotycznej inteligencji ciała.
+                    </p>
+
+                    <!-- Meta Data Badges -->
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 text-xs font-semibold text-brand-green mb-8">
+                        <span class="bg-white/80 px-3.5 py-2 rounded-xl border border-brand-sand">📅 Start: 6 listopada 2026</span>
+                        <span class="bg-white/80 px-3.5 py-2 rounded-xl border border-brand-sand">🕓 Piątki godz. 18:00</span>
+                        <span class="bg-white/80 px-3.5 py-2 rounded-xl border border-brand-sand">💻 5 spotkań na Zoomie</span>
+                        <span class="bg-white/80 px-3.5 py-2 rounded-xl border border-brand-sand">🔒 Grupa Telegram + Nagrania</span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                        <button type="button" onclick="toggleModal('signupModal')" class="w-full sm:w-auto px-8 py-4 rounded-xl font-medium text-sm bg-brand-plum hover:bg-brand-plum-dark text-white smooth-transition shadow-sm">
+                            Zapisz się do programu
+                        </button>
+                        <a href="#stages" class="w-full sm:w-auto px-6 py-4 rounded-xl font-medium text-sm border border-brand-sand bg-white/60 hover:bg-white text-brand-green smooth-transition text-center">
+                            Zobacz 5 etapów pracy
+                        </a>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Marta - Prowadząca (Bio & Picture) -->
+                <div class="w-full md:w-5/12 reveal">
+                    <div class="bg-white rounded-3xl p-8 sm:p-9 shadow-xl border border-brand-sand/80 flex flex-col items-center text-center">
+                        <div class="w-36 h-36 rounded-full overflow-hidden mb-5 border-4 border-brand-violet-light shadow-md shrink-0 bg-stone-100">
+                            <img src="images/MartaZiolek.jpg" 
+                                 alt="Marta Ziółek - Prowadząca" 
+                                 class="w-full h-full object-cover object-top" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop'">
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-brand-plum mb-1">Prowadząca program</span>
+                        <h2 class="text-2xl font-serif font-bold text-brand-green mb-2">Marta Ziółek</h2>
+                        <p class="text-xs font-medium text-brand-plum mb-4">
+                            Edukacja Somatyczna & Somatyczna Seksuologia
+                        </p>
+                        <p class="text-xs sm:text-[13px] text-brand-green/80 font-light leading-relaxed mb-6">
+                            Prowadzę Cię bezpiecznie przez proces eksploracji, czucia i powrotu do własnego ciała. Moja praca opiera się na ugruntowanej wiedzy o układzie nerwowym, kulturze świadomej zgody i łagodnym, rozbrajającym dotyku.
+                        </p>
+                        <div class="w-full pt-4 border-t border-brand-sand/60 flex items-center justify-center gap-2 text-[11px] text-brand-green/70">
+                            <span>Somatic Sex Education™</span> • <span>Sexological Bodywork®</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Manifesto Statement Section (Lowered) -->
+    <section class="py-16 bg-brand-violet-light/35 border-y border-brand-sand/50">
+        <div class="container mx-auto px-6 text-center max-w-4xl reveal">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-brand-plum mb-3 block">Manifest procesu</span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif text-brand-green leading-snug">
+                „Przyjemność nie jest tym, co ktoś może Ci dać.<br>
+                <span class="text-brand-plum font-semibold italic">Przyjemność zaczyna się w Tobie.”</span>
+            </h2>
+            <div class="w-16 h-[1px] bg-brand-plum mx-auto my-6 opacity-60"></div>
+            <p class="text-sm sm:text-base text-brand-green/80 font-light leading-relaxed max-w-2xl mx-auto">
+                Tym razem jest to podróż w głąb przyjemności — pogłębiona praca genitalna, obejmująca również eksplorację wewnętrzną. Prowadzony masaż i mapowanie cipki staną się Twoim osobistym laboratorium intymnego spotkania ze sobą. Bez presji celu, orgazmu czy wyniku.
+            </p>
+        </div>
+    </section>
+
+    <!-- Anatomy Explanation Section -->
+    <section class="py-16 bg-brand-white border-b border-brand-sand/50">
+        <div class="container mx-auto px-6 text-center max-w-4xl reveal">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif text-brand-green leading-relaxed">
+                Anatomia, którą możesz poznawać poprzez czucie
+            </h2>
+            <div class="w-16 h-[1px] bg-brand-plum mx-auto my-6 opacity-60"></div>
+            <p class="text-sm sm:text-base text-brand-green/80 font-light leading-relaxed">
+                Wiele osób nigdy nie otrzymało rzetelnej edukacji dotyczącej własnej anatomii seksualnej. Dlatego będziemy łączyć wiedzę z bezpośrednim doświadczeniem ciała. Żołądź łechtaczki — widoczna „perełka” — jest jedynie niewielką częścią całego organu. Poznamy jej trzon, odnogi, opuszki przedsionka oraz tkanki erekcyjne uczestniczące w ukrwieniu, pulsacji i pobudzeniu.
+            </p>
+        </div>
+    </section>
+
+    <!-- 5 Stages Section -->
+    <section id="stages" class="py-20 bg-brand-cream border-b border-brand-sand/40">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-16 reveal">
+                <span class="text-[11px] font-bold uppercase tracking-widest text-brand-plum mb-3 block">
+                    Struktura podróży
+                </span>
+                <h3 class="text-3xl sm:text-4xl font-serif text-brand-green">
+                    Pięć etapów naszej wspólnej pracy
+                </h3>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Stage 1 -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-brand-sand/60 flex flex-col sm:flex-row gap-6 items-start reveal">
+                    <span class="text-3xl font-serif italic text-brand-plum/40 font-bold shrink-0">01</span>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-bold font-serif text-brand-green mb-2">Łechtaczka — odkrywanie pełni przyjemności</h4>
+                        <p class="text-xs sm:text-sm text-brand-green/80 font-light leading-relaxed">
+                            Poznawanie jej zewnętrznych i wewnętrznych struktur oraz możliwości pobudzenia. Odkrywanie różnych jakości dotyku i poszerzanie uwagi poza jeden punkt stymulacji.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-brand-sand/60 flex flex-col sm:flex-row gap-6 items-start reveal">
+                    <span class="text-3xl font-serif italic text-brand-plum/40 font-bold shrink-0">02</span>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-bold font-serif text-brand-green mb-2">Próg przyjemności — wejście do pochwy</h4>
+                        <p class="text-xs sm:text-sm text-brand-green/80 font-light leading-relaxed">
+                            Świadoma zgoda, oddech, rozluźnianie i delikatny dotyk. Słuchanie własnej gotowości i bezkompromisowe rozpoznawanie granic.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-brand-sand/60 flex flex-col sm:flex-row gap-6 items-start reveal">
+                    <span class="text-3xl font-serif italic text-brand-plum/40 font-bold shrink-0">03</span>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-bold font-serif text-brand-green mb-2">Wewnętrzny krajobraz — kanał pochwy</h4>
+                        <p class="text-xs sm:text-sm text-brand-green/80 font-light leading-relaxed">
+                            Mapowanie, odkrywanie tekstur, wrażliwości i różnorodności odczuć. Poznawanie własnego tempa i sposobów kontaktu z ciałem.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stage 4 -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-brand-sand/60 flex flex-col sm:flex-row gap-6 items-start reveal">
+                    <span class="text-3xl font-serif italic text-brand-plum/40 font-bold shrink-0">04</span>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-bold font-serif text-brand-green mb-2">Obszar punktu G — anatomia głębszego pobudzenia</h4>
+                        <p class="text-xs sm:text-sm text-brand-green/80 font-light leading-relaxed">
+                            Eksploracja przedniej ściany pochwy i jej związku z otaczającymi tkankami. Odkrywanie indywidualnych odczuć bez oczekiwania konkretnej reakcji.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stage 5 -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-brand-sand/60 flex flex-col sm:flex-row gap-6 items-start reveal">
+                    <span class="text-3xl font-serif italic text-brand-plum/40 font-bold shrink-0">05</span>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-bold font-serif text-brand-green mb-2">Szyjka macicy — głęboka intymność i integracja</h4>
+                        <p class="text-xs sm:text-sm text-brand-green/80 font-light leading-relaxed">
+                            Poznawanie anatomii, świadomość głębszych obszarów miednicy i pełna integracja całego 5-tygodniowego procesu.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scope / What We Work With -->
+    <section id="about-program" class="py-20 bg-brand-white">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-brand-plum mb-3 block">Obszary praktyki</span>
+                    <h3 class="text-2xl sm:text-3xl font-serif text-brand-green mb-6">Podczas procesu będziemy pracować z:</h3>
+                    <ul class="space-y-3.5 text-xs sm:text-sm text-brand-green/85 font-light leading-relaxed">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-brand-plum font-bold">✓</span>
+                            <span><strong>Somatyczną anatomią przyjemności i pobudzenia</strong> — w sposób praktyczny, obrazowy i ucieleśniony.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-brand-plum font-bold">✓</span>
+                            <span><strong>Cipką jako mapą czucia</strong>, a nie jednym punktem stymulacji.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-brand-plum font-bold">✓</span>
+                            <span>Różnymi jakościami, rytmami, tempem i rodzajami dotyku.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-brand-plum font-bold">✓</span>
+                            <span>Miejscami przyjemnymi, neutralnymi, niepewnymi oraz jeszcze nieodkrytymi.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-brand-plum font-bold">✓</span>
+                            <span><strong>Dnem miednicy</strong> jako przestrzenią czucia, napięcia, rozluźnienia i rytmu.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-brand-plum font-bold">✓</span>
+                            <span><strong>Oddechem</strong> jako narzędziem regulacji, pobudzenia i rozprowadzania przyjemności po całym ciele.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-brand-plum font-bold">✓</span>
+                            <span>Zgodą, granicami i wyborem jako absolutną podstawą każdej praktyki.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-brand-cream/60 rounded-3xl p-8 border border-brand-sand/70 space-y-5 reveal">
+                    <h4 class="text-lg font-serif font-bold text-brand-green">Na czym opiera się ten proces?</h4>
+                    <p class="text-xs sm:text-sm text-brand-green/80 font-light leading-relaxed">
+                        KOCHAM SIĘ KOCHAĆ bazuje na somatycznej edukacji seksualnej — <strong>Somatic Sex Education™</strong> — oraz metodzie <strong>Sexological Bodywork®</strong>.
+                    </p>
+                    <p class="text-xs sm:text-sm text-brand-green/80 font-light leading-relaxed">
+                        „Somatyczna” oznacza: poprzez ciało. W naszym programie online pracujesz poprzez samodzielny dotyk, z profesjonalnym prowadzeniem głosowym. To Ty prowadzisz swój proces, wybierasz tempo i decydujesz, na co jesteś gotowa.
+                    </p>
+                    <div class="border-t border-brand-sand/60 pt-4">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-brand-plum block mb-1">Harmonogram spotkań:</span>
+                        <p class="text-xs text-brand-green/80">Piątki, godz. 18:00 (Start: 6 listopada 2026, finał: 11 grudnia 2026, spotkania co tydzień z jedną przerwą w listopadzie).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety & Boundaries Section -->
+    <section id="safety" class="py-20 bg-brand-cream/40 border-y border-brand-sand/40">
+        <div class="container mx-auto px-6 max-w-4xl text-center reveal">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-brand-plum mb-3 block">Granice & Komfort</span>
+            <h3 class="text-2xl sm:text-3xl font-serif text-brand-green mb-6">Bezpieczeństwo i intymność</h3>
+            <p class="text-xs sm:text-sm text-brand-green/80 font-light leading-relaxed max-w-2xl mx-auto mb-10">
+                Wszystkie praktyki dotykowe wykonujesz samodzielnie, w swojej bezpiecznej, prywatnej przestrzeni domowej. Prowadzimy Cię głosem, instrukcją, wiedzą i pytaniami, ale to Ty decydujesz, czy i jak głęboko wchodzisz w ćwiczenie.
+            </p>
+
+            <div class="grid sm:grid-cols-3 gap-6 text-left">
+                <div class="bg-white p-6 rounded-2xl border border-brand-sand/60 shadow-sm">
+                    <span class="text-brand-plum font-bold block mb-2">Bez kamer i nagości</span>
+                    <p class="text-xs text-brand-green/75 font-light leading-relaxed">
+                        Nie musisz pokazywać swojego ciała ani wykonywać intymnych praktyk przed okiem kamery. Twoja prywatność jest w 100% chroniona.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-brand-sand/60 shadow-sm">
+                    <span class="text-brand-plum font-bold block mb-2">Zaproszenie, nie nakaz</span>
+                    <p class="text-xs text-brand-green/75 font-light leading-relaxed">
+                        Każda propozycja jest zaproszeniem. Nie ma obowiązku dotykania cipki ani doświadczania orgazmu. Możesz zmodyfikować lub zatrzymać ćwiczenie.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-brand-sand/60 shadow-sm">
+                    <span class="text-brand-plum font-bold block mb-2">Dostęp do nagrań</span>
+                    <p class="text-xs text-brand-green/75 font-light leading-relaxed">
+                        Jeśli nie możesz uczestniczyć na żywo, wracasz do nagrania w dogodnym momencie. Materiały pozostają aktywne do 11 grudnia 2026.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Registration Section -->
+    <section id="pricing" class="py-20 md:py-28 bg-brand-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-12 reveal">
+                <span class="text-[11px] font-bold uppercase tracking-widest text-brand-plum mb-3 block">Dołącz do podróży</span>
+                <h2 class="text-3xl sm:text-4xl font-serif text-brand-green mb-3">Wybierz swój wariant uczestnictwa</h2>
+                <p class="text-xs sm:text-sm text-brand-green/70">W obu wariantach nagrania nowych spotkań pozostają dostępne do 11 grudnia 2026.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Option 1 -->
+                <div class="bg-brand-cream/40 rounded-3xl p-8 border border-brand-sand flex flex-col justify-between reveal">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-brand-plum block mb-1">Pakiet Podstawowy</span>
+                        <h3 class="text-2xl font-serif font-bold text-brand-green mb-2">Udział w nowym programie</h3>
+                        <div class="text-3xl sm:text-4xl font-serif font-bold text-brand-plum my-4">1111 zł</div>
+                        
+                        <ul class="space-y-3 text-xs text-brand-green/80 font-light mb-8">
+                            <li class="flex items-start gap-2"><span>✓</span> 5 spotkań na żywo na Zoomie</li>
+                            <li class="flex items-start gap-2"><span>✓</span> Pełen dostęp do nagrań ze spotkań do 11.12.2026</li>
+                            <li class="flex items-start gap-2"><span>✓</span> Udział w zamkniętej grupie wsparcia na Telegramie</li>
+                            <li class="flex items-start gap-2"><span>✓</span> Możliwość zadawania pytań i facylitacja procesu</li>
+                        </ul>
+                    </div>
+
+                    <button type="button" onclick="openSignupWithTier('KOCHAM SIĘ KOCHAĆ - Program (1111 zł)')" class="w-full py-4 rounded-xl bg-brand-green hover:bg-brand-plum text-white font-medium text-xs uppercase tracking-wider smooth-transition shadow-sm">
+                        Wybierz ten wariant
+                    </button>
+                </div>
+
+                <!-- Option 2 -->
+                <div class="bg-brand-violet-light/50 rounded-3xl p-8 border-2 border-brand-plum/40 flex flex-col justify-between relative shadow-md reveal">
+                    <span class="absolute -top-3 right-6 bg-brand-plum text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                        Pakiet Rozszerzony
+                    </span>
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-brand-plum block mb-1">Program + Praktyki archiwalne</span>
+                        <h3 class="text-2xl font-serif font-bold text-brand-green mb-2">Pełne doświadczenie</h3>
+                        <div class="text-3xl sm:text-4xl font-serif font-bold text-brand-plum my-4">1444 zł</div>
+                        
+                        <ul class="space-y-3 text-xs text-brand-green/80 font-light mb-8">
+                            <li class="flex items-start gap-2 font-medium"><span>✓</span> Wszystko z wariantu podstawowego (5 Zoomów + nagrania)</li>
+                            <li class="flex items-start gap-2 font-medium text-brand-plum"><span>✓</span> Dostęp do nagranych praktyk z I edycji KOCHAM SIĘ KOCHAĆ</li>
+                            <li class="flex items-start gap-2"><span>✓</span> Ćwiczenia oddechu, ruchu i dotyku pomiędzy spotkaniami</li>
+                            <li class="flex items-start gap-2"><span>✓</span> Dostęp do całego archiwum od 6 listopada do 11 grudnia 2026</li>
+                        </ul>
+                    </div>
+
+                    <button type="button" onclick="openSignupWithTier('KOCHAM SIĘ KOCHAĆ - Pakiet z materiałami (1444 zł)')" class="w-full py-4 rounded-xl bg-brand-plum hover:bg-brand-plum-dark text-white font-medium text-xs uppercase tracking-wider smooth-transition shadow-sm">
+                        Wybierz pakiet rozszerzony
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-white border-t border-brand-sand pt-16 pb-8 text-[13px] font-light text-brand-green/80">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div class="md:col-span-2">
+                <a href="index.html" class="flex items-center gap-4 mb-5">
+                    <img src="https://joannafilek.com/images/logo.png" alt="Logo Joanna Filek" class="w-8 h-8 object-contain opacity-85">
+                    <div class="text-xl font-serif text-brand-green">Joanna Filek</div>
+                </a>
+                <p class="font-medium text-brand-green mb-1">Gabinet Psychoterapii & Seksuologii Inspiro</p>
+                <p>ul. Skalica 15A, 30-376 Kraków</p>
+            </div>
+            <div>
+                <h4 class="font-medium text-brand-plum mb-4 uppercase tracking-widest text-[11px]">Nawigacja</h4>
+                <ul class="space-y-3">
+                    <li><a href="works.html" class="hover:text-brand-plum smooth-transition">Wszystkie Warsztaty</a></li>
+                    <li><a href="about.html" class="hover:text-brand-plum smooth-transition">O Mnie</a></li>
+                    <li><a href="contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-medium text-brand-plum mb-4 uppercase tracking-widest text-[11px]">Zapisy</h4>
+                <ul class="space-y-3">
+                    <li><button type="button" onclick="toggleModal('signupModal')" class="hover:text-brand-plum smooth-transition">Formularz rejestracji</button></li>
+                    <li><button type="button" onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition">Lista oczekujących</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 pt-6 border-t border-brand-sand/50 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] text-brand-green/60">
+            <div>© 2026 Joanna Filek. Wszelkie prawa zastrzeżone.</div>
+            <div>Designed & Developed by <a href="https://alansmorais.github.io/alans.morais/" target="_blank" rel="noopener" class="hover:text-brand-plum smooth-transition">ASM</a></div>
+        </div>
+    </footer>
+
+    <!-- REGISTRATION MODAL -->
+    <div id="signupModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="signupModalTitle">
+        <div class="bg-white rounded-2xl p-6 sm:p-10 max-w-lg w-full shadow-2xl relative max-h-[92vh] overflow-y-auto">
+            <div class="flex justify-between items-start mb-6 border-b border-brand-sand/50 pb-4">
+                <div>
+                    <h2 id="signupModalTitle" class="text-2xl font-serif text-brand-green mb-1">Rejestracja do programu</h2>
+                    <p class="text-[12px] text-brand-green/60 font-light">KOCHAM SIĘ KOCHAĆ ❤️‍🔥 (Start: 6 listopada 2026)</p>
+                </div>
+                <button type="button" onclick="toggleModal('signupModal')" class="text-3xl leading-none font-light text-brand-green/40 hover:text-brand-plum smooth-transition" aria-label="Zamknij">&times;</button>
+            </div>
+
+            <form id="workshopSignupForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-brand-green uppercase tracking-wider mb-1.5">Wybierz wariant *</label>
+                    <select id="selectedEventTier" name="event" class="w-full px-4 py-3 text-xs rounded-xl border border-brand-sand bg-white text-brand-green focus:outline-brand-plum" required>
+                        <option value="KOCHAM SIĘ KOCHAĆ - Program (1111 zł)">Wariant podstawowy — 5 spotkań Zoom (1111 zł)</option>
+                        <option value="KOCHAM SIĘ KOCHAĆ - Pakiet z materiałami (1444 zł)">Wariant rozszerzony — z materiałami I edycji (1444 zł)</option>
+                    </select>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs text-brand-green/80 mb-1">Imię i nazwisko *</label>
+                        <input type="text" name="name" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-sand focus:outline-brand-plum" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-brand-green/80 mb-1">Adres e-mail *</label>
+                        <input type="email" name="email" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-sand focus:outline-brand-plum" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-brand-green/80 mb-1">Numer telefonu *</label>
+                        <input type="tel" name="phone" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-sand focus:outline-brand-plum" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-brand-green/80 mb-1">Czy uczestniczyłaś w poprzedniej edycji lub masz doświadczenie w pracy somatycznej? (Opcjonalnie)</label>
+                        <textarea name="experience" rows="2" class="w-full px-4 py-2 text-xs rounded-xl border border-brand-sand focus:outline-brand-plum" placeholder="Twoja wiadomość lub pytania do prowadzącej..."></textarea>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-2.5 pt-1">
+                    <input type="checkbox" id="consentCheck" name="consent" value="true" class="mt-0.5 accent-brand-plum" required>
+                    <label for="consentCheck" class="text-[11px] leading-relaxed text-brand-green/75">
+                        Wyrażam zgodę na kontakt w sprawie obsługi zgłoszenia i przetwarzanie danych z zachowaniem pełnej poufności.
+                    </label>
+                </div>
+
+                <button type="submit" id="submitSignupBtn" class="w-full bg-brand-plum hover:bg-brand-plum-dark text-white font-medium py-3.5 rounded-xl smooth-transition text-xs uppercase tracking-widest mt-2">
+                    Wyślij zgłoszenie
+                </button>
+                <div id="signupFormMessage" class="text-center mt-2 text-xs font-semibold hidden"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Waiting List Modal -->
+    <div id="waitingListModal" class="modal">
+        <div class="bg-white rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative">
+            <button type="button" onclick="toggleModal('waitingListModal')" class="absolute top-5 right-5 text-2xl font-bold opacity-40">&times;</button>
+            <h3 class="text-xl font-bold font-serif text-brand-plum mb-2">Lista Oczekujących</h3>
+            <p class="text-xs text-brand-green/80 mb-4 leading-relaxed">Zostaw kontakt, a poinformujemy Cię o kolejnych edycjach warsztatów.</p>
+            <form id="waitingListForm" class="space-y-3">
+                <input type="text" name="name" placeholder="Imię i nazwisko *" required class="w-full px-4 py-2 text-xs rounded-xl border border-brand-sand">
+                <input type="email" name="email" placeholder="E-mail *" required class="w-full px-4 py-2 text-xs rounded-xl border border-brand-sand">
+                <input type="tel" name="phone" placeholder="Telefon" class="w-full px-4 py-2 text-xs rounded-xl border border-brand-sand">
+                <button type="submit" class="w-full py-2.5 bg-brand-plum text-white font-bold rounded-xl text-xs uppercase">Zapisz się</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Newsletter Modal -->
+    <div id="newsletterModal" class="modal">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl relative">
+            <button type="button" onclick="toggleModal('newsletterModal')" class="absolute top-4 right-4 text-xl font-bold opacity-40">&times;</button>
+            <h3 class="text-lg font-bold font-serif text-brand-plum mb-2">Newsletter</h3>
+            <p class="text-xs text-brand-green/70 mb-4">Cotygodniowe notatki psychoedukacyjne.</p>
+            <form id="newsletterForm" class="space-y-3">
+                <input type="email" name="email" placeholder="Twój e-mail" required class="w-full px-4 py-2 text-xs rounded-xl border border-brand-sand">
+                <button type="submit" class="w-full py-2 bg-brand-plum text-white font-bold rounded-xl text-xs uppercase">Zapisz się</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec";
+
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            const isOpen = modal.classList.contains('active');
+            if (isOpen) {
+                modal.classList.remove('active');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                modal.style.display = 'flex';
+                modal.offsetHeight;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function openSignupModal() {
+            toggleModal('signupModal');
+        }
+
+        function openSignupWithTier(tierValue) {
+            const select = document.getElementById('selectedEventTier');
+            if (select) {
+                for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value.includes(tierValue.split('(')[0].trim())) {
+                        select.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            toggleModal('signupModal');
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('active'); });
+            }
+
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) toggleModal(modal.id);
+                });
+            });
+
+            // Reveal scroll animation
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
+        });
+
+        // Submit form directly to Google Apps Script (My Workshops sheet)
+        document.getElementById('workshopSignupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitSignupBtn');
+            const msg = document.getElementById('signupFormMessage');
+            btn.disabled = true;
+            btn.textContent = 'WYSYŁANIE...';
+
+            const fd = new FormData(this);
+            fd.append('form_type', 'workshop_signup');
+            fd.append('source_page', 'Kocham Się Kochać Landing Page');
+            fd.append('language', 'PL');
+
+            try {
+                await fetch(API_URL, { method: 'POST', mode: 'no-cors', body: fd });
+                msg.textContent = 'Dziękujemy! Twoje zgłoszenie zostało pomyślnie wysłane. Skontaktujemy się z Tobą.';
+                msg.className = 'text-center mt-2 text-xs font-semibold text-green-700';
+                msg.classList.remove('hidden');
+                this.reset();
+                setTimeout(() => toggleModal('signupModal'), 3000);
+            } catch (err) {
+                msg.textContent = 'Wystąpił błąd podczas wysyłania. Spróbuj ponownie.';
+                msg.className = 'text-center mt-2 text-xs font-semibold text-red-500';
+                msg.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Wyślij zgłoszenie';
+            }
+        });
+    </script>
+</body>
+</html>
