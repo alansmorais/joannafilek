@@ -34,7 +34,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background-color: #FFFCF9; color: #243D35; overflow-x: hidden; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; text-wrap: balance; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; text-wrap: balance; }
         p { text-wrap: pretty; }
         .smooth-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .hover-lift:hover { transform: translateY(-2px); }
@@ -109,6 +109,7 @@
                 <a href="https://joannafilek.com/index.html" class="hover:text-brand-plum smooth-transition">Strona główna</a>
                 <a href="https://joannafilek.com/about.html" class="hover:text-brand-plum smooth-transition">O mnie</a>
                 <a href="https://joannafilek.com/works.html" class="text-brand-plum">Warsztaty</a>
+                <a href="#o-prowadzacej" class="hover:text-brand-plum smooth-transition">O prowadzącej</a>
                 <a href="https://joannafilek.com/contact.html" class="hover:text-brand-plum smooth-transition">Kontakt</a>
                 <button onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition font-bold uppercase">Lista oczekujących</button>
                 <button onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition font-bold uppercase">Newsletter</button>
@@ -129,6 +130,7 @@
             <a href="index.html">Strona główna</a>
             <a href="about.html">O mnie</a>
             <a href="works.html" class="text-brand-plum font-bold">Warsztaty</a>
+            <a href="#o-prowadzacej" onclick="document.getElementById('mobileMenu').classList.remove('active');">O prowadzącej</a>
             <a href="contact.html">Kontakt</a>
             <button onclick="toggleModal('waitingListModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum">Lista oczekujących</button>
             <button onclick="openSignupModal(); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline">Zapisy</button>
@@ -177,7 +179,7 @@
                     </div>
                 </div>
 
-                <!-- RIGHT: Marta - Prowadząca (Bio & Picture) -->
+                <!-- RIGHT: Marta - Prowadząca Summary Card with Jump to Bio -->
                 <div class="w-full md:w-5/12 reveal">
                     <div class="bg-white rounded-3xl p-8 sm:p-9 shadow-xl border border-brand-sand/80 flex flex-col items-center text-center">
                         <div class="w-36 h-36 rounded-full overflow-hidden mb-5 border-4 border-brand-violet-light shadow-md shrink-0 bg-stone-100">
@@ -187,13 +189,18 @@
                                  onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop'">
                         </div>
                         <span class="text-[11px] font-bold uppercase tracking-widest text-brand-plum mb-1">Prowadząca program</span>
-                        <h2 class="text-2xl font-serif font-bold text-brand-green mb-2">Marta Ziółek</h2>
-                        <p class="text-xs font-medium text-brand-plum mb-4">
+                        <h2 class="text-2xl font-serif font-bold text-brand-green mb-1.5">Marta Ziółek</h2>
+                        <p class="text-xs font-semibold text-brand-plum mb-4">
                             Edukacja Somatyczna & Somatyczna Seksuologia
                         </p>
                         <p class="text-xs sm:text-[13px] text-brand-green/80 font-light leading-relaxed mb-6">
-                            Prowadzę Cię bezpiecznie przez proces eksploracji, czucia i powrotu do własnego ciała. Moja praca opiera się na ugruntowanej wiedzy o układzie nerwowym, kulturze świadomej zgody i łagodnym, rozbrajającym dotyku.
+                            Artystka, aktywistka przyjemności, kołczyni ucieleśnienia w nurcie somatycznej seksuologii, choreografka i edukatorka somatyczna.
                         </p>
+                        
+                        <a href="#o-prowadzacej" class="w-full py-2.5 px-4 rounded-xl bg-brand-cream hover:bg-brand-sand/60 text-brand-green text-xs font-semibold smooth-transition mb-4 border border-brand-sand/80 inline-flex items-center justify-center gap-1.5">
+                            Poznaj pełny biogram Marty ↓
+                        </a>
+
                         <div class="w-full pt-4 border-t border-brand-sand/60 flex items-center justify-center gap-2 text-[11px] text-brand-green/70">
                             <span>Somatic Sex Education™</span> • <span>Sexological Bodywork®</span>
                         </div>
@@ -204,7 +211,7 @@
         </div>
     </section>
 
-    <!-- Manifesto Statement Section (Lowered) -->
+    <!-- Manifesto Statement Section -->
     <section class="py-16 bg-brand-violet-light/35 border-y border-brand-sand/50">
         <div class="container mx-auto px-6 text-center max-w-4xl reveal">
             <span class="text-[11px] font-bold uppercase tracking-widest text-brand-plum mb-3 block">Manifest procesu</span>
@@ -216,6 +223,44 @@
             <p class="text-sm sm:text-base text-brand-green/80 font-light leading-relaxed max-w-2xl mx-auto">
                 Tym razem jest to podróż w głąb przyjemności — pogłębiona praca genitalna, obejmująca również eksplorację wewnętrzną. Prowadzony masaż i mapowanie cipki staną się Twoim osobistym laboratorium intymnego spotkania ze sobą. Bez presji celu, orgazmu czy wyniku.
             </p>
+        </div>
+    </section>
+
+    <!-- DEDICATED FULL BIO SECTION (Marta Ziółek) -->
+    <section id="o-prowadzacej" class="py-20 md:py-24 bg-brand-white border-b border-brand-sand/50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-12 reveal">
+                <span class="text-[11px] font-bold uppercase tracking-widest text-brand-plum mb-3 block">
+                    Poznaj facylitatorkę
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-serif text-brand-green mb-3">
+                    O prowadzącej — Marta Ziółek
+                </h2>
+                <div class="w-16 h-[1px] bg-brand-plum mx-auto mt-4 opacity-50"></div>
+            </div>
+
+            <div class="bg-brand-cream/40 rounded-3xl p-8 sm:p-12 border border-brand-sand/70 shadow-sm reveal">
+                <div class="space-y-6 text-sm sm:text-[15px] text-brand-green/85 font-light leading-relaxed">
+                    <p class="first-letter:text-4xl first-letter:font-serif first-letter:text-brand-plum first-letter:mr-1 first-letter:float-left first-letter:leading-none">
+                        Marta Ziółek jest artystką, aktywistką przyjemności, miłośniczką ciała i głodną życia bestią. Pracuje jako kołczyni ucieleśnienia w nurcie somatycznej seksuologii, choreografka, performerka i edukatorka somatyczna. Towarzyszy osobom w procesach indywidualnych 1:1 oraz facylituje procesy grupowe. Wierzy w alchemię ciała i potęgę wrażliwości, wspierając innych w rozpalaniu ich wewnętrznego ognia.
+                    </p>
+                    <p>
+                        Jest twórczynią programu mentoringowego ROZPALACZKI, dedykowanego ucieleśnionej drodze twórczej, oraz autorką projektów edukacyjnych skoncentrowanych wokół Aktywizmu Przyjemności. Rozumie przyjemność jako praktykę wolności i akt oporu wobec kultury wyczerpania. W swojej pracy artystycznej i edukacyjnej eksploruje erotykę jako siłę o wymiarze duchowym i politycznym, wychodząc z założenia, że w erotyce nie chodzi jedynie o to, co robimy, lecz o to, jak głęboko potrafimy czuć, działając.
+                    </p>
+                    <p>
+                        Do somatycznej seksuologii doszła poprzez wieloletnią eksplorację emocjonalnej anatomii i seksualności ciała. Traktuje ciało nie jako narzędzie estetycznej ekspresji, lecz jako żywe archiwum doświadczeń — pole eksperymentu i transformacji. W centrum jej praktyki znajduje się proces ucieleśniania wiedzy, rozumiany jako przenoszenie abstrakcyjnych pojęć, narracji kulturowych i napięć społecznych w obszar bezpośredniego, somatycznego doświadczenia. Szczególnie interesuje ją wiedza wyparta i ztabuizowana — związana z seksualnością, erotyką, przyjemnością, wstydem oraz regulacją pobudzenia.
+                    </p>
+                    <p>
+                        W czasie pandemii stworzyła projekt Monstera, inspirowany figurą Meduzy, zakończony autoerotycznym dialogiem z piersiami oraz Litanią do piersi autorstwa Anki Herbut. W 2024 roku zainicjowała projekt Warszawskie Syrenki, przywołujący różne syrenie emanacje — od figur emancypacyjnych po uwodzicielki — których głos przebija się przez to, co zakazane i wyciszone.
+                    </p>
+                    <p>
+                        Ukończyła School of Somatic Sexology w Wielkiej Brytanii oraz Studium Terapeutki Ciała w zakresie zdrowia seksualnego i behawioralnych technik antystresowych. Ukończyła szkolenia ISTA Level 1 i Level 2. Posiada certyfikacje i wieloletnie doświadczenie w pracy z ruchem i ucieleśnieniem, m.in. w Dance Movement Therapy (DMT), Tension Release Exercises (TRE), Sacred Womb Movement, tradycyjnej tantrze oraz jodze (Kundalini – KRI Certified Teacher, Vinyasa 200 RYT).
+                    </p>
+                    <p class="font-medium text-brand-green pt-2 border-t border-brand-sand/50">
+                        Dla niej ta praca polega na tworzeniu przestrzeni, w których erotyczna suwerenność, kreatywność i ucieleśniona wolność mogą rozkwitać.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
