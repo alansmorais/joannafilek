@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>Sacred Power & Polarity Temple | Joanna Filek & Bodhi Michael</title>
+    <link rel="icon" type="image/png" href="https://joannafilek.com/images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-plum': '#722D64',
+                        'brand-plum-dark': '#58214D',
+                        'brand-lavender': '#E2E6F3', 
+                        'brand-green': '#1B3D2F',
+                        'brand-green-light': '#FDF9FB',
+                        'brand-white': '#FCFCFC',
+                        'brand-violet-light': '#F4E6EF',
+                        'brand-sand': '#EBDDD4'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #FDF9FB; scroll-behavior: smooth; }
+        
+        .hero-bg-image {
+            background-image: 
+                radial-gradient(circle at center, rgba(27, 61, 47, 0.75) 0%, rgba(15, 23, 42, 0.95) 100%),
+                linear-gradient(to bottom, rgba(114, 45, 100, 0.5), rgba(27, 61, 47, 0.95)), 
+                url('https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        
+        .smooth-transition { transition: all 0.2s ease-in-out; }
+        .hover-lift:hover { transform: translateY(-2px); }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: flex; }
+        
+        .modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            z-index: 100; 
+            background: rgba(15, 23, 42, 0.65); 
+            backdrop-filter: blur(6px); 
+            align-items: center; 
+            justify-content: center; 
+            padding: 16px; 
+        }
+        .modal.active { display: flex; }
+        .modal > div { max-height: min(92vh, 900px); overflow-y: auto; }
+
+        /* Synchronized Bilingual Display Engine */
+        body:not(.lang-en) .lang-en { display: none !important; }
+        body.lang-en .lang-pl { display: none !important; }
+
+        button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+            outline: 2px solid rgba(114,45,100,0.4);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 767px) {
+            .modal { align-items: flex-end !important; padding: 0 !important; }
+            .modal > div { width: 100% !important; border-radius: 24px 24px 0 0 !important; }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden text-brand-green">
+
+    <!-- Top Bar with Active Language Switcher -->
+    <div class="relative z-[60] flex items-center justify-between px-6 h-10 bg-brand-plum text-brand-white text-xs font-medium">
+        <div>
+            <span class="hidden sm:inline">Kontakt (+48) 733 777 542 • psycholog.joannafilek@gmail.com</span>
+            <span class="sm:hidden">Kontakt (+48) 733 777 542</span>
+        </div>
+        
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2">
+                <button type="button" onclick="setLang('pl')" id="btnPlTop" class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full ring-1 ring-white/60 bg-white/20 font-bold transition hover:scale-105" title="Polski">
+                    <img src="https://flagcdn.com/w20/pl.png" width="16" alt="PL" class="rounded-sm">
+                    <span class="text-[11px]">PL</span>
+                </button>
+                <button type="button" onclick="setLang('en')" id="btnEnTop" class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-bold transition opacity-70 hover:opacity-100 hover:scale-105" title="English">
+                    <img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" class="rounded-sm">
+                    <span class="text-[11px]">EN</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-lavender/60">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo.png" alt="Logo Joanna Filek" class="w-11 h-11 object-contain" onerror="this.src='https://joannafilek.com/images/logo.png'">
+                <div>
+                    <div class="text-2xl font-light text-brand-green leading-tight">
+                        Joanna <span class="font-bold">Filek</span>
+                    </div>
+                    <p class="text-[11px] text-brand-plum -mt-0.5">
+                        <span class="lang-pl">Psycholożka | Seksuolożka | Psychoterapeutka</span>
+                        <span class="lang-en">Psychologist | Sexologist | Psychotherapist</span>
+                    </p>
+                </div>
+            </a>
+
+            <nav class="hidden xl:flex items-center gap-6 bg-white px-6 py-2.5 rounded-full shadow-sm text-xs font-bold uppercase tracking-wider border border-brand-lavender/40">
+                <a href="index.html" class="hover:text-brand-plum smooth-transition">
+                    <span class="lang-pl">Strona główna</span><span class="lang-en">Home</span>
+                </a>
+                <a href="about.html" class="hover:text-brand-plum smooth-transition">
+                    <span class="lang-pl">O mnie</span><span class="lang-en">About me</span>
+                </a>
+                <a href="works.html" class="text-brand-plum">
+                    <span class="lang-pl">Warsztaty</span><span class="lang-en">Workshops</span>
+                </a>
+                <a href="contact.html" class="hover:text-brand-plum smooth-transition">
+                    <span class="lang-pl">Kontakt</span><span class="lang-en">Contact</span>
+                </a>
+                <button type="button" onclick="toggleModal('waitingListModal')" class="hover:text-brand-plum smooth-transition font-bold uppercase">
+                    <span class="lang-pl">Lista oczekujących</span><span class="lang-en">Waiting List</span>
+                </button>
+                <button type="button" onclick="toggleModal('newsletterModal')" class="hover:text-brand-plum smooth-transition font-bold uppercase">Newsletter</button>
+                <button type="button" onclick="openSignupModal()" class="text-brand-plum hover:opacity-80 smooth-transition font-extrabold underline decoration-2 uppercase">
+                    <span class="lang-pl">Zapisy</span><span class="lang-en">Register</span>
+                </button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="visits.html" class="hidden sm:inline-block bg-brand-green text-white font-medium text-xs px-5 py-2.5 rounded-xl hover:bg-brand-plum smooth-transition shadow-sm">
+                    <span class="lang-pl">Umów konsultację</span><span class="lang-en">Book Consultation</span>
+                </a>
+                <button type="button" id="menuBtn" class="xl:hidden bg-brand-green text-white px-4 py-2 rounded-xl text-xs font-bold">
+                    Menu
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu flex-col gap-3 px-6 pb-5 bg-white text-brand-green font-medium shadow-md xl:hidden text-sm">
+            <div class="flex items-center justify-between pb-2 border-b border-brand-lavender/50 mt-1">
+                <span class="text-xs uppercase font-bold text-brand-plum">Język / Language</span>
+                <div class="flex gap-2">
+                    <button type="button" onclick="setLang('pl')" class="px-3 py-1 rounded bg-brand-plum text-white text-xs font-bold">PL</button>
+                    <button type="button" onclick="setLang('en')" class="px-3 py-1 rounded bg-brand-green text-white text-xs font-bold">EN</button>
+                </div>
+            </div>
+            <a href="index.html"><span class="lang-pl">Strona główna</span><span class="lang-en">Home</span></a>
+            <a href="about.html"><span class="lang-pl">O mnie</span><span class="lang-en">About me</span></a>
+            <a href="works.html" class="text-brand-plum font-bold"><span class="lang-pl">Warsztaty</span><span class="lang-en">Workshops</span></a>
+            <a href="contact.html"><span class="lang-pl">Kontakt</span><span class="lang-en">Contact</span></a>
+            <button type="button" onclick="toggleModal('waitingListModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum">
+                <span class="lang-pl">Lista oczekujących</span><span class="lang-en">Waiting List</span>
+            </button>
+            <button type="button" onclick="openSignupModal(); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-bold text-brand-plum underline">
+                <span class="lang-pl">Zapisy</span><span class="lang-en">Register</span>
+            </button>
+            <button type="button" onclick="toggleModal('newsletterModal'); document.getElementById('mobileMenu').classList.remove('active');" class="text-left font-medium">Newsletter</button>
+            <a href="visits.html" class="bg-brand-green text-white px-4 py-2.5 rounded-xl text-center text-xs mt-1">
+                <span class="lang-pl">Umów konsultację</span><span class="lang-en">Book Consultation</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Header -->
+    <section class="hero-bg-image pt-16 pb-20 text-white relative">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <span class="bg-white/15 backdrop-blur-md px-3.5 py-1 rounded-full text-[11px] font-semibold tracking-widest uppercase border border-white/20 inline-block mb-4 text-brand-lavender">
+                Sunday, 22 November 2026 • BlissHouse Kraków
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-bold font-serif leading-tight mb-3">Sacred Power & Polarity Temple</h1>
+            <p class="text-base sm:text-xl font-serif italic text-brand-lavender mb-6">
+                <span class="lang-pl">Eksploracja świętej mocy, polaryzacji i ucieleśnionej odwagi</span>
+                <span class="lang-en">A Deep Transformational Workshop in Conscious Play, Eros & Power</span>
+            </p>
+            <div class="inline-flex flex-wrap justify-center gap-3 text-xs font-medium bg-black/30 backdrop-blur-md p-3 rounded-2xl border border-white/15 mb-6">
+                <span>🕓 18:30 – 00:00 (Drzwi / Doors: 18:15)</span>
+                <span>•</span>
+                <span>📍 BlissHouse, Kraków</span>
+                <span>•</span>
+                <span>✨ Guided by Bodhi Michael & Joanna Filek</span>
+            </div>
+            <div>
+                <button type="button" onclick="openSignupModal()" class="px-7 py-3 rounded-full font-bold text-xs tracking-wider uppercase bg-brand-plum hover:bg-brand-plum-dark text-white smooth-transition shadow-md">
+                    <span class="lang-pl">Zarezerwuj Miejsce</span>
+                    <span class="lang-en">Reserve Your Spot</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Uncut Article Container -->
+    <main class="max-w-4xl mx-auto px-6 py-14">
+
+        <!-- Banner Image -->
+        <div class="rounded-3xl overflow-hidden mb-12 shadow-lg border border-brand-lavender bg-stone-100 flex justify-center">
+            <img src="https://joannafilek.com/images/Sacred_Power_and_Polarity_Play.png" alt="Sacred Power and Polarity Play" class="w-full max-h-[460px] object-contain p-4" onerror="this.src='https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=1200&auto=format&fit=crop'">
+        </div>
+
+        <article class="space-y-10 bg-white p-8 sm:p-12 rounded-3xl border border-brand-lavender shadow-sm">
+            
+            <!-- John Hawken Quote -->
+            <div class="border-l-4 border-brand-plum bg-brand-violet-light/50 p-6 rounded-r-2xl space-y-2">
+                <blockquote class="text-sm sm:text-base font-serif italic text-brand-green/90 leading-relaxed">
+                    “The act of transgression breaks through the barriers of fear and shame, and that moment of liberation creates a charge of energy on which we can ride to heights of pleasure and ecstatic experience.<br>
+                    It also asserts a sense of self as independent of social norms, a sense of individuality.”
+                </blockquote>
+                <p class="text-xs font-bold uppercase tracking-wider text-brand-plum">— John Hawken</p>
+            </div>
+
+            <!-- Lead Narrative -->
+            <div class="space-y-4 text-sm sm:text-base leading-relaxed text-brand-green/85">
+                <div class="lang-pl space-y-4">
+                    <p>
+                        Są w nas części, które pozostają uśpione, ukryte lub stłumione pod wstydem, lękiem, kontrolą i uwarunkowaniami społecznymi.<br>
+                        Są też części nas, które budzą się poprzez komunikowanie prawdy, pragnienia, poddanie, oddanie i ucieleśnioną odwagę.
+                    </p>
+                    <p class="font-medium text-brand-plum">
+                        Ten Temple to głęboki warsztat transformacyjny, wykorzystujący świętą moc, polaryzację i świadomą zabawę jako ścieżkę do wolności, intymności i autentycznej siły.
+                    </p>
+                    <p>
+                        To nie jest sex party. To nie jest występ ani teatr. To nie jest terapia.<br>
+                        To starannie prowadzona przestrzeń transformacji, w której eros staje się lekarstwem, prawda staje się ucieleśniona, a połączenie staje się święte.
+                    </p>
+                    <p>
+                        Poprzez praktyki prowadzone, ruch, pracę z oddechem, granice i zgodę, regulację układu nerwowego, narzędzia uwalniania emocji, rytuał, integrację cienia i świadomą dynamikę relacyjną — uczestnicy są zaproszeni do obudzenia głębszych warstw siebie i wejścia w większą wolność, miłość oraz suwerenność.
+                    </p>
+                    <p>
+                        To, co tradycyjnie kojarzyliśmy z BDSM — strach, ból, poczucie winy, ocenianie, wstyd czy zniekształcenie — może zacząć przekształcać się w akceptację, ekscytację, przyjemność, odżywienie, uwolnienie i satysfakcję.
+                    </p>
+                </div>
+                
+                <div class="lang-en space-y-4">
+                    <p>
+                        There are parts of us that remain asleep, hidden or repressed beneath shame, fear, control, and conditioning.<br>
+                        There are also parts of us that awaken through communicating truth, desire, surrender, devotion, and embodied courage.
+                    </p>
+                    <p class="font-medium text-brand-plum">
+                        This Temple is a deep transformational workshop using sacred power, polarity, and conscious play as a pathway into freedom, intimacy, and authentic power.
+                    </p>
+                    <p>
+                        This is not a sex party. It is not a performance. It is not therapy.<br>
+                        It is a carefully facilitated transformational space where eros becomes medicine, truth becomes embodied, and connection becomes sacred.
+                    </p>
+                    <p>
+                        Through guided practices, movement, breath work, boundaries and consent, nervous system regulation, emotional release tools, ritual, shadow integration, and conscious relational dynamics—participants are invited to awaken deeper layers of self and step into greater freedom, love, and sovereignty.
+                    </p>
+                    <p>
+                        What we may have traditionally associated with BDSM—fear, pain, guilt, judgment, shame, or distortion—can begin to transform into acceptance, excitement, pleasure, nourishment, release, and satisfaction.
+                    </p>
+                </div>
+            </div>
+
+            <!-- WHO IS THIS FOR -->
+            <div class="space-y-4 pt-4 border-t border-brand-lavender">
+                <h3 class="text-2xl font-serif font-bold text-brand-green">
+                    <span class="lang-pl">DLA KOGO JEST TO WYDARZENIE (WHO IS THIS FOR)</span>
+                    <span class="lang-en">WHO IS THIS FOR</span>
+                </h3>
+                <p class="text-sm leading-relaxed text-brand-green/85">
+                    <span class="lang-pl">Ten Temple jest dedykowany dojrzałym emocjonalnie osobom i parom, które czują wezwanie do eksploracji głębi, prawdy, intymności i transformacji w sobie oraz w relacji z innymi.</span>
+                    <span class="lang-en">This Temple is for emotionally mature individuals and couples who feel called to explore depth, truth, intimacy, and transformation within themselves and with others.</span>
+                </p>
+                <p class="text-sm font-semibold text-brand-plum">
+                    <span class="lang-pl">Jest to przestrzeń szczególnie dla osób, które:</span>
+                    <span class="lang-en">It is especially aligned for those who:</span>
+                </p>
+                <ul class="list-disc list-inside text-xs sm:text-sm text-brand-green/85 space-y-1.5 pl-2">
+                    <li><span class="lang-pl">Pragną uzdrowić wstyd lub dawne uwarunkowania wokół seksualności, władzy i bezbronności</span><span class="lang-en">Desire to heal shame or old conditioning around sexuality, power, and vulnerability</span></li>
+                    <li><span class="lang-pl">Chcą ucieleśnić wyraźniejsze granice i bardziej autentyczne pragnienia</span><span class="lang-en">Want to embody clearer boundaries and more authentic desire</span></li>
+                    <li><span class="lang-pl">Są gotowe eksplorować poddanie i przewodnictwo w świadomy sposób</span><span class="lang-en">Are ready to explore surrender and leadership in conscious ways</span></li>
+                    <li><span class="lang-pl">Cenią kulturę zgody, komunikację i odpowiedzialność emocjonalną</span><span class="lang-en">Value consent, communication, and emotional responsibility</span></li>
+                    <li><span class="lang-pl">Są ciekawe pracy wewnętrznej, rozwoju i autorefleksji</span><span class="lang-en">Are curious about inner work, growth, and self-reflection</span></li>
+                    <li><span class="lang-pl">Czują rezonans ze świętym erosem jako ścieżką przebudzenia</span><span class="lang-en">Feel aligned with sacred eros as a path of awakening</span></li>
+                </ul>
+                <p class="text-sm leading-relaxed text-brand-green/85">
+                    <span class="lang-pl">Zapraszamy singli, pary oraz uczestników LGBTQIA+ wszelkich płci, orientacji i stylów relacji.</span>
+                    <span class="lang-en">We welcome individuals, couples, and LGBTQIA+ participants of all genders, orientations, and relationship styles.</span>
+                </p>
+                <div class="bg-brand-violet-light/70 p-4 rounded-2xl border border-brand-plum/20 font-bold text-brand-plum text-xs leading-relaxed">
+                    *** You MUST have the capacity to communicate clearly, negotiate respectfully, and honor both your own boundaries and the boundaries of others. ***
+                </div>
+                <p class="text-sm leading-relaxed text-brand-green/85">
+                    <span class="lang-pl">Konieczne jest, abyś rozpoczęła/rozpoczął już własną pracę wewnętrzną lub pracę z cieniem wokół ograniczeń, poddania, przyjmowania i dawania intensywności, dyscypliny, kontroli oraz wrażliwości.<br><br>Najważniejsze jest, abyś działał/a z poziomu serca i autentycznie troszczył/a się o siebie i innych. Musisz być otwarty/a na pracę ze wszystkimi płciami i wchodzenie w różne dynamiki mocy podczas ćwiczeń.<br><br>Nie jest wymagane żadne wcześniejsze doświadczenie w BDSM. Dojrzałość emocjonalna, samoświadomość i poszanowanie granic są kluczowe. Wszystko jest zaproszeniem. Zawsze masz pełną swobodę uczestniczenia, zatrzymania się, bycia świadkiem lub rezygnacji z ćwiczenia. Nagość jest opcjonalna.</span>
+                    <span class="lang-en">It is necessary that you have already begun your own inner or shadow work around restriction, surrender, receiving and giving intensity, discipline, control, and vulnerability.<br><br>Ultimately, it is vital that you are heart-centered and genuinely care for yourself and for others. You must be open to working with all genders and engaging with different power dynamics within the exercises.<br><br>No previous BDSM experience is required. Emotional maturity, self-awareness, and respect for boundaries are essential. Everything is an invitation. You are always free to participate, pause, witness, or opt out. Nudity is optional.</span>
+                </p>
+            </div>
+
+            <!-- WHO THIS IS NOT FOR -->
+            <div class="space-y-4 pt-4 border-t border-brand-lavender">
+                <h3 class="text-2xl font-serif font-bold text-brand-plum">
+                    <span class="lang-pl">DLA KOGO TO WYDARZENIE NIE JEST (WHO THIS IS NOT FOR)</span>
+                    <span class="lang-en">WHO THIS IS NOT FOR</span>
+                </h3>
+                <p class="text-sm leading-relaxed text-brand-green/85">
+                    <span class="lang-pl">Ten Temple może nie być odpowiedni, jeśli:</span>
+                    <span class="lang-en">This Temple may not be suitable if you are:</span>
+                </p>
+                <ul class="list-disc list-inside text-xs sm:text-sm text-brand-green/85 space-y-1.5 pl-2">
+                    <li><span class="lang-pl">Szukasz przypadkowych kontaktów seksualnych lub rozrywki</span><span class="lang-en">Seeking casual sexual access or entertainment</span></li>
+                    <li><span class="lang-pl">Nie potrafisz jasno komunikować własnych granic lub respektować granic innych osób</span><span class="lang-en">Unable to clearly communicate your own boundaries or respect the boundaries of others</span></li>
+                    <li><span class="lang-pl">Jesteś obecnie niestabilny/a emocjonalnie lub w ostrym kryzysie</span><span class="lang-en">Currently emotionally unstable or in acute crisis</span></li>
+                    <li><span class="lang-pl">Oczekujesz, że inni Cię uzdrowią lub uratują</span><span class="lang-en">Expecting others to heal you or rescue you</span></li>
+                    <li><span class="lang-pl">Nie chcesz brać odpowiedzialności za własne doświadczenie</span><span class="lang-en">Unwilling to take responsibility for your own experience</span></li>
+                    <li><span class="lang-pl">Czujesz dyskomfort przebywając w pobliżu energii erotycznej, intymności lub ucieleśnionej ekspresji</span><span class="lang-en">Uncomfortable being around erotic energy, intimacy, or embodied expression with yourself or others</span></li>
+                </ul>
+                <p class="text-xs font-bold uppercase tracking-wider text-brand-green bg-brand-sand/40 p-3 rounded-xl text-center">
+                    ***We value sovereignty, maturity, care, kindness, respect, personal and relational accountability and responsibility***
+                </p>
+            </div>
+
+            <!-- HOW THE EXPERIENCE UNFOLDS -->
+            <div class="space-y-4 pt-4 border-t border-brand-lavender">
+                <h3 class="text-2xl font-serif font-bold text-brand-green">
+                    <span class="lang-pl">JAK WYGLĄDA DOŚWIADCZENIE (HOW THE EXPERIENCE UNFOLDS)</span>
+                    <span class="lang-en">HOW THE EXPERIENCE UNFOLDS</span>
+                </h3>
+                <p class="text-sm leading-relaxed text-brand-green/85">
+                    <span class="lang-pl">Zaczynamy od stworzenia ugruntowanego i bezpiecznego kontenera Temple poprzez indywidualne i grupowe ustalenia oparte na zgodzie.<br><br>Następnie, poprzez praktyczne narzędzia i ćwiczenia z prowadzeniem, budujemy obecność, zaufanie, kulturę zgody, bezpieczeństwo emocjonalne i ucieleśnioną świadomość.<br><br>Otrzymasz wsparcie w regulacji układu nerwowego, łączeniu się ze swoim ciałem, wyrażaniu prawdy, precyzowaniu granic i otwieraniu autentycznych ścieżek kontaktu.<br><br>Stamtąd wyruszymy w transformujące praktyki świątynne eksplorujące dynamikę świętej mocy, polaryzację, pragnienie, poddanie, oddanie, ekspresję i świadomy eros.<br><br>Praktyki te są uważnie prowadzone i w pełni oparte na wyborze, co pozwala każdemu uczestnikowi zaangażować się na poziomie, który czuje jako właściwy.<br><br>W miarę upływu wieczoru ustrukturyzowany kontener mięknie, przechodząc w swobodny przepływ Temple — intencjonalną przestrzeń do kontynuowania kontaktu, ekspresji, integracji, celebracji, bezruchu lub zabawy w bezpiecznych, uzgodnionych, pełnych troski i odpowiedzialnych interakcjach.<br><br>Noc kończy się uziemieniem, refleksją i zamykającym kręgiem dzielenia.</span>
+                    <span class="lang-en">We begin by creating a grounded and safe Temple container through consensual, individual and collective agreements.<br><br>Then through practical tools and guided exercises, we establish presence, trust, consent culture, emotional safety, and embodied awareness.<br><br>You will be supported to regulate your nervous system, connect to your body, express truth, clarify boundaries, and open authentic pathways of connection.<br><br>From there, we journey into transformational Temple practices exploring sacred power dynamics, polarity, desire, surrender, devotion, expression, and conscious eros.<br><br>These practices are carefully guided and choice-based, allowing each participant to engage at the level that feels aligned.<br><br>As the evening unfolds, the structured container softens into a freer Temple flow—an intentional space for continued connection, expression, integration, celebration, stillness, or play in boundaried, mutually-consensual, negotiated, agreed upon, respectful, caring, safe, and responsible interactions.<br><br>The night closes with grounding, reflection and a final sharing circle.</span>
+                </p>
+            </div>
+
+            <!-- WHAT YOU MAY LEAVE WITH -->
+            <div class="space-y-4 pt-4 border-t border-brand-lavender">
+                <h3 class="text-2xl font-serif font-bold text-brand-green">
+                    <span class="lang-pl">CO MOŻESZ ZE SOBĄ WYNIEŚĆ (WHAT YOU MAY LEAVE WITH)</span>
+                    <span class="lang-en">WHAT YOU MAY LEAVE WITH</span>
+                </h3>
+                <p class="text-sm leading-relaxed text-brand-green/85">
+                    <span class="lang-pl">Wielu uczestników opuszcza warsztat z:</span>
+                    <span class="lang-en">Many participants leave with:</span>
+                </p>
+                <ul class="list-disc list-inside text-xs sm:text-sm text-brand-green/85 space-y-1.5 pl-2">
+                    <li><span class="lang-pl">Głębszym zaufaniem do siebie</span><span class="lang-en">Deeper self-trust</span></li>
+                    <li><span class="lang-pl">Większą pewnością w wyrażaniu granic i pragnień</span><span class="lang-en">More confidence expressing boundaries and desires</span></li>
+                    <li><span class="lang-pl">Ukojeniem wokół poczucia winy, wstydu, oceniania i zahamowań</span><span class="lang-en">Healing around guilt, shame, judgement or inhibition</span></li>
+                    <li><span class="lang-pl">Zwiększoną energią, pasją i radością</span><span class="lang-en">Increased energy, passion, and joy</span></li>
+                    <li><span class="lang-pl">Większą wolnością emocjonalną</span><span class="lang-en">Greater emotional freedom</span></li>
+                    <li><span class="lang-pl">Ucieleśnioną jasnością wokół mocy i intymności</span><span class="lang-en">Embodied clarity around power and intimacy</span></li>
+                    <li><span class="lang-pl">Większą otwartością na miłość i bliskość</span><span class="lang-en">More openness to love and connection</span></li>
+                    <li><span class="lang-pl">Odczuwalnym poczuciem osobistej transformacji</span><span class="lang-en">A felt sense of personal transformation</span></li>
+                </ul>
+            </div>
+
+            <!-- PROGRAM & DETAILS -->
+            <div class="grid sm:grid-cols-2 gap-6 pt-4 border-t border-brand-lavender text-xs">
+                <div>
+                    <h4 class="font-bold uppercase tracking-wider text-brand-plum mb-2">
+                        <span class="lang-pl">HARMONOGRAM</span><span class="lang-en">PROGRAM</span>
+                    </h4>
+                    <p class="text-brand-green/85 leading-relaxed">
+                        18:15 Arrival<br>
+                        18:30 Doors Close – Opening<br>
+                        18:45 Guided Connection & Consent Exercises<br>
+                        19:30 Guided Sacred Power & Polarity Journey<br>
+                        21:30–23:30 Open Temple Space – Free Flow<br>
+                        23:30 Closing Sharing Circle<br>
+                        24:00 End
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-wider text-brand-plum mb-2">
+                        <span class="lang-pl">CO ZE SOBĄ ZABRAĆ</span><span class="lang-en">ITEMS TO BRING</span>
+                    </h4>
+                    <p class="text-brand-green/85 leading-relaxed">
+                        - Clothing that connects you to your personal sacred power and polarity<br>
+                        - A towel or lungi for comfort, massage, or creating your sacred space<br>
+                        - A water bottle to stay hydrated (no open containers in the Temple)<br>
+                        - Snacks to nourish your body and spirit<br>
+                        - Massage oil<br>
+                        - Blindfold<br>
+                        - Optional sensual items: feathers, fur, satin, silk, rope, whip, collar, leash, and other personal toys
+                    </p>
+                </div>
+            </div>
+
+            <!-- TEMPLE GUIDELINES -->
+            <div class="bg-brand-violet-light/50 p-5 rounded-2xl border border-brand-plum/20 text-xs leading-relaxed space-y-1">
+                <h4 class="font-bold uppercase tracking-wider text-brand-plum">
+                    <span class="lang-pl">ZASADY ŚWIĄTYNI</span><span class="lang-en">TEMPLE GUIDELINES</span>
+                </h4>
+                <p>The Temple is a sacred space, so please dress appropriately.</p>
+                <p>No perfume. Essential oils are welcome.</p>
+                <p>This is a no alcohol and no recreational drugs event.</p>
+            </div>
+
+            <!-- WHAT IS A TEMPLE -->
+            <div class="space-y-4 pt-4 border-t border-brand-lavender">
+                <h3 class="text-2xl font-serif font-bold text-brand-green">
+                    <span class="lang-pl">CZYM JEST TEMPLE?</span><span class="lang-en">WHAT IS A TEMPLE?</span>
+                </h3>
+                <p class="text-sm leading-relaxed text-brand-green/85">
+                    A Temple is a conscious, sacred space that honors the divine spark within each of us. It is where our primal, erotic, and creative energies meet the subtle currents of the heart, voice, intuition, and spirit.<br><br>
+                    Here, we are invited to rest, be fully present, celebrate our essence, and express life-force energy in devotion. It is a sanctuary where we can explore intimacy, touch, and desire with clarity, boundaries, and reverence.<br><br>
+                    In the Temple, guilt, shame, and fear can dissolve into acceptance, joy, ecstasy, and love. It is a place of transformation, where we remember who we truly are.<br><br>
+                    The Temple carries timeless wisdom. It invites us to be seen and heard, to share vulnerably, to honor our desires, and to respect one another’s boundaries.<br><br>
+                    Together, we learn to reclaim innocence, presence, and the bliss of simply being.
+                </p>
+            </div>
+
+            <!-- FINANCIAL EXCHANGE -->
+            <div class="bg-brand-cream p-6 rounded-2xl border border-brand-sand space-y-3 text-xs leading-relaxed text-brand-green/85">
+                <h4 class="font-bold uppercase tracking-wider text-brand-plum text-xs">
+                    <span class="lang-pl">WYMIANA FINANSOWA</span><span class="lang-en">FINANCIAL EXCHANGE</span>
+                </h4>
+                <p>
+                    • <strong>250 PLN / person</strong> Super Early Bird Price until August 31<br>
+                    • <strong>300 PLN / person</strong> Early Bird Price Sept. 1-October 31<br>
+                    • <strong>350 PLN / person</strong> Regular Price Nov. 1-November 22
+                </p>
+                <p>
+                    Contact Bodhi + 48 7323 818 941 or Joanna +48 667 777 687 via WhatsApp for more information. Register online at <a href="https://joannafilek.com/works" class="underline font-semibold">https://joannafilek.com/works</a>.<br><br>
+                    Full payment is due at the time of registration. Your place is reserved only upon full payment. Limited spaces available. If you feel called to come to the Temple but are experiencing financial difficulty, please contact us to discuss alternative options.
+                </p>
+            </div>
+
+            <!-- TEMPLE TEAM -->
+            <div class="space-y-6 pt-4 border-t border-brand-lavender">
+                <h3 class="text-2xl font-serif font-bold text-brand-green">
+                    <span class="lang-pl">ZESPÓŁ TEMPLE</span><span class="lang-en">TEMPLE TEAM</span>
+                </h3>
+                
+                <div class="space-y-2 text-xs leading-relaxed text-brand-green/85">
+                    <h4 class="text-base font-serif font-bold text-brand-plum">Bodhi Michael</h4>
+                    <p>
+                        I am a teacher, coach, and guide with over 15 years experience personal experience holding space and healing in traumatic and medical emergencies as an advanced care paramedic in Canada. I am devoted to supporting personal transformation through embodiment, empowerment, and holistic healing.<br><br>
+                        Through 1:1 sessions, group workshops, and retreats, I help people reconnect with their bodies, release old limitations, and create more balance, presence, and joy in life.<br><br>
+                        My approach blends archetypal work, polarity practices, shadow exploration, Jungian psychology, somatic release, nervous system regulation, yoga, meditation, and breath work— grounded in safety, clarity, and compassion.<br><br>
+                        I look forward to working with you.<br>
+                        🌐 <a href="http://www.consciouswolf.guide" target="_blank" rel="noopener" class="underline">www.consciouswolf.guide</a> • IG: @conscious.wolf • WhatsApp: +48 732 818 941
+                    </p>
+                </div>
+
+                <div class="space-y-2 text-xs leading-relaxed text-brand-green/85 pt-3 border-t border-brand-lavender/60">
+                    <h4 class="text-base font-serif font-bold text-brand-plum">Joanna Filek</h4>
+                    <p>
+                        Psychologist, sexologist, psychotherapist, and scholar of religious studies.<br><br>
+                        In her work, Joanna supports individuals and couples in the areas of mental health, relationships, and sexuality, creating a safe and empathetic space for exploration and change.<br><br>
+                        At the core of her approach is a holistic view of the human being—one that integrates the body, emotions, and relational context.<br><br>
+                        She is particularly passionate about supporting people in embracing their sexuality, overcoming shame, and building more conscious and authentic relationships with themselves and others.<br>
+                        WhatsApp: +48 733 777 542 • 🌐 <a href="https://joannafilek.com" class="underline">www.joannafilek.com</a> • IG: @joaboutsex
+                    </p>
+                </div>
+            </div>
+
+            <!-- CANCELLATION POLICY -->
+            <div class="space-y-3 text-xs leading-relaxed text-brand-green/85 pt-4 border-t border-brand-lavender">
+                <h4 class="font-bold uppercase tracking-wider text-brand-plum">
+                    <span class="lang-pl">ZASADY REZYGNACJI</span><span class="lang-en">CANCELLATION POLICY</span>
+                </h4>
+                <p>
+                    100% refund for cancellations up to 2 weeks before the event.<br>
+                    Cancellations made less than 2 weeks before the event are non-refundable, though you may transfer your ticket to another person. Special circumstances will be considered individually.
+                </p>
+                <div class="text-center font-serif italic text-sm text-brand-plum pt-4 space-y-1">
+                    <p>Some experiences entertain.</p>
+                    <p>Some experiences awaken.</p>
+                    <p>This Temple is designed to awaken and embody.</p>
+                    <p class="font-bold not-italic font-sans text-xs pt-2">If something inside you longs for deeper truth, freer love, embodied power, and profound transformation—this is for you.</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Bottom Action CTA -->
+        <div class="text-center pt-8">
+            <button type="button" onclick="openSignupModal()" class="px-10 py-4 rounded-full bg-brand-green hover:bg-brand-plum text-white font-bold text-xs uppercase tracking-widest transition shadow-lg">
+                <span class="lang-pl">Zarejestruj się na Sacred Power & Polarity →</span>
+                <span class="lang-en">Register for Sacred Power & Polarity →</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-green text-white border-t border-white/10 pt-12 pb-8 text-xs opacity-90 mt-12">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 mb-8">
+            <div>
+                <a href="index.html" class="flex items-center gap-2 mb-3">
+                    <img src="images/logo.png" alt="Logo" class="w-8 h-8 object-contain" onerror="this.src='https://joannafilek.com/images/logo.png'">
+                    <div class="text-xl font-serif">Joanna <span class="font-bold">Filek</span></div>
+                </a>
+                <p class="opacity-75">Gabinet Psychoterapii & Seksuologii Inspiro</p>
+                <p class="opacity-75 mt-1">ul. Skalica 15A, Kraków</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-brand-lavender mb-3 uppercase tracking-wider">
+                    <span class="lang-pl">Nawigacja</span><span class="lang-en">Navigation</span>
+                </h4>
+                <ul class="space-y-2 opacity-80">
+                    <li><a href="index.html" class="hover:underline"><span class="lang-pl">Strona Główna</span><span class="lang-en">Home</span></a></li>
+                    <li><a href="about.html" class="hover:underline"><span class="lang-pl">O mnie</span><span class="lang-en">About me</span></a></li>
+                    <li><a href="works.html" class="hover:underline"><span class="lang-pl">Warsztaty</span><span class="lang-en">Workshops</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-brand-lavender mb-3 uppercase tracking-wider">
+                    <span class="lang-pl">Rezerwacje</span><span class="lang-en">Bookings</span>
+                </h4>
+                <ul class="space-y-2 opacity-80">
+                    <li><button type="button" onclick="openSignupModal()" class="hover:underline"><span class="lang-pl">Zapisz się na warsztat</span><span class="lang-en">Register</span></button></li>
+                    <li><button type="button" onclick="toggleModal('waitingListModal')" class="hover:underline"><span class="lang-pl">Lista Oczekujących</span><span class="lang-en">Waiting List</span></button></li>
+                    <li><button type="button" onclick="toggleModal('newsletterModal')" class="hover:underline">Newsletter</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-brand-lavender mb-3 uppercase tracking-wider">
+                    <span class="lang-pl">Informacja</span><span class="lang-en">Information</span>
+                </h4>
+                <p class="opacity-75 leading-relaxed">
+                    <span class="lang-pl">Poufność oraz bezpieczeństwo procesu są gwarantowane.</span>
+                    <span class="lang-en">Confidentiality and safety of the process are fully guaranteed.</span>
+                </p>
+                <p class="text-[10px] opacity-40 mt-4">
+                    Designed & Developed by <a href="https://alansmorais.github.io/alans.morais/" target="_blank" rel="noopener" class="underline">ASM</a>
+                </p>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 pt-4 border-t border-white/10 text-center opacity-60">
+            © 2026 Joanna Filek. <span class="lang-pl">Wszelkie prawa zastrzeżone.</span><span class="lang-en">All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Universal Registration Modal -->
+    <div id="signupModal" class="modal" role="dialog" aria-modal="true">
+        <div class="bg-white rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl relative border border-brand-lavender">
+            <button type="button" onclick="toggleModal('signupModal')" class="absolute top-5 right-5 text-brand-green opacity-40 hover:opacity-100 text-2xl font-bold">&times;</button>
+            <div class="text-center mb-6">
+                <span class="text-[10px] font-bold uppercase text-brand-plum tracking-widest block">
+                    <span class="lang-pl">Rejestracja</span><span class="lang-en">Temple Registration</span>
+                </span>
+                <h2 class="text-2xl font-bold font-serif text-brand-green">Sacred Power & Polarity</h2>
+                <p class="text-xs text-brand-green/70 mt-1">22 November 2026 • BlissHouse Kraków</p>
+            </div>
+            <form id="templeSignupForm" class="space-y-3.5">
+                <input type="hidden" name="event" value="temple2_polarity">
+                <div class="space-y-2.5">
+                    <input type="text" name="name" placeholder="Full Name / Imię i nazwisko *" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
+                    <input type="email" name="email" placeholder="E-mail *" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
+                    <input type="tel" name="phone" placeholder="Phone Number / Telefon *" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
+                </div>
+                <div>
+                    <textarea name="experience" rows="2" placeholder="Previous experience with inner work/shadow work or notes (optional)..." class="w-full px-4 py-2 text-xs rounded-xl border border-brand-lavender focus:outline-brand-plum"></textarea>
+                </div>
+                <div class="flex items-start gap-2 pt-1">
+                    <input type="checkbox" id="workshopConsent" name="consent" value="true" class="mt-0.5 accent-brand-plum" required>
+                    <label for="workshopConsent" class="text-[10px] leading-tight text-brand-green/70">
+                        <span class="lang-pl">Akceptuję zasady Temple (100% zgoda, granice, suwerenność, brak przypadkowego seksu).</span>
+                        <span class="lang-en">I accept the Temple guidelines (100% consent, boundaries, sovereignty, no casual sex party, respectful conduct).</span>
+                    </label>
+                </div>
+                <button type="submit" id="submitSignupBtn" class="w-full bg-brand-green hover:bg-brand-plum text-white font-bold py-3.5 rounded-xl shadow-md transition-all text-xs uppercase tracking-widest">
+                    <span class="lang-pl">Wyślij Zgłoszenie</span>
+                    <span class="lang-en">Submit Registration</span>
+                </button>
+                <div id="signupFormMessage" class="text-center mt-2 text-xs font-semibold hidden"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Waiting List Modal -->
+    <div id="waitingListModal" class="modal">
+        <div class="bg-white rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative border border-brand-lavender">
+            <button type="button" onclick="toggleModal('waitingListModal')" class="absolute top-5 right-5 text-2xl font-bold opacity-40">&times;</button>
+            <h3 class="text-xl font-bold font-serif text-brand-plum mb-2">Lista Oczekujących</h3>
+            <p class="text-xs text-brand-green/80 mb-4 leading-relaxed">Zostaw kontakt, a damy Ci znać, gdy pojawią się nowe terminy warsztatów lub konsultacji.</p>
+            <form id="waitingListForm" class="space-y-3">
+                <input type="text" name="name" placeholder="Imię i nazwisko *" required class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender">
+                <input type="email" name="email" placeholder="E-mail *" required class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender">
+                <input type="tel" name="phone" placeholder="Telefon" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender">
+                <button type="submit" class="w-full py-3 bg-brand-plum text-white font-bold rounded-xl text-xs uppercase">Dołącz do listy</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Newsletter Modal -->
+    <div id="newsletterModal" class="modal">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl relative border border-brand-lavender">
+            <button type="button" onclick="toggleModal('newsletterModal')" class="absolute top-4 right-4 text-xl font-bold opacity-40">&times;</button>
+            <h3 class="text-lg font-bold font-serif text-brand-plum mb-2">Newsletter</h3>
+            <p class="text-xs text-brand-green/70 mb-4">Cotygodniowe notatki psychoedukacyjne i informacje o wydarzeniach.</p>
+            <form id="newsletterForm" class="space-y-3">
+                <input type="email" name="email" placeholder="Twój e-mail" required class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender">
+                <button type="submit" class="w-full py-2.5 bg-brand-plum text-white font-bold rounded-xl text-xs uppercase">Zapisz się</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbxfdPl6xWwijbyvThZM6I-yPtRsP81mhpDdxuUD9eu2N-7LWL7k66gS4X9homWt3oIbEg/exec";
+
+        function setLang(lang) {
+            document.body.classList.remove('lang-pl', 'lang-en');
+            document.body.classList.add('lang-' + lang);
+            
+            const btnPl = document.getElementById('btnPlTop');
+            const btnEn = document.getElementById('btnEnTop');
+            if (btnPl && btnEn) {
+                if (lang === 'pl') {
+                    btnPl.className = "flex items-center gap-1.5 px-2.5 py-0.5 rounded-full ring-1 ring-white/60 bg-white/20 font-bold transition hover:scale-105";
+                    btnEn.className = "flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-bold transition opacity-70 hover:opacity-100 hover:scale-105";
+                } else {
+                    btnPl.className = "flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-bold transition opacity-70 hover:opacity-100 hover:scale-105";
+                    btnEn.className = "flex items-center gap-1.5 px-2.5 py-0.5 rounded-full ring-1 ring-white/60 bg-white/20 font-bold transition hover:scale-105";
+                }
+            }
+            try { localStorage.setItem('preferredLanguage', lang); } catch(e) {}
+        }
+
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.toggle('active');
+                document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+            }
+        }
+
+        function openSignupModal() {
+            toggleModal('signupModal');
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            let saved = 'pl';
+            try { saved = localStorage.getItem('preferredLanguage') || 'pl'; } catch(e) {}
+            setLang(saved);
+
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('active'); });
+            }
+
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) toggleModal(modal.id);
+                });
+            });
+        });
+
+        document.getElementById('templeSignupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitSignupBtn');
+            const msg = document.getElementById('signupFormMessage');
+            btn.disabled = true;
+            btn.textContent = 'SENDING...';
+
+            const fd = new FormData(this);
+            fd.append('form_type', 'templesignup');
+            fd.append('source_page', 'Sacred Power Polarity Dedicated Page');
+            fd.append('language', document.body.classList.contains('lang-en') ? 'EN' : 'PL');
+
+            try {
+                await fetch(API_URL, { method: 'POST', mode: 'no-cors', body: fd });
+                msg.textContent = 'Thank you! Your registration has been submitted.';
+                msg.className = 'text-center mt-2 text-xs font-semibold text-green-700';
+                msg.classList.remove('hidden');
+                this.reset();
+                setTimeout(() => toggleModal('signupModal'), 2500);
+            } catch (err) {
+                msg.textContent = 'Error sending form. Please try again.';
+                msg.className = 'text-center mt-2 text-xs font-semibold text-red-500';
+                msg.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Submit Registration';
+            }
+        });
+    </script>
+</body>
+</html>
