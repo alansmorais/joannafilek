@@ -645,6 +645,14 @@
         }
         function updateTempleRegistrationState() {
             const open = templeRegistrationIsOpen();
+            const bundleOption = document.querySelector('#ticketOption option[value="both_temples_bundle"]');
+            if (bundleOption) {
+                const bundleClosed = Date.now() > new Date(2026, 10, 8, 23, 59, 59, 999).getTime();
+                bundleOption.disabled = bundleClosed;
+                if (bundleClosed && document.getElementById('ticketOption').value === 'both_temples_bundle') {
+                    document.getElementById('ticketOption').value = 'single';
+                }
+            }
             document.querySelectorAll('button[onclick="openSignupModal()"]').forEach(button => {
                 button.disabled = !open;
                 if (!open) {
