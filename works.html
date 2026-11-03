@@ -408,7 +408,7 @@
                     <select id="selectedEventField" name="event" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender focus:outline-brand-plum bg-brand-green-light" required>
                         <option value="Wróć do swojego ciała (25 Października 2026)" data-event-date="2026-10-25">Wróć do swojego ciała (25 Października 2026)</option>
                         <option value="KOCHAM SIĘ KOCHAĆ ❤️‍‍🔥 (Start: 6 Listopada 2026)" data-event-date="2026-11-06">KOCHAM SIĘ KOCHAĆ ❤️️‍🔥 (Start: 6 Listopada 2026)</option>
-                        <option value="Divine Intimacy Temple (8 Listopada 2026)" data-event-date="2026-11-08">Divine Intimacy Temple (8 Listopada 2026)</option>
+                        <option value="Divine Intimacy Temple (8 Listopada 2026)" data-event-date="2026-11-08" data-ticket-price="350 PLN">Divine Intimacy Temple (8 Listopada 2026)</option>
                         <option value="Sacred Power & Polarity (22 Listopada 2026)" data-event-date="2026-11-22">Sacred Power &amp; Polarity (22 Listopada 2026)</option>
                         <option value="Both Temples Bundle (500 PLN; 8 & 22 Listopada 2026)" data-event-date="2026-11-08" data-ticket-option="both_temples_bundle">Both Temples Bundle — 500 PLN (8 &amp; 22 Listopada 2026)</option>
                     </select>
@@ -618,6 +618,7 @@
                 fd.append('selected_events', 'temple1_cacao,temple2_polarity');
             } else {
                 fd.append('ticket_option', 'single');
+                if (selectedOption.dataset.ticketPrice) fd.append('ticket_price', selectedOption.dataset.ticketPrice);
                 fd.append('selected_events', selectedOption.value);
             }
             fd.append('form_type', 'workshop_signup');
