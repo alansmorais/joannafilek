@@ -406,10 +406,11 @@
                 <div>
                     <label class="block text-xs font-bold text-brand-green uppercase tracking-wider mb-1">Wybrane wydarzenie *</label>
                     <select id="selectedEventField" name="event" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender focus:outline-brand-plum bg-brand-green-light" required>
-                        <option value="Wróć do swojego ciała (25 Października 2026)">Wróć do swojego ciała (25 Października 2026)</option>
-                        <option value="KOCHAM SIĘ KOCHAĆ ❤️‍‍🔥 (Start: 6 Listopada 2026)">KOCHAM SIĘ KOCHAĆ ❤️️‍🔥 (Start: 6 Listopada 2026)</option>
-                        <option value="Divine Intimacy Temple (8 Listopada 2026)">Divine Intimacy Temple (8 Listopada 2026)</option>
-                        <option value="Sacred Power & Polarity (22 Listopada 2026)">Sacred Power & Polarity (22 Listopada 2026)</option>
+                        <option value="Wróć do swojego ciała (25 Października 2026)" data-event-date="2026-10-25">Wróć do swojego ciała (25 Października 2026)</option>
+                        <option value="KOCHAM SIĘ KOCHAĆ ❤️‍‍🔥 (Start: 6 Listopada 2026)" data-event-date="2026-11-06">KOCHAM SIĘ KOCHAĆ ❤️️‍🔥 (Start: 6 Listopada 2026)</option>
+                        <option value="Divine Intimacy Temple (8 Listopada 2026)" data-event-date="2026-11-08">Divine Intimacy Temple (8 Listopada 2026)</option>
+                        <option value="Sacred Power & Polarity (22 Listopada 2026)" data-event-date="2026-11-22">Sacred Power &amp; Polarity (22 Listopada 2026)</option>
+                        <option value="Both Temples Bundle (500 PLN; 8 & 22 Listopada 2026)" data-event-date="2026-11-08" data-ticket-option="both_temples_bundle">Both Temples Bundle — 500 PLN (8 &amp; 22 Listopada 2026)</option>
                     </select>
                 </div>
 
@@ -493,16 +494,42 @@
             }
         }
 
+        function eventDateHasPassed(dateString) {
+            if (!dateString) return false;
+            const parts = dateString.split('-').map(Number);
+            const endOfEventDay = new Date(parts[0], parts[1] - 1, parts[2], 23, 59, 59, 999);
+            return Date.now() > endOfEventDay.getTime();
+        }
+
+        function updateWorkshopRegistrationOptions() {
+            const select = document.getElementById('selectedEventField');
+            if (!select) return;
+            let firstAvailable = -1;
+            Array.from(select.options).forEach((option, index) => {
+                const expired = eventDateHasPassed(option.dataset.eventDate);
+                option.disabled = expired;
+                if (!expired && firstAvailable === -1) firstAvailable = index;
+            });
+            if (select.selectedIndex < 0 || select.options[select.selectedIndex]?.disabled) {
+                if (firstAvailable >= 0) select.selectedIndex = firstAvailable;
+            }
+            const submit = document.getElementById('submitSignupBtn');
+            const available = Array.from(select.options).some(option => !option.disabled);
+            if (submit) submit.disabled = !available;
+        }
+
         function openSignupModal() {
+            updateWorkshopRegistrationOptions();
             toggleModal('signupModal');
         }
 
         function openCustomSignup(eventName) {
+            updateWorkshopRegistrationOptions();
             const select = document.getElementById('selectedEventField');
             if (select) {
                 let found = false;
                 for (let i = 0; i < select.options.length; i++) {
-                    if (select.options[i].value === eventName) {
+                    if (select.options[i].value === eventName && !select.options[i].disabled) {
                         select.selectedIndex = i;
                         found = true;
                         break;
@@ -518,6 +545,8 @@
             }
             toggleModal('signupModal');
         }
+
+        document.addEventListener('DOMContentLoaded', updateWorkshopRegistrationOptions);
 
         // Auto-load dynamic workshops from Clinic Panel keeping 150x150 avatar layout
         async function loadDynamicWorkshops() {
@@ -568,12 +597,29 @@
         // Submit form directly to Google Sheet
         document.getElementById('workshopSignupForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+            updateWorkshopRegistrationOptions();
+            const selectedOption = document.getElementById('selectedEventField').selectedOptions[0];
+            if (!selectedOption || selectedOption.disabled) {
+                const msg = document.getElementById('signupFormMessage');
+                msg.textContent = 'Rejestracja na to wydarzenie jest już zamknięta.';
+                msg.className = 'text-center mt-2 text-xs font-semibold text-red-600';
+                msg.classList.remove('hidden');
+                return;
+            }
             const btn = document.getElementById('submitSignupBtn');
             const msg = document.getElementById('signupFormMessage');
             btn.disabled = true;
             btn.textContent = 'WYSYŁANIE...';
 
             const fd = new FormData(this);
+            if (selectedOption.dataset.ticketOption === 'both_temples_bundle') {
+                fd.append('ticket_option', 'both_temples_bundle');
+                fd.append('ticket_price', '500 PLN');
+                fd.append('selected_events', 'temple1_cacao,temple2_polarity');
+            } else {
+                fd.append('ticket_option', 'single');
+                fd.append('selected_events', selectedOption.value);
+            }
             fd.append('form_type', 'workshop_signup');
             fd.append('source_page', 'Minimalist Works Page');
             fd.append('language', 'PL');
