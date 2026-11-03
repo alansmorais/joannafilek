@@ -706,7 +706,7 @@
             const fd = new FormData(this);
             const ticketOption = document.getElementById('ticketOption').value;
             fd.append('ticket_option', ticketOption);
-            fd.append('ticket_price', ticketOption === 'both_temples_bundle' ? '500 PLN' : 'Individual ticket — current listed price');
+            fd.append('ticket_price', ticketOption === 'both_temples_bundle' ? '500 PLN' : '350 PLN');
             if (ticketOption === 'both_temples_bundle') {
                 fd.append('selected_events', 'temple1_cacao,temple2_polarity');
             } else {
