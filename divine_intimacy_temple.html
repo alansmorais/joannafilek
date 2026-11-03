@@ -579,6 +579,19 @@
             </div>
             <form id="templeSignupForm" class="space-y-3.5">
                 <input type="hidden" name="event" value="temple1_cacao">
+                <div>
+                    <label for="ticketOption" class="block text-xs font-bold text-brand-green uppercase tracking-wider mb-1">
+                        <span class="lang-pl">Rodzaj biletu *</span><span class="lang-en">Ticket option *</span>
+                    </label>
+                    <select id="ticketOption" name="ticket_option" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender bg-white" required>
+                        <option value="single">Divine Intimacy Temple — <span>individual ticket</span></option>
+                        <option value="both_temples_bundle">Both Temples Bundle — 500 PLN (8 &amp; 22 November 2026)</option>
+                    </select>
+                    <p class="text-[10px] text-brand-green/70 mt-1">
+                        <span class="lang-pl">Pakiet obejmuje oba wydarzenia: 8 i 22 listopada 2026. Cena pakietu: 500 PLN.</span>
+                        <span class="lang-en">The bundle includes both events on 8 and 22 November 2026. Bundle price: 500 PLN.</span>
+                    </p>
+                </div>
                 <div class="space-y-2.5">
                     <input type="text" name="name" placeholder="Imię i nazwisko / Full Name *" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
                     <input type="email" name="email" placeholder="Adres e-mail / E-mail *" class="w-full px-4 py-2.5 text-xs rounded-xl border border-brand-lavender focus:outline-brand-plum" required>
@@ -660,7 +673,35 @@
             }
         }
 
+        const TEMPLE_REGISTRATION_CUTOFF = new Date(2026, 10, 8, 23, 59, 59, 999);
+        function templeRegistrationIsOpen() {
+            return Date.now() <= TEMPLE_REGISTRATION_CUTOFF.getTime();
+        }
+        function updateTempleRegistrationState() {
+            const open = templeRegistrationIsOpen();
+            document.querySelectorAll('button[onclick="openSignupModal()"]').forEach(button => {
+                button.disabled = !open;
+                if (!open) {
+                    button.classList.add('opacity-40', 'cursor-not-allowed');
+                    button.setAttribute('aria-disabled', 'true');
+                    button.title = 'Registration is closed because this event has passed.';
+                }
+            });
+            const form = document.getElementById('templeSignupForm');
+            if (form) {
+                const submit = document.getElementById('submitSignupBtn');
+                if (submit) submit.disabled = !open;
+                if (!open) {
+                    const msg = document.getElementById('signupFormMessage');
+                    msg.textContent = 'Registration is closed because this event has passed.';
+                    msg.className = 'text-center mt-2 text-xs font-semibold text-red-600';
+                    msg.classList.remove('hidden');
+                }
+            }
+            return open;
+        }
         function openSignupModal() {
+            if (!updateTempleRegistrationState()) return;
             toggleModal('signupModal');
         }
 
@@ -668,6 +709,7 @@
             let saved = 'pl';
             try { saved = localStorage.getItem('preferredLanguage') || 'pl'; } catch(e) {}
             setLang(saved);
+            updateTempleRegistrationState();
 
             const menuBtn = document.getElementById('menuBtn');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -684,12 +726,21 @@
 
         document.getElementById('templeSignupForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+            if (!updateTempleRegistrationState()) return;
             const btn = document.getElementById('submitSignupBtn');
             const msg = document.getElementById('signupFormMessage');
             btn.disabled = true;
             btn.textContent = 'WYSYŁANIE...';
 
             const fd = new FormData(this);
+            const ticketOption = document.getElementById('ticketOption').value;
+            fd.append('ticket_option', ticketOption);
+            fd.append('ticket_price', ticketOption === 'both_temples_bundle' ? '500 PLN' : 'Individual ticket — current listed price');
+            if (ticketOption === 'both_temples_bundle') {
+                fd.append('selected_events', 'temple1_cacao,temple2_polarity');
+            } else {
+                fd.append('selected_events', 'temple1_cacao');
+            }
             fd.append('form_type', 'templesignup');
             fd.append('source_page', 'Divine Intimacy Dedicated Page');
             fd.append('language', document.body.classList.contains('lang-en') ? 'EN' : 'PL');
